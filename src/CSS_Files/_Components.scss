@@ -1,0 +1,72 @@
+/*===STARTING OF Header component PART===*/
+
+.navOfHeader {
+  height: 3.9rem;
+  width: 97%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .navMenuOfHeader {
+    width: 33.33%;
+    padding-left: 2rem;
+
+    .listImageMenuOfHeader {
+      height: 2rem;
+    }
+
+    .navMenuUlOfHeader {
+      .navMenuLiOfHeader {
+        list-style-type: none;
+      }
+    }
+  }
+
+  .logoOfHeader {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .searchOfHeader {
+    width: 33.33%;
+    
+    display: flex;
+    justify-content: right;
+
+    .searchInput {
+      display: none;
+    }
+
+    .searchLogo {
+      height: 1.22rem;
+    }padding-right: 2rem;
+  }
+}
+
+/*===ENDING OF Header component PART===*/
+
+/*===STARTING OF ListGroup component PART===*/
+
+.ulOfListGroup {
+  .liOfListGroup {
+    list-style-type: none;
+    padding: 1rem 1rem 1rem 2rem;
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #bff2df;
+    }
+
+    .liLogoOfListGroup {
+      padding-right: 17px;
+
+      & img{
+        height: 1.2rem;
+      }
+    }
+  }
+}
+
+/*===ENDING OF ListGroup component PART===*/
