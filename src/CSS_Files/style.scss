@@ -15,12 +15,18 @@
 }
 
 html {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  height: 100%;
 
   body {
     width: 100%;
+    height: 100%;
     font-family: SourceSansPro-SemiBold;
+
+    #root {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
@@ -30,9 +36,8 @@ html {
 
 header {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid rgb(236, 236, 236);
+  display: block;
+  position: fixed;
 }
 
 /*=== ENDING OF HEADER PART ===*/
@@ -42,6 +47,7 @@ header {
 #main_body {
   width: 100%;
   height: 100%;
+  padding-top: 3.9rem;
   display: flex;
   justify-content: center;
 
@@ -49,10 +55,23 @@ header {
     width: 97%;
     height: 100%;
 
-    .rightPart {
+    .leftPart {
       width: 18%;
       height: 100%;
-      border-right: 1px solid rgb(248, 248, 248);
+      float: left;
+      padding-top: 1rem;
+      position: fixed;
+    }
+
+    .rightPart {
+      width: 82%;
+      height: 100%;
+      float: right;
+
+      .elementsContainer {
+        padding: 2rem;
+        float: right;
+      }
     }
   }
 }

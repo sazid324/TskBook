@@ -1,46 +1,60 @@
 /*===STARTING OF Header component PART===*/
 
-.navOfHeader {
-  height: 3.9rem;
-  width: 97%;
+.headerOfHeader {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
 
-  .navMenuOfHeader {
-    width: 33.33%;
-    padding-left: 2rem;
+  .navOfHeader {
+    width: 97%;
+    height: 3.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .listImageMenuOfHeader {
-      height: 2rem;
-    }
+    .navMenuOfHeader {
+      width: 33.33%;
+      padding-left: 2rem;
 
-    .navMenuUlOfHeader {
-      .navMenuLiOfHeader {
-        list-style-type: none;
+      .listImageMenuOfHeader {
+        height: 2rem;
+      }
+
+      .navMenuUlOfHeader {
+        .navMenuLiOfHeader {
+          list-style-type: none;
+        }
       }
     }
-  }
 
-  .logoOfHeader {
-    width: 33.33%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .searchOfHeader {
-    width: 33.33%;
-    
-    display: flex;
-    justify-content: right;
-
-    .searchInput {
-      display: none;
+    .logoOfHeader {
+      width: 33.33%;
+      display: flex;
+      justify-content: center;
     }
 
-    .searchLogo {
-      height: 1.22rem;
-    }padding-right: 2rem;
+    .searchOfHeader {
+      width: 33.33%;
+
+      display: flex;
+      justify-content: right;
+
+      .searchInput {
+        display: none;
+      }
+
+      .searchButton {
+        border: none;
+
+        
+      }
+
+      .searchLogo {
+        height: 1.22rem;
+      }
+      padding-right: 2rem;
+    }
   }
 }
 
@@ -62,7 +76,7 @@
     .liLogoOfListGroup {
       padding-right: 17px;
 
-      & img{
+      & img {
         height: 1.2rem;
       }
     }
