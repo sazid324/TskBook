@@ -36,6 +36,7 @@
           width: 2.65rem;
           height: 2.65rem;
           padding: 8px;
+          color: #e2e2e2;
         }
       }
     }
@@ -74,8 +75,8 @@
         }
 
         .searchLogoOfHeader {
-          width: 2.4rem;
-          height: 2.4rem;
+          width: 2.3rem;
+          height: 2.3rem;
           padding: 8px;
         }
       }
@@ -101,9 +102,13 @@
     }
 
     .liLogoOfListGroup {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      float: left;
       padding-right: 17px;
 
-      & img {
+      & .liLogoImageOfListGroup {
         height: 1.2rem;
       }
     }
@@ -111,3 +116,20 @@
 }
 
 /*===ENDING OF ListGroup component PART===*/
+
+/*===STARTING OF Copyright component PART===*/
+
+.containerOfCopyright {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .peragraphOfCopyright {
+    color: rgb(119, 119, 119);
+    font-family: SourceSansPro-Light;
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+}
+
+/*===ENDING OF Copyright component PART===*/

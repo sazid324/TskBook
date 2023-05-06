@@ -10,33 +10,53 @@ export default function ListGroup() {
       <ul className="ulOfListGroup">
         <li className="liOfListGroup">
           <span className="liLogoOfListGroup">
-            <img src={noteImage} alt="note_logo" />
+            <img
+              className="liLogoImageOfListGroup"
+              src={noteImage}
+              alt="note_logo"
+            />
           </span>
-          Notes
+          <p className="pInLiOfListGroup">Notes</p>
         </li>
         <li className="liOfListGroup">
           <span className="liLogoOfListGroup">
-            <img src={reminderImage} alt="reminder_logo" />
+            <img
+              className="liLogoImageOfListGroup"
+              src={reminderImage}
+              alt="reminder_logo"
+            />
           </span>
-          Reminders
+          <p className="pInLiOfListGroup">Reminders</p>
         </li>
         <li className="liOfListGroup">
           <span className="liLogoOfListGroup">
-            <img src={labelImage} alt="label_logo" />
+            <img
+              className="liLogoImageOfListGroup"
+              src={labelImage}
+              alt="label_logo"
+            />
           </span>
-          Labels
+          <p className="pInLiOfListGroup">Labels</p>
         </li>
         <li className="liOfListGroup">
           <span className="liLogoOfListGroup">
-            <img src={archiveImage} alt="archive_logo" />
+            <img
+              className="liLogoImageOfListGroup"
+              src={archiveImage}
+              alt="archive_logo"
+            />
           </span>
-          Archive
+          <p className="pInLiOfListGroup">Archive</p>
         </li>
         <li className="liOfListGroup">
           <span className="liLogoOfListGroup">
-            <img src={trashImage} alt="trash_logo" />
+            <img
+              className="liLogoImageOfListGroup"
+              src={trashImage}
+              alt="trash_logo"
+            />
           </span>
-          Trash
+          <p className="pInLiOfListGroup">Trash</p>
         </li>
       </ul>
     </>
