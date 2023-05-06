@@ -18,26 +18,28 @@ export default function Header() {
       <div className="headerOfHeader">
         <nav className="navOfHeader">
           <div className="navMenuOfHeader">
-            <img
-              className="listImageMenuOfHeader"
-              src={listImage}
-              alt="list-image"
-            />
+            <div className="navMenuButtonOfHeader">
+              <img
+                className="listImageMenuOfHeader"
+                src={listImage}
+                alt="list-image"
+              />
+            </div>
           </div>
           <div className="logoOfHeader">
             <h3>Logo</h3>
           </div>
           <div className="searchOfHeader">
             <input
-              className="searchInput"
+              className="searchInputOfHeader"
               type="text"
               onChange={onChangesearchInputFunctionOfHeader}
             />
             <button
-              className="searchButton"
+              className="searchButtonOfHeader"
               onClick={onChangesearchButtonFunctionOfHeader}
             >
-              <img className="searchLogo" src={searchImage} alt="search-logo" />
+              <img className="searchLogoOfHeader" src={searchImage} alt="search-logo" />
             </button>
             <div className="searchResult">{inputValue}</div>
           </div>

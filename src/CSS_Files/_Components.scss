@@ -4,10 +4,10 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 
   .navOfHeader {
-    width: 97%;
+    width: 98%;
     height: 3.9rem;
     display: flex;
     justify-content: space-between;
@@ -17,13 +17,25 @@
       width: 33.33%;
       padding-left: 2rem;
 
-      .listImageMenuOfHeader {
-        height: 2rem;
-      }
+      .navMenuButtonOfHeader {
+        width: 2.8rem;
+        height: 2.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      .navMenuUlOfHeader {
-        .navMenuLiOfHeader {
-          list-style-type: none;
+        &:hover,
+        &:focus,
+        &:active {
+          cursor: pointer;
+          border-radius: 50%;
+          background-color: #bff2df;
+        }
+
+        .listImageMenuOfHeader {
+          width: 2.65rem;
+          height: 2.65rem;
+          padding: 8px;
         }
       }
     }
@@ -36,24 +48,37 @@
 
     .searchOfHeader {
       width: 33.33%;
-
+      padding-right: 2rem;
       display: flex;
       justify-content: right;
 
-      .searchInput {
+      .searchInputOfHeader {
         display: none;
       }
 
-      .searchButton {
+      .searchButtonOfHeader {
+        width: 2.8rem;
+        height: 2.8rem;
         border: none;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        
-      }
+        &:hover,
+        &:focus,
+        &:active {
+          cursor: pointer;
+          border-radius: 50%;
+          background-color: #bff2df;
+        }
 
-      .searchLogo {
-        height: 1.22rem;
+        .searchLogoOfHeader {
+          width: 2.4rem;
+          height: 2.4rem;
+          padding: 8px;
+        }
       }
-      padding-right: 2rem;
     }
   }
 }
@@ -65,10 +90,12 @@
 .ulOfListGroup {
   .liOfListGroup {
     list-style-type: none;
-    padding: 1rem 1rem 1rem 2rem;
+    padding: 1rem 1rem 1rem 2.7rem;
     border-radius: 5px;
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       cursor: pointer;
       background-color: #bff2df;
     }
