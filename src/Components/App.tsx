@@ -2,6 +2,7 @@ import Divider from "./Divider";
 import Header from "./Header";
 import ListGroup from "./ListGroup";
 import Copyright from "./Copyright";
+import Button from "./Button";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <div className="main_container">
           <div className="leftPart">
             <div className="topPartOfLeftPart">
+              <Button>Add New</Button>
               <ListGroup />
             </div>
             <div className="bottomPartOfLeftPart">
@@ -22,7 +24,7 @@ function App() {
           </div>
           <div className="rightPart">
             <Divider width="1px" height="100%" color="#ececec" />
-            {/* <div className="elementsContainer"></div> */}
+            <div className="elementsContainer"></div>
           </div>
         </div>
       </section>
