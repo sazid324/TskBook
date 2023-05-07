@@ -1,4 +1,3 @@
-import Divider from "./Divider";
 import Header from "./Header";
 import ListGroup from "./ListGroup";
 import Copyright from "./Copyright";
