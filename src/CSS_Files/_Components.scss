@@ -1,6 +1,6 @@
 /*=== STARTING OF IMPORTS ===*/
 
-@use './Mixin' as *;
+@use "./Mixin" as *;
 @use "./Variables" as *;
 @use "./Fonts";
 
@@ -23,13 +23,13 @@
       .navMenuButtonOfHeader {
         width: 2.8rem;
         height: 2.8rem;
+        border-radius: 50%;
         @include flexCenter(center, center);
 
         &:hover,
         &:focus,
         &:active {
           cursor: pointer;
-          border-radius: 50%;
           background-color: $mainColorLight;
         }
 
@@ -60,13 +60,13 @@
         height: 2.8rem;
         border: none;
         background-color: transparent;
+        border-radius: 50%;
         @include flexCenter(center, center);
 
         &:hover,
         &:focus,
         &:active {
           cursor: pointer;
-          border-radius: 50%;
           background-color: $mainColorLight;
         }
 
@@ -79,15 +79,6 @@
     }
   }
 }
-
-/*===STARTING OF Divider component PART===*/
-
-.lineOfDivier {
-  position: fixed;
-  // padding-top: 3.9rem;
-}
-
-/*===ENDING OF Divider component PART===*/
 
 /*===ENDING OF Header component PART===*/
 
