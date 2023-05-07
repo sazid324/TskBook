@@ -1,7 +1,7 @@
 /*=== STARTING OF IMPORTS ===*/
 
-@use './Mixin';
-@use "./Variables";
+@use './Mixin' as *;
+@use "./Variables" as *;
 @use "./Fonts";
 
 /*=== ENDING OF IMPORTS ===*/
@@ -10,13 +10,13 @@
 
 .headerOfHeader {
   width: 100%;
-  @include Mixin.flexCenter(center, inherit);
-  background-color: Variables.$whiteBG;
+  @include flexCenter(center, inherit);
+  background-color: $whiteBG;
 
   .navOfHeader {
     width: 98%;
     height: 3.9rem;
-    @include Mixin.flexCenter(space-between, center);
+    @include flexCenter(space-between, center);
 
     .navMenuOfHeader {
       width: 33.33%;
@@ -25,14 +25,14 @@
       .navMenuButtonOfHeader {
         width: 2.8rem;
         height: 2.8rem;
-        @include Mixin.flexCenter(center, center);
+        @include flexCenter(center, center);
 
         &:hover,
         &:focus,
         &:active {
           cursor: pointer;
           border-radius: 50%;
-          background-color: Variables.$mainColorLight;
+          background-color: $mainColorLight;
         }
 
         .listImageMenuOfHeader {
@@ -45,13 +45,13 @@
 
     .logoOfHeader {
       width: 33.33%;
-      @include Mixin.flexCenter(center, inherit);
+      @include flexCenter(center, inherit);
     }
 
     .searchOfHeader {
       width: 33.33%;
       padding-right: 2rem;
-      @include Mixin.flexCenter(right, inherit);
+      @include flexCenter(right, inherit);
 
       .searchInputOfHeader {
         display: none;
@@ -62,14 +62,14 @@
         height: 2.8rem;
         border: none;
         background-color: transparent;
-        @include Mixin.flexCenter(center, center);
+        @include flexCenter(center, center);
 
         &:hover,
         &:focus,
         &:active {
           cursor: pointer;
           border-radius: 50%;
-          background-color: Variables.$mainColorLight;
+          background-color: $mainColorLight;
         }
 
         .searchLogoOfHeader {
@@ -87,19 +87,19 @@
 /*===STARTING OF Button component PART===*/
 
 .btnOfButton {
-  background-color: Variables.$mainColorLight;
-  border: 1px solid Variables.$mainColorLight;
+  background-color: $mainColorLight;
+  border: 1px solid $mainColorLight;
   margin-bottom: 15px;
   border-radius: 5px;
   margin-left: 2.7rem;
   padding: 0.5rem 1.5rem;
-  @include Mixin.flexCenter(center, center);
+  @include flexCenter(center, center);
 
   &:hover,
   &:focus,
   &:active {
     cursor: pointer;
-    background-color: Variables.$mainColor;
+    background-color: $mainColor;
   }
 
   .pOfButton {
@@ -128,11 +128,11 @@
     &:focus,
     &:active {
       cursor: pointer;
-      background-color: Variables.$mainColorLight;
+      background-color: $mainColorLight;
     }
 
     .liLogoOfListGroup {
-      @include Mixin.flexCenter(center, center);
+      @include flexCenter(center, center);
       float: left;
       padding-right: 17px;
 
@@ -149,7 +149,7 @@
 
 .containerOfCopyright {
   width: 100%;
-  @include Mixin.flexCenter(center, inherit);
+  @include flexCenter(center, inherit);
 
   .peragraphOfCopyright {
     color: rgb(119, 119, 119);
