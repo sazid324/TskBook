@@ -12,6 +12,8 @@ export default function Divider({ width, height, color }: styleInLineOfDivier) {
         width: `${width}`,
         height: `${height}`,
         backgroundColor: `${color}`,
+        // position: "fixed",
+        // paddingTop: "3.9rem",
       }}
     ></div>
   );

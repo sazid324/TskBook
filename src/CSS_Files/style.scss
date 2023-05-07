@@ -2,6 +2,7 @@
 
 @use "./Components";
 @use "./Mixin";
+@use "./Variables" as *;
 @use "./Fonts";
 
 /*=== ENDING OF IMPORTS ===*/
@@ -12,21 +13,72 @@
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 html {
-  width: 100%;
-  height: 100%;
-
+  box-sizing: border-box;
   body {
-    width: 100%;
-    height: 100%;
     font-family: SourceSansPro-SemiBold;
+    overflow-x: hidden;
 
     #root {
-      width: 100%;
-      height: 100%;
+      header {
+        width: 100dvw;
+        display: block;
+        position: fixed;
+        border-bottom: 1px solid #e2e2e2;
+        background-color: $whiteBG;
+        z-index: 999;
+      }
+
+      #mainBody {
+        width: 100dvw;
+        height: 100dvh;
+        padding-top: 3.9rem;
+        @include Mixin.flexCenter(center, inherit);
+
+        .mainContainer {
+          width: 98%;
+
+          .leftPart {
+            width: 17.7%;
+            height: 100dvh - 10.3dvh;
+            float: left;
+            padding-top: 1.5rem;
+            position: fixed;
+            border-right: 1px solid #ececec;
+
+            .leftPartContainer {
+              position: relative;
+              width: 100%;
+              height: 100%;
+
+              .leftPartLowerSection {
+                position: absolute;
+                height: auto;
+                right: 0;
+                left: 0;
+                bottom: 1rem;
+                margin: auto;
+              }
+            }
+          }
+
+          .rightPart {
+            width: 82%;
+            height: 100%;
+            float: right;
+            @include Mixin.flexCenter(center, center);
+
+            .elementsContainer {
+              width: 100%;
+              height: 100%;
+              padding: 2rem;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -35,51 +87,8 @@ html {
 
 /*=== STARTING OF HEADER PART ===*/
 
-header {
-  width: 100%;
-  display: block;
-  position: fixed;
-}
-
 /*=== ENDING OF HEADER PART ===*/
 
 /*=== STARTING OF MAIN_BODY PART ===*/
-
-#main_body {
-  width: 100%;
-  height: 100%;
-  padding-top: 3.9rem;
-  @include Mixin.flexCenter(center, inherit);
-
-  .main_container {
-    width: 98%;
-    height: 100%;
-
-    .leftPart {
-      width: 17.7%;
-      height: 100%;
-      float: left;
-      padding-top: 1rem;
-      position: fixed;
-
-      .topPartOfLeftPart {
-        height: 83%;
-      }
-    }
-
-    .rightPart {
-      width: 82%;
-      height: 100%;
-      float: right;
-      @include Mixin.flexCenter(center, center);
-
-      .elementsContainer {
-        width: 100%;
-        height: 100%;
-        padding: 2rem;
-      }
-    }
-  }
-}
 
 /*=== ENDING OF MAIN_BODY PART ===*/

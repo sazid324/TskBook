@@ -9,9 +9,7 @@
 /*===STARTING OF Header component PART===*/
 
 .headerOfHeader {
-  width: 100%;
   @include flexCenter(center, inherit);
-  background-color: $whiteBG;
 
   .navOfHeader {
     width: 98%;
@@ -81,6 +79,15 @@
     }
   }
 }
+
+/*===STARTING OF Divider component PART===*/
+
+.lineOfDivier {
+  position: fixed;
+  // padding-top: 3.9rem;
+}
+
+/*===ENDING OF Divider component PART===*/
 
 /*===ENDING OF Header component PART===*/
 
