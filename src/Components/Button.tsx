@@ -4,7 +4,7 @@ interface ButtonElements {
   children: string;
 }
 
-function Button({ children }: ButtonElements) {
+export default function Button({ children }: ButtonElements) {
   return (
     <button className="btnOfButton">
       <img className="addImageOfButton" src={addImage} alt="add-image" />
@@ -12,5 +12,3 @@ function Button({ children }: ButtonElements) {
     </button>
   );
 }
-
-export default Button;

@@ -1,17 +1,22 @@
+/*=== STARTING OF IMPORTS ===*/
+
+@use './Mixin';
+@use "./Variables";
+@use "./Fonts";
+
+/*=== ENDING OF IMPORTS ===*/
+
 /*===STARTING OF Header component PART===*/
 
 .headerOfHeader {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  background-color: #ffffff;
+  @include Mixin.flexCenter(center, inherit);
+  background-color: Variables.$whiteBG;
 
   .navOfHeader {
     width: 98%;
     height: 3.9rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include Mixin.flexCenter(space-between, center);
 
     .navMenuOfHeader {
       width: 33.33%;
@@ -20,16 +25,14 @@
       .navMenuButtonOfHeader {
         width: 2.8rem;
         height: 2.8rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include Mixin.flexCenter(center, center);
 
         &:hover,
         &:focus,
         &:active {
           cursor: pointer;
           border-radius: 50%;
-          background-color: #d4f7ea;
+          background-color: Variables.$mainColorLight;
         }
 
         .listImageMenuOfHeader {
@@ -42,15 +45,13 @@
 
     .logoOfHeader {
       width: 33.33%;
-      display: flex;
-      justify-content: center;
+      @include Mixin.flexCenter(center, inherit);
     }
 
     .searchOfHeader {
       width: 33.33%;
       padding-right: 2rem;
-      display: flex;
-      justify-content: right;
+      @include Mixin.flexCenter(right, inherit);
 
       .searchInputOfHeader {
         display: none;
@@ -61,16 +62,14 @@
         height: 2.8rem;
         border: none;
         background-color: transparent;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include Mixin.flexCenter(center, center);
 
         &:hover,
         &:focus,
         &:active {
           cursor: pointer;
           border-radius: 50%;
-          background-color: #d4f7ea;
+          background-color: Variables.$mainColorLight;
         }
 
         .searchLogoOfHeader {
@@ -88,21 +87,19 @@
 /*===STARTING OF Button component PART===*/
 
 .btnOfButton {
-  background-color: #d4f7ea;
-  border: 1px solid #d4f7ea;
+  background-color: Variables.$mainColorLight;
+  border: 1px solid Variables.$mainColorLight;
   margin-bottom: 15px;
   border-radius: 5px;
   margin-left: 2.7rem;
   padding: 0.5rem 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include Mixin.flexCenter(center, center);
 
   &:hover,
   &:focus,
   &:active {
     cursor: pointer;
-    background-color: #9fecd0;
+    background-color: Variables.$mainColor;
   }
 
   .pOfButton {
@@ -131,13 +128,11 @@
     &:focus,
     &:active {
       cursor: pointer;
-      background-color: #d4f7ea;
+      background-color: Variables.$mainColorLight;
     }
 
     .liLogoOfListGroup {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include Mixin.flexCenter(center, center);
       float: left;
       padding-right: 17px;
 
@@ -154,8 +149,7 @@
 
 .containerOfCopyright {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  @include Mixin.flexCenter(center, inherit);
 
   .peragraphOfCopyright {
     color: rgb(119, 119, 119);

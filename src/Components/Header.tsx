@@ -27,7 +27,7 @@ export default function Header() {
             </div>
           </div>
           <div className="logoOfHeader">
-            <h3>Logo</h3>
+            <h3>TskBook</h3>
           </div>
           <div className="searchOfHeader">
             <input
