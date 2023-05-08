@@ -158,3 +158,13 @@
 }
 
 /*===ENDING OF Copyright component PART===*/
+
+/*===STARTING OF Card component PART===*/
+
+.mainContainerOfCard {
+  border: 1.8px solid $cardBorderColor;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/*===ENDING OF Card component PART===*/

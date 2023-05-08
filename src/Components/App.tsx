@@ -2,6 +2,7 @@ import Header from "./Header";
 import ListGroup from "./ListGroup";
 import Copyright from "./Copyright";
 import Button from "./Button";
+import Card from "./Card";
 
 function App() {
   return (
@@ -23,7 +24,12 @@ function App() {
             </div>
           </div>
           <div className="rightPart">
-            <div className="elementsContainer"></div>
+            <div className="elementsContainer">
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+            </div>
           </div>
         </div>
       </section>
