@@ -191,25 +191,21 @@
     bottom: 0;
     margin: auto;
     padding: 10px 10px;
-    @include flexCenter(space-between, center);
-    border-top: 1px solid rgb(230, 230, 230) ;
+    @include flexCenter(space-between, inherit);
+    border-top: 1px solid rgb(230, 230, 230);
 
-    .leftSideInLowerPartOfCard {
+    .elementInLowerPartOfCard {
+      @include flexCenter(center, center);
       float: left;
+      border-radius: 50%;
+      padding: 0.5rem;
 
-      .elementInLowerPartOfCard {
-        @include flexCenter(center, center);
-        float: left;
-        padding-right: 7px;
+      &:hover,
+      &:focus,
+      &:active {
+        cursor: pointer;
+        background-color: $mainColorLight;
       }
-
-      :last-child {
-        padding-right: 0;
-      }
-    }
-
-    .rightSideInLowerPartOfCard {
-      float: right;
     }
   }
 }

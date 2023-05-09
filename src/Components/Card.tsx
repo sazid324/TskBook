@@ -38,29 +38,24 @@ export default function Card() {
           </p>
         </div>
         <div className="lowerPartOfCard">
-          <div className="leftSideInLowerPartOfCard">
-            <span className="elementInLowerPartOfCard">
-              <img src={reminderImage} alt="reminder-image" />
-            </span>
-            <span className="elementInLowerPartOfCard">
-              <img src={cardBackgroundImage} alt="cardBackground-image" />
-            </span>
-            <span className="elementInLowerPartOfCard">
-              <img src={labelImage} alt="label-image" />
-            </span>
-            <span className="elementInLowerPartOfCard">
-              <img src={archiveImage} alt="archive-image" />
-            </span>
-            <span className="elementInLowerPartOfCard">
-              <img src={attachmentImage} alt="attachment-image" />
-            </span>
-            <span className="elementInLowerPartOfCard">
-              <img src={threeDotImage} alt="threeDot-image" />
-            </span>
-          </div>
-          <div className="rightSideInLowerPartOfCard">
-            <button className="cardCloseBtnOfCard">Close</button>
-          </div>
+          <span className="elementInLowerPartOfCard">
+            <img src={reminderImage} alt="reminder-image" />
+          </span>
+          <span className="elementInLowerPartOfCard">
+            <img src={cardBackgroundImage} alt="cardBackground-image" />
+          </span>
+          <span className="elementInLowerPartOfCard">
+            <img src={labelImage} alt="label-image" />
+          </span>
+          <span className="elementInLowerPartOfCard">
+            <img src={archiveImage} alt="archive-image" />
+          </span>
+          <span className="elementInLowerPartOfCard">
+            <img src={attachmentImage} alt="attachment-image" />
+          </span>
+          <span className="elementInLowerPartOfCard">
+            <img src={threeDotImage} alt="threeDot-image" />
+          </span>
         </div>
       </div>
     </>
