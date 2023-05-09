@@ -161,10 +161,57 @@
 
 /*===STARTING OF Card component PART===*/
 
-.mainContainerOfCard {
+.containerOfCard {
+  position: relative;
   border: 1.8px solid $cardBorderColor;
   border-radius: 5px;
+  padding: 0.9rem;
   overflow: hidden;
+
+  .upperPartOfCard {
+    .headingOfCard {
+      padding-bottom: 10px;
+      font-family: Manrope-Regular;
+      color: #202124;
+    }
+
+    .bodyOfCard {
+      font-family: Lato-Regular;
+      font-size: 0.9rem;
+      color: #202124;
+    }
+  }
+
+  .lowerPartOfCard {
+    position: absolute;
+    width: 100%;
+    background-color: $whiteBG;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 10px 10px;
+    @include flexCenter(space-between, center);
+    border-top: 1px solid rgb(230, 230, 230) ;
+
+    .leftSideInLowerPartOfCard {
+      float: left;
+
+      .elementInLowerPartOfCard {
+        @include flexCenter(center, center);
+        float: left;
+        padding-right: 7px;
+      }
+
+      :last-child {
+        padding-right: 0;
+      }
+    }
+
+    .rightSideInLowerPartOfCard {
+      float: right;
+    }
+  }
 }
 
 /*===ENDING OF Card component PART===*/

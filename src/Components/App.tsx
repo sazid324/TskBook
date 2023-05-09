@@ -25,10 +25,13 @@ function App() {
           </div>
           <div className="rightPart">
             <div className="elementsContainer">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              <div className="mainContainerOfCard">
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+              </div>
             </div>
           </div>
         </div>
