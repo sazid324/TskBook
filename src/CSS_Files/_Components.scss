@@ -170,24 +170,28 @@
 
   .upperPartOfCard {
     .headingOfCard {
-      padding-bottom: 10px;
+      padding-bottom: 15px;
+      border: none;
+      outline: none;
       font-family: Manrope-Regular;
+      font-weight: bold;
+      font-size: 1rem;
       color: #202124;
     }
 
     .bodyOfCard {
       width: 100%;
-      height: 100dvh;
-      overflow: hidden;
+      max-height: 7.3rem;
       font-family: Lato-Regular;
       font-size: 0.9rem;
       color: #202124;
+      background-color: transparent;
       border: none;
+      outline: none;
+      resize: none;
 
-      &:hover,
-      &:focus,
-      &:active {
-        border: none;
+      &::-webkit-scrollbar {
+        width: 0;
       }
     }
   }
@@ -203,7 +207,7 @@
     padding: 10px 10px;
     @include flexCenter(space-between, inherit);
     border-top: 1px solid #e6e6e6;
-    box-shadow: 0 0 0.8rem 1.3rem #ffffff;
+    box-shadow: 0 0 0.9rem 1.3rem #ffffff;
 
     .elementInLowerPartOfCard {
       @include flexCenter(center, center);
