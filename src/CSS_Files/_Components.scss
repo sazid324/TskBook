@@ -192,7 +192,8 @@
     margin: auto;
     padding: 10px 10px;
     @include flexCenter(space-between, inherit);
-    border-top: 1px solid rgb(230, 230, 230);
+    border-top: 1px solid #e6e6e6;
+    box-shadow: 0 0 0.8rem 1.3rem #ffffff;
 
     .elementInLowerPartOfCard {
       @include flexCenter(center, center);

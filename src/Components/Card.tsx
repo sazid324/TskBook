@@ -4,34 +4,16 @@ import labelImage from "../assets/Images/Icons_and_logos/label.svg";
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
 import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
-import { useState, useEffect } from "react";
 
 export default function Card() {
-  const [elementsHeight, setElementsHeight] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setElementsHeight(
-        document.getElementsByClassName("containerOfCard")[0].clientHeight
-      );
-    });
-  }, [window.innerHeight]);
-  console.log(elementsHeight);
-
-  let upperPartOfCardHeight = elementsHeight - 94;
 
   return (
     <>
       <div className="containerOfCard">
-        <div
-          className="upperPartOfCard"
-          style={{
-            height: `${upperPartOfCardHeight}px`,
-            overflow: "hidden",
-          }}
-        >
+        <div className="upperPartOfCard">
           <h4 className="headingOfCard">Heading</h4>
-          <p className="bodyOfCard">
+          <p
+            className="bodyOfCard">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit non
             doloremque maxime, illo a, molestiae voluptate nobis modi deserunt
             culpa facilis recusandae saepe vitae debitis. Ab sit distinctio
