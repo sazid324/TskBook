@@ -6,14 +6,6 @@ import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
 export default function Card() {
-  const textarea: any = document.getElementsByClassName("bodyOfCard")[0];
-
-  const textareaHeightFunction = (object: any) => {
-    let textareaHeight = object.target.scrollHeight;
-    textarea.style.height = `${textareaHeight}px`;
-    console.log(textareaHeight);
-  };
-
   return (
     <>
       <div className="containerOfCard">
@@ -22,7 +14,6 @@ export default function Card() {
           <textarea
             className="bodyOfCard"
             placeholder="Take a note...."
-            onKeyDown={textareaHeightFunction}
           ></textarea>
         </div>
         <div className="lowerPartOfCard">
