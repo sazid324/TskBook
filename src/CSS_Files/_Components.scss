@@ -163,13 +163,22 @@
 
 .containerOfCard {
   position: relative;
+  min-height: 9.2rem;
   max-height: 22rem;
   border: 1.8px solid $cardBorderColor;
   border-radius: 5px;
   padding: 0.9rem;
-  overflow: hidden;
+
+  &:hover,
+  &:focus,
+  &:active {
+    cursor: pointer;
+  }
 
   .upperPartOfCard {
+    max-height: 12.5rem;
+    overflow: hidden;
+
     .headingOfCard {
       padding-bottom: 15px;
       border: none;
@@ -182,7 +191,6 @@
 
     .bodyOfCard {
       width: 100%;
-      padding-bottom: 2.5rem;
       font-family: Lato-Regular;
       font-size: 0.9rem;
       color: #202124;
@@ -208,7 +216,8 @@
     padding: 10px 10px;
     @include flexCenter(space-between, inherit);
     border-top: 1px solid #e6e6e6;
-    box-shadow: 0 0 0.9rem 1.3rem #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 -1.45rem 0.8rem -1px #ffffff;
 
     .elementInLowerPartOfCard {
       @include flexCenter(center, center);
@@ -221,6 +230,68 @@
       &:active {
         cursor: pointer;
         background-color: $mainColorLight;
+      }
+
+      .threeDotMenuOfCard {
+        position: relative;
+        @include flexCenter(center, center);
+
+        &:hover > .threeDotItemsWraperInLowerPartOfCard {
+          display: block;
+          animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
+          animation-duration: 0.5s;
+        }
+
+        @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
+          100% {
+            opacity: 1;
+            transform: none;
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(18px);
+          }
+          100% {
+            opacity: 1;
+            transform: none;
+          }
+        }
+
+        .threeDotItemsWraperInLowerPartOfCard {
+          display: none;
+          position: absolute;
+          width: 125px + 20px;
+          height: 125px;
+          padding-top: 10px;
+          padding-left: 10px;
+          top: -1px;
+          left: 5px;
+          z-index: 999;
+
+          .threeDotItemsInLowerPartOfCard {
+            width: 125px;
+            height: fit-content(100%);
+            padding: 0.4rem 0rem;
+            margin: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 1px 1px 0.6rem 0.1rem $cardBorderColor;
+
+            .itemInThreeDotInLowerPartOfCard {
+              width: 100%;
+              padding: 0.4rem 1rem;
+              list-style-type: none;
+              font-size: 0.85rem;
+
+              &:hover,
+              &:focus,
+              &:active {
+                cursor: pointer;
+                background-color: $mainColorLight;
+              }
+            }
+          }
+        }
       }
     }
   }
