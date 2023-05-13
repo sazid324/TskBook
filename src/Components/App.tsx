@@ -6,11 +6,12 @@ import Card from "./Card";
 import { renderToString } from "react-dom/server";
 
 function App() {
+  // Adding functionality of Add New button.
+
   const functionCalledByAddNewButton = () => {
     const mainContainerOfCard: any = document.querySelector(
       ".mainContainerOfCard"
     );
-
     const cardComponent: any = `${renderToString(<Card />)}`;
 
     mainContainerOfCard.insertAdjacentHTML("beforeend", cardComponent);

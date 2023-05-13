@@ -6,6 +6,13 @@ import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
 export default function Card() {
+// Adding functionality of delete button.
+
+  const functionCalledByDeleteButton = () => {
+    const containerOfCard: any = document.querySelector(".containerOfCard");
+    containerOfCard.remove();
+  };
+
   return (
     <>
       <div className="containerOfCard">
@@ -41,7 +48,10 @@ export default function Card() {
                   <li className="itemInThreeDotInLowerPartOfCard">
                     Make a copy
                   </li>
-                  <li className="itemInThreeDotInLowerPartOfCard">
+                  <li
+                    className="itemInThreeDotInLowerPartOfCard"
+                    onClick={functionCalledByDeleteButton}
+                  >
                     Delete note
                   </li>
                 </ul>
