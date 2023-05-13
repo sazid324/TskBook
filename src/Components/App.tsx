@@ -3,8 +3,19 @@ import ListGroup from "./ListGroup";
 import Copyright from "./Copyright";
 import Button from "./Button";
 import Card from "./Card";
+import { renderToString } from "react-dom/server";
 
 function App() {
+  const functionCalledByAddNewButton = () => {
+    const mainContainerOfCard: any = document.querySelector(
+      ".mainContainerOfCard"
+    );
+
+    const cardComponent: any = `${renderToString(<Card />)}`;
+
+    mainContainerOfCard.insertAdjacentHTML("beforeend", cardComponent);
+  };
+
   return (
     <>
       <header>
@@ -15,7 +26,11 @@ function App() {
           <div className="leftPart">
             <div className="leftPartContainer">
               <div className="leftPartUpperSection">
-                <Button>Add New</Button>
+                <Button
+                  functionCallingOnBtnClick={functionCalledByAddNewButton}
+                >
+                  Add New
+                </Button>
                 <ListGroup />
               </div>
               <div className="leftPartLowerSection">
