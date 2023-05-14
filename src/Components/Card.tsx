@@ -5,14 +5,11 @@ import editImage from "../assets/Images/Icons_and_logos/edit.svg";
 import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
-export default function Card() {
-// Adding functionality of delete button.
+interface CardElements {
+  functionCalledByDeleteButton: () => void;
+}
 
-  const functionCalledByDeleteButton = () => {
-    const containerOfCard: any = document.querySelector(".containerOfCard");
-    containerOfCard.remove();
-  };
-
+export default function Card({ functionCalledByDeleteButton }: CardElements) {
   return (
     <>
       <div className="containerOfCard">

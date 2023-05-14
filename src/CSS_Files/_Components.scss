@@ -94,7 +94,6 @@
   @include flexCenter(center, center);
 
   &:hover,
-  &:focus,
   &:active {
     cursor: pointer;
     background-color: $mainColor;

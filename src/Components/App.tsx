@@ -1,20 +1,26 @@
+import { useState } from "react";
 import Header from "./Header";
 import ListGroup from "./ListGroup";
 import Copyright from "./Copyright";
 import Button from "./Button";
 import Card from "./Card";
-import { renderToString } from "react-dom/server";
 
 function App() {
   // Adding functionality of Add New button.
 
-  const functionCalledByAddNewButton = () => {
-    const mainContainerOfCard: any = document.querySelector(
-      ".mainContainerOfCard"
-    );
-    const cardComponent: any = `${renderToString(<Card />)}`;
+  const [addNew, setAddNew] = useState([]);
 
-    mainContainerOfCard.insertAdjacentHTML("beforeend", cardComponent);
+  const functionCalledByAddNewButton = () => {
+    const addNewContainerOfCard: any = [...addNew, []];
+    setAddNew(addNewContainerOfCard);
+  };
+
+  // Adding functionality of delete button.
+
+  const functionCalledByDeleteButton = (i: any) => {
+    const deleteContainerOfCard: any = [...addNew];
+    deleteContainerOfCard.splice(i, 1);
+    setAddNew(deleteContainerOfCard);
   };
 
   return (
@@ -42,11 +48,15 @@ function App() {
           <div className="rightPart">
             <div className="elementsContainer">
               <div className="mainContainerOfCard">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {addNew.map((i: any) => {
+                  return (
+                    <Card
+                      functionCalledByDeleteButton={() =>
+                        functionCalledByDeleteButton(i)
+                      }
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
