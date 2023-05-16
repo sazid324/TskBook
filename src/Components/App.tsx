@@ -11,15 +11,15 @@ function App() {
   const [addNew, setAddNew] = useState([]);
 
   const functionCalledByAddNewButton = () => {
-    const addNewContainerOfCard: any = [...addNew, []];
+    const addNewContainerOfCard: any = [...addNew, addNew];
     setAddNew(addNewContainerOfCard);
   };
 
   // Adding functionality of delete button.
 
-  const functionCalledByDeleteButton = (i: any) => {
+  const functionCalledByDeleteButton = (element: never) => {
     const deleteContainerOfCard: any = [...addNew];
-    deleteContainerOfCard.splice(i, 1);
+    deleteContainerOfCard.splice(addNew.indexOf(element), 1);
     setAddNew(deleteContainerOfCard);
   };
 
@@ -48,11 +48,13 @@ function App() {
           <div className="rightPart">
             <div className="elementsContainer">
               <div className="mainContainerOfCard">
-                {addNew.map((i: any) => {
+                {addNew}
+                {addNew.map((element: never) => {
                   return (
                     <Card
+                      key={addNew.indexOf(element)}
                       functionCalledByDeleteButton={() =>
-                        functionCalledByDeleteButton(i)
+                        functionCalledByDeleteButton(element)
                       }
                     />
                   );

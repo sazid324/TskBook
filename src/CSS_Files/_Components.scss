@@ -27,7 +27,6 @@
         @include flexCenter(center, center);
 
         &:hover,
-        &:focus,
         &:active {
           cursor: pointer;
           background-color: $mainColorLight;
@@ -64,7 +63,6 @@
         @include flexCenter(center, center);
 
         &:hover,
-        &:focus,
         &:active {
           cursor: pointer;
           background-color: $mainColorLight;
@@ -122,7 +120,6 @@
     border-radius: 5px;
 
     &:hover,
-    &:focus,
     &:active {
       cursor: pointer;
       background-color: $mainColorLight;
@@ -169,7 +166,6 @@
   padding: 0.9rem;
 
   &:hover,
-  &:focus,
   &:active {
     cursor: pointer;
   }
@@ -225,7 +221,6 @@
       padding: 0.5rem;
 
       &:hover,
-      &:focus,
       &:active {
         cursor: pointer;
         background-color: $mainColorLight;
@@ -283,7 +278,6 @@
               font-size: 0.85rem;
 
               &:hover,
-              &:focus,
               &:active {
                 cursor: pointer;
                 background-color: $mainColorLight;
