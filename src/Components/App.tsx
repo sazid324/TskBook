@@ -15,6 +15,21 @@ function App() {
     setAddNew(addNewContainerOfCard);
   };
 
+  // Adding functionality of Delete button in card.
+
+  const functionCalledByDeleteButton = (index: number) => {
+    // const deleteContainerOfCard: any = [...addNew];
+    // deleteContainerOfCard.splice(index, 1);
+    // setAddNew(deleteContainerOfCard);
+
+    const containerOfCard: any =
+      document.getElementsByClassName("containerOfCard")[index];
+
+    containerOfCard.remove();
+  };
+
+  /////////////////////// Return Method ///////////////////////
+
   return (
     <>
       <header>
@@ -46,6 +61,9 @@ function App() {
                     <Card
                       key={addNew.indexOf(element)}
                       indexOfCard={addNew.indexOf(element)}
+                      functionCalledByDeleteButton={() =>
+                        functionCalledByDeleteButton(addNew.indexOf(element))
+                      }
                     />
                   );
                 })}

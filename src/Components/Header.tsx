@@ -13,6 +13,8 @@ export default function Header() {
     console.log(searchTerm);
   };
 
+  /////////////////////// Return Method ///////////////////////
+
   return (
     <>
       <div className="headerOfHeader">
@@ -39,7 +41,11 @@ export default function Header() {
               className="searchButtonOfHeader"
               onClick={onChangesearchButtonFunctionOfHeader}
             >
-              <img className="searchLogoOfHeader" src={searchImage} alt="search-logo" />
+              <img
+                className="searchLogoOfHeader"
+                src={searchImage}
+                alt="search-logo"
+              />
             </button>
             <div className="searchResult">{inputValue}</div>
           </div>

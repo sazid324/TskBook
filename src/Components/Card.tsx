@@ -7,9 +7,10 @@ import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
 interface CardElements {
   indexOfCard: number;
+  functionCalledByDeleteButton: () => void;
 }
 
-export default function Card({ indexOfCard }: CardElements) {
+export default function Card({ indexOfCard, functionCalledByDeleteButton }: CardElements) {
   // Adding functionality of Close button in card.
 
   const functionCalledByCloseButton = (index: number) => {
@@ -22,6 +23,9 @@ export default function Card({ indexOfCard }: CardElements) {
       document.getElementsByClassName("fixedBodyOfCard")[index];
     const editableBodyOfCard: any =
       document.getElementsByClassName("editableBodyOfCard")[index];
+    const closeButtonOfCard: any = document.getElementsByClassName(
+      "headerButtonPartOfCard"
+    )[index];
 
     let valueOfEditableHeadingOfCard = editableHeadingOfCard.value;
     fixedHeadingOfCard.innerHTML = valueOfEditableHeadingOfCard;
@@ -32,6 +36,7 @@ export default function Card({ indexOfCard }: CardElements) {
     editableHeadingOfCard.style.display = "none";
     fixedBodyOfCard.style.display = "block";
     editableBodyOfCard.style.display = "none";
+    closeButtonOfCard.style.display = "none";
   };
 
   // Adding functionality of Edit button in card.
@@ -46,20 +51,15 @@ export default function Card({ indexOfCard }: CardElements) {
       document.getElementsByClassName("fixedBodyOfCard")[index];
     const editableBodyOfCard: any =
       document.getElementsByClassName("editableBodyOfCard")[index];
+    const closeButtonOfCard: any = document.getElementsByClassName(
+      "headerButtonPartOfCard"
+    )[index];
 
     fixedHeadingOfCard.style.display = "none";
     editableHeadingOfCard.style.display = "block";
     fixedBodyOfCard.style.display = "none";
     editableBodyOfCard.style.display = "block";
-  };
-
-  // Adding functionality of Delete button in card.
-
-  const functionCalledByDeleteButton = (index: number) => {
-    const containerOfCard: any =
-      document.getElementsByClassName("containerOfCard")[index];
-
-    containerOfCard.remove();
+    closeButtonOfCard.style.display = "block";
   };
 
   /////////////////////// Return Method ///////////////////////
@@ -140,7 +140,7 @@ export default function Card({ indexOfCard }: CardElements) {
                   </li>
                   <li
                     className="itemInThreeDotInLowerPartOfCard"
-                    onClick={() => functionCalledByDeleteButton(indexOfCard)}
+                    onClick={functionCalledByDeleteButton}
                   >
                     Delete note
                   </li>

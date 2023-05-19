@@ -1,6 +1,8 @@
 export default function Copyright() {
   let copyrightYear: any = new Date().getFullYear();
 
+  /////////////////////// Return Method ///////////////////////
+
   return (
     <>
       <div className="containerOfCopyright">
