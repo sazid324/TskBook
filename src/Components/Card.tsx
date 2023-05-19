@@ -33,6 +33,30 @@ export default function Card({
     editableBodyOfCard.style.display = "block";
   };
 
+  // Adding functionality of close button in card.
+
+  const functionCalledByCloseButton = (index: number) => {
+    const fixedHeadingOfCard: any =
+      document.getElementsByClassName("fixedHeadingOfCard")[index];
+    const editableHeadingOfCard: any = document.getElementsByClassName(
+      "editableHeadingOfCard"
+    )[index];
+    const fixedBodyOfCard: any =
+      document.getElementsByClassName("fixedBodyOfCard")[index];
+    const editableBodyOfCard: any =
+      document.getElementsByClassName("editableBodyOfCard")[index];
+    
+    let valueOfEditableHeadingOfCard = editableHeadingOfCard.value;
+    fixedHeadingOfCard.innerHTML = valueOfEditableHeadingOfCard;
+    let valueOfEditableBodyOfCard = editableBodyOfCard.value;
+    fixedBodyOfCard.innerHTML = valueOfEditableBodyOfCard;
+
+    fixedHeadingOfCard.style.display = "block";
+    editableHeadingOfCard.style.display = "none";
+    fixedBodyOfCard.style.display = "block";
+    editableBodyOfCard.style.display = "none";
+  };
+
   return (
     <>
       <div className="containerOfCard">
@@ -57,7 +81,12 @@ export default function Card({
               {/* Ending of heading part of card. */}
             </div>
             <div className="headerButtonPartOfCard">
-              <button className="closeButtonOfCard">Close</button>
+              <button
+                className="closeButtonOfCard"
+                onClick={() => functionCalledByCloseButton(indexOfCard)}
+              >
+                Close
+              </button>
             </div>
           </div>
           {/* Starting of body part of card. */}
