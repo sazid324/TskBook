@@ -6,15 +6,35 @@ import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
 interface CardElements {
-  functionCalledByDeleteButton: () => void;
   indexOfCard: number;
 }
 
-export default function Card({
-  functionCalledByDeleteButton,
-  indexOfCard,
-}: CardElements) {
-  // Adding functionality of edit button in card.
+export default function Card({ indexOfCard }: CardElements) {
+  // Adding functionality of Close button in card.
+
+  const functionCalledByCloseButton = (index: number) => {
+    const fixedHeadingOfCard: any =
+      document.getElementsByClassName("fixedHeadingOfCard")[index];
+    const editableHeadingOfCard: any = document.getElementsByClassName(
+      "editableHeadingOfCard"
+    )[index];
+    const fixedBodyOfCard: any =
+      document.getElementsByClassName("fixedBodyOfCard")[index];
+    const editableBodyOfCard: any =
+      document.getElementsByClassName("editableBodyOfCard")[index];
+
+    let valueOfEditableHeadingOfCard = editableHeadingOfCard.value;
+    fixedHeadingOfCard.innerHTML = valueOfEditableHeadingOfCard;
+    let valueOfEditableBodyOfCard = editableBodyOfCard.value;
+    fixedBodyOfCard.innerHTML = valueOfEditableBodyOfCard;
+
+    fixedHeadingOfCard.style.display = "block";
+    editableHeadingOfCard.style.display = "none";
+    fixedBodyOfCard.style.display = "block";
+    editableBodyOfCard.style.display = "none";
+  };
+
+  // Adding functionality of Edit button in card.
 
   const functionCalledByEditButton = (index: number) => {
     const fixedHeadingOfCard: any =
@@ -33,29 +53,16 @@ export default function Card({
     editableBodyOfCard.style.display = "block";
   };
 
-  // Adding functionality of close button in card.
+  // Adding functionality of Delete button in card.
 
-  const functionCalledByCloseButton = (index: number) => {
-    const fixedHeadingOfCard: any =
-      document.getElementsByClassName("fixedHeadingOfCard")[index];
-    const editableHeadingOfCard: any = document.getElementsByClassName(
-      "editableHeadingOfCard"
-    )[index];
-    const fixedBodyOfCard: any =
-      document.getElementsByClassName("fixedBodyOfCard")[index];
-    const editableBodyOfCard: any =
-      document.getElementsByClassName("editableBodyOfCard")[index];
-    
-    let valueOfEditableHeadingOfCard = editableHeadingOfCard.value;
-    fixedHeadingOfCard.innerHTML = valueOfEditableHeadingOfCard;
-    let valueOfEditableBodyOfCard = editableBodyOfCard.value;
-    fixedBodyOfCard.innerHTML = valueOfEditableBodyOfCard;
+  const functionCalledByDeleteButton = (index: number) => {
+    const containerOfCard: any =
+      document.getElementsByClassName("containerOfCard")[index];
 
-    fixedHeadingOfCard.style.display = "block";
-    editableHeadingOfCard.style.display = "none";
-    fixedBodyOfCard.style.display = "block";
-    editableBodyOfCard.style.display = "none";
+    containerOfCard.remove();
   };
+
+  /////////////////////// Return Method ///////////////////////
 
   return (
     <>
@@ -133,7 +140,7 @@ export default function Card({
                   </li>
                   <li
                     className="itemInThreeDotInLowerPartOfCard"
-                    onClick={functionCalledByDeleteButton}
+                    onClick={() => functionCalledByDeleteButton(indexOfCard)}
                   >
                     Delete note
                   </li>

@@ -15,14 +15,6 @@ function App() {
     setAddNew(addNewContainerOfCard);
   };
 
-  // Adding functionality of delete button in card.
-
-  const functionCalledByDeleteButton = (element: never) => {
-    const deleteContainerOfCard: any = [...addNew];
-    deleteContainerOfCard.splice(addNew.indexOf(element), 1);
-    setAddNew(deleteContainerOfCard);
-  };
-
   return (
     <>
       <header>
@@ -54,9 +46,6 @@ function App() {
                     <Card
                       key={addNew.indexOf(element)}
                       indexOfCard={addNew.indexOf(element)}
-                      functionCalledByDeleteButton={() =>
-                        functionCalledByDeleteButton(element)
-                      }
                     />
                   );
                 })}
