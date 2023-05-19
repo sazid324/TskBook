@@ -165,23 +165,49 @@
   border-radius: 5px;
   padding: 0.9rem;
 
-  &:hover,
-  &:active {
-    cursor: pointer;
-  }
-
   .upperPartOfCard {
     max-height: 12.5rem;
     overflow: hidden;
 
-    .headingOfCard {
-      padding-bottom: 15px;
-      border: none;
-      outline: none;
-      font-family: Manrope-Regular;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #202124;
+    .headerWraperOfCard {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+
+      .headerTextPartOfCard {
+        float: left;
+
+        .headingOfCard {
+          width: 100%;
+          padding-bottom: 15px;
+          border: none;
+          outline: none;
+          font-family: Manrope-Regular;
+          font-weight: bold;
+          font-size: 1rem;
+          color: #202124;
+          float: left;
+        }
+      }
+
+      .headerButtonPartOfCard {
+        float: right;
+
+        .closeButtonOfCard {
+          padding: 0.2rem 0.4rem;
+          border: 1px solid rgb(219, 219, 219);
+          border-radius: 15px;
+          background-color: transparent;
+
+          &:hover,
+          &:active {
+            cursor: pointer;
+            border-color: $mainColorLight;
+            background-color: $mainColorLight;
+          }
+        }
+      }
     }
 
     .bodyOfCard {

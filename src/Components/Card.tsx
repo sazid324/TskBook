@@ -10,13 +10,15 @@ interface CardElements {
   indexOfCard: number;
 }
 
-export default function Card({ functionCalledByDeleteButton, indexOfCard }: CardElements) {
+export default function Card({
+  functionCalledByDeleteButton,
+  indexOfCard,
+}: CardElements) {
   // Adding functionality of edit button in card.
 
   const functionCalledByEditButton = (index: number) => {
-    const fixedHeadingOfCard: any = document.getElementsByClassName(
-      "fixedHeadingOfCard"
-    )[index];
+    const fixedHeadingOfCard: any =
+      document.getElementsByClassName("fixedHeadingOfCard")[index];
     const editableHeadingOfCard: any = document.getElementsByClassName(
       "editableHeadingOfCard"
     )[index];
@@ -35,21 +37,30 @@ export default function Card({ functionCalledByDeleteButton, indexOfCard }: Card
     <>
       <div className="containerOfCard">
         <div className="upperPartOfCard">
-          <div
-            className="headingOfCard fixedHeadingOfCard"
-            style={{
-              display: "none",
-            }}
-          ></div>
-          <input
-            type="text"
-            className="headingOfCard editableHeadingOfCard"
-            placeholder="Title"
-            style={{
-              display: "none",
-            }}
-          />
-
+          <div className="headerWraperOfCard">
+            <div className="headerTextPartOfCard">
+              {/* Starting of heading part of card. */}
+              <div
+                className="headingOfCard fixedHeadingOfCard"
+                style={{
+                  display: "none",
+                }}
+              ></div>
+              <input
+                type="text"
+                className="headingOfCard editableHeadingOfCard"
+                placeholder="Title"
+                style={{
+                  display: "none",
+                }}
+              />
+              {/* Ending of heading part of card. */}
+            </div>
+            <div className="headerButtonPartOfCard">
+              <button className="closeButtonOfCard">Close</button>
+            </div>
+          </div>
+          {/* Starting of body part of card. */}
           <div
             className="bodyOfCard fixedBodyOfCard"
             placeholder="Take a note...."
@@ -61,6 +72,7 @@ export default function Card({ functionCalledByDeleteButton, indexOfCard }: Card
               display: "none",
             }}
           ></textarea>
+          {/* Ending of body part of card. */}
         </div>
         <div className="lowerPartOfCard">
           <span className="elementInLowerPartOfCard">
