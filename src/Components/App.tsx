@@ -18,14 +18,18 @@ function App() {
   // Adding functionality of Delete button in card.
 
   const functionCalledByDeleteButton = (index: number) => {
-    // const deleteContainerOfCard: any = [...addNew];
-    // deleteContainerOfCard.splice(index, 1);
-    // setAddNew(deleteContainerOfCard);
+    const deleteContainerOfCard: any = [...addNew];
+    deleteContainerOfCard.splice(index, 1);
+    setAddNew(deleteContainerOfCard);
+  };
 
-    const containerOfCard: any =
-      document.getElementsByClassName("containerOfCard")[index];
+  // Getting value of header onChange.
 
-    containerOfCard.remove();
+  const functionCalledOnChange = (event: any, index: number) => {
+    const { name, value } = event.target;
+    const getValueOfCard: any = [...addNew];
+    getValueOfCard[index][name] = value;
+    setAddNew(getValueOfCard);
   };
 
   /////////////////////// Return Method ///////////////////////
@@ -55,14 +59,17 @@ function App() {
           <div className="rightPart">
             <div className="elementsContainer">
               <div className="mainContainerOfCard">
-                {addNew}
-                {addNew.map((element: never) => {
+                {addNew.map((element: any, index: number) => {
                   return (
                     <Card
-                      key={addNew.indexOf(element)}
-                      indexOfCard={addNew.indexOf(element)}
+                      key={index}
+                      elementOfCard={element}
+                      indexOfCard={index}
                       functionCalledByDeleteButton={() =>
-                        functionCalledByDeleteButton(addNew.indexOf(element))
+                        functionCalledByDeleteButton(index)
+                      }
+                      functionCalledOnChange={(event: void) =>
+                        functionCalledOnChange(event, index)
                       }
                     />
                   );

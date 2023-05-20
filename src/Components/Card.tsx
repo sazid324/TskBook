@@ -6,11 +6,18 @@ import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
 interface CardElements {
+  elementOfCard: any;
   indexOfCard: number;
   functionCalledByDeleteButton: () => void;
+  functionCalledOnChange: () => void;
 }
 
-export default function Card({ indexOfCard, functionCalledByDeleteButton }: CardElements) {
+export default function Card({
+  elementOfCard,
+  indexOfCard,
+  functionCalledByDeleteButton,
+  functionCalledOnChange,
+}: CardElements) {
   // Adding functionality of Close button in card.
 
   const functionCalledByCloseButton = (index: number) => {
@@ -80,10 +87,13 @@ export default function Card({ indexOfCard, functionCalledByDeleteButton }: Card
               <input
                 type="text"
                 className="headingOfCard editableHeadingOfCard"
+                name="nameOfHeaderOfCard"
                 placeholder="Title"
                 style={{
                   display: "none",
                 }}
+                value={elementOfCard.nameOfHeaderOfCard || ""}
+                onChange={functionCalledOnChange}
               />
               {/* Ending of heading part of card. */}
             </div>
@@ -103,10 +113,13 @@ export default function Card({ indexOfCard, functionCalledByDeleteButton }: Card
           ></div>
           <textarea
             className="bodyOfCard editableBodyOfCard"
+            name="nameOfBodyOfCard"
             placeholder="Take a note...."
             style={{
               display: "none",
             }}
+            value={elementOfCard.nameOfBodyOfCard || ""}
+            onChange={functionCalledOnChange}
           ></textarea>
           {/* Ending of body part of card. */}
         </div>
