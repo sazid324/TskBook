@@ -21,51 +21,41 @@ export default function Card({
   // Adding functionality of Close button in card.
 
   const functionCalledByCloseButton = (index: number) => {
-    const fixedHeadingOfCard: any =
-      document.getElementsByClassName("fixedHeadingOfCard")[index];
-    const editableHeadingOfCard: any = document.getElementsByClassName(
-      "editableHeadingOfCard"
-    )[index];
-    const fixedBodyOfCard: any =
-      document.getElementsByClassName("fixedBodyOfCard")[index];
-    const editableBodyOfCard: any =
-      document.getElementsByClassName("editableBodyOfCard")[index];
+    const headingOfCard: any =
+      document.getElementsByClassName("headingOfCard")[index];
+    const bodyOfCard: any =
+      document.getElementsByClassName("bodyOfCard")[index];
     const closeButtonOfCard: any = document.getElementsByClassName(
       "headerButtonPartOfCard"
     )[index];
 
-    let valueOfEditableHeadingOfCard = editableHeadingOfCard.value;
-    fixedHeadingOfCard.innerHTML = valueOfEditableHeadingOfCard;
-    let valueOfEditableBodyOfCard = editableBodyOfCard.value;
-    fixedBodyOfCard.innerHTML = valueOfEditableBodyOfCard;
-
-    fixedHeadingOfCard.style.display = "block";
-    editableHeadingOfCard.style.display = "none";
-    fixedBodyOfCard.style.display = "block";
-    editableBodyOfCard.style.display = "none";
+    headingOfCard.disabled = true;
+    bodyOfCard.disabled = true;
     closeButtonOfCard.style.display = "none";
+
+    if (headingOfCard.value == "") {
+      headingOfCard.style.display = "none";
+    }
+    if (bodyOfCard.value == "") {
+      bodyOfCard.style.display = "none";
+    }
   };
 
   // Adding functionality of Edit button in card.
 
   const functionCalledByEditButton = (index: number) => {
-    const fixedHeadingOfCard: any =
-      document.getElementsByClassName("fixedHeadingOfCard")[index];
-    const editableHeadingOfCard: any = document.getElementsByClassName(
-      "editableHeadingOfCard"
-    )[index];
-    const fixedBodyOfCard: any =
-      document.getElementsByClassName("fixedBodyOfCard")[index];
-    const editableBodyOfCard: any =
-      document.getElementsByClassName("editableBodyOfCard")[index];
+    const headingOfCard: any =
+      document.getElementsByClassName("headingOfCard")[index];
+    const bodyOfCard: any =
+      document.getElementsByClassName("bodyOfCard")[index];
     const closeButtonOfCard: any = document.getElementsByClassName(
       "headerButtonPartOfCard"
     )[index];
 
-    fixedHeadingOfCard.style.display = "none";
-    editableHeadingOfCard.style.display = "block";
-    fixedBodyOfCard.style.display = "none";
-    editableBodyOfCard.style.display = "block";
+    headingOfCard.disabled = false;
+    bodyOfCard.disabled = false;
+    headingOfCard.style.display = "block";
+    bodyOfCard.style.display = "block";
     closeButtonOfCard.style.display = "block";
   };
 
@@ -77,16 +67,9 @@ export default function Card({
         <div className="upperPartOfCard">
           <div className="headerWraperOfCard">
             <div className="headerTextPartOfCard">
-              {/* Starting of heading part of card. */}
-              <div
-                className="headingOfCard fixedHeadingOfCard"
-                style={{
-                  display: "none",
-                }}
-              ></div>
               <input
                 type="text"
-                className="headingOfCard editableHeadingOfCard"
+                className="headingOfCard"
                 name="nameOfHeaderOfCard"
                 placeholder="Title"
                 style={{
@@ -95,7 +78,6 @@ export default function Card({
                 value={elementOfCard.nameOfHeaderOfCard || ""}
                 onChange={functionCalledOnChange}
               />
-              {/* Ending of heading part of card. */}
             </div>
             <div className="headerButtonPartOfCard">
               <button
@@ -106,13 +88,8 @@ export default function Card({
               </button>
             </div>
           </div>
-          {/* Starting of body part of card. */}
-          <div
-            className="bodyOfCard fixedBodyOfCard"
-            placeholder="Take a note...."
-          ></div>
           <textarea
-            className="bodyOfCard editableBodyOfCard"
+            className="bodyOfCard"
             name="nameOfBodyOfCard"
             placeholder="Take a note...."
             style={{
@@ -121,7 +98,6 @@ export default function Card({
             value={elementOfCard.nameOfBodyOfCard || ""}
             onChange={functionCalledOnChange}
           ></textarea>
-          {/* Ending of body part of card. */}
         </div>
         <div className="lowerPartOfCard">
           <span className="elementInLowerPartOfCard">

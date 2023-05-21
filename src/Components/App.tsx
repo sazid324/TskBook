@@ -23,7 +23,7 @@ function App() {
     setAddNew(deleteContainerOfCard);
   };
 
-  // Getting value of header onChange.
+  // Getting value onChange of the input fields of Card component.
 
   const functionCalledOnChange = (event: any, index: number) => {
     const { name, value } = event.target;

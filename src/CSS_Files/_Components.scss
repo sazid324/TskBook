@@ -188,6 +188,12 @@
           font-size: 1rem;
           color: #202124;
           float: left;
+
+          &:disabled {
+            background-color: transparent;
+            border: none;
+            outline: none;
+          }
         }
       }
 
@@ -223,6 +229,12 @@
 
       &::-webkit-scrollbar {
         width: 0;
+      }
+
+      &:disabled {
+        background-color: transparent;
+        border: none;
+        outline: none;
       }
     }
   }
