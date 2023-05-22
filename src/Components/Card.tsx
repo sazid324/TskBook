@@ -102,21 +102,26 @@ export default function Card({
         <div className="lowerPartOfCard">
           <span className="elementInLowerPartOfCard">
             <img src={reminderImage} alt="reminder-image" />
+            <p className="elementTextInLowerPartOfCard">Reminder</p>
           </span>
           <span className="elementInLowerPartOfCard">
             <img src={cardBackgroundImage} alt="cardBackground-image" />
+            <p className="elementTextInLowerPartOfCard">Theme</p>
           </span>
           <span className="elementInLowerPartOfCard">
-            <img src={archiveImage} alt="archive-image" />
+              <img src={archiveImage} alt="archive-image" />
+              <p className="elementTextInLowerPartOfCard">Archive</p>
           </span>
           <span
             className="elementInLowerPartOfCard"
             onClick={() => functionCalledByEditButton(indexOfCard)}
           >
-            <img src={editImage} alt="edit-image" />
+              <img src={editImage} alt="edit-image" />
+              <p className="elementTextInLowerPartOfCard">Edit</p>
           </span>
           <span className="elementInLowerPartOfCard">
-            <img src={attachmentImage} alt="attachment-image" />
+              <img src={attachmentImage} alt="attachment-image" />
+              <p className="elementTextInLowerPartOfCard">Attachment</p>
           </span>
           <span className="elementInLowerPartOfCard">
             <span className="threeDotMenuOfCard">

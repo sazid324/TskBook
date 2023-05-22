@@ -254,15 +254,31 @@
     box-shadow: 0 -1.45rem 0.8rem -1px #ffffff;
 
     .elementInLowerPartOfCard {
+      position: relative;
       @include flexCenter(center, center);
       float: left;
       border-radius: 50%;
       padding: 0.5rem;
 
+      .elementTextInLowerPartOfCard {
+        position: absolute;
+        bottom: -23px;
+        font-size: 0.75rem;
+        color: #ffffff;
+        background-color: #a8a8a8;
+        padding: 3px 7px;
+        border-radius: 5px;
+        display: none;
+      }
+
       &:hover,
       &:active {
         cursor: pointer;
         background-color: $mainColorLight;
+
+        .elementTextInLowerPartOfCard {
+          display: block;
+        }
       }
 
       .threeDotMenuOfCard {
