@@ -1,3 +1,4 @@
+// Assets
 import noteImage from "../assets/Images/Icons_and_logos/note.svg";
 import todo from "../assets/Images/Icons_and_logos/to-do.svg";
 import calendar from "../assets/Images/Icons_and_logos/calendar.svg";

@@ -1,3 +1,6 @@
+// Library imports
+import { useState } from "react";
+
 // Assets
 import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
 import cardBackgroundImage from "../assets/Images/Icons_and_logos/cardBackground.svg";
@@ -9,18 +12,25 @@ import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 interface CardElements {
   newState: any;
   setNewState: any;
-  elementOfCard: any;
   indexOfCard: number;
-  functionCalledOnChange: () => void;
 }
 
 export default function Card({
   newState,
   setNewState,
-  elementOfCard,
   indexOfCard,
-  functionCalledOnChange,
 }: CardElements) {
+  const [headerValueOnChange, setHeaderValueOnChange] = useState("");
+  const [bodyValueOnChange, setBodyValueOnChange] = useState("");
+
+  // Getting value onChange of the input fields of Card component.
+  const functionCalledByHeaderOnChange = (event: any) => {
+    setHeaderValueOnChange(event.target.value);
+  };
+  const functionCalledByBodyOnChange = (event: any) => {
+    setBodyValueOnChange(event.target.value);
+  };
+
   // Adding functionality of Close button in card.
   const functionCalledByCloseButton = (index: number) => {
     const headingOfCard: any =
@@ -35,12 +45,12 @@ export default function Card({
     bodyOfCard.disabled = true;
     closeButtonOfCard.style.display = "none";
 
-    // if (headingOfCard.value == "") {
-    //   headingOfCard.style.display = "none";
-    // }
-    // if (bodyOfCard.value == "") {
-    //   bodyOfCard.style.display = "none";
-    // }
+    if (headingOfCard.value == "") {
+      headingOfCard.style.display = "none";
+    }
+    if (bodyOfCard.value == "") {
+      bodyOfCard.style.display = "none";
+    }
   };
 
   // Adding functionality of Edit button in card.
@@ -83,8 +93,8 @@ export default function Card({
                 style={{
                   display: "none",
                 }}
-                value={elementOfCard.nameOfHeaderOfCard || ""}
-                onChange={functionCalledOnChange}
+                value={headerValueOnChange}
+                onChange={(event: any) => functionCalledByHeaderOnChange(event)}
               />
             </div>
             <div className="headerButtonPartOfCard">
@@ -103,8 +113,8 @@ export default function Card({
             style={{
               display: "none",
             }}
-            value={elementOfCard.nameOfBodyOfCard || ""}
-            onChange={functionCalledOnChange}
+            value={bodyValueOnChange}
+            onChange={(event: any) => functionCalledByBodyOnChange(event)}
           ></textarea>
         </div>
         <div className="lowerPartOfCard">
@@ -142,7 +152,9 @@ export default function Card({
                   </li>
                   <li
                     className="itemInThreeDotInLowerPartOfCard"
-                    onClick={() => functionCalledByDeleteButton(indexOfCard)}
+                    onClick={() =>
+                      functionCalledByDeleteButton((newState.length - 1)- indexOfCard)
+                    }
                   >
                     Delete note
                   </li>

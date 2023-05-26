@@ -8,22 +8,35 @@ import Copyright from "./Copyright";
 import Button from "./Button";
 import Card from "./Card";
 
+// Assets
+import noteImage from "../assets/Images/Icons_and_logos/note.svg";
+
 function App() {
   const [addNew, setAddNew] = useState([]);
-  
+
   // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {
-    const addNewContainerOfCard: any = [...addNew, addNew];
+    const addNewContainerOfCard: any = [
+      ...addNew,
+      {
+        id: Date.now() + Math.floor(Math.random() * 78),
+      },
+    ];
+
     setAddNew(addNewContainerOfCard);
   };
 
-  // Getting value onChange of the input fields of Card component.
-  const functionCalledOnChange = (event: any, index: number) => {
-    const { name, value } = event.target;
-    const getValueOfCard: any = [...addNew];
-    getValueOfCard[index][name] = value;
-    setAddNew(getValueOfCard);
+  const reverseArray = (addNew: any) => {
+    const newCardArray: any = [];
+
+    for (let i = addNew.length - 1; i >= 0; i--) {
+      newCardArray.push(addNew[i]);
+    }
+
+    return newCardArray;
   };
+
+  const cardArray: any = reverseArray(addNew);
 
   /////////////////////// Return Method ///////////////////////
 
@@ -52,20 +65,29 @@ function App() {
           <div className="rightPart">
             <div className="elementsContainer">
               <div className="mainContainerOfCard">
-                {addNew.map((element: any, index: number) => {
-                  return (
-                    <Card
-                      key={index}
-                      newState={addNew}
-                      setNewState={setAddNew}
-                      elementOfCard={element}
-                      indexOfCard={index}
-                      functionCalledOnChange={(event: void) =>
-                        functionCalledOnChange(event, index)
-                      }
+                {cardArray.length > 0 ? (
+                  cardArray.map((element: any, index: number) => {
+                    return (
+                      <Card
+                        key={element.id}
+                        newState={addNew}
+                        setNewState={setAddNew}
+                        indexOfCard={index}
+                      />
+                    );
+                  })
+                ) : (
+                  <span className="elementsOnNoNote">
+                    <img
+                      className="imgElementOnNoNote"
+                      src={noteImage}
+                      alt="note_logo"
                     />
-                  );
-                })}
+                    <p className="textElementOnNoNote">
+                      Notes you add appear here
+                    </p>
+                  </span>
+                )}
               </div>
             </div>
           </div>

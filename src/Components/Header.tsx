@@ -1,4 +1,7 @@
+// Library imports
 import { useState } from "react";
+
+// Assets
 import searchImage from "../assets/Images/Icons_and_logos/search.svg";
 import listImage from "../assets/Images/Icons_and_logos/list.svg";
 
