@@ -1,3 +1,4 @@
+// Assets
 import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
 import cardBackgroundImage from "../assets/Images/Icons_and_logos/cardBackground.svg";
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
@@ -6,20 +7,21 @@ import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
 interface CardElements {
+  newState: any;
+  setNewState: any;
   elementOfCard: any;
   indexOfCard: number;
-  functionCalledByDeleteButton: () => void;
   functionCalledOnChange: () => void;
 }
 
 export default function Card({
+  newState,
+  setNewState,
   elementOfCard,
   indexOfCard,
-  functionCalledByDeleteButton,
   functionCalledOnChange,
 }: CardElements) {
   // Adding functionality of Close button in card.
-
   const functionCalledByCloseButton = (index: number) => {
     const headingOfCard: any =
       document.getElementsByClassName("headingOfCard")[index];
@@ -33,16 +35,15 @@ export default function Card({
     bodyOfCard.disabled = true;
     closeButtonOfCard.style.display = "none";
 
-    if (headingOfCard.value == "") {
-      headingOfCard.style.display = "none";
-    }
-    if (bodyOfCard.value == "") {
-      bodyOfCard.style.display = "none";
-    }
+    // if (headingOfCard.value == "") {
+    //   headingOfCard.style.display = "none";
+    // }
+    // if (bodyOfCard.value == "") {
+    //   bodyOfCard.style.display = "none";
+    // }
   };
 
   // Adding functionality of Edit button in card.
-
   const functionCalledByEditButton = (index: number) => {
     const headingOfCard: any =
       document.getElementsByClassName("headingOfCard")[index];
@@ -57,6 +58,13 @@ export default function Card({
     headingOfCard.style.display = "block";
     bodyOfCard.style.display = "block";
     closeButtonOfCard.style.display = "block";
+  };
+
+  // Adding functionality of Delete button in card.
+  const functionCalledByDeleteButton = (index: number) => {
+    const deleteContainerOfCard: any = [...newState];
+    deleteContainerOfCard.splice(index, 1);
+    setNewState(deleteContainerOfCard);
   };
 
   /////////////////////// Return Method ///////////////////////
@@ -109,19 +117,19 @@ export default function Card({
             <p className="elementTextInLowerPartOfCard">Theme</p>
           </span>
           <span className="elementInLowerPartOfCard">
-              <img src={archiveImage} alt="archive-image" />
-              <p className="elementTextInLowerPartOfCard">Archive</p>
+            <img src={archiveImage} alt="archive-image" />
+            <p className="elementTextInLowerPartOfCard">Archive</p>
           </span>
           <span
             className="elementInLowerPartOfCard"
             onClick={() => functionCalledByEditButton(indexOfCard)}
           >
-              <img src={editImage} alt="edit-image" />
-              <p className="elementTextInLowerPartOfCard">Edit</p>
+            <img src={editImage} alt="edit-image" />
+            <p className="elementTextInLowerPartOfCard">Edit</p>
           </span>
           <span className="elementInLowerPartOfCard">
-              <img src={attachmentImage} alt="attachment-image" />
-              <p className="elementTextInLowerPartOfCard">Attachment</p>
+            <img src={attachmentImage} alt="attachment-image" />
+            <p className="elementTextInLowerPartOfCard">Attachment</p>
           </span>
           <span className="elementInLowerPartOfCard">
             <span className="threeDotMenuOfCard">
@@ -134,7 +142,7 @@ export default function Card({
                   </li>
                   <li
                     className="itemInThreeDotInLowerPartOfCard"
-                    onClick={functionCalledByDeleteButton}
+                    onClick={() => functionCalledByDeleteButton(indexOfCard)}
                   >
                     Delete note
                   </li>

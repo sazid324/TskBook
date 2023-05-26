@@ -1,4 +1,7 @@
+// Library imports
 import { useState } from "react";
+
+// Component imports
 import Header from "./Header";
 import ListGroup from "./ListGroup";
 import Copyright from "./Copyright";
@@ -6,25 +9,15 @@ import Button from "./Button";
 import Card from "./Card";
 
 function App() {
-  // Adding functionality of Add New button.
-
   const [addNew, setAddNew] = useState([]);
-
+  
+  // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {
     const addNewContainerOfCard: any = [...addNew, addNew];
     setAddNew(addNewContainerOfCard);
   };
 
-  // Adding functionality of Delete button in card.
-
-  const functionCalledByDeleteButton = (index: number) => {
-    const deleteContainerOfCard: any = [...addNew];
-    deleteContainerOfCard.splice(index, 1);
-    setAddNew(deleteContainerOfCard);
-  };
-
   // Getting value onChange of the input fields of Card component.
-
   const functionCalledOnChange = (event: any, index: number) => {
     const { name, value } = event.target;
     const getValueOfCard: any = [...addNew];
@@ -63,11 +56,10 @@ function App() {
                   return (
                     <Card
                       key={index}
+                      newState={addNew}
+                      setNewState={setAddNew}
                       elementOfCard={element}
                       indexOfCard={index}
-                      functionCalledByDeleteButton={() =>
-                        functionCalledByDeleteButton(index)
-                      }
                       functionCalledOnChange={(event: void) =>
                         functionCalledOnChange(event, index)
                       }

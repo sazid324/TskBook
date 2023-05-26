@@ -188,6 +188,7 @@
           font-size: 1rem;
           color: #202124;
           float: left;
+          display: none;
 
           &:disabled {
             background-color: transparent;
@@ -226,6 +227,7 @@
       border: none;
       outline: none;
       resize: none;
+      display: none;
 
       &::-webkit-scrollbar {
         width: 0;
