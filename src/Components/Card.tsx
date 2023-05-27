@@ -12,13 +12,14 @@ import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 interface CardElements {
   newState: any;
   setNewState: any;
+  cardArray:any;
   elementOfCard: any;
   indexOfCard: number;
 }
 
 export default function Card({
   newState,
-  setNewState,
+  setNewState,cardArray,
   elementOfCard,
   indexOfCard,
 }: CardElements) {
@@ -105,15 +106,27 @@ export default function Card({
     const bodyValue: any = bodyOfCard.value;
 
     const makeACopyOfCard: any = [
+      ...newState,
       {
         id: Date.now() + Math.floor(Math.random() * 78),
         headerValue: `${headerValue}`,
         bodyValue: `${bodyValue}`,
       },
-      ...newState,
     ];
 
     setNewState(makeACopyOfCard);
+
+    const newReversedArray = (newStateArray: any) => {
+      const newArray: any = [];
+
+      for (let i = newState.length - 1; i >= 0; --i) {
+        newArray.push(newStateArray[i]);
+      }
+
+      return newArray;
+    };
+
+    cardArray = newReversedArray(newState);
   };
 
   // Adding functionality of Delete button in card.

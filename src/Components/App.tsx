@@ -18,14 +18,26 @@ function App() {
   // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {
     const addNewContainerOfCard: any = [
+      ...addNew,
       {
         id: Date.now() + Math.floor(Math.random() * 78),
       },
-      ...addNew,
     ];
 
     setAddNew(addNewContainerOfCard);
   };
+
+  const newReversedArray = (addNewArray: any) => {
+    const newArray: any = [];
+
+    for (let i = addNew.length - 1; i >= 0; --i) {
+      newArray.push(addNewArray[i]);
+    }
+
+    return newArray;
+  };
+
+  let cardArray: any = newReversedArray(addNew);
 
   /////////////////////// Return Method ///////////////////////
 
@@ -54,13 +66,14 @@ function App() {
           <div className="rightPart">
             <div className="elementsContainer">
               <div className="mainContainerOfCard">
-                {addNew.length > 0 ? (
-                  addNew.map((element: any, index: number) => {
+                {cardArray.length > 0 ? (
+                  cardArray.map((element: any, index: number) => {
                     return (
                       <Card
                         key={element.id}
                         newState={addNew}
                         setNewState={setAddNew}
+                        cardArray={cardArray}
                         elementOfCard={element}
                         indexOfCard={index}
                       />
