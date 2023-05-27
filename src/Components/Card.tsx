@@ -1,5 +1,5 @@
 // Library imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Assets
 import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
@@ -12,16 +12,40 @@ import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 interface CardElements {
   newState: any;
   setNewState: any;
+  elementOfCard: any;
   indexOfCard: number;
 }
 
 export default function Card({
   newState,
   setNewState,
+  elementOfCard,
   indexOfCard,
 }: CardElements) {
+  // Hooks
   const [headerValueOnChange, setHeaderValueOnChange] = useState("");
   const [bodyValueOnChange, setBodyValueOnChange] = useState("");
+
+  useEffect(() => {
+    const headingOfNewElementOfCard: any =
+      document.getElementsByClassName("headingOfCard")[0];
+    const bodyOfNewElementOfCard: any =
+      document.getElementsByClassName("bodyOfCard")[0];
+
+    if (headingOfNewElementOfCard.value == "") {
+      headingOfNewElementOfCard.style.display = "none";
+    } else {
+      headingOfNewElementOfCard.style.display = "block";
+    }
+    if (bodyOfNewElementOfCard.value == "") {
+      bodyOfNewElementOfCard.style.display = "none";
+    } else {
+      bodyOfNewElementOfCard.style.display = "block";
+    }
+
+    headingOfNewElementOfCard.disabled = true;
+    bodyOfNewElementOfCard.disabled = true;
+  }, [newState]);
 
   // Getting value onChange of the input fields of Card component.
   const functionCalledByHeaderOnChange = (event: any) => {
@@ -70,6 +94,28 @@ export default function Card({
     closeButtonOfCard.style.display = "block";
   };
 
+  // Adding functionality of Make a copy button in card.
+  const functionCalledByMakeACopyButton = (index: number) => {
+    const headingOfCard: any =
+      document.getElementsByClassName("headingOfCard")[index];
+    const bodyOfCard: any =
+      document.getElementsByClassName("bodyOfCard")[index];
+
+    const headerValue: any = headingOfCard.value;
+    const bodyValue: any = bodyOfCard.value;
+
+    const makeACopyOfCard: any = [
+      {
+        id: Date.now() + Math.floor(Math.random() * 78),
+        headerValue: `${headerValue}`,
+        bodyValue: `${bodyValue}`,
+      },
+      ...newState,
+    ];
+
+    setNewState(makeACopyOfCard);
+  };
+
   // Adding functionality of Delete button in card.
   const functionCalledByDeleteButton = (index: number) => {
     const deleteContainerOfCard: any = [...newState];
@@ -88,12 +134,11 @@ export default function Card({
               <input
                 type="text"
                 className="headingOfCard"
-                name="nameOfHeaderOfCard"
                 placeholder="Title"
                 style={{
                   display: "none",
                 }}
-                value={headerValueOnChange}
+                value={headerValueOnChange || elementOfCard.headerValue || ""}
                 onChange={(event: any) => functionCalledByHeaderOnChange(event)}
               />
             </div>
@@ -108,12 +153,11 @@ export default function Card({
           </div>
           <textarea
             className="bodyOfCard"
-            name="nameOfBodyOfCard"
             placeholder="Take a note...."
             style={{
               display: "none",
             }}
-            value={bodyValueOnChange}
+            value={bodyValueOnChange || elementOfCard.bodyValue || ""}
             onChange={(event: any) => functionCalledByBodyOnChange(event)}
           ></textarea>
         </div>
@@ -147,13 +191,18 @@ export default function Card({
               <div className="threeDotItemsWraperInLowerPartOfCard">
                 <ul className="threeDotItemsInLowerPartOfCard">
                   <li className="itemInThreeDotInLowerPartOfCard">Add label</li>
-                  <li className="itemInThreeDotInLowerPartOfCard">
+                  <li
+                    className="itemInThreeDotInLowerPartOfCard"
+                    onClick={() => functionCalledByMakeACopyButton(indexOfCard)}
+                  >
                     Make a copy
                   </li>
                   <li
                     className="itemInThreeDotInLowerPartOfCard"
                     onClick={() =>
-                      functionCalledByDeleteButton((newState.length - 1)- indexOfCard)
+                      functionCalledByDeleteButton(
+                        newState.length - 1 - indexOfCard
+                      )
                     }
                   >
                     Delete note

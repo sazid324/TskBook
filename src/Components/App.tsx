@@ -12,31 +12,20 @@ import Card from "./Card";
 import noteImage from "../assets/Images/Icons_and_logos/note.svg";
 
 function App() {
+  // Hooks
   const [addNew, setAddNew] = useState([]);
 
   // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {
     const addNewContainerOfCard: any = [
-      ...addNew,
       {
         id: Date.now() + Math.floor(Math.random() * 78),
       },
+      ...addNew,
     ];
 
     setAddNew(addNewContainerOfCard);
   };
-
-  const reverseArray = (addNew: any) => {
-    const newCardArray: any = [];
-
-    for (let i = addNew.length - 1; i >= 0; i--) {
-      newCardArray.push(addNew[i]);
-    }
-
-    return newCardArray;
-  };
-
-  const cardArray: any = reverseArray(addNew);
 
   /////////////////////// Return Method ///////////////////////
 
@@ -65,13 +54,14 @@ function App() {
           <div className="rightPart">
             <div className="elementsContainer">
               <div className="mainContainerOfCard">
-                {cardArray.length > 0 ? (
-                  cardArray.map((element: any, index: number) => {
+                {addNew.length > 0 ? (
+                  addNew.map((element: any, index: number) => {
                     return (
                       <Card
                         key={element.id}
                         newState={addNew}
                         setNewState={setAddNew}
+                        elementOfCard={element}
                         indexOfCard={index}
                       />
                     );
