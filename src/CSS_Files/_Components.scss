@@ -259,6 +259,8 @@
       position: relative;
       @include flexCenter(center, center);
       float: left;
+      background-color: transparent;
+      border: none;
       border-radius: 50%;
       padding: 0.5rem;
 
@@ -273,8 +275,7 @@
         display: none;
       }
 
-      &:hover,
-      &:active {
+      &:hover {
         cursor: pointer;
         background-color: $mainColorLight;
 
@@ -283,34 +284,19 @@
         }
       }
 
+      &:active,
+      &:focus {
+        cursor: pointer;
+        background-color: $mainColorLight;
+      }
+
       .threeDotMenuOfCard {
         position: relative;
         @include flexCenter(center, center);
 
-        &:hover > .threeDotItemsWraperInLowerPartOfCard {
-          display: block;
-          animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
-          animation-duration: 0.5s;
-        }
-
-        @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
-          100% {
-            opacity: 1;
-            transform: none;
-          }
-          50% {
-            opacity: 1;
-            transform: translateY(18px);
-          }
-          100% {
-            opacity: 1;
-            transform: none;
-          }
-        }
-
         .threeDotItemsWraperInLowerPartOfCard {
-          display: none;
           position: absolute;
+          display: none;
           width: 145px;
           height: 125px;
           padding-top: 10px;
@@ -333,6 +319,7 @@
               padding: 0.4rem 1rem;
               list-style-type: none;
               font-size: 0.85rem;
+              @include flexCenter(left, center);
 
               &:hover,
               &:active {
@@ -340,6 +327,28 @@
                 background-color: $mainColorLight;
               }
             }
+          }
+        }
+      }
+
+      &:active > .threeDotMenuOfCard > .threeDotItemsWraperInLowerPartOfCard,
+      &:focus > .threeDotMenuOfCard > .threeDotItemsWraperInLowerPartOfCard {
+        display: block;
+        animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
+        animation-duration: 0.5s;
+
+        @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
+          100% {
+            opacity: 1;
+            transform: none;
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(18px);
+          }
+          100% {
+            opacity: 1;
+            transform: none;
           }
         }
       }

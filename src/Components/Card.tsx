@@ -12,14 +12,15 @@ import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 interface CardElements {
   newState: any;
   setNewState: any;
-  cardArray:any;
+  cardArrayProp: any;
   elementOfCard: any;
   indexOfCard: number;
 }
 
 export default function Card({
   newState,
-  setNewState,cardArray,
+  setNewState,
+  cardArrayProp,
   elementOfCard,
   indexOfCard,
 }: CardElements) {
@@ -126,7 +127,7 @@ export default function Card({
       return newArray;
     };
 
-    cardArray = newReversedArray(newState);
+    cardArrayProp = newReversedArray(newState);
   };
 
   // Adding functionality of Delete button in card.
@@ -175,33 +176,52 @@ export default function Card({
           ></textarea>
         </div>
         <div className="lowerPartOfCard">
-          <span className="elementInLowerPartOfCard">
+          <button className="elementInLowerPartOfCard">
             <img src={reminderImage} alt="reminder-image" />
             <p className="elementTextInLowerPartOfCard">Reminder</p>
-          </span>
-          <span className="elementInLowerPartOfCard">
+          </button>
+          <button className="elementInLowerPartOfCard">
             <img src={cardBackgroundImage} alt="cardBackground-image" />
             <p className="elementTextInLowerPartOfCard">Theme</p>
-          </span>
-          <span className="elementInLowerPartOfCard">
+          </button>
+          <button className="elementInLowerPartOfCard">
             <img src={archiveImage} alt="archive-image" />
             <p className="elementTextInLowerPartOfCard">Archive</p>
-          </span>
-          <span
+          </button>
+          <button
             className="elementInLowerPartOfCard"
             onClick={() => functionCalledByEditButton(indexOfCard)}
           >
             <img src={editImage} alt="edit-image" />
             <p className="elementTextInLowerPartOfCard">Edit</p>
-          </span>
-          <span className="elementInLowerPartOfCard">
+          </button>
+          <button className="elementInLowerPartOfCard">
             <img src={attachmentImage} alt="attachment-image" />
             <p className="elementTextInLowerPartOfCard">Attachment</p>
-          </span>
-          <span className="elementInLowerPartOfCard">
+          </button>
+          <button
+            className="elementInLowerPartOfCard"
+            onMouseEnter={() => {
+              const moreButtonOfCard: any =
+                document.getElementById("moreButtonOfCard");
+              moreButtonOfCard.style.display = "block";
+            }}
+            onMouseLeave={() => {
+              const moreButtonOfCard: any =
+                document.getElementById("moreButtonOfCard");
+              moreButtonOfCard.style.display = "none";
+            }}
+          >
             <span className="threeDotMenuOfCard">
               <img src={threeDotImage} alt="threeDot-image" />
-              <div className="threeDotItemsWraperInLowerPartOfCard">
+              <div
+                className="threeDotItemsWraperInLowerPartOfCard"
+                onMouseEnter={() => {
+                  const moreButtonOfCard: any =
+                    document.getElementById("moreButtonOfCard");
+                  moreButtonOfCard.style.display = "none";
+                }}
+              >
                 <ul className="threeDotItemsInLowerPartOfCard">
                   <li className="itemInThreeDotInLowerPartOfCard">Add label</li>
                   <li
@@ -223,7 +243,10 @@ export default function Card({
                 </ul>
               </div>
             </span>
-          </span>
+            <p className="elementTextInLowerPartOfCard" id="moreButtonOfCard">
+              More
+            </p>
+          </button>
         </div>
       </div>
     </>

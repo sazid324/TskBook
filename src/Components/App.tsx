@@ -37,7 +37,7 @@ function App() {
     return newArray;
   };
 
-  let cardArray: any = newReversedArray(addNew);
+  const cardArray: any = newReversedArray(addNew);
 
   /////////////////////// Return Method ///////////////////////
 
@@ -73,7 +73,7 @@ function App() {
                         key={element.id}
                         newState={addNew}
                         setNewState={setAddNew}
-                        cardArray={cardArray}
+                        cardArrayProp={cardArray}
                         elementOfCard={element}
                         indexOfCard={index}
                       />
