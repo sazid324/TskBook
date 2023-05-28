@@ -20,6 +20,7 @@ interface CardElements {
 export default function Card({
   newState,
   setNewState,
+  // @ts-ignore
   cardArrayProp,
   elementOfCard,
   indexOfCard,
@@ -49,7 +50,7 @@ export default function Card({
     bodyOfNewElementOfCard.disabled = true;
   }, [newState]);
 
-  // Getting value onChange of the input fields of Card component.
+  // Getting value onChange of the inputs of Card component.
   const functionCalledByHeaderOnChange = (event: any) => {
     setHeaderValueOnChange(event.target.value);
   };
@@ -223,7 +224,9 @@ export default function Card({
                 }}
               >
                 <ul className="three-dot-items-in-lower-part-OfCard">
-                  <li className="item-in-three-dot-in-lower-part-OfCard">Add label</li>
+                  <li className="item-in-three-dot-in-lower-part-OfCard">
+                    Add label
+                  </li>
                   <li
                     className="item-in-three-dot-in-lower-part-OfCard"
                     onClick={() => functionCalledByMakeACopyButton(indexOfCard)}
@@ -243,7 +246,10 @@ export default function Card({
                 </ul>
               </div>
             </span>
-            <p className="element-text-in-lower-part-OfCard" id="more-button-OfCard">
+            <p
+              className="element-text-in-lower-part-OfCard"
+              id="more-button-OfCard"
+            >
               More
             </p>
           </button>
