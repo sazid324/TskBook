@@ -8,19 +8,19 @@
 
 /*===STARTING OF Header component PART===*/
 
-.headerOfHeader {
+.container-OfHeader {
   @include flexCenter(center, inherit);
 
-  .navOfHeader {
+  .nav-OfHeader {
     width: 98%;
     height: 3.9rem;
     @include flexCenter(space-between, center);
 
-    .navMenuOfHeader {
+    .nav-menu-OfHeader {
       width: 33.33%;
       padding-left: 2rem;
 
-      .navMenuButtonOfHeader {
+      .nav-menu-button-OfHeader {
         width: 2.8rem;
         height: 2.8rem;
         border-radius: 50%;
@@ -32,7 +32,7 @@
           background-color: $mainColorLight;
         }
 
-        .listImageMenuOfHeader {
+        .list-menu-image-OfHeader {
           width: 2.65rem;
           height: 2.65rem;
           padding: 8px;
@@ -40,21 +40,21 @@
       }
     }
 
-    .logoOfHeader {
+    .logo-OfHeader {
       width: 33.33%;
       @include flexCenter(center, inherit);
     }
 
-    .searchOfHeader {
+    .search-OfHeader {
       width: 33.33%;
       padding-right: 2rem;
       @include flexCenter(right, inherit);
 
-      .searchInputOfHeader {
+      .search-input-OfHeader {
         display: none;
       }
 
-      .searchButtonOfHeader {
+      .search-button-OfHeader {
         width: 2.8rem;
         height: 2.8rem;
         border: none;
@@ -68,7 +68,7 @@
           background-color: $mainColorLight;
         }
 
-        .searchLogoOfHeader {
+        .search-logo-OfHeader {
           width: 2.3rem;
           height: 2.3rem;
           padding: 8px;
@@ -82,7 +82,7 @@
 
 /*===STARTING OF Button component PART===*/
 
-.btnOfButton {
+.btn-OfButton {
   background-color: $mainColorLight;
   border: 1px solid $mainColorLight;
   margin-bottom: 15px;
@@ -97,12 +97,12 @@
     background-color: $mainColor;
   }
 
-  .pOfButton {
+  .text-OfButton {
     font-weight: bold;
     width: 100%;
   }
 
-  .addImageOfButton {
+  .add-image-OfButton {
     height: 1.2rem;
     float: left;
     padding-right: 9px;
@@ -113,8 +113,8 @@
 
 /*===STARTING OF ListGroup component PART===*/
 
-.ulOfListGroup {
-  .liOfListGroup {
+.ul-OfListGroup {
+  .li-OfListGroup {
     list-style-type: none;
     padding: 1rem 1rem 1rem 2.7rem;
     border-radius: 5px;
@@ -125,12 +125,12 @@
       background-color: $mainColorLight;
     }
 
-    .liLogoOfListGroup {
+    .image-in-li-OfListGroup {
       @include flexCenter(center, center);
       float: left;
       padding-right: 17px;
 
-      & .liLogoImageOfListGroup {
+      .li-logo-image-OfListGroup {
         height: 1.2rem;
       }
     }
@@ -141,11 +141,11 @@
 
 /*===STARTING OF Copyright component PART===*/
 
-.containerOfCopyright {
+.container-OfCopyright {
   width: 100%;
   @include flexCenter(center, inherit);
 
-  .peragraphOfCopyright {
+  .text-OfCopyright {
     color: rgb(119, 119, 119);
     font-family: SourceSansPro-Light;
     font-weight: bold;
@@ -157,7 +157,7 @@
 
 /*===STARTING OF Card component PART===*/
 
-.containerOfCard {
+.container-OfCard {
   position: relative;
   min-height: 9.2rem;
   max-height: 22rem;
@@ -165,20 +165,20 @@
   border-radius: 5px;
   padding: 0.9rem;
 
-  .upperPartOfCard {
+  .upper-part-OfCard {
     max-height: 12.5rem;
     overflow: hidden;
 
-    .headerWraperOfCard {
+    .header-wraper-OfCard {
       width: 100%;
       display: flex;
       justify-content: space-between;
       gap: 0.5rem;
 
-      .headerTextPartOfCard {
+      .header-text-part-OfCard {
         float: left;
 
-        .headingOfCard {
+        .heading-OfCard {
           width: 100%;
           padding-bottom: 15px;
           border: none;
@@ -198,11 +198,11 @@
         }
       }
 
-      .headerButtonPartOfCard {
+      .header-button-part-OfCard {
         float: right;
         display: none;
 
-        .closeButtonOfCard {
+        .close-button-OfCard {
           padding: 0.2rem 0.4rem;
           border: 1px solid rgb(219, 219, 219);
           border-radius: 15px;
@@ -218,7 +218,7 @@
       }
     }
 
-    .bodyOfCard {
+    .body-OfCard {
       width: 100%;
       font-family: Lato-Regular;
       font-size: 0.9rem;
@@ -229,7 +229,10 @@
       resize: none;
       display: none;
 
-      &::-webkit-scrollbar {
+      &::-webkit-scrollbar,
+      &::-moz-scrollbar,
+      &::-ms-scrollbar,
+      &::-o-scrollbar {
         width: 0;
       }
 
@@ -241,7 +244,7 @@
     }
   }
 
-  .lowerPartOfCard {
+  .lower-part-OfCard {
     position: absolute;
     width: 100%;
     background-color: #ffffff;
@@ -255,16 +258,17 @@
     border-radius: 5px;
     box-shadow: 0 -1.45rem 0.8rem -1px #ffffff;
 
-    .elementInLowerPartOfCard {
+    .element-in-lower-part-OfCard {
       position: relative;
       @include flexCenter(center, center);
       float: left;
       background-color: transparent;
       border: none;
       border-radius: 50%;
+      outline: none;
       padding: 0.5rem;
 
-      .elementTextInLowerPartOfCard {
+      .element-text-in-lower-part-OfCard {
         position: absolute;
         bottom: -23px;
         font-size: 0.75rem;
@@ -279,7 +283,7 @@
         cursor: pointer;
         background-color: $mainColorLight;
 
-        .elementTextInLowerPartOfCard {
+        .element-text-in-lower-part-OfCard {
           display: block;
         }
       }
@@ -290,11 +294,11 @@
         background-color: $mainColorLight;
       }
 
-      .threeDotMenuOfCard {
+      .three-dot-menu-OfCard {
         position: relative;
         @include flexCenter(center, center);
 
-        .threeDotItemsWraperInLowerPartOfCard {
+        .three-dot-items-wraper-in-lower-part-OfCard {
           position: absolute;
           display: none;
           width: 145px;
@@ -305,7 +309,7 @@
           left: 5px;
           z-index: 999;
 
-          .threeDotItemsInLowerPartOfCard {
+          .three-dot-items-in-lower-part-OfCard {
             width: 125px;
             height: fit-content(100%);
             padding: 0.4rem 0rem;
@@ -314,7 +318,7 @@
             border-radius: 5px;
             box-shadow: 1px 1px 0.6rem 0.1rem $cardBorderColor;
 
-            .itemInThreeDotInLowerPartOfCard {
+            .item-in-three-dot-in-lower-part-OfCard {
               width: 100%;
               padding: 0.4rem 1rem;
               list-style-type: none;
@@ -331,8 +335,12 @@
         }
       }
 
-      &:active > .threeDotMenuOfCard > .threeDotItemsWraperInLowerPartOfCard,
-      &:focus > .threeDotMenuOfCard > .threeDotItemsWraperInLowerPartOfCard {
+      &:active
+        > .three-dot-menu-OfCard
+        > .three-dot-items-wraper-in-lower-part-OfCard,
+      &:focus
+        > .three-dot-menu-OfCard
+        > .three-dot-items-wraper-in-lower-part-OfCard {
         display: block;
         animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
         animation-duration: 0.5s;

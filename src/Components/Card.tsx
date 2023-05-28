@@ -30,9 +30,9 @@ export default function Card({
 
   useEffect(() => {
     const headingOfNewElementOfCard: any =
-      document.getElementsByClassName("headingOfCard")[0];
+      document.getElementsByClassName("heading-OfCard")[0];
     const bodyOfNewElementOfCard: any =
-      document.getElementsByClassName("bodyOfCard")[0];
+      document.getElementsByClassName("body-OfCard")[0];
 
     if (headingOfNewElementOfCard.value == "") {
       headingOfNewElementOfCard.style.display = "none";
@@ -60,11 +60,11 @@ export default function Card({
   // Adding functionality of Close button in card.
   const functionCalledByCloseButton = (index: number) => {
     const headingOfCard: any =
-      document.getElementsByClassName("headingOfCard")[index];
+      document.getElementsByClassName("heading-OfCard")[index];
     const bodyOfCard: any =
-      document.getElementsByClassName("bodyOfCard")[index];
+      document.getElementsByClassName("body-OfCard")[index];
     const closeButtonOfCard: any = document.getElementsByClassName(
-      "headerButtonPartOfCard"
+      "header-button-part-OfCard"
     )[index];
 
     headingOfCard.disabled = true;
@@ -82,11 +82,11 @@ export default function Card({
   // Adding functionality of Edit button in card.
   const functionCalledByEditButton = (index: number) => {
     const headingOfCard: any =
-      document.getElementsByClassName("headingOfCard")[index];
+      document.getElementsByClassName("heading-OfCard")[index];
     const bodyOfCard: any =
-      document.getElementsByClassName("bodyOfCard")[index];
+      document.getElementsByClassName("body-OfCard")[index];
     const closeButtonOfCard: any = document.getElementsByClassName(
-      "headerButtonPartOfCard"
+      "header-button-part-OfCard"
     )[index];
 
     headingOfCard.disabled = false;
@@ -99,9 +99,9 @@ export default function Card({
   // Adding functionality of Make a copy button in card.
   const functionCalledByMakeACopyButton = (index: number) => {
     const headingOfCard: any =
-      document.getElementsByClassName("headingOfCard")[index];
+      document.getElementsByClassName("heading-OfCard")[index];
     const bodyOfCard: any =
-      document.getElementsByClassName("bodyOfCard")[index];
+      document.getElementsByClassName("body-OfCard")[index];
 
     const headerValue: any = headingOfCard.value;
     const bodyValue: any = bodyOfCard.value;
@@ -141,13 +141,13 @@ export default function Card({
 
   return (
     <>
-      <div className="containerOfCard">
-        <div className="upperPartOfCard">
-          <div className="headerWraperOfCard">
-            <div className="headerTextPartOfCard">
+      <div className="container-OfCard">
+        <div className="upper-part-OfCard">
+          <div className="header-wraper-OfCard">
+            <div className="header-text-part-OfCard">
               <input
                 type="text"
-                className="headingOfCard"
+                className="heading-OfCard"
                 placeholder="Title"
                 style={{
                   display: "none",
@@ -156,9 +156,9 @@ export default function Card({
                 onChange={(event: any) => functionCalledByHeaderOnChange(event)}
               />
             </div>
-            <div className="headerButtonPartOfCard">
+            <div className="header-button-part-OfCard">
               <button
-                className="closeButtonOfCard"
+                className="close-button-OfCard"
                 onClick={() => functionCalledByCloseButton(indexOfCard)}
               >
                 Close
@@ -166,7 +166,7 @@ export default function Card({
             </div>
           </div>
           <textarea
-            className="bodyOfCard"
+            className="body-OfCard"
             placeholder="Take a note...."
             style={{
               display: "none",
@@ -175,63 +175,63 @@ export default function Card({
             onChange={(event: any) => functionCalledByBodyOnChange(event)}
           ></textarea>
         </div>
-        <div className="lowerPartOfCard">
-          <button className="elementInLowerPartOfCard">
+        <div className="lower-part-OfCard">
+          <button className="element-in-lower-part-OfCard">
             <img src={reminderImage} alt="reminder-image" />
-            <p className="elementTextInLowerPartOfCard">Reminder</p>
+            <p className="element-text-in-lower-part-OfCard">Reminder</p>
           </button>
-          <button className="elementInLowerPartOfCard">
+          <button className="element-in-lower-part-OfCard">
             <img src={cardBackgroundImage} alt="cardBackground-image" />
-            <p className="elementTextInLowerPartOfCard">Theme</p>
+            <p className="element-text-in-lower-part-OfCard">Theme</p>
           </button>
-          <button className="elementInLowerPartOfCard">
+          <button className="element-in-lower-part-OfCard">
             <img src={archiveImage} alt="archive-image" />
-            <p className="elementTextInLowerPartOfCard">Archive</p>
+            <p className="element-text-in-lower-part-OfCard">Archive</p>
           </button>
           <button
-            className="elementInLowerPartOfCard"
+            className="element-in-lower-part-OfCard"
             onClick={() => functionCalledByEditButton(indexOfCard)}
           >
             <img src={editImage} alt="edit-image" />
-            <p className="elementTextInLowerPartOfCard">Edit</p>
+            <p className="element-text-in-lower-part-OfCard">Edit</p>
           </button>
-          <button className="elementInLowerPartOfCard">
+          <button className="element-in-lower-part-OfCard">
             <img src={attachmentImage} alt="attachment-image" />
-            <p className="elementTextInLowerPartOfCard">Attachment</p>
+            <p className="element-text-in-lower-part-OfCard">Attachment</p>
           </button>
           <button
-            className="elementInLowerPartOfCard"
+            className="element-in-lower-part-OfCard"
             onMouseEnter={() => {
-              const moreButtonOfCard: any =
-                document.getElementById("moreButtonOfCard");
-              moreButtonOfCard.style.display = "block";
+              const morebuttonOfCard: any =
+                document.getElementById("more-button-OfCard");
+              morebuttonOfCard.style.display = "block";
             }}
             onMouseLeave={() => {
-              const moreButtonOfCard: any =
-                document.getElementById("moreButtonOfCard");
-              moreButtonOfCard.style.display = "none";
+              const morebuttonOfCard: any =
+                document.getElementById("more-button-OfCard");
+              morebuttonOfCard.style.display = "none";
             }}
           >
-            <span className="threeDotMenuOfCard">
+            <span className="three-dot-menu-OfCard">
               <img src={threeDotImage} alt="threeDot-image" />
               <div
-                className="threeDotItemsWraperInLowerPartOfCard"
+                className="three-dot-items-wraper-in-lower-part-OfCard"
                 onMouseEnter={() => {
-                  const moreButtonOfCard: any =
-                    document.getElementById("moreButtonOfCard");
-                  moreButtonOfCard.style.display = "none";
+                  const morebuttonOfCard: any =
+                    document.getElementById("more-button-OfCard");
+                  morebuttonOfCard.style.display = "none";
                 }}
               >
-                <ul className="threeDotItemsInLowerPartOfCard">
-                  <li className="itemInThreeDotInLowerPartOfCard">Add label</li>
+                <ul className="three-dot-items-in-lower-part-OfCard">
+                  <li className="item-in-three-dot-in-lower-part-OfCard">Add label</li>
                   <li
-                    className="itemInThreeDotInLowerPartOfCard"
+                    className="item-in-three-dot-in-lower-part-OfCard"
                     onClick={() => functionCalledByMakeACopyButton(indexOfCard)}
                   >
                     Make a copy
                   </li>
                   <li
-                    className="itemInThreeDotInLowerPartOfCard"
+                    className="item-in-three-dot-in-lower-part-OfCard"
                     onClick={() =>
                       functionCalledByDeleteButton(
                         newState.length - 1 - indexOfCard
@@ -243,7 +243,7 @@ export default function Card({
                 </ul>
               </div>
             </span>
-            <p className="elementTextInLowerPartOfCard" id="moreButtonOfCard">
+            <p className="element-text-in-lower-part-OfCard" id="more-button-OfCard">
               More
             </p>
           </button>

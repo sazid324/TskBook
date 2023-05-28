@@ -8,9 +8,9 @@ interface ButtonElements {
 
 export default function Button({ children, functionCallingOnBtnClick }: ButtonElements) {
   return (
-    <button className="btnOfButton" onClick={functionCallingOnBtnClick}>
-      <img className="addImageOfButton" src={addImage} alt="add-image" />
-      <p className="pOfButton">{children}</p>
+    <button className="btn-OfButton" onClick={functionCallingOnBtnClick}>
+      <img className="add-image-OfButton" src={addImage} alt="add-image" />
+      <p className="text-OfButton">{children}</p>
     </button>
   );
 }

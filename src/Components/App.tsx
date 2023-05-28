@@ -46,11 +46,11 @@ function App() {
       <header>
         <Header />
       </header>
-      <section id="mainBody">
-        <div className="mainContainer">
-          <div className="leftPart">
-            <div className="leftPartContainer">
-              <div className="leftPartUpperSection">
+      <section id="main-body">
+        <div className="main-container">
+          <div className="left-part">
+            <div className="left-part-container">
+              <div className="left-part-upper-section">
                 <Button
                   functionCallingOnBtnClick={functionCalledByAddNewButton}
                 >
@@ -58,14 +58,14 @@ function App() {
                 </Button>
                 <ListGroup />
               </div>
-              <div className="leftPartLowerSection">
+              <div className="left-part-lower-section">
                 <Copyright />
               </div>
             </div>
           </div>
-          <div className="rightPart">
-            <div className="elementsContainer">
-              <div className="mainContainerOfCard">
+          <div className="right-part">
+            <div className="elements-container">
+              <div className="main-container-OfCard">
                 {cardArray.length > 0 ? (
                   cardArray.map((element: any, index: number) => {
                     return (
@@ -80,13 +80,13 @@ function App() {
                     );
                   })
                 ) : (
-                  <span className="elementsOnNoNote">
+                  <span className="watermark-on-no-items">
                     <img
-                      className="imgElementOnNoNote"
+                      className="watermark-img-on-no-items"
                       src={noteImage}
                       alt="note_logo"
                     />
-                    <p className="textElementOnNoNote">
+                    <p className="watermark-text-on-no-items">
                       Notes you add appear here
                     </p>
                   </span>

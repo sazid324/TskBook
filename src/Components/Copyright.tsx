@@ -5,8 +5,8 @@ export default function Copyright() {
 
   return (
     <>
-      <div className="containerOfCopyright">
-        <p className="peragraphOfCopyright">
+      <div className="container-OfCopyright">
+        <p className="text-OfCopyright">
           &copy; {copyrightYear} TskBook | All rights reserved.
         </p>
       </div>

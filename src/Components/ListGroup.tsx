@@ -10,76 +10,76 @@ import trashImage from "../assets/Images/Icons_and_logos/trash.svg";
 export default function ListGroup() {
   return (
     <>
-      <ul className="ulOfListGroup">
-        <li className="liOfListGroup">
-          <span className="liLogoOfListGroup">
+      <ul className="ul-OfListGroup">
+        <li className="li-OfListGroup">
+          <span className="image-in-li-OfListGroup">
             <img
-              className="liLogoImageOfListGroup"
+              className="li-logo-image-OfListGroup"
               src={noteImage}
               alt="note_logo"
             />
           </span>
-          <p className="pInLiOfListGroup">Notes</p>
+          <p className="text-in-li-OfListGroup">Notes</p>
         </li>
-        <li className="liOfListGroup">
-          <span className="liLogoOfListGroup">
+        <li className="li-OfListGroup">
+          <span className="image-in-li-OfListGroup">
             <img
-              className="liLogoImageOfListGroup"
+              className="li-logo-image-OfListGroup"
               src={todo}
               alt="to-do_logo"
             />
           </span>
-          <p className="pInLiOfListGroup">To-Do</p>
+          <p className="text-in-li-OfListGroup">To-Do</p>
         </li>
-        <li className="liOfListGroup">
-          <span className="liLogoOfListGroup">
+        <li className="li-OfListGroup">
+          <span className="image-in-li-OfListGroup">
             <img
-              className="liLogoImageOfListGroup"
+              className="li-logo-image-OfListGroup"
               src={calendar}
               alt="calendar_logo"
             />
           </span>
-          <p className="pInLiOfListGroup">Calendar</p>
+          <p className="text-in-li-OfListGroup">Calendar</p>
         </li>
-        <li className="liOfListGroup">
-          <span className="liLogoOfListGroup">
+        <li className="li-OfListGroup">
+          <span className="image-in-li-OfListGroup">
             <img
-              className="liLogoImageOfListGroup"
+              className="li-logo-image-OfListGroup"
               src={reminderImage}
               alt="reminder_logo"
             />
           </span>
-          <p className="pInLiOfListGroup">Reminders</p>
+          <p className="text-in-li-OfListGroup">Reminders</p>
         </li>
-        <li className="liOfListGroup">
-          <span className="liLogoOfListGroup">
+        <li className="li-OfListGroup">
+          <span className="image-in-li-OfListGroup">
             <img
-              className="liLogoImageOfListGroup"
+              className="li-logo-image-OfListGroup"
               src={labelImage}
               alt="label_logo"
             />
           </span>
-          <p className="pInLiOfListGroup">Labels</p>
+          <p className="text-in-li-OfListGroup">Labels</p>
         </li>
-        <li className="liOfListGroup">
-          <span className="liLogoOfListGroup">
+        <li className="li-OfListGroup">
+          <span className="image-in-li-OfListGroup">
             <img
-              className="liLogoImageOfListGroup"
+              className="li-logo-image-OfListGroup"
               src={archiveImage}
               alt="archive_logo"
             />
           </span>
-          <p className="pInLiOfListGroup">Archive</p>
+          <p className="text-in-li-OfListGroup">Archive</p>
         </li>
-        <li className="liOfListGroup">
-          <span className="liLogoOfListGroup">
+        <li className="li-OfListGroup">
+          <span className="image-in-li-OfListGroup">
             <img
-              className="liLogoImageOfListGroup"
+              className="li-logo-image-OfListGroup"
               src={trashImage}
               alt="trash_logo"
             />
           </span>
-          <p className="pInLiOfListGroup">Trash</p>
+          <p className="text-in-li-OfListGroup">Trash</p>
         </li>
       </ul>
     </>
