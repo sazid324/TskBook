@@ -58,6 +58,7 @@ export default function Header() {
   useEffect(() => {
     // Adding functionality of Nav menu button.
     const leftPart: any = document.getElementsByClassName("left-part")[0];
+    const rightPart: any = document.getElementsByClassName("right-part")[0];
     const btnOfButton: any = document.getElementsByClassName("btn-OfButton")[0];
     const textOfButton: any =
       document.getElementsByClassName("text-OfButton")[0];
@@ -72,6 +73,7 @@ export default function Header() {
 
     if (clickedOnNavMenu == true) {
       leftPart.style.cssText = "width: 6.7%;";
+      rightPart.style.cssText = "width: 93%;";
       btnOfButton.style.cssText = "margin-left: 0px;";
       textOfButton.style.cssText = "display: none;";
       containerOfCopyright.style.cssText = "display: none;";
@@ -83,6 +85,7 @@ export default function Header() {
     }
     if (clickedOnNavMenu == false) {
       leftPart.style.cssText = "width: 16.7%;";
+      rightPart.style.cssText = "width: 83%;";
       btnOfButton.style.cssText = "margin-left: 1.7rem;";
       textOfButton.style.cssText = "display: block;";
       containerOfCopyright.style.cssText = "display: block;";
@@ -93,11 +96,6 @@ export default function Header() {
       }
     }
   });
-
-  // Getting value onChange of the inputs of Header component.
-  // const functionCalledBySearchInputFieldOnChange = (typedValue: any) => {
-  //   setinputValue(typedValue.target.value);
-  // };
 
   /////////////////////// Return Method ///////////////////////
 

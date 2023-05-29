@@ -43,7 +43,6 @@ html {
 
           .left-part {
             width: 16.7%;
-            // width: 7%;
             height: 100dvh - 10.3dvh;
             float: left;
             padding-top: 1.5rem;
@@ -67,7 +66,7 @@ html {
           }
 
           .right-part {
-            width: 82%;
+            width: 83%;
             height: 100%;
             float: right;
             @include Mixin.flexCenter(center, center);
