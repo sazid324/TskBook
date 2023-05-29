@@ -9,6 +9,7 @@ import editImage from "../assets/Images/Icons_and_logos/edit.svg";
 import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
+// Interfaces
 interface CardElements {
   newState: any;
   setNewState: any;

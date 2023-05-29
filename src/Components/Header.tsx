@@ -8,6 +8,7 @@ import listImage from "../assets/Images/Icons_and_logos/list.svg";
 export default function Header() {
   // Hooks
   const [clickedOnSearch, setClickedOnSearch] = useState(false);
+  const [clickedOnNavMenu, setClickedOnNavMenu] = useState(false);
 
   let searchBox: any = useRef();
 
@@ -54,6 +55,45 @@ export default function Header() {
     }
   }, [clickedOnSearch]);
 
+  useEffect(() => {
+    // Adding functionality of Nav menu button.
+    const leftPart: any = document.getElementsByClassName("left-part")[0];
+    const btnOfButton: any = document.getElementsByClassName("btn-OfButton")[0];
+    const textOfButton: any =
+      document.getElementsByClassName("text-OfButton")[0];
+    const containerOfCopyright: any = document.getElementsByClassName(
+      "container-OfCopyright"
+    )[0];
+    const liOfListGroup: any =
+      document.getElementsByClassName("li-OfListGroup");
+    const textInLiOfListGroup: any = document.getElementsByClassName(
+      "text-in-li-OfListGroup"
+    );
+
+    if (clickedOnNavMenu == true) {
+      leftPart.style.cssText = "width: 6.7%;";
+      btnOfButton.style.cssText = "margin-left: 0px;";
+      textOfButton.style.cssText = "display: none;";
+      containerOfCopyright.style.cssText = "display: none;";
+
+      for (let i = 0; i < liOfListGroup.length; i++) {
+        liOfListGroup[i].style.cssText = "width: 4.45rem;";
+        textInLiOfListGroup[i].style.display = "none";
+      }
+    }
+    if (clickedOnNavMenu == false) {
+      leftPart.style.cssText = "width: 16.7%;";
+      btnOfButton.style.cssText = "margin-left: 1.7rem;";
+      textOfButton.style.cssText = "display: block;";
+      containerOfCopyright.style.cssText = "display: block;";
+
+      for (let i = 0; i < liOfListGroup.length; i++) {
+        liOfListGroup[i].style.cssText = "width: inherit;";
+        textInLiOfListGroup[i].style.display = "block";
+      }
+    }
+  });
+
   // Getting value onChange of the inputs of Header component.
   // const functionCalledBySearchInputFieldOnChange = (typedValue: any) => {
   //   setinputValue(typedValue.target.value);
@@ -66,13 +106,18 @@ export default function Header() {
       <div className="container-OfHeader">
         <nav className="nav-OfHeader">
           <div className="nav-menu-OfHeader">
-            <div className="nav-menu-button-OfHeader">
+            <button
+              className="nav-menu-button-OfHeader"
+              onClick={() => {
+                setClickedOnNavMenu(!clickedOnNavMenu);
+              }}
+            >
               <img
                 className="list-menu-image-OfHeader"
                 src={listImage}
                 alt="list-image"
               />
-            </div>
+            </button>
           </div>
           <div className="logo-OfHeader">
             <h3>TskBook</h3>

@@ -1,7 +1,6 @@
 // Assets
 import noteImage from "../assets/Images/Icons_and_logos/note.svg";
 import todo from "../assets/Images/Icons_and_logos/to-do.svg";
-import calendar from "../assets/Images/Icons_and_logos/calendar.svg";
 import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
 import labelImage from "../assets/Images/Icons_and_logos/label.svg";
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
@@ -30,16 +29,6 @@ export default function ListGroup() {
             />
           </span>
           <p className="text-in-li-OfListGroup">To-Do</p>
-        </li>
-        <li className="li-OfListGroup">
-          <span className="image-in-li-OfListGroup">
-            <img
-              className="li-logo-image-OfListGroup"
-              src={calendar}
-              alt="calendar_logo"
-            />
-          </span>
-          <p className="text-in-li-OfListGroup">Calendar</p>
         </li>
         <li className="li-OfListGroup">
           <span className="image-in-li-OfListGroup">

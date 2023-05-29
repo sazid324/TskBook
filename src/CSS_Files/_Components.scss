@@ -18,12 +18,14 @@
 
     .nav-menu-OfHeader {
       width: 33.33%;
-      padding-left: 2rem;
+      padding-left: 1rem;
 
       .nav-menu-button-OfHeader {
         width: 2.8rem;
         height: 2.8rem;
+        border: none;
         border-radius: 50%;
+        background-color: transparent;
         @include flexCenter(center, center);
 
         &:hover,
@@ -47,7 +49,7 @@
 
     .search-OfHeader {
       width: 33.33%;
-      padding-right: 2rem;
+      padding-right: 1rem;
       @include flexCenter(right, inherit);
 
       .search-input-OfHeader {
@@ -64,7 +66,7 @@
         font-size: 0.9rem;
         display: none;
 
-        &::placeholder{
+        &::placeholder {
           color: rgb(194, 194, 194);
           font-weight: 400;
         }
@@ -105,7 +107,7 @@
   border: 1px solid $mainColorLight;
   margin-bottom: 15px;
   border-radius: 5px;
-  margin-left: 2.7rem;
+  margin-left: 1.7rem;
   padding: 0.5rem 1.5rem;
   @include flexCenter(center, center);
 
@@ -115,15 +117,15 @@
     background-color: $mainColor;
   }
 
-  .text-OfButton {
-    font-weight: bold;
-    width: 100%;
-  }
-
   .add-image-OfButton {
     height: 1.2rem;
     float: left;
-    padding-right: 9px;
+  }
+
+  .text-OfButton {
+    font-weight: bold;
+    width: 100%;
+    padding-left: 9px;
   }
 }
 
@@ -134,8 +136,10 @@
 .ul-OfListGroup {
   .li-OfListGroup {
     list-style-type: none;
-    padding: 1rem 1rem 1rem 2.7rem;
+    padding: 1rem 1.7rem 1rem 1.7rem;
     border-radius: 5px;
+    @include flexCenter(left, center);
+    flex-direction: row;
 
     &:hover,
     &:active {
@@ -146,11 +150,15 @@
     .image-in-li-OfListGroup {
       @include flexCenter(center, center);
       float: left;
-      padding-right: 17px;
 
       .li-logo-image-OfListGroup {
         height: 1.2rem;
       }
+    }
+
+    .text-in-li-OfListGroup {
+      padding-left: 17px;
+      display: block;
     }
   }
 }
