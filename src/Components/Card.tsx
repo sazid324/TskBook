@@ -205,12 +205,16 @@ export default function Card({
             className="element-in-lower-part-OfCard"
             onMouseEnter={() => {
               const morebuttonOfCard: any =
-                document.getElementById("more-button-OfCard");
+                document.getElementsByClassName("more-button-OfCard")[
+                  indexOfCard
+                ];
               morebuttonOfCard.style.display = "block";
             }}
             onMouseLeave={() => {
               const morebuttonOfCard: any =
-                document.getElementById("more-button-OfCard");
+                document.getElementsByClassName("more-button-OfCard")[
+                  indexOfCard
+                ];
               morebuttonOfCard.style.display = "none";
             }}
           >
@@ -220,7 +224,9 @@ export default function Card({
                 className="three-dot-items-wraper-in-lower-part-OfCard"
                 onMouseEnter={() => {
                   const morebuttonOfCard: any =
-                    document.getElementById("more-button-OfCard");
+                    document.getElementsByClassName("more-button-OfCard")[
+                      indexOfCard
+                    ];
                   morebuttonOfCard.style.display = "none";
                 }}
               >
@@ -247,10 +253,7 @@ export default function Card({
                 </ul>
               </div>
             </span>
-            <p
-              className="element-text-in-lower-part-OfCard"
-              id="more-button-OfCard"
-            >
+            <p className="element-text-in-lower-part-OfCard more-button-OfCard">
               More
             </p>
           </button>
