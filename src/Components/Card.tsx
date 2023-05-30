@@ -29,6 +29,8 @@ export default function Card({
   // Hooks
   const [headerValueOnChange, setHeaderValueOnChange] = useState("");
   const [bodyValueOnChange, setBodyValueOnChange] = useState("");
+  const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
+  const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
 
   useEffect(() => {
     const headingOfNewElementOfCard: any =
@@ -51,13 +53,10 @@ export default function Card({
     bodyOfNewElementOfCard.disabled = true;
   }, [newState]);
 
-  // Getting value onChange of the inputs of Card component.
-  const functionCalledByHeaderOnChange = (event: any) => {
-    setHeaderValueOnChange(event.target.value);
-  };
-  const functionCalledByBodyOnChange = (event: any) => {
-    setBodyValueOnChange(event.target.value);
-  };
+  useEffect(() => {
+    setHeaderValueOnChange(elementOfCard.headerValue);
+    setBodyValueOnChange(elementOfCard.bodyValue);
+  }, []);
 
   // Adding functionality of Close button in card.
   const functionCalledByCloseButton = (index: number) => {
@@ -105,15 +104,12 @@ export default function Card({
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[index];
 
-    const headerValue: any = headingOfCard.value;
-    const bodyValue: any = bodyOfCard.value;
-
     const makeACopyOfCard: any = [
       ...newState,
       {
         id: Date.now() + Math.floor(Math.random() * 78),
-        headerValue: `${headerValue}`,
-        bodyValue: `${bodyValue}`,
+        headerValue: `${headingOfCard.value}`,
+        bodyValue: `${bodyOfCard.value}`,
       },
     ];
 
@@ -139,6 +135,23 @@ export default function Card({
     setNewState(deleteContainerOfCard);
   };
 
+  // Getting value onChange of the inputs of Card component.
+  const functionCalledByHeaderOnChange = (event: any) => {
+    if (headerToggolOnChange == true) {
+      setHeaderToggolOnChange(!headerToggolOnChange);
+    } else {
+      setHeaderValueOnChange(event.target.value);
+    }
+  };
+
+  const functionCalledByBodyOnChange = (event: any) => {
+    if (bodyToggolOnChange == true) {
+      setBodyToggolOnChange(!bodyToggolOnChange);
+    } else {
+      setBodyValueOnChange(event.target.value);
+    }
+  };
+
   /////////////////////// Return Method ///////////////////////
 
   return (
@@ -154,7 +167,11 @@ export default function Card({
                 style={{
                   display: "none",
                 }}
-                value={headerValueOnChange || elementOfCard.headerValue || ""}
+                value={
+                  headerToggolOnChange == true
+                    ? elementOfCard.headerValue
+                    : headerValueOnChange || ""
+                }
                 onChange={(event: any) => functionCalledByHeaderOnChange(event)}
               />
             </div>
@@ -173,7 +190,11 @@ export default function Card({
             style={{
               display: "none",
             }}
-            value={bodyValueOnChange || elementOfCard.bodyValue || ""}
+            value={
+              bodyToggolOnChange == true
+                ? elementOfCard.bodyValue
+                : bodyValueOnChange || ""
+            }
             onChange={(event: any) => functionCalledByBodyOnChange(event)}
           ></textarea>
         </div>

@@ -14,6 +14,7 @@ import noteImage from "../assets/Images/Icons_and_logos/note.svg";
 function App() {
   // Hooks
   const [addNew, setAddNew] = useState([]);
+  const [query, setQuery] = useState("");
 
   // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {
@@ -21,6 +22,8 @@ function App() {
       ...addNew,
       {
         id: Date.now() + Math.floor(Math.random() * 78),
+        headerValue: "",
+        bodyValue: "",
       },
     ];
 
@@ -44,7 +47,7 @@ function App() {
   return (
     <>
       <header>
-        <Header />
+        <Header setNewQuery={setQuery} />
       </header>
       <section id="main-body">
         <div className="main-container">

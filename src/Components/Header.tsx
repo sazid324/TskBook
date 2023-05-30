@@ -5,7 +5,12 @@ import { useState, useEffect, useRef } from "react";
 import searchImage from "../assets/Images/Icons_and_logos/search.svg";
 import listImage from "../assets/Images/Icons_and_logos/list.svg";
 
-export default function Header() {
+// Interfaces
+interface headerElements {
+  setNewQuery: any;
+}
+
+export default function Header({ setNewQuery }: headerElements) {
   // Hooks
   const [clickedOnSearch, setClickedOnSearch] = useState(false);
   const [clickedOnNavMenu, setClickedOnNavMenu] = useState(false);
@@ -125,7 +130,7 @@ export default function Header() {
               className="search-input-OfHeader"
               type="text"
               placeholder="Search here...."
-              // onChange={functionCalledBySearchInputFieldOnChange}
+              onChange={(event: any) => setNewQuery(event.target.value)}
             />
             <button
               className="search-button-OfHeader"
