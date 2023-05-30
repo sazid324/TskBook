@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 // Assets
 import searchImage from "../assets/Images/Icons_and_logos/search.svg";
+import cross from "../assets/Images/Icons_and_logos/cross.svg";
 import listImage from "../assets/Images/Icons_and_logos/list.svg";
 
 // Interfaces
@@ -42,6 +43,9 @@ export default function Header({ setNewQuery }: headerElements) {
     const searchInputOfHeader: any = document.getElementsByClassName(
       "search-input-OfHeader"
     )[0];
+    const searchLogoOfHeader: any = document.getElementsByClassName(
+      "search-logo-OfHeader"
+    )[0];
 
     if (clickedOnSearch == true) {
       navMenuOfHeader.style.cssText = "width: 0px;";
@@ -49,6 +53,7 @@ export default function Header({ setNewQuery }: headerElements) {
       logoOfHeader.style.cssText = "display: none;";
       searchOfHeader.style.cssText = "width: 100%; transition: width 0.5s;";
       searchInputOfHeader.style.cssText = "display: block;";
+      searchLogoOfHeader.src = `${cross}`;
     }
     if (clickedOnSearch == false) {
       navMenuOfHeader.style.cssText = "width: 33.33%;";
@@ -57,6 +62,9 @@ export default function Header({ setNewQuery }: headerElements) {
         "display: block; display: flex; justify-content: center;";
       searchOfHeader.style.cssText = "width: 33.33%; transition: width 0.5s;";
       searchInputOfHeader.style.cssText = "display: none;";
+      searchLogoOfHeader.src = `${searchImage}`;
+      setNewQuery("");
+      searchInputOfHeader.value = "";
     }
   }, [clickedOnSearch]);
 
