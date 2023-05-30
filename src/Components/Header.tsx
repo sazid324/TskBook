@@ -130,7 +130,9 @@ export default function Header({ setNewQuery }: headerElements) {
               className="search-input-OfHeader"
               type="text"
               placeholder="Search here...."
-              onChange={(event: any) => setNewQuery(event.target.value)}
+              onChange={(event: any) =>
+                setNewQuery(event.target.value.toLowerCase())
+              }
             />
             <button
               className="search-button-OfHeader"

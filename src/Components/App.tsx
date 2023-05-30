@@ -6,10 +6,7 @@ import Header from "./Header";
 import ListGroup from "./ListGroup";
 import Copyright from "./Copyright";
 import Button from "./Button";
-import Card from "./Card";
-
-// Assets
-import noteImage from "../assets/Images/Icons_and_logos/note.svg";
+import CardList from "./CardList";
 
 function App() {
   // Hooks
@@ -68,33 +65,13 @@ function App() {
           </div>
           <div className="right-part">
             <div className="elements-container">
-              <div className="main-container-OfCard">
-                {cardArray.length > 0 ? (
-                  cardArray.map((element: any, index: number) => {
-                    return (
-                      <Card
-                        key={element.id}
-                        newState={addNew}
-                        setNewState={setAddNew}
-                        cardArrayProp={cardArray}
-                        elementOfCard={element}
-                        indexOfCard={index}
-                      />
-                    );
-                  })
-                ) : (
-                  <span className="watermark-on-no-items">
-                    <img
-                      className="watermark-img-on-no-items"
-                      src={noteImage}
-                      alt="note_logo"
-                    />
-                    <p className="watermark-text-on-no-items">
-                      Notes you add appear here
-                    </p>
-                  </span>
+              <CardList
+                newState={addNew}
+                setNewState={setAddNew}
+                cardArrayProp={cardArray.filter((items: any) =>
+                  items.headerValue.toLowerCase().includes(query)
                 )}
-              </div>
+              />
             </div>
           </div>
         </div>

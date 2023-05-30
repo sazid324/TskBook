@@ -141,14 +141,16 @@ export default function Card({
       setHeaderToggolOnChange(!headerToggolOnChange);
     } else {
       setHeaderValueOnChange(event.target.value);
+      elementOfCard.headerValue = headerValueOnChange;
     }
   };
-
+  
   const functionCalledByBodyOnChange = (event: any) => {
     if (bodyToggolOnChange == true) {
       setBodyToggolOnChange(!bodyToggolOnChange);
     } else {
       setBodyValueOnChange(event.target.value);
+      elementOfCard.bodyValue = bodyValueOnChange;
     }
   };
 
