@@ -61,7 +61,7 @@ export default function Card({
   useEffect(() => {
     elementOfCard.headerValue = headerValueOnChange;
   }, [headerValueOnChange]);
-  
+
   useEffect(() => {
     elementOfCard.bodyValue = bodyValueOnChange;
   }, [bodyValueOnChange]);
@@ -172,9 +172,6 @@ export default function Card({
                 type="text"
                 className="heading-OfCard"
                 placeholder="Title"
-                style={{
-                  display: "none",
-                }}
                 value={
                   headerToggolOnChange == true
                     ? elementOfCard.headerValue
@@ -195,9 +192,6 @@ export default function Card({
           <textarea
             className="body-OfCard"
             placeholder="Take a note...."
-            style={{
-              display: "none",
-            }}
             value={
               bodyToggolOnChange == true
                 ? elementOfCard.bodyValue

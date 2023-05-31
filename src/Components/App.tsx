@@ -1,5 +1,5 @@
 // Library imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Component imports
 import Header from "./Header";
@@ -26,6 +26,20 @@ function App() {
 
     setAddNew(addNewContainerOfCard);
   };
+
+  useEffect(() => {
+    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
+  }, [addNew]);
+
+  useEffect(() => {
+    const retriveSavedCardNotes: any = JSON.parse(
+      localStorage.getItem("card-notes-in-local-storage") || ""
+    );
+
+    if (retriveSavedCardNotes) {
+      setAddNew(retriveSavedCardNotes);
+    }
+  }, []);
 
   const newReversedArray = (addNewArray: any) => {
     const newArray: any = [];
@@ -68,8 +82,10 @@ function App() {
               <CardList
                 newState={addNew}
                 setNewState={setAddNew}
-                cardArrayProp={cardArray.filter((items: any) =>
-                  items.headerValue.toLowerCase().includes(query)
+                cardArrayProp={cardArray.filter(
+                  (items: any) =>
+                    items.headerValue.toLowerCase().includes(query) ||
+                    items.bodyValue.toLowerCase().includes(query)
                 )}
               />
             </div>
