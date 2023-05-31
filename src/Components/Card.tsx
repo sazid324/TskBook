@@ -145,18 +145,18 @@ export default function Card({
 
   // Getting value onChange of the inputs of Card component.
   const functionCalledByHeaderOnChange = (event: any) => {
+    setHeaderValueOnChange(event.target.value);
+
     if (headerToggolOnChange == true) {
       setHeaderToggolOnChange(!headerToggolOnChange);
-    } else {
-      setHeaderValueOnChange(event.target.value);
     }
   };
 
   const functionCalledByBodyOnChange = (event: any) => {
+    setBodyValueOnChange(event.target.value);
+
     if (bodyToggolOnChange == true) {
       setBodyToggolOnChange(!bodyToggolOnChange);
-    } else {
-      setBodyValueOnChange(event.target.value);
     }
   };
 
