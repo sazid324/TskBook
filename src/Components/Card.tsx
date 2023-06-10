@@ -86,6 +86,11 @@ export default function Card({
     if (bodyOfCard.value == "") {
       bodyOfCard.style.display = "none";
     }
+
+    localStorage.setItem(
+      "card-notes-in-local-storage",
+      JSON.stringify(newState)
+    );
   };
 
   // Adding functionality of Edit button in card.

@@ -1,5 +1,5 @@
 // Library imports
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 // Component imports
 import Header from "./Header";
@@ -12,6 +12,9 @@ function App() {
   // Hooks
   const [addNew, setAddNew] = useState([]);
   const [query, setQuery] = useState("");
+
+  const localNotesLoaded: any = useRef(false);
+  const newNotesLoaded: any = useRef(false);
 
   // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {
@@ -27,20 +30,7 @@ function App() {
     setAddNew(addNewContainerOfCard);
   };
 
-  useEffect(() => {
-    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
-  }, [addNew]);
-
-  useEffect(() => {
-    const retriveSavedCardNotes: any = JSON.parse(
-      localStorage.getItem("card-notes-in-local-storage") || ""
-    );
-
-    if (retriveSavedCardNotes) {
-      setAddNew(retriveSavedCardNotes);
-    }
-  }, []);
-
+  // Reverse array
   const newReversedArray = (addNewArray: any) => {
     const newArray: any = [];
 
@@ -52,6 +42,60 @@ function App() {
   };
 
   const cardArray: any = newReversedArray(addNew);
+
+  // Saving and retriving data from local storage
+  useEffect(() => {
+    if (localNotesLoaded.current === false) {
+      const retriveSavedCardNotes: any = JSON.parse(
+        localStorage.getItem("card-notes-in-local-storage") || ""
+      );
+
+      if (
+        retriveSavedCardNotes[0].headerValue != "" &&
+        retriveSavedCardNotes[0].bodyValue != ""
+      ) {
+        setAddNew(retriveSavedCardNotes);
+
+        return () => {
+          localNotesLoaded.current = true;
+        };
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (newNotesLoaded === false) {
+      localStorage.setItem(
+        "card-notes-in-local-storage",
+        JSON.stringify(addNew)
+      );
+
+      return () => {
+        newNotesLoaded.current = true;
+      };
+    }
+
+    // Making card header and body visible
+    for (let i = 0; i < addNew.length; i++) {
+      const headingOfCard: any =
+        document.getElementsByClassName("heading-OfCard")[i];
+      const bodyOfCard: any = document.getElementsByClassName("body-OfCard")[i];
+
+      headingOfCard.disabled = true;
+      bodyOfCard.disabled = true;
+
+      if (headingOfCard.value == "") {
+        headingOfCard.style.display = "none";
+      } else {
+        headingOfCard.style.display = "block";
+      }
+      if (bodyOfCard.value == "") {
+        bodyOfCard.style.display = "none";
+      } else {
+        bodyOfCard.style.display = "block";
+      }
+    }
+  }, [addNew]);
 
   /////////////////////// Return Method ///////////////////////
 
