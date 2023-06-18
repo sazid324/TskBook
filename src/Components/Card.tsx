@@ -33,27 +33,6 @@ export default function Card({
   const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
 
   useEffect(() => {
-    const headingOfNewElementOfCard: any =
-      document.getElementsByClassName("heading-OfCard")[0];
-    const bodyOfNewElementOfCard: any =
-      document.getElementsByClassName("body-OfCard")[0];
-
-    if (headingOfNewElementOfCard.value == "") {
-      headingOfNewElementOfCard.style.display = "none";
-    } else {
-      headingOfNewElementOfCard.style.display = "block";
-    }
-    if (bodyOfNewElementOfCard.value == "") {
-      bodyOfNewElementOfCard.style.display = "none";
-    } else {
-      bodyOfNewElementOfCard.style.display = "block";
-    }
-
-    headingOfNewElementOfCard.disabled = true;
-    bodyOfNewElementOfCard.disabled = true;
-  }, [newState]);
-
-  useEffect(() => {
     setHeaderValueOnChange(elementOfCard.headerValue);
     setBodyValueOnChange(elementOfCard.bodyValue);
   }, []);

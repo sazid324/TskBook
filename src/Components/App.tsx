@@ -1,5 +1,5 @@
 // Library imports
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 // Component imports
 import Header from "./Header";
@@ -10,11 +10,51 @@ import CardList from "./CardList";
 
 function App() {
   // Hooks
-  const [addNew, setAddNew] = useState([]);
+  const [addNew, setAddNew] = useState(() => {
+    const storedValue = localStorage.getItem("card-notes-in-local-storage");
+    return storedValue ? JSON.parse(storedValue) : [];
+  });
   const [query, setQuery] = useState("");
 
-  const localNotesLoaded: any = useRef(false);
-  const newNotesLoaded: any = useRef(false);
+  let localNotesLoaded: boolean = false;
+
+  useEffect(() => {
+    // Saving and retriving data from local storage
+    if (localNotesLoaded == false) {
+      localNotesLoaded = true;
+
+      const retriveSavedCardNotes: any = JSON.parse(
+        localStorage.getItem("card-notes-in-local-storage") || ""
+      );
+
+      setAddNew(retriveSavedCardNotes);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
+
+    // Making card header and body visible
+    for (let i = 0; i < addNew.length; i++) {
+      const headingOfCard: any =
+        document.getElementsByClassName("heading-OfCard")[i];
+      const bodyOfCard: any = document.getElementsByClassName("body-OfCard")[i];
+
+      headingOfCard.disabled = true;
+      bodyOfCard.disabled = true;
+
+      if (headingOfCard.value == "") {
+        headingOfCard.style.display = "none";
+      } else {
+        headingOfCard.style.display = "block";
+      }
+      if (bodyOfCard.value == "") {
+        bodyOfCard.style.display = "none";
+      } else {
+        bodyOfCard.style.display = "block";
+      }
+    }
+  }, [addNew]);
 
   // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {
@@ -42,60 +82,6 @@ function App() {
   };
 
   const cardArray: any = newReversedArray(addNew);
-
-  // Saving and retriving data from local storage
-  useEffect(() => {
-    if (localNotesLoaded.current === false) {
-      const retriveSavedCardNotes: any = JSON.parse(
-        localStorage.getItem("card-notes-in-local-storage") || ""
-      );
-
-      if (
-        retriveSavedCardNotes[0].headerValue != "" &&
-        retriveSavedCardNotes[0].bodyValue != ""
-      ) {
-        setAddNew(retriveSavedCardNotes);
-
-        return () => {
-          localNotesLoaded.current = true;
-        };
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (newNotesLoaded === false) {
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(addNew)
-      );
-
-      return () => {
-        newNotesLoaded.current = true;
-      };
-    }
-
-    // Making card header and body visible
-    for (let i = 0; i < addNew.length; i++) {
-      const headingOfCard: any =
-        document.getElementsByClassName("heading-OfCard")[i];
-      const bodyOfCard: any = document.getElementsByClassName("body-OfCard")[i];
-
-      headingOfCard.disabled = true;
-      bodyOfCard.disabled = true;
-
-      if (headingOfCard.value == "") {
-        headingOfCard.style.display = "none";
-      } else {
-        headingOfCard.style.display = "block";
-      }
-      if (bodyOfCard.value == "") {
-        bodyOfCard.style.display = "none";
-      } else {
-        bodyOfCard.style.display = "block";
-      }
-    }
-  }, [addNew]);
 
   /////////////////////// Return Method ///////////////////////
 
