@@ -1,3 +1,6 @@
+// Library imports
+import { useEffect } from "react";
+
 // Component imports
 import Card from "./Card";
 
@@ -16,6 +19,51 @@ export default function CardList({
   setNewState,
   cardArrayProp,
 }: CardListElements) {
+  // Variables
+  let localNotesLoaded: boolean = false;
+
+  // Hooks
+  useEffect(() => {
+    // Saving and retriving data from local storage
+    if (localNotesLoaded == false) {
+      localNotesLoaded = true;
+
+      const retriveSavedCardNotes: any = JSON.parse(
+        localStorage.getItem("card-notes-in-local-storage") || ""
+      );
+
+      setNewState(retriveSavedCardNotes);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "card-notes-in-local-storage",
+      JSON.stringify(newState)
+    );
+
+    // Making card header and body visible
+    for (let i = 0; i < newState.length; i++) {
+      const headingOfCard: any =
+        document.getElementsByClassName("heading-OfCard")[i];
+      const bodyOfCard: any = document.getElementsByClassName("body-OfCard")[i];
+
+      headingOfCard.disabled = true;
+      bodyOfCard.disabled = true;
+
+      if (headingOfCard.value == "") {
+        headingOfCard.style.display = "none";
+      } else {
+        headingOfCard.style.display = "block";
+      }
+      if (bodyOfCard.value == "") {
+        bodyOfCard.style.display = "none";
+      } else {
+        bodyOfCard.style.display = "block";
+      }
+    }
+  }, [newState]);
+
   /////////////////////// Return Method ///////////////////////
 
   return (

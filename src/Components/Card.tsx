@@ -45,6 +45,16 @@ export default function Card({
     elementOfCard.bodyValue = bodyValueOnChange;
   }, [bodyValueOnChange]);
 
+  useEffect(() => {
+    const headingOfCard: any =
+      document.getElementsByClassName("heading-OfCard")[indexOfCard];
+    const bodyOfCard: any =
+      document.getElementsByClassName("body-OfCard")[indexOfCard];
+
+    elementOfCard.headerValue = headingOfCard.value;
+    elementOfCard.bodyValue = bodyOfCard.value;
+  }, [indexOfCard]);
+
   // Adding functionality of Close button in card.
   const functionCalledByCloseButton = (index: number) => {
     const headingOfCard: any =
