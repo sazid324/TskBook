@@ -108,7 +108,7 @@ export default function Header({ setNewQuery }: headerElements) {
         textInLiOfListGroup[i].style.display = "block";
       }
     }
-  });
+  }, [clickedOnNavMenu]);
 
   /////////////////////// Return Method ///////////////////////
 

@@ -64,6 +64,29 @@ export default function CardList({
     }
   }, [newState]);
 
+  useEffect(() => {
+    // Making card header and body visible
+    for (let i = 0; i < cardArrayProp.length; i++) {
+      const headingOfCard: any =
+        document.getElementsByClassName("heading-OfCard")[i];
+      const bodyOfCard: any = document.getElementsByClassName("body-OfCard")[i];
+
+      headingOfCard.disabled = true;
+      bodyOfCard.disabled = true;
+
+      if (headingOfCard.value == "") {
+        headingOfCard.style.display = "none";
+      } else {
+        headingOfCard.style.display = "block";
+      }
+      if (bodyOfCard.value == "") {
+        bodyOfCard.style.display = "none";
+      } else {
+        bodyOfCard.style.display = "block";
+      }
+    }
+  }, [cardArrayProp]);
+
   /////////////////////// Return Method ///////////////////////
 
   return (
