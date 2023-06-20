@@ -1,5 +1,5 @@
 // Library imports
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Component imports
 import Header from "./Header";
@@ -13,12 +13,53 @@ export const addNewNoteContext: any = React.createContext(null);
 export const cardArrayContext: any = React.createContext(null);
 
 function App() {
+  // Functions
+  window.onresize = () => {
+    setViewPort({
+      viewPortWidth: window.innerWidth,
+      viewPortHeight: window.innerHeight,
+    });
+  };
+
   // Hooks
+  const [viewPort, setViewPort] = useState({
+    viewPortWidth: window.innerWidth,
+    viewPortHeight: window.innerHeight,
+  });
   const [addNew, setAddNew] = useState(() => {
     const storedValue = localStorage.getItem("card-notes-in-local-storage");
     return storedValue ? JSON.parse(storedValue) : [];
   });
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    // Effects on viewport change.
+    for (let i = 0; i < cardArray.length; i++) {
+      const threeDotMenuOfCard: any = document.getElementsByClassName(
+        "three-dot-items-wraper-in-lower-part-OfCard"
+      )[i];
+      const containerOfCardDistanceFromRight: any = document
+        .getElementsByClassName("container-OfCard")
+        [i].getBoundingClientRect().right;
+      const containerOfCardDistanceFromBottom: any = document
+        .getElementsByClassName("container-OfCard")
+        [i].getBoundingClientRect().bottom;
+
+      if (viewPort.viewPortWidth < containerOfCardDistanceFromRight + 95) {
+        if (viewPort.viewPortHeight < containerOfCardDistanceFromBottom + 95) {
+          threeDotMenuOfCard.style.cssText = "left: -142px; top: -113px";
+        } else {
+          threeDotMenuOfCard.style.cssText = "left: -142px; top: 11px";
+        }
+      } else {
+        if (viewPort.viewPortHeight < containerOfCardDistanceFromBottom + 95) {
+          threeDotMenuOfCard.style.cssText = "left: 11px; top: -113px";
+        } else {
+          threeDotMenuOfCard.style.cssText = "left: 11px; top: 11px";
+        }
+      }
+    }
+  }, [viewPort]);
 
   // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {

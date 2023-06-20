@@ -173,6 +173,13 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
           </button>
           <button
             className="element-in-lower-part-OfCard"
+            onClick={() => {
+              const morebuttonOfCard: any =
+                document.getElementsByClassName("more-button-OfCard")[
+                  indexOfCard
+                ];
+              morebuttonOfCard.style.display = "none";
+            }}
             onMouseEnter={() => {
               const morebuttonOfCard: any =
                 document.getElementsByClassName("more-button-OfCard")[
