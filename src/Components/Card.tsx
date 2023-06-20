@@ -1,5 +1,9 @@
 // Library imports
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+
+// Component imports
+import ThreeDotMenu from "./ThreeDotMenu";
+import { addNewNoteContext } from "./App";
 
 // Assets
 import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
@@ -7,26 +11,16 @@ import cardBackgroundImage from "../assets/Images/Icons_and_logos/cardBackground
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
 import editImage from "../assets/Images/Icons_and_logos/edit.svg";
 import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
-import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
 // Interfaces
 interface CardElements {
-  newState: any;
-  setNewState: any;
-  cardArrayProp: any;
   elementOfCard: any;
   indexOfCard: number;
 }
 
-export default function Card({
-  newState,
-  setNewState,
-  // @ts-ignore
-  cardArrayProp,
-  elementOfCard,
-  indexOfCard,
-}: CardElements) {
+export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   // Hooks
+  const [addNew] = useContext<any>(addNewNoteContext);
   const [headerValueOnChange, setHeaderValueOnChange] = useState("");
   const [bodyValueOnChange, setBodyValueOnChange] = useState("");
   const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
@@ -76,10 +70,7 @@ export default function Card({
       bodyOfCard.style.display = "none";
     }
 
-    localStorage.setItem(
-      "card-notes-in-local-storage",
-      JSON.stringify(newState)
-    );
+    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
   };
 
   // Adding functionality of Edit button in card.
@@ -97,44 +88,6 @@ export default function Card({
     headingOfCard.style.display = "block";
     bodyOfCard.style.display = "block";
     closeButtonOfCard.style.display = "block";
-  };
-
-  // Adding functionality of Make a copy button in card.
-  const functionCalledByMakeACopyButton = (index: number) => {
-    const headingOfCard: any =
-      document.getElementsByClassName("heading-OfCard")[index];
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[index];
-
-    const makeACopyOfCard: any = [
-      ...newState,
-      {
-        id: Date.now() + Math.floor(Math.random() * 78),
-        headerValue: `${headingOfCard.value}`,
-        bodyValue: `${bodyOfCard.value}`,
-      },
-    ];
-
-    setNewState(makeACopyOfCard);
-
-    const newReversedArray = (newStateArray: any) => {
-      const newArray: any = [];
-
-      for (let i = newState.length - 1; i >= 0; --i) {
-        newArray.push(newStateArray[i]);
-      }
-
-      return newArray;
-    };
-
-    cardArrayProp = newReversedArray(newState);
-  };
-
-  // Adding functionality of Delete button in card.
-  const functionCalledByDeleteButton = (index: number) => {
-    const deleteContainerOfCard: any = [...newState];
-    deleteContainerOfCard.splice(index, 1);
-    setNewState(deleteContainerOfCard);
   };
 
   // Getting value onChange of the inputs of Card component.
@@ -235,44 +188,7 @@ export default function Card({
               morebuttonOfCard.style.display = "none";
             }}
           >
-            <span className="three-dot-menu-OfCard">
-              <img src={threeDotImage} alt="threeDot-image" />
-              <div
-                className="three-dot-items-wraper-in-lower-part-OfCard"
-                onMouseEnter={() => {
-                  const morebuttonOfCard: any =
-                    document.getElementsByClassName("more-button-OfCard")[
-                      indexOfCard
-                    ];
-                  morebuttonOfCard.style.display = "none";
-                }}
-              >
-                <ul className="three-dot-items-in-lower-part-OfCard">
-                  <li className="item-in-three-dot-in-lower-part-OfCard">
-                    Add label
-                  </li>
-                  <li
-                    className="item-in-three-dot-in-lower-part-OfCard"
-                    onClick={() => functionCalledByMakeACopyButton(indexOfCard)}
-                  >
-                    Make a copy
-                  </li>
-                  <li
-                    className="item-in-three-dot-in-lower-part-OfCard"
-                    onClick={() =>
-                      functionCalledByDeleteButton(
-                        newState.length - 1 - indexOfCard
-                      )
-                    }
-                  >
-                    Delete note
-                  </li>
-                </ul>
-              </div>
-            </span>
-            <p className="element-text-in-lower-part-OfCard more-button-OfCard">
-              More
-            </p>
+            <ThreeDotMenu indexOfCard={indexOfCard} />
           </button>
         </div>
       </div>

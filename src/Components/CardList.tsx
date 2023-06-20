@@ -1,28 +1,25 @@
 // Library imports
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 
 // Component imports
 import Card from "./Card";
+import { addNewNoteContext } from "./App";
 
 // Assets
 import noteImage from "../assets/Images/Icons_and_logos/note.svg";
 
 // Interfaces
 interface CardListElements {
-  newState: any;
-  setNewState: any;
   cardArrayProp: any;
 }
 
-export default function CardList({
-  newState,
-  setNewState,
-  cardArrayProp,
-}: CardListElements) {
+export default function CardList({ cardArrayProp }: CardListElements) {
   // Variables
   let localNotesLoaded: boolean = false;
 
   // Hooks
+  const [addNew, setAddNew] = useContext<any>(addNewNoteContext);
+
   useEffect(() => {
     // Saving and retriving data from local storage
     if (localNotesLoaded == false) {
@@ -32,18 +29,15 @@ export default function CardList({
         localStorage.getItem("card-notes-in-local-storage") || ""
       );
 
-      setNewState(retriveSavedCardNotes);
+      setAddNew(retriveSavedCardNotes);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(
-      "card-notes-in-local-storage",
-      JSON.stringify(newState)
-    );
+    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
 
     // Making card header and body visible
-    for (let i = 0; i < newState.length; i++) {
+    for (let i = 0; i < addNew.length; i++) {
       const headingOfCard: any =
         document.getElementsByClassName("heading-OfCard")[i];
       const bodyOfCard: any = document.getElementsByClassName("body-OfCard")[i];
@@ -62,7 +56,7 @@ export default function CardList({
         bodyOfCard.style.display = "block";
       }
     }
-  }, [newState]);
+  }, [addNew]);
 
   useEffect(() => {
     // Making card header and body visible
@@ -96,9 +90,6 @@ export default function CardList({
           return (
             <Card
               key={element.id}
-              newState={newState}
-              setNewState={setNewState}
-              cardArrayProp={cardArrayProp}
               elementOfCard={element}
               indexOfCard={index}
             />

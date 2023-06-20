@@ -1,5 +1,5 @@
 // Library imports
-import { useState } from "react";
+import React, { useState } from "react";
 
 // Component imports
 import Header from "./Header";
@@ -7,6 +7,10 @@ import ListGroup from "./ListGroup";
 import Copyright from "./Copyright";
 import Button from "./Button";
 import CardList from "./CardList";
+
+// Component exports
+export const addNewNoteContext: any = React.createContext(null);
+export const cardArrayContext: any = React.createContext(null);
 
 function App() {
   // Hooks
@@ -47,41 +51,43 @@ function App() {
 
   return (
     <>
-      <header>
-        <Header setNewQuery={setQuery} />
-      </header>
-      <section id="main-body">
-        <div className="main-container">
-          <div className="left-part">
-            <div className="left-part-container">
-              <div className="left-part-upper-section">
-                <Button
-                  functionCallingOnBtnClick={functionCalledByAddNewButton}
-                >
-                  Add New
-                </Button>
-                <ListGroup />
+      <addNewNoteContext.Provider value={[addNew, setAddNew]}>
+        <cardArrayContext.Provider value={cardArray}>
+          <header>
+            <Header setNewQuery={setQuery} />
+          </header>
+          <section id="main-body">
+            <div className="main-container">
+              <div className="left-part">
+                <div className="left-part-container">
+                  <div className="left-part-upper-section">
+                    <Button
+                      functionCallingOnBtnClick={functionCalledByAddNewButton}
+                    >
+                      Add New
+                    </Button>
+                    <ListGroup />
+                  </div>
+                  <div className="left-part-lower-section">
+                    <Copyright />
+                  </div>
+                </div>
               </div>
-              <div className="left-part-lower-section">
-                <Copyright />
+              <div className="right-part">
+                <div className="elements-container">
+                  <CardList
+                    cardArrayProp={cardArray.filter(
+                      (items: any) =>
+                        items.headerValue.toLowerCase().includes(query) ||
+                        items.bodyValue.toLowerCase().includes(query)
+                    )}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="right-part">
-            <div className="elements-container">
-              <CardList
-                newState={addNew}
-                setNewState={setAddNew}
-                cardArrayProp={cardArray.filter(
-                  (items: any) =>
-                    items.headerValue.toLowerCase().includes(query) ||
-                    items.bodyValue.toLowerCase().includes(query)
-                )}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        </cardArrayContext.Provider>
+      </addNewNoteContext.Provider>
     </>
   );
 }
