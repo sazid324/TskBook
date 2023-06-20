@@ -189,7 +189,6 @@
   max-height: 22rem;
   border: 1.8px solid $cardBorderColor;
   border-radius: 5px;
-  padding: 0.9rem;
 
   .upper-part-OfCard {
     max-height: 12.5rem;
@@ -200,7 +199,7 @@
 
       .heading-OfCard {
         width: 100%;
-        padding-bottom: 15px;
+        padding: 0.9rem 0.9rem 0.5rem 0.9rem;
         border: none;
         outline: none;
         font-family: Manrope-Regular;
@@ -223,6 +222,7 @@
       font-size: 0.9rem;
       color: #202124;
       background-color: transparent;
+      padding: 0.2rem 0.9rem 0.9rem 0.9rem;
       border: none;
       outline: none;
       resize: none;
@@ -255,7 +255,6 @@
     @include flexCenter(space-between, inherit);
     border-top: 1px solid #e6e6e6;
     border-radius: 5px;
-    box-shadow: 0 -1.45rem 0.8rem -1px #ffffff;
 
     .element-in-lower-part-OfCard {
       position: relative;
@@ -322,7 +321,7 @@
               border-radius: 50%;
               margin-right: 5px;
 
-              &:last-child{
+              &:last-child {
                 margin-right: none;
                 border: 1px solid rgb(228, 228, 228);
               }
@@ -344,10 +343,10 @@
         > .theme-menu-button-OfCard
         > .theme-items-wraper-in-lower-part-OfCard {
         display: block;
-        animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
+        animation-name: themeMenuInLowerPartOfCardAnimationOnHover;
         animation-duration: 0.5s;
 
-        @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
+        @keyframes themeMenuInLowerPartOfCardAnimationOnHover {
           100% {
             opacity: 1;
             transform: none;

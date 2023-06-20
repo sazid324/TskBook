@@ -44,12 +44,40 @@ export default function ({ indexOfCard }: ThreeDotMenuElements) {
           }}
         >
           <div className="color-items-in-theme-button-OfCard">
-            {colors.map((colors: any) => {
+            {colors.map((color: any) => {
               return (
                 <div
                   className="color-in-theme-button-OfCard"
                   style={{
-                    backgroundColor: `${colors}`,
+                    backgroundColor: `${color}`,
+                  }}
+                  onClick={() => {
+                    const containerOfCard: any =
+                      document.getElementsByClassName("container-OfCard")[
+                        indexOfCard
+                      ];
+                    const upperPartOfCard: any =
+                      document.getElementsByClassName("upper-part-OfCard")[
+                        indexOfCard
+                      ];
+                    const lowerPartOfCard: any =
+                      document.getElementsByClassName("lower-part-OfCard")[
+                        indexOfCard
+                      ];
+                    const headingOfCard: any =
+                      document.getElementsByClassName("heading-OfCard")[
+                        indexOfCard
+                      ];
+                    const bodyOfCard: any =
+                      document.getElementsByClassName("body-OfCard")[
+                        indexOfCard
+                      ];
+
+                    containerOfCard.style.borderColor = `${color}`;
+                    upperPartOfCard.style.borderColor = `${color}`;
+                    lowerPartOfCard.style.backgroundColor = `${color}`;
+                    headingOfCard.style.backgroundColor = `${color}`;
+                    bodyOfCard.style.backgroundColor = `${color}`;
                   }}
                 ></div>
               );

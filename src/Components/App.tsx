@@ -38,6 +38,9 @@ function App() {
       const threeDotMenuOfCard: any = document.getElementsByClassName(
         "three-dot-items-wraper-in-lower-part-OfCard"
       )[i];
+      const themeMenuButtonOfCard: any = document.getElementsByClassName(
+        "theme-items-wraper-in-lower-part-OfCard"
+      )[i];
       const containerOfCardDistanceFromRight: any = document
         .getElementsByClassName("container-OfCard")
         [i].getBoundingClientRect().right;
@@ -48,14 +51,18 @@ function App() {
       if (viewPort.viewPortWidth < containerOfCardDistanceFromRight + 95) {
         if (viewPort.viewPortHeight < containerOfCardDistanceFromBottom + 95) {
           threeDotMenuOfCard.style.cssText = "left: -142px; top: -113px";
+          themeMenuButtonOfCard.style.cssText = "left: 11px; top: -117px";
         } else {
           threeDotMenuOfCard.style.cssText = "left: -142px; top: 11px";
+          themeMenuButtonOfCard.style.cssText = "left: 11px; top: 11px";
         }
       } else {
         if (viewPort.viewPortHeight < containerOfCardDistanceFromBottom + 95) {
           threeDotMenuOfCard.style.cssText = "left: 11px; top: -113px";
+          themeMenuButtonOfCard.style.cssText = "left: 11px; top: -117px";
         } else {
           threeDotMenuOfCard.style.cssText = "left: 11px; top: 11px";
+          themeMenuButtonOfCard.style.cssText = "left: 11px; top: 11px";
         }
       }
     }
