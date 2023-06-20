@@ -195,52 +195,24 @@
     max-height: 12.5rem;
     overflow: hidden;
 
-    .header-wraper-OfCard {
+    .header-text-part-OfCard {
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      gap: 0.5rem;
 
-      .header-text-part-OfCard {
-        width: auto-fill(100%);
-        float: left;
-
-        .heading-OfCard {
-          width: 100%;
-          padding-bottom: 15px;
-          border: none;
-          outline: none;
-          font-family: Manrope-Regular;
-          font-weight: bold;
-          font-size: 1rem;
-          color: #202124;
-          float: left;
-          display: none;
-
-          &:disabled {
-            background-color: transparent;
-            border: none;
-            outline: none;
-          }
-        }
-      }
-
-      .header-button-part-OfCard {
-        float: right;
+      .heading-OfCard {
+        width: 100%;
+        padding-bottom: 15px;
+        border: none;
+        outline: none;
+        font-family: Manrope-Regular;
+        font-weight: bold;
+        font-size: 1rem;
+        color: #202124;
         display: none;
 
-        .close-button-OfCard {
-          padding: 0.2rem 0.4rem;
-          border: 1px solid rgb(219, 219, 219);
-          border-radius: 15px;
+        &:disabled {
           background-color: transparent;
-
-          &:hover,
-          &:active {
-            cursor: pointer;
-            border-color: $mainColorLight;
-            background-color: $mainColorLight;
-          }
+          border: none;
+          outline: none;
         }
       }
     }
@@ -320,6 +292,78 @@
         cursor: pointer;
         background-color: $mainColorLight;
       }
+
+      /*---STARTING OF ThemeButton component PART---*/
+
+      .theme-menu-button-OfCard {
+        position: relative;
+        @include flexCenter(center, center);
+
+        .theme-items-wraper-in-lower-part-OfCard {
+          position: absolute;
+          display: none;
+          padding: 0.625rem;
+          top: 11px;
+          left: 11px;
+          z-index: 999;
+
+          .color-items-in-theme-button-OfCard {
+            width: 165px;
+            height: fit-content(100%);
+            padding: 0.625rem;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 1px 1px 0.6rem 0.1rem $cardBorderColor;
+
+            .color-in-theme-button-OfCard {
+              display: inline-block;
+              width: 1.5rem;
+              height: 1.5rem;
+              border-radius: 50%;
+              margin-right: 5px;
+
+              &:last-child{
+                margin-right: none;
+                border: 1px solid rgb(228, 228, 228);
+              }
+
+              &:hover,
+              &:active {
+                cursor: pointer;
+                box-shadow: 0px 0px 0.5rem 0.15rem $mainColor;
+              }
+            }
+          }
+        }
+      }
+
+      &:active
+        > .theme-menu-button-OfCard
+        > .theme-items-wraper-in-lower-part-OfCard,
+      &:focus
+        > .theme-menu-button-OfCard
+        > .theme-items-wraper-in-lower-part-OfCard {
+        display: block;
+        animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
+        animation-duration: 0.5s;
+
+        @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
+          100% {
+            opacity: 1;
+            transform: none;
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(18px);
+          }
+          100% {
+            opacity: 1;
+            transform: none;
+          }
+        }
+      }
+
+      /*---ENDING OF ThemeButton component PART---*/
 
       /*---STARTING OF ThreeDotMenu component PART---*/
 

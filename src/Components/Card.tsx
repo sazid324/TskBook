@@ -3,13 +3,14 @@ import { useEffect, useState, useContext } from "react";
 
 // Component imports
 import ThreeDotMenu from "./ThreeDotMenu";
+import ThemeButton from "./ThemeButton";
 import { addNewNoteContext } from "./App";
 
 // Assets
 import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
-import cardBackgroundImage from "../assets/Images/Icons_and_logos/cardBackground.svg";
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
 import editImage from "../assets/Images/Icons_and_logos/edit.svg";
+import saveImage from "../assets/Images/Icons_and_logos/save.svg";
 import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 
 // Interfaces
@@ -25,6 +26,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [bodyValueOnChange, setBodyValueOnChange] = useState("");
   const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
   const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
+  const [editAndSaveButton, setEditAndSaveButton] = useState(true);
 
   useEffect(() => {
     setHeaderValueOnChange(elementOfCard.headerValue);
@@ -40,6 +42,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   }, [bodyValueOnChange]);
 
   useEffect(() => {
+    // Setting headerValue and bodyValue of card.
     const headingOfCard: any =
       document.getElementsByClassName("heading-OfCard")[indexOfCard];
     const bodyOfCard: any =
@@ -49,45 +52,50 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     elementOfCard.bodyValue = bodyOfCard.value;
   }, [indexOfCard]);
 
-  // Adding functionality of Close button in card.
-  const functionCalledByCloseButton = (index: number) => {
+  // Adding functionality of Edit and Save button in Card.
+  const functionCalledByEditAndSaveButton = (index: number) => {
     const headingOfCard: any =
       document.getElementsByClassName("heading-OfCard")[index];
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[index];
-    const closeButtonOfCard: any = document.getElementsByClassName(
-      "header-button-part-OfCard"
+    const editAndSaveButtonOfCard: any = document.getElementsByClassName(
+      "edit-and-save-button-OfCard"
     )[index];
+    const editElementTextInLowerPartOfCard: any =
+      document.getElementsByClassName("edit-element-text-in-lower-part-OfCard")[
+        index
+      ];
 
-    headingOfCard.disabled = true;
-    bodyOfCard.disabled = true;
-    closeButtonOfCard.style.display = "none";
+    if (editAndSaveButton == false) {
+      headingOfCard.disabled = true;
+      bodyOfCard.disabled = true;
 
-    if (headingOfCard.value == "") {
-      headingOfCard.style.display = "none";
+      if (headingOfCard.value == "") {
+        headingOfCard.style.display = "none";
+      }
+      if (bodyOfCard.value == "") {
+        bodyOfCard.style.display = "none";
+      }
+
+      editAndSaveButtonOfCard.src = `${editImage}`;
+      editElementTextInLowerPartOfCard.innerHTML = "Edit";
+
+      localStorage.setItem(
+        "card-notes-in-local-storage",
+        JSON.stringify(addNew)
+      );
     }
-    if (bodyOfCard.value == "") {
-      bodyOfCard.style.display = "none";
+
+    if (editAndSaveButton == true) {
+      headingOfCard.disabled = false;
+      bodyOfCard.disabled = false;
+      headingOfCard.style.display = "block";
+      bodyOfCard.style.display = "block";
+      editAndSaveButtonOfCard.src = `${saveImage}`;
+      editElementTextInLowerPartOfCard.innerHTML = "Save";
     }
 
-    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
-  };
-
-  // Adding functionality of Edit button in card.
-  const functionCalledByEditButton = (index: number) => {
-    const headingOfCard: any =
-      document.getElementsByClassName("heading-OfCard")[index];
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[index];
-    const closeButtonOfCard: any = document.getElementsByClassName(
-      "header-button-part-OfCard"
-    )[index];
-
-    headingOfCard.disabled = false;
-    bodyOfCard.disabled = false;
-    headingOfCard.style.display = "block";
-    bodyOfCard.style.display = "block";
-    closeButtonOfCard.style.display = "block";
+    setEditAndSaveButton(!editAndSaveButton);
   };
 
   // Getting value onChange of the inputs of Card component.
@@ -113,28 +121,18 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     <>
       <div className="container-OfCard">
         <div className="upper-part-OfCard">
-          <div className="header-wraper-OfCard">
-            <div className="header-text-part-OfCard">
-              <input
-                type="text"
-                className="heading-OfCard"
-                placeholder="Title"
-                value={
-                  headerToggolOnChange == true
-                    ? elementOfCard.headerValue
-                    : headerValueOnChange || ""
-                }
-                onChange={(event: any) => functionCalledByHeaderOnChange(event)}
-              />
-            </div>
-            <div className="header-button-part-OfCard">
-              <button
-                className="close-button-OfCard"
-                onClick={() => functionCalledByCloseButton(indexOfCard)}
-              >
-                Close
-              </button>
-            </div>
+          <div className="header-text-part-OfCard">
+            <input
+              type="text"
+              className="heading-OfCard"
+              placeholder="Title"
+              value={
+                headerToggolOnChange == true
+                  ? elementOfCard.headerValue
+                  : headerValueOnChange || ""
+              }
+              onChange={(event: any) => functionCalledByHeaderOnChange(event)}
+            />
           </div>
           <textarea
             className="body-OfCard"
@@ -152,25 +150,57 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             <img src={reminderImage} alt="reminder-image" />
             <p className="element-text-in-lower-part-OfCard">Reminder</p>
           </button>
-          <button className="element-in-lower-part-OfCard">
-            <img src={cardBackgroundImage} alt="cardBackground-image" />
-            <p className="element-text-in-lower-part-OfCard">Theme</p>
+
+          <button
+            className="element-in-lower-part-OfCard"
+            onClick={() => {
+              const themeButtonOfCard: any = document.getElementsByClassName(
+                "theme-button-OfCard"
+              )[indexOfCard];
+              themeButtonOfCard.style.display = "none";
+            }}
+            onMouseEnter={() => {
+              const themeButtonOfCard: any = document.getElementsByClassName(
+                "theme-button-OfCard"
+              )[indexOfCard];
+              themeButtonOfCard.style.display = "block";
+            }}
+            onMouseLeave={() => {
+              const themeButtonOfCard: any = document.getElementsByClassName(
+                "theme-button-OfCard"
+              )[indexOfCard];
+              themeButtonOfCard.style.display = "none";
+            }}
+          >
+            <ThemeButton indexOfCard={indexOfCard} />
           </button>
+
           <button className="element-in-lower-part-OfCard">
             <img src={archiveImage} alt="archive-image" />
             <p className="element-text-in-lower-part-OfCard">Archive</p>
           </button>
-          <button
-            className="element-in-lower-part-OfCard"
-            onClick={() => functionCalledByEditButton(indexOfCard)}
-          >
-            <img src={editImage} alt="edit-image" />
-            <p className="element-text-in-lower-part-OfCard">Edit</p>
-          </button>
+
           <button className="element-in-lower-part-OfCard">
             <img src={attachmentImage} alt="attachment-image" />
             <p className="element-text-in-lower-part-OfCard">Attachment</p>
           </button>
+
+          <button
+            className="element-in-lower-part-OfCard"
+            onClick={() => {
+              functionCalledByEditAndSaveButton(indexOfCard);
+            }}
+          >
+            <img
+              className="edit-and-save-button-OfCard"
+              src={editImage}
+              alt="edit-image"
+            />
+            <p className="element-text-in-lower-part-OfCard edit-element-text-in-lower-part-OfCard">
+              Edit
+            </p>
+          </button>
+
           <button
             className="element-in-lower-part-OfCard"
             onClick={() => {
