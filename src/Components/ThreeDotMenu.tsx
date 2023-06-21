@@ -9,10 +9,14 @@ import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";
 
 // Interfaces
 interface ThreeDotMenuElements {
+  elementOfCard: any;
   indexOfCard: number;
 }
 
-export default function ThreeDotMenu({ indexOfCard }: ThreeDotMenuElements) {
+export default function ThreeDotMenu({
+  elementOfCard,
+  indexOfCard,
+}: ThreeDotMenuElements) {
   // Hooks
   const [addNew, setAddNew] = useContext<any>(addNewNoteContext);
   // @ts-ignore
@@ -31,7 +35,7 @@ export default function ThreeDotMenu({ indexOfCard }: ThreeDotMenuElements) {
         id: Date.now() + Math.floor(Math.random() * 78),
         headerValue: `${headingOfCard.value}`,
         bodyValue: `${bodyOfCard.value}`,
-        color: "#FFFFFF",
+        color: `${elementOfCard.color}`,
       },
     ];
 
@@ -61,7 +65,7 @@ export default function ThreeDotMenu({ indexOfCard }: ThreeDotMenuElements) {
 
   return (
     <>
-      <span className="three-dot-menu-OfCard">
+      <div className="three-dot-menu-OfCard">
         <img src={threeDotImage} alt="threeDot-image" />
         <div
           className="three-dot-items-wraper-in-lower-part-OfCard"
@@ -93,10 +97,11 @@ export default function ThreeDotMenu({ indexOfCard }: ThreeDotMenuElements) {
             </li>
           </ul>
         </div>
-      </span>
+      </div>
       <p className="element-text-in-lower-part-OfCard more-button-OfCard">
         More
       </p>
+      <span className="overlay-on-element-in-lower-part-OfCard"></span>
     </>
   );
 }

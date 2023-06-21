@@ -187,11 +187,13 @@
   position: relative;
   min-height: 9.2rem;
   max-height: 22rem;
-  border: 1.8px solid $cardBorderColor;
-  border-radius: 5px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 0.2rem 0.1rem rgb(214, 214, 214);
 
   .upper-part-OfCard {
     max-height: 12.5rem;
+    background-color: transparent;
+    border-radius: 5px 5px 0px 0px;
     overflow: hidden;
 
     .header-text-part-OfCard {
@@ -200,6 +202,7 @@
       .heading-OfCard {
         width: 100%;
         padding: 0.9rem 0.9rem 0.5rem 0.9rem;
+        background-color: transparent;
         border: none;
         outline: none;
         font-family: Manrope-Regular;
@@ -246,14 +249,14 @@
   .lower-part-OfCard {
     position: absolute;
     width: 100%;
-    background-color: #ffffff;
+    background-color: transparent;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
     padding: 10px 10px;
     @include flexCenter(space-between, inherit);
-    border-top: 1px solid #e6e6e6;
+    border-top: 1.5px solid rgba(0, 0, 0, 0.08);
     border-radius: 5px;
 
     .element-in-lower-part-OfCard {
@@ -277,11 +280,26 @@
         display: none;
       }
 
+      .overlay-on-element-in-lower-part-OfCard {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border-radius: 50%;
+        background-color: rgb(102, 102, 102);
+        opacity: 0.25;
+        display: none;
+      }
+
       &:hover {
         cursor: pointer;
-        background-color: $mainColorLight;
 
         .element-text-in-lower-part-OfCard {
+          display: block;
+        }
+        .overlay-on-element-in-lower-part-OfCard {
           display: block;
         }
       }
@@ -289,7 +307,10 @@
       &:active,
       &:focus {
         cursor: pointer;
-        background-color: $mainColorLight;
+
+        .overlay-on-element-in-lower-part-OfCard {
+          display: block;
+        }
       }
 
       /*---STARTING OF ThemeButton component PART---*/

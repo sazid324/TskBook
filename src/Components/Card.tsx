@@ -149,6 +149,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
           <button className="element-in-lower-part-OfCard">
             <img src={reminderImage} alt="reminder-image" />
             <p className="element-text-in-lower-part-OfCard">Reminder</p>
+            <span className="overlay-on-element-in-lower-part-OfCard"></span>
           </button>
 
           <button
@@ -172,17 +173,22 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               themeButtonOfCard.style.display = "none";
             }}
           >
-            <ThemeButton elementOfCard={elementOfCard} indexOfCard={indexOfCard} />
+            <ThemeButton
+              elementOfCard={elementOfCard}
+              indexOfCard={indexOfCard}
+            />
           </button>
 
           <button className="element-in-lower-part-OfCard">
             <img src={archiveImage} alt="archive-image" />
             <p className="element-text-in-lower-part-OfCard">Archive</p>
+            <span className="overlay-on-element-in-lower-part-OfCard"></span>
           </button>
 
           <button className="element-in-lower-part-OfCard">
             <img src={attachmentImage} alt="attachment-image" />
             <p className="element-text-in-lower-part-OfCard">Attachment</p>
+            <span className="overlay-on-element-in-lower-part-OfCard"></span>
           </button>
 
           <button
@@ -199,6 +205,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             <p className="element-text-in-lower-part-OfCard edit-element-text-in-lower-part-OfCard">
               Edit
             </p>
+            <span className="overlay-on-element-in-lower-part-OfCard"></span>
           </button>
 
           <button
@@ -225,7 +232,10 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               morebuttonOfCard.style.display = "none";
             }}
           >
-            <ThreeDotMenu indexOfCard={indexOfCard} />
+            <ThreeDotMenu
+              elementOfCard={elementOfCard}
+              indexOfCard={indexOfCard}
+            />
           </button>
         </div>
       </div>

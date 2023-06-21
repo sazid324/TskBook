@@ -39,20 +39,8 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
 
     const containerOfCard: any =
       document.getElementsByClassName("container-OfCard")[indexOfCard];
-    const upperPartOfCard: any =
-      document.getElementsByClassName("upper-part-OfCard")[indexOfCard];
-    const lowerPartOfCard: any =
-      document.getElementsByClassName("lower-part-OfCard")[indexOfCard];
-    const headingOfCard: any =
-      document.getElementsByClassName("heading-OfCard")[indexOfCard];
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[indexOfCard];
 
-    containerOfCard.style.borderColor = `${elementOfCard.color}`;
-    upperPartOfCard.style.borderColor = `${elementOfCard.color}`;
-    lowerPartOfCard.style.backgroundColor = `${elementOfCard.color}`;
-    headingOfCard.style.backgroundColor = `${elementOfCard.color}`;
-    bodyOfCard.style.backgroundColor = `${elementOfCard.color}`;
+    containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
     localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
   };
@@ -63,27 +51,15 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
   useEffect(() => {
     const containerOfCard: any =
       document.getElementsByClassName("container-OfCard")[indexOfCard];
-    const upperPartOfCard: any =
-      document.getElementsByClassName("upper-part-OfCard")[indexOfCard];
-    const lowerPartOfCard: any =
-      document.getElementsByClassName("lower-part-OfCard")[indexOfCard];
-    const headingOfCard: any =
-      document.getElementsByClassName("heading-OfCard")[indexOfCard];
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[indexOfCard];
 
-    containerOfCard.style.borderColor = `${elementOfCard.color}`;
-    upperPartOfCard.style.borderColor = `${elementOfCard.color}`;
-    lowerPartOfCard.style.backgroundColor = `${elementOfCard.color}`;
-    headingOfCard.style.backgroundColor = `${elementOfCard.color}`;
-    bodyOfCard.style.backgroundColor = `${elementOfCard.color}`;
+    containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
   }, [addNew]);
 
   /////////////////////// Return Method ///////////////////////
 
   return (
     <>
-      <span className="theme-menu-button-OfCard">
+      <div className="theme-menu-button-OfCard">
         <img src={cardBackgroundImage} alt="cardBackground-image" />
         <div
           className="theme-items-wraper-in-lower-part-OfCard"
@@ -108,10 +84,11 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
             })}
           </div>
         </div>
-      </span>
+      </div>
       <p className="element-text-in-lower-part-OfCard theme-button-OfCard">
         Theme
       </p>
+      <span className="overlay-on-element-in-lower-part-OfCard"></span>
     </>
   );
 }
