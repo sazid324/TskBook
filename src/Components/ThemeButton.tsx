@@ -16,20 +16,20 @@ interface ThreeDotMenuElements {
 export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
   // Variables
   const colors: any = [
-    "#F7525F",
-    "#3179F5",
-    "#66BB6A",
-    "#FFEE58",
-    "#787B86",
     "#F77C80",
     "#5B9CF6",
     "#81C784",
     "#FFF176",
-    "#B2B5BE",
+    "#787B86",
     "#FAA1A4",
     "#90BFF9",
     "#A5D6A7",
     "#FFF59D",
+    "#B2B5BE",
+    "#FCCBCD",
+    "#BBD9FB",
+    "#C8E6C9",
+    "#FFF9C4",
     "#FFFFFF",
   ];
 
