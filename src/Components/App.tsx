@@ -76,6 +76,7 @@ function App() {
         id: Date.now() + Math.floor(Math.random() * 78),
         headerValue: "",
         bodyValue: "",
+        color: "#FFFFFF",
       },
     ];
 

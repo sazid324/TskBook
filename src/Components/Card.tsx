@@ -172,7 +172,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               themeButtonOfCard.style.display = "none";
             }}
           >
-            <ThemeButton indexOfCard={indexOfCard} />
+            <ThemeButton elementOfCard={elementOfCard} indexOfCard={indexOfCard} />
           </button>
 
           <button className="element-in-lower-part-OfCard">

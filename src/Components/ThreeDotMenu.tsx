@@ -31,6 +31,7 @@ export default function ThreeDotMenu({ indexOfCard }: ThreeDotMenuElements) {
         id: Date.now() + Math.floor(Math.random() * 78),
         headerValue: `${headingOfCard.value}`,
         bodyValue: `${bodyOfCard.value}`,
+        color: "#FFFFFF",
       },
     ];
 
