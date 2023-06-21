@@ -153,7 +153,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 indexOfCard
               ];
 
-            setInterval(() => {
+            setTimeout(() => {
               overlayOnLowerPartOfCard.style.display = "none";
             }, 600);
           }}
@@ -312,10 +312,16 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               </p>
               <span className="overlay-on-element-in-lower-part-OfCard"></span>
             </button>
-            
+
             <button
               className="element-in-lower-part-OfCard"
               onClick={() => {
+                const threeDotItemsWraperInLowerPartOfCard: any =
+                  document.getElementsByClassName(
+                    "three-dot-items-wraper-in-lower-part-OfCard"
+                  )[indexOfCard];
+                threeDotItemsWraperInLowerPartOfCard.style.display = "block";
+
                 const morebuttonOfCard: any =
                   document.getElementsByClassName("more-button-OfCard")[
                     indexOfCard
@@ -343,6 +349,12 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   ];
                 containerOfCard.style.cssText = "overflow: hidden";
                 containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+
+                const threeDotItemsWraperInLowerPartOfCard: any =
+                  document.getElementsByClassName(
+                    "three-dot-items-wraper-in-lower-part-OfCard"
+                  )[indexOfCard];
+                threeDotItemsWraperInLowerPartOfCard.style.display = "none";
 
                 const morebuttonOfCard: any =
                   document.getElementsByClassName("more-button-OfCard")[
