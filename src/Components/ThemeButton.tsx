@@ -39,8 +39,11 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
 
     const containerOfCard: any =
       document.getElementsByClassName("container-OfCard")[indexOfCard];
+    const lowerPartOfCard: any =
+      document.getElementsByClassName("lower-part-OfCard")[indexOfCard];
 
     containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+    lowerPartOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
     localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
   };
@@ -51,8 +54,11 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
   useEffect(() => {
     const containerOfCard: any =
       document.getElementsByClassName("container-OfCard")[indexOfCard];
+    const lowerPartOfCard: any =
+      document.getElementsByClassName("lower-part-OfCard")[indexOfCard];
 
     containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+    lowerPartOfCard.style.backgroundColor = `${elementOfCard.color}`;
   }, [addNew]);
 
   /////////////////////// Return Method ///////////////////////
@@ -71,9 +77,10 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
           }}
         >
           <div className="color-items-in-theme-button-OfCard">
-            {colors.map((color: any) => {
+            {colors.map((color: any, index: number) => {
               return (
                 <div
+                  key={index}
                   className="color-in-theme-button-OfCard"
                   style={{
                     backgroundColor: `${color}`,

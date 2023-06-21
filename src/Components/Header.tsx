@@ -14,7 +14,12 @@ interface headerElements {
 export default function Header({ setNewQuery }: headerElements) {
   // Hooks
   const [clickedOnSearch, setClickedOnSearch] = useState(false);
-  const [clickedOnNavMenu, setClickedOnNavMenu] = useState(false);
+  const [clickedOnNavMenu, setClickedOnNavMenu] = useState(() => {
+    const navMenuState = localStorage.getItem(
+      "nav-menu-state-in-local-storage"
+    );
+    return navMenuState ? JSON.parse(navMenuState) : false;
+  });
 
   let searchBox: any = useRef();
 
@@ -69,6 +74,12 @@ export default function Header({ setNewQuery }: headerElements) {
   }, [clickedOnSearch]);
 
   useEffect(() => {
+    // Saving Nav menu state to local storage.
+    localStorage.setItem(
+      "nav-menu-state-in-local-storage",
+      JSON.stringify(clickedOnNavMenu)
+    );
+
     // Adding functionality of Nav menu button.
     const leftPart: any = document.getElementsByClassName("left-part")[0];
     const rightPart: any = document.getElementsByClassName("right-part")[0];
