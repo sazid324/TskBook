@@ -145,196 +145,219 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             onChange={(event: any) => functionCalledByBodyOnChange(event)}
           ></textarea>
         </div>
-        <div className="lower-part-OfCard">
-          <button
-            className="element-in-lower-part-OfCard"
-            onMouseEnter={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: visible";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-            }}
-            onMouseLeave={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: hidden";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-            }}
-          >
-            <img src={reminderImage} alt="reminder-image" />
-            <p className="element-text-in-lower-part-OfCard">Reminder</p>
-            <span className="overlay-on-element-in-lower-part-OfCard"></span>
-          </button>
+        <div
+          className="lower-part-OfCard"
+          onMouseEnter={() => {
+            const overlayOnLowerPartOfCard: any =
+              document.getElementsByClassName("overlay-on-lower-part-OfCard")[
+                indexOfCard
+              ];
 
-          <button
-            className="element-in-lower-part-OfCard"
-            onClick={() => {
-              const themeButtonOfCard: any = document.getElementsByClassName(
-                "theme-button-OfCard"
-              )[indexOfCard];
-              themeButtonOfCard.style.display = "none";
-            }}
-            onMouseEnter={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: visible";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+            setInterval(() => {
+              overlayOnLowerPartOfCard.style.display = "none";
+            }, 600);
+          }}
+          onMouseLeave={() => {
+            const overlayOnLowerPartOfCard: any =
+              document.getElementsByClassName("overlay-on-lower-part-OfCard")[
+                indexOfCard
+              ];
 
-              const themeButtonOfCard: any = document.getElementsByClassName(
-                "theme-button-OfCard"
-              )[indexOfCard];
-              themeButtonOfCard.style.display = "block";
-            }}
-            onMouseLeave={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: hidden";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+            overlayOnLowerPartOfCard.style.display = "block";
+          }}
+        >
+          <div className="lower-part-container-OfCard">
+            <button
+              className="element-in-lower-part-OfCard"
+              onMouseEnter={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: visible";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+              }}
+              onMouseLeave={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: hidden";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+              }}
+            >
+              <img src={reminderImage} alt="reminder-image" />
+              <p className="element-text-in-lower-part-OfCard">Reminder</p>
+              <span className="overlay-on-element-in-lower-part-OfCard"></span>
+            </button>
 
-              const themeButtonOfCard: any = document.getElementsByClassName(
-                "theme-button-OfCard"
-              )[indexOfCard];
-              themeButtonOfCard.style.display = "none";
-            }}
-          >
-            <ThemeButton
-              elementOfCard={elementOfCard}
-              indexOfCard={indexOfCard}
-            />
-          </button>
+            <button
+              className="element-in-lower-part-OfCard"
+              onClick={() => {
+                const themeButtonOfCard: any = document.getElementsByClassName(
+                  "theme-button-OfCard"
+                )[indexOfCard];
+                themeButtonOfCard.style.display = "none";
+              }}
+              onMouseEnter={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: visible";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-          <button
-            className="element-in-lower-part-OfCard"
-            onMouseEnter={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: visible";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-            }}
-            onMouseLeave={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: hidden";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-            }}
-          >
-            <img src={archiveImage} alt="archive-image" />
-            <p className="element-text-in-lower-part-OfCard">Archive</p>
-            <span className="overlay-on-element-in-lower-part-OfCard"></span>
-          </button>
+                const themeButtonOfCard: any = document.getElementsByClassName(
+                  "theme-button-OfCard"
+                )[indexOfCard];
+                themeButtonOfCard.style.display = "block";
+              }}
+              onMouseLeave={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: hidden";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-          <button
-            className="element-in-lower-part-OfCard"
-            onMouseEnter={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: visible";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-            }}
-            onMouseLeave={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: hidden";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-            }}
-          >
-            <img src={attachmentImage} alt="attachment-image" />
-            <p className="element-text-in-lower-part-OfCard">Attachment</p>
-            <span className="overlay-on-element-in-lower-part-OfCard"></span>
-          </button>
+                const themeButtonOfCard: any = document.getElementsByClassName(
+                  "theme-button-OfCard"
+                )[indexOfCard];
+                themeButtonOfCard.style.display = "none";
+              }}
+            >
+              <ThemeButton
+                elementOfCard={elementOfCard}
+                indexOfCard={indexOfCard}
+              />
+            </button>
 
-          <button
-            className="element-in-lower-part-OfCard"
-            onClick={() => {
-              functionCalledByEditAndSaveButton(indexOfCard);
-            }}
-            onMouseEnter={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: visible";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-            }}
-            onMouseLeave={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: hidden";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-            }}
-          >
-            <img
-              className="edit-and-save-button-OfCard"
-              src={editImage}
-              alt="edit-image"
-            />
-            <p className="element-text-in-lower-part-OfCard edit-element-text-in-lower-part-OfCard">
-              Edit
-            </p>
-            <span className="overlay-on-element-in-lower-part-OfCard"></span>
-          </button>
+            <button
+              className="element-in-lower-part-OfCard"
+              onMouseEnter={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: visible";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+              }}
+              onMouseLeave={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: hidden";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+              }}
+            >
+              <img src={archiveImage} alt="archive-image" />
+              <p className="element-text-in-lower-part-OfCard">Archive</p>
+              <span className="overlay-on-element-in-lower-part-OfCard"></span>
+            </button>
 
-          <button
-            className="element-in-lower-part-OfCard"
-            onClick={() => {
-              const morebuttonOfCard: any =
-                document.getElementsByClassName("more-button-OfCard")[
-                  indexOfCard
-                ];
-              morebuttonOfCard.style.display = "none";
-            }}
-            onMouseEnter={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: visible";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+            <button
+              className="element-in-lower-part-OfCard"
+              onMouseEnter={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: visible";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+              }}
+              onMouseLeave={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: hidden";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+              }}
+            >
+              <img src={attachmentImage} alt="attachment-image" />
+              <p className="element-text-in-lower-part-OfCard">Attachment</p>
+              <span className="overlay-on-element-in-lower-part-OfCard"></span>
+            </button>
 
-              const morebuttonOfCard: any =
-                document.getElementsByClassName("more-button-OfCard")[
-                  indexOfCard
-                ];
-              morebuttonOfCard.style.display = "block";
-            }}
-            onMouseLeave={() => {
-              const containerOfCard: any =
-                document.getElementsByClassName("container-OfCard")[
-                  indexOfCard
-                ];
-              containerOfCard.style.cssText = "overflow: hidden";
-              containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+            <button
+              className="element-in-lower-part-OfCard"
+              onClick={() => {
+                functionCalledByEditAndSaveButton(indexOfCard);
+              }}
+              onMouseEnter={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: visible";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+              }}
+              onMouseLeave={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: hidden";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+              }}
+            >
+              <img
+                className="edit-and-save-button-OfCard"
+                src={editImage}
+                alt="edit-image"
+              />
+              <p className="element-text-in-lower-part-OfCard edit-element-text-in-lower-part-OfCard">
+                Edit
+              </p>
+              <span className="overlay-on-element-in-lower-part-OfCard"></span>
+            </button>
+            
+            <button
+              className="element-in-lower-part-OfCard"
+              onClick={() => {
+                const morebuttonOfCard: any =
+                  document.getElementsByClassName("more-button-OfCard")[
+                    indexOfCard
+                  ];
+                morebuttonOfCard.style.display = "none";
+              }}
+              onMouseEnter={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: visible";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-              const morebuttonOfCard: any =
-                document.getElementsByClassName("more-button-OfCard")[
-                  indexOfCard
-                ];
-              morebuttonOfCard.style.display = "none";
-            }}
-          >
-            <ThreeDotMenu
-              elementOfCard={elementOfCard}
-              indexOfCard={indexOfCard}
-            />
-          </button>
+                const morebuttonOfCard: any =
+                  document.getElementsByClassName("more-button-OfCard")[
+                    indexOfCard
+                  ];
+                morebuttonOfCard.style.display = "block";
+              }}
+              onMouseLeave={() => {
+                const containerOfCard: any =
+                  document.getElementsByClassName("container-OfCard")[
+                    indexOfCard
+                  ];
+                containerOfCard.style.cssText = "overflow: hidden";
+                containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+
+                const morebuttonOfCard: any =
+                  document.getElementsByClassName("more-button-OfCard")[
+                    indexOfCard
+                  ];
+                morebuttonOfCard.style.display = "none";
+              }}
+            >
+              <ThreeDotMenu
+                elementOfCard={elementOfCard}
+                indexOfCard={indexOfCard}
+              />
+            </button>
+            <span className="overlay-on-lower-part-OfCard"></span>
+          </div>
         </div>
       </div>
     </>

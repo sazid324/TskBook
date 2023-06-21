@@ -187,7 +187,8 @@
   position: relative;
   min-height: 9.2rem;
   max-height: 22rem;
-  border-radius: 6px;
+  border: none;
+  border-radius: 5px;
   padding: 0.9rem 0.9rem 1.7rem 0.9rem;
   box-shadow: 1px 1px 0.2rem 0.1rem rgb(214, 214, 214);
   overflow: hidden;
@@ -271,204 +272,220 @@
     border-radius: 5px;
     display: none;
 
-    .element-in-lower-part-OfCard {
+    .lower-part-container-OfCard {
       position: relative;
-      @include flexCenter(center, center);
-      float: left;
-      background-color: transparent;
-      border: none;
-      border-radius: 50%;
-      outline: none;
-      padding: 0.5rem;
+      width: 100%;
+      @include flexCenter(space-between, inherit);
 
-      .element-text-in-lower-part-OfCard {
-        position: absolute;
-        bottom: -23px;
-        font-size: 0.75rem;
-        color: #ffffff;
-        background-color: #a8a8a8;
-        padding: 3px 7px;
-        border-radius: 5px;
-        display: none;
+      .element-in-lower-part-OfCard {
+        position: relative;
+        @include flexCenter(center, center);
+        float: left;
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
+        outline: none;
+        padding: 0.5rem;
+
+        .element-text-in-lower-part-OfCard {
+          position: absolute;
+          bottom: -23px;
+          font-size: 0.75rem;
+          color: #ffffff;
+          background-color: #a8a8a8;
+          padding: 3px 7px;
+          border-radius: 5px;
+          display: none;
+        }
+
+        .overlay-on-element-in-lower-part-OfCard {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          border-radius: 50%;
+          background-color: rgb(102, 102, 102);
+          opacity: 0.25;
+          display: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .element-text-in-lower-part-OfCard {
+            display: block;
+          }
+          .overlay-on-element-in-lower-part-OfCard {
+            display: block;
+          }
+        }
+
+        &:active,
+        &:focus {
+          cursor: pointer;
+
+          .overlay-on-element-in-lower-part-OfCard {
+            display: block;
+          }
+        }
+
+        /*---STARTING OF ThemeButton component PART---*/
+
+        .theme-menu-button-OfCard {
+          position: relative;
+          @include flexCenter(center, center);
+
+          .theme-items-wraper-in-lower-part-OfCard {
+            position: absolute;
+            display: none;
+            padding: 0.625rem;
+            top: 11px;
+            left: 11px;
+            z-index: 999;
+
+            .color-items-in-theme-button-OfCard {
+              width: 165px;
+              height: fit-content(100%);
+              padding: 0.625rem;
+              background-color: #ffffff;
+              border-radius: 5px;
+              box-shadow: 1px 1px 0.6rem 0.1rem $cardBorderColor;
+
+              .color-in-theme-button-OfCard {
+                display: inline-block;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                margin-right: 5px;
+
+                &:last-child {
+                  margin-right: none;
+                  border: 1px solid rgb(228, 228, 228);
+                }
+
+                &:hover,
+                &:active {
+                  cursor: pointer;
+                  box-shadow: 0px 0px 0.5rem 0.15rem $mainColor;
+                }
+              }
+            }
+          }
+        }
+
+        &:active
+          > .theme-menu-button-OfCard
+          > .theme-items-wraper-in-lower-part-OfCard,
+        &:focus
+          > .theme-menu-button-OfCard
+          > .theme-items-wraper-in-lower-part-OfCard {
+          display: block;
+          animation-name: themeMenuInLowerPartOfCardAnimationOnHover;
+          animation-duration: 0.5s;
+
+          @keyframes themeMenuInLowerPartOfCardAnimationOnHover {
+            0% {
+              opacity: 1;
+              transform: none;
+            }
+            50% {
+              opacity: 1;
+              transform: translateY(18px);
+            }
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+        }
+
+        /*---ENDING OF ThemeButton component PART---*/
+
+        /*---STARTING OF ThreeDotMenu component PART---*/
+
+        .three-dot-menu-OfCard {
+          position: relative;
+          @include flexCenter(center, center);
+
+          .three-dot-items-wraper-in-lower-part-OfCard {
+            position: absolute;
+            display: none;
+            padding: 10px;
+            top: 11px;
+            left: 11px;
+            z-index: 999;
+
+            .three-dot-items-in-lower-part-OfCard {
+              width: 125px;
+              height: fit-content(100%);
+              padding: 0.4rem 0rem;
+              background-color: #ffffff;
+              border-radius: 5px;
+              box-shadow: 1px 1px 0.6rem 0.1rem $cardBorderColor;
+
+              .item-in-three-dot-in-lower-part-OfCard {
+                width: 100%;
+                padding: 0.4rem 1rem;
+                list-style-type: none;
+                font-size: 0.85rem;
+                @include flexCenter(left, center);
+
+                &:hover,
+                &:active {
+                  cursor: pointer;
+                  background-color: $mainColorLight;
+                }
+              }
+            }
+          }
+        }
+
+        &:active
+          > .three-dot-menu-OfCard
+          > .three-dot-items-wraper-in-lower-part-OfCard,
+        &:focus
+          > .three-dot-menu-OfCard
+          > .three-dot-items-wraper-in-lower-part-OfCard {
+          display: block;
+          animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
+          animation-duration: 0.5s;
+
+          @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
+            0% {
+              opacity: 1;
+              transform: none;
+            }
+            50% {
+              opacity: 1;
+              transform: translateY(18px);
+            }
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+        }
+
+        /*---ENDING OF ThreeDotMenu component PART---*/
       }
 
-      .overlay-on-element-in-lower-part-OfCard {
+      .overlay-on-lower-part-OfCard {
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         margin: auto;
-        border-radius: 50%;
-        background-color: rgb(102, 102, 102);
-        opacity: 0.25;
-        display: none;
       }
-
-      &:hover {
-        cursor: pointer;
-
-        .element-text-in-lower-part-OfCard {
-          display: block;
-        }
-        .overlay-on-element-in-lower-part-OfCard {
-          display: block;
-        }
-      }
-
-      &:active,
-      &:focus {
-        cursor: pointer;
-
-        .overlay-on-element-in-lower-part-OfCard {
-          display: block;
-        }
-      }
-
-      /*---STARTING OF ThemeButton component PART---*/
-
-      .theme-menu-button-OfCard {
-        position: relative;
-        @include flexCenter(center, center);
-
-        .theme-items-wraper-in-lower-part-OfCard {
-          position: absolute;
-          display: none;
-          padding: 0.625rem;
-          top: 11px;
-          left: 11px;
-          z-index: 999;
-
-          .color-items-in-theme-button-OfCard {
-            width: 165px;
-            height: fit-content(100%);
-            padding: 0.625rem;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 1px 1px 0.6rem 0.1rem $cardBorderColor;
-
-            .color-in-theme-button-OfCard {
-              display: inline-block;
-              width: 1.5rem;
-              height: 1.5rem;
-              border-radius: 50%;
-              margin-right: 5px;
-
-              &:last-child {
-                margin-right: none;
-                border: 1px solid rgb(228, 228, 228);
-              }
-
-              &:hover,
-              &:active {
-                cursor: pointer;
-                box-shadow: 0px 0px 0.5rem 0.15rem $mainColor;
-              }
-            }
-          }
-        }
-      }
-
-      &:active
-        > .theme-menu-button-OfCard
-        > .theme-items-wraper-in-lower-part-OfCard,
-      &:focus
-        > .theme-menu-button-OfCard
-        > .theme-items-wraper-in-lower-part-OfCard {
-        display: block;
-        animation-name: themeMenuInLowerPartOfCardAnimationOnHover;
-        animation-duration: 0.5s;
-
-        @keyframes themeMenuInLowerPartOfCardAnimationOnHover {
-          0% {
-            opacity: 1;
-            transform: none;
-          }
-          50% {
-            opacity: 1;
-            transform: translateY(18px);
-          }
-          100% {
-            opacity: 1;
-            transform: none;
-          }
-        }
-      }
-
-      /*---ENDING OF ThemeButton component PART---*/
-
-      /*---STARTING OF ThreeDotMenu component PART---*/
-
-      .three-dot-menu-OfCard {
-        position: relative;
-        @include flexCenter(center, center);
-
-        .three-dot-items-wraper-in-lower-part-OfCard {
-          position: absolute;
-          display: none;
-          padding: 10px;
-          top: 11px;
-          left: 11px;
-          z-index: 999;
-
-          .three-dot-items-in-lower-part-OfCard {
-            width: 125px;
-            height: fit-content(100%);
-            padding: 0.4rem 0rem;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 1px 1px 0.6rem 0.1rem $cardBorderColor;
-
-            .item-in-three-dot-in-lower-part-OfCard {
-              width: 100%;
-              padding: 0.4rem 1rem;
-              list-style-type: none;
-              font-size: 0.85rem;
-              @include flexCenter(left, center);
-
-              &:hover,
-              &:active {
-                cursor: pointer;
-                background-color: $mainColorLight;
-              }
-            }
-          }
-        }
-      }
-
-      &:active
-        > .three-dot-menu-OfCard
-        > .three-dot-items-wraper-in-lower-part-OfCard,
-      &:focus
-        > .three-dot-menu-OfCard
-        > .three-dot-items-wraper-in-lower-part-OfCard {
-        display: block;
-        animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
-        animation-duration: 0.5s;
-
-        @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
-          0% {
-            opacity: 1;
-            transform: none;
-          }
-          50% {
-            opacity: 1;
-            transform: translateY(18px);
-          }
-          100% {
-            opacity: 1;
-            transform: none;
-          }
-        }
-      }
-
-      /*---ENDING OF ThreeDotMenu component PART---*/
     }
   }
 
   &:hover {
     .lower-part-OfCard {
       display: block;
+      @include flexCenter(space-between, inherit);
       animation-name: lowerPartOfCardAnimationOnHover;
       animation-duration: 0.5s;
 
