@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from "react";
 // Component imports
 import ThreeDotMenu from "./ThreeDotMenu";
 import ThemeButton from "./ThemeButton";
+import AttachmentButton from "./AttachmentButton";
 import { addNewNoteContext } from "./App";
 
 // Assets
@@ -11,7 +12,6 @@ import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
 import editImage from "../assets/Images/Icons_and_logos/edit.svg";
 import saveImage from "../assets/Images/Icons_and_logos/save.svg";
-import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 
 // Interfaces
 interface CardElements {
@@ -119,7 +119,40 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
   return (
     <>
-      <div className="container-OfCard">
+      <div
+        className="container-OfCard"
+        onMouseEnter={() => {
+          const overlayOnLowerPartOfCard: any = document.getElementsByClassName(
+            "overlay-on-lower-part-OfCard"
+          )[indexOfCard];
+
+          setTimeout(() => {
+            overlayOnLowerPartOfCard.style.display = "none";
+          }, 600);
+        }}
+        onMouseLeave={() => {
+          const overlayOnLowerPartOfCard: any = document.getElementsByClassName(
+            "overlay-on-lower-part-OfCard"
+          )[indexOfCard];
+
+          overlayOnLowerPartOfCard.style.display = "block";
+        }}
+        onDragOver={(event) => {
+          event.preventDefault();
+
+          const dragAndDropOverlayOnUpperPartOfCard: any =
+            document.getElementsByClassName(
+              "drag-and-drop-overlay-on-upper-part-OfCard"
+            )[indexOfCard];
+          const dragAndDropSecondOverlayOnUpperPartOfCard: any =
+            document.getElementsByClassName(
+              "drag-and-drop-second-overlay-on-upper-part-OfCard"
+            )[indexOfCard];
+
+          dragAndDropOverlayOnUpperPartOfCard.style.display = "block";
+          dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "block";
+        }}
+      >
         <div className="upper-part-OfCard">
           <div className="header-text-part-OfCard">
             <input
@@ -145,27 +178,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             onChange={(event: any) => functionCalledByBodyOnChange(event)}
           ></textarea>
         </div>
-        <div
-          className="lower-part-OfCard"
-          onMouseEnter={() => {
-            const overlayOnLowerPartOfCard: any =
-              document.getElementsByClassName("overlay-on-lower-part-OfCard")[
-                indexOfCard
-              ];
-
-            setTimeout(() => {
-              overlayOnLowerPartOfCard.style.display = "none";
-            }, 600);
-          }}
-          onMouseLeave={() => {
-            const overlayOnLowerPartOfCard: any =
-              document.getElementsByClassName("overlay-on-lower-part-OfCard")[
-                indexOfCard
-              ];
-
-            overlayOnLowerPartOfCard.style.display = "block";
-          }}
-        >
+        <div className="lower-part-OfCard">
           <div className="lower-part-container-OfCard">
             <button
               className="element-in-lower-part-OfCard"
@@ -194,10 +207,17 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             <button
               className="element-in-lower-part-OfCard"
               onClick={() => {
-                const themeButtonOfCard: any = document.getElementsByClassName(
-                  "theme-button-OfCard"
-                )[indexOfCard];
-                themeButtonOfCard.style.display = "none";
+                const themeItemsWraperInLowerPartOfCard: any =
+                  document.getElementsByClassName(
+                    "theme-items-wraper-in-lower-part-OfCard"
+                  )[indexOfCard];
+                themeItemsWraperInLowerPartOfCard.style.display = "block";
+
+                const themeButtonParagraphOfCard: any =
+                  document.getElementsByClassName(
+                    "theme-button-paragraph-OfCard"
+                  )[indexOfCard];
+                themeButtonParagraphOfCard.style.display = "none";
               }}
               onMouseEnter={() => {
                 const containerOfCard: any =
@@ -207,10 +227,11 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 containerOfCard.style.cssText = "overflow: visible";
                 containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                const themeButtonOfCard: any = document.getElementsByClassName(
-                  "theme-button-OfCard"
-                )[indexOfCard];
-                themeButtonOfCard.style.display = "block";
+                const themeButtonParagraphOfCard: any =
+                  document.getElementsByClassName(
+                    "theme-button-paragraph-OfCard"
+                  )[indexOfCard];
+                themeButtonParagraphOfCard.style.display = "block";
               }}
               onMouseLeave={() => {
                 const containerOfCard: any =
@@ -220,10 +241,17 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 containerOfCard.style.cssText = "overflow: hidden";
                 containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                const themeButtonOfCard: any = document.getElementsByClassName(
-                  "theme-button-OfCard"
-                )[indexOfCard];
-                themeButtonOfCard.style.display = "none";
+                const themeItemsWraperInLowerPartOfCard: any =
+                  document.getElementsByClassName(
+                    "theme-items-wraper-in-lower-part-OfCard"
+                  )[indexOfCard];
+                themeItemsWraperInLowerPartOfCard.style.display = "none";
+
+                const themeButtonParagraphOfCard: any =
+                  document.getElementsByClassName(
+                    "theme-button-paragraph-OfCard"
+                  )[indexOfCard];
+                themeButtonParagraphOfCard.style.display = "none";
               }}
             >
               <ThemeButton
@@ -258,6 +286,13 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
             <button
               className="element-in-lower-part-OfCard"
+              onClick={() => {
+                const attachmentItemsWraperInLowerPartOfCard: any =
+                  document.getElementsByClassName(
+                    "attachment-items-wraper-in-lower-part-OfCard"
+                  )[indexOfCard];
+                attachmentItemsWraperInLowerPartOfCard.style.display = "block";
+              }}
               onMouseEnter={() => {
                 const containerOfCard: any =
                   document.getElementsByClassName("container-OfCard")[
@@ -273,11 +308,15 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   ];
                 containerOfCard.style.cssText = "overflow: hidden";
                 containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+
+                const attachmentItemsWraperInLowerPartOfCard: any =
+                  document.getElementsByClassName(
+                    "attachment-items-wraper-in-lower-part-OfCard"
+                  )[indexOfCard];
+                attachmentItemsWraperInLowerPartOfCard.style.display = "none";
               }}
             >
-              <img src={attachmentImage} alt="attachment-image" />
-              <p className="element-text-in-lower-part-OfCard">Attachment</p>
-              <span className="overlay-on-element-in-lower-part-OfCard"></span>
+              <AttachmentButton indexOfCard={indexOfCard} />
             </button>
 
             <button
@@ -323,7 +362,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 threeDotItemsWraperInLowerPartOfCard.style.display = "block";
 
                 const morebuttonOfCard: any =
-                  document.getElementsByClassName("more-button-OfCard")[
+                  document.getElementsByClassName("more-button-paragraph-OfCard")[
                     indexOfCard
                   ];
                 morebuttonOfCard.style.display = "none";
@@ -337,7 +376,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
                 const morebuttonOfCard: any =
-                  document.getElementsByClassName("more-button-OfCard")[
+                  document.getElementsByClassName("more-button-paragraph-OfCard")[
                     indexOfCard
                   ];
                 morebuttonOfCard.style.display = "block";
@@ -357,7 +396,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 threeDotItemsWraperInLowerPartOfCard.style.display = "none";
 
                 const morebuttonOfCard: any =
-                  document.getElementsByClassName("more-button-OfCard")[
+                  document.getElementsByClassName("more-button-paragraph-OfCard")[
                     indexOfCard
                   ];
                 morebuttonOfCard.style.display = "none";
@@ -371,6 +410,42 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             <span className="overlay-on-lower-part-OfCard"></span>
           </div>
         </div>
+        <div className="drag-and-drop-overlay-on-upper-part-OfCard">
+          <span className="drag-and-drop-box">
+            <h3 className="drag-and-drop-overlay-text">Drop Files Here</h3>
+          </span>
+        </div>
+        <div
+          className="drag-and-drop-second-overlay-on-upper-part-OfCard"
+          onDragLeave={() => {
+            const dragAndDropOverlayOnUpperPartOfCard: any =
+              document.getElementsByClassName(
+                "drag-and-drop-overlay-on-upper-part-OfCard"
+              )[indexOfCard];
+            const dragAndDropSecondOverlayOnUpperPartOfCard: any =
+              document.getElementsByClassName(
+                "drag-and-drop-second-overlay-on-upper-part-OfCard"
+              )[indexOfCard];
+
+            dragAndDropOverlayOnUpperPartOfCard.style.display = "none";
+            dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
+          }}
+          onDrop={(event) => {
+            const dragAndDropOverlayOnUpperPartOfCard: any =
+              document.getElementsByClassName(
+                "drag-and-drop-overlay-on-upper-part-OfCard"
+              )[indexOfCard];
+            const dragAndDropSecondOverlayOnUpperPartOfCard: any =
+              document.getElementsByClassName(
+                "drag-and-drop-second-overlay-on-upper-part-OfCard"
+              )[indexOfCard];
+
+            dragAndDropOverlayOnUpperPartOfCard.style.display = "none";
+            dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
+
+            event.preventDefault();
+          }}
+        ></div>
       </div>
     </>
   );

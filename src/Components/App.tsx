@@ -11,6 +11,7 @@ import CardList from "./CardList";
 // Component exports
 export const addNewNoteContext: any = React.createContext(null);
 export const cardArrayContext: any = React.createContext(null);
+export const fileUploadContext: any = React.createContext(null);
 
 function App() {
   // Functions
@@ -30,6 +31,7 @@ function App() {
     const storedValue = localStorage.getItem("card-notes-in-local-storage");
     return storedValue ? JSON.parse(storedValue) : [];
   });
+  const [uploadedFiles, setUploadedFiles] = useState(null);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -102,39 +104,41 @@ function App() {
     <>
       <addNewNoteContext.Provider value={[addNew, setAddNew]}>
         <cardArrayContext.Provider value={cardArray}>
-          <header>
-            <Header setNewQuery={setQuery} />
-          </header>
-          <section id="main-body">
-            <div className="main-container">
-              <div className="left-part">
-                <div className="left-part-container">
-                  <div className="left-part-upper-section">
-                    <Button
-                      functionCallingOnBtnClick={functionCalledByAddNewButton}
-                    >
-                      Add New
-                    </Button>
-                    <ListGroup />
+          <fileUploadContext.Provider value={[uploadedFiles, setUploadedFiles]}>
+            <header>
+              <Header setNewQuery={setQuery} />
+            </header>
+            <section id="main-body">
+              <div className="main-container">
+                <div className="left-part">
+                  <div className="left-part-container">
+                    <div className="left-part-upper-section">
+                      <Button
+                        functionCallingOnBtnClick={functionCalledByAddNewButton}
+                      >
+                        Add New
+                      </Button>
+                      <ListGroup />
+                    </div>
+                    <div className="left-part-lower-section">
+                      <Copyright />
+                    </div>
                   </div>
-                  <div className="left-part-lower-section">
-                    <Copyright />
+                </div>
+                <div className="right-part">
+                  <div className="elements-container">
+                    <CardList
+                      cardArrayProp={cardArray.filter(
+                        (items: any) =>
+                          items.headerValue.toLowerCase().includes(query) ||
+                          items.bodyValue.toLowerCase().includes(query)
+                      )}
+                    />
                   </div>
                 </div>
               </div>
-              <div className="right-part">
-                <div className="elements-container">
-                  <CardList
-                    cardArrayProp={cardArray.filter(
-                      (items: any) =>
-                        items.headerValue.toLowerCase().includes(query) ||
-                        items.bodyValue.toLowerCase().includes(query)
-                    )}
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
+            </section>
+          </fileUploadContext.Provider>
         </cardArrayContext.Provider>
       </addNewNoteContext.Provider>
     </>

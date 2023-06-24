@@ -65,15 +65,16 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
 
   return (
     <>
-      <div className="theme-menu-button-OfCard">
+      <div className="theme-menu-button-container-OfCard">
         <img src={cardBackgroundImage} alt="cardBackground-image" />
         <div
           className="theme-items-wraper-in-lower-part-OfCard"
           onMouseEnter={() => {
-            const themeButtonOfCard: any = document.getElementsByClassName(
-              "theme-button-OfCard"
-            )[indexOfCard];
-            themeButtonOfCard.style.display = "none";
+            const themeButtonParagraphOfCard: any =
+              document.getElementsByClassName("theme-button-paragraph-OfCard")[
+                indexOfCard
+              ];
+            themeButtonParagraphOfCard.style.display = "none";
           }}
         >
           <div className="color-items-in-theme-button-OfCard">
@@ -92,7 +93,7 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
           </div>
         </div>
       </div>
-      <p className="element-text-in-lower-part-OfCard theme-button-OfCard">
+      <p className="element-text-in-lower-part-OfCard theme-button-paragraph-OfCard">
         Theme
       </p>
       <span className="overlay-on-element-in-lower-part-OfCard"></span>

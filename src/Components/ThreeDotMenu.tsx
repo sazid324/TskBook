@@ -65,16 +65,16 @@ export default function ThreeDotMenu({
 
   return (
     <>
-      <div className="three-dot-menu-OfCard">
+      <div className="three-dot-menu-button-container-OfCard">
         <img src={threeDotImage} alt="threeDot-image" />
         <div
           className="three-dot-items-wraper-in-lower-part-OfCard"
           onMouseEnter={() => {
-            const morebuttonOfCard: any =
-              document.getElementsByClassName("more-button-OfCard")[
+            const morebuttonParagraphOfCard: any =
+              document.getElementsByClassName("more-button-paragraph-OfCard")[
                 indexOfCard
               ];
-            morebuttonOfCard.style.display = "none";
+            morebuttonParagraphOfCard.style.display = "none";
           }}
         >
           <ul className="three-dot-items-in-lower-part-OfCard">
@@ -98,7 +98,7 @@ export default function ThreeDotMenu({
           </ul>
         </div>
       </div>
-      <p className="element-text-in-lower-part-OfCard more-button-OfCard">
+      <p className="element-text-in-lower-part-OfCard more-button-paragraph-OfCard">
         More
       </p>
       <span className="overlay-on-element-in-lower-part-OfCard"></span>
