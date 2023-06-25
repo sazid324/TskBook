@@ -22,8 +22,17 @@ export default function AttachmentButton({
   // Adding functionality of Select File button.
   const functionCalledByFileUploadButtonOnClick = (event: any) => {
     const files: any = event.target.files;
-    const newUploadedFiles: any = [...uploadedFiles, files];
-    setUploadedFiles(newUploadedFiles);
+
+    // Converting files object to an array
+    let emptyArrayToStoreFiles: any = [];
+    emptyArrayToStoreFiles = Object.values(files).map((element: any) => {
+      return element;
+    });
+
+    // Storing files to uploadedFiles variable of useState.
+    const newUploadedFiles: any = [...uploadedFiles, emptyArrayToStoreFiles];
+
+    setUploadedFiles(newUploadedFiles.flat(Infinity));
   };
 
   /////////////////////// Return Method ///////////////////////

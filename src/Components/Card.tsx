@@ -444,8 +444,21 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             event.preventDefault();
 
             const files: any = event.dataTransfer.files;
-            const newUploadedFiles: any = [...uploadedFiles, files];
-            setUploadedFiles(newUploadedFiles);
+            // Converting files object to an array
+            let emptyArrayToStoreFiles: any = [];
+            emptyArrayToStoreFiles = Object.values(files).map(
+              (element: any) => {
+                return element;
+              }
+            );
+
+            // Storing files to uploadedFiles variable of useState.
+            const newUploadedFiles: any = [
+              ...uploadedFiles,
+              emptyArrayToStoreFiles,
+            ];
+
+            setUploadedFiles(newUploadedFiles.flat(Infinity));
           }}
         ></div>
       </div>
