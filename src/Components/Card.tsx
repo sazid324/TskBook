@@ -30,6 +30,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
   const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
+  const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(true);
 
   useEffect(() => {
@@ -46,9 +47,16 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   }, [bodyValueOnChange]);
 
   useEffect(() => {
-    elementOfCard.files = uploadedFiles;
+    if (filesUploaded == true) {
+      setFilesUploaded(false);
 
-    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
+      elementOfCard.files = uploadedFiles;
+
+      localStorage.setItem(
+        "card-notes-in-local-storage",
+        JSON.stringify(addNew)
+      );
+    }
   }, [uploadedFiles]);
 
   useEffect(() => {
@@ -180,15 +188,16 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 onChange={(event: any) => functionCalledByHeaderOnChange(event)}
               />
             </div>
-            {uploadedFiles.map((element: any, index: number) => {
+
+            {/* {uploadedFiles.map((element: any, index: number) => {
               return (
                 <embed
                   key={index}
                   className="files-OfCard"
-                  // src={element.name}
+                  src={element.name}
                 />
               );
-            })}
+            })} */}
 
             <textarea
               className="body-OfCard"
@@ -340,7 +349,10 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   attachmentItemsWraperInLowerPartOfCard.style.display = "none";
                 }}
               >
-                <AttachmentButton indexOfCard={indexOfCard} />
+                <AttachmentButton
+                  indexOfCard={indexOfCard}
+                  setFilesUploaded={setFilesUploaded}
+                />
               </button>
 
               <button
@@ -481,6 +493,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 ...uploadedFiles,
                 emptyArrayToStoreFiles,
               ];
+
+              setFilesUploaded(true);
 
               setUploadedFiles(newUploadedFiles.flat(Infinity));
             }}

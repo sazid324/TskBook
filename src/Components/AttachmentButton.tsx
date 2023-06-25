@@ -10,10 +10,12 @@ import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
 // Interfaces
 interface attachmentButtonElements {
   indexOfCard: number;
+  setFilesUploaded: any;
 }
 
 export default function AttachmentButton({
   indexOfCard,
+  setFilesUploaded,
 }: attachmentButtonElements) {
   // Hooks
   const [uploadedFiles, setUploadedFiles] = useContext<any>(fileUploadContext);
@@ -31,6 +33,8 @@ export default function AttachmentButton({
 
     // Storing files to uploadedFiles variable of useState.
     const newUploadedFiles: any = [...uploadedFiles, emptyArrayToStoreFiles];
+
+    setFilesUploaded(true);
 
     setUploadedFiles(newUploadedFiles.flat(Infinity));
   };
