@@ -19,45 +19,52 @@ export default function AttachmentButton({
   const [uploadedFiles, setUploadedFiles] = useContext<any>(fileUploadContext);
   const attachmentInputField: any = useRef();
 
+  // Adding functionality of Select File button.
+  const functionCalledByFileUploadButtonOnClick = (event: any) => {
+    const files: any = event.target.files;
+    const newUploadedFiles: any = [...uploadedFiles, files];
+    setUploadedFiles(newUploadedFiles);
+  };
+
   /////////////////////// Return Method ///////////////////////
 
   return (
     <>
       <div className="attachment-button-container-OfCard">
         <img src={attachmentImage} alt="attachment-image" />
-        {uploadedFiles ? (
-          uploadedFiles
-        ) : (
-          <div
-            className="attachment-items-wraper-in-lower-part-OfCard"
-            onMouseEnter={() => {
-              const themeButtonParagraphOfCard: any =
-                document.getElementsByClassName(
-                  "attachment-button-paragraph-OfCard"
-                )[indexOfCard];
-              themeButtonParagraphOfCard.style.display = "none";
-            }}
-          >
-            <div className="attachment-elements-in-lower-part-OfCard">
-              <div className="attachment-box">
-                <h4 className="attachment-header">Drop Files Here</h4>
-                <h4 className="attachment-second-header">or,</h4>
-                <input
-                  ref={attachmentInputField}
-                  type="file"
-                  multiple
-                  hidden
-                ></input>
-                <span
-                  className="attachment-input"
-                  onClick={()=> attachmentInputField.current.click()}
-                >
-                  Select Files
-                </span>
-              </div>
+        <div
+          className="attachment-items-wraper-in-lower-part-OfCard"
+          onMouseEnter={() => {
+            const themeButtonParagraphOfCard: any =
+              document.getElementsByClassName(
+                "attachment-button-paragraph-OfCard"
+              )[indexOfCard];
+            themeButtonParagraphOfCard.style.display = "none";
+          }}
+        >
+          <div className="attachment-elements-in-lower-part-OfCard">
+            <div className="attachment-box">
+              <h4 className="attachment-header">Drop Files Here</h4>
+              <h4 className="attachment-second-header">or,</h4>
+              <input
+                ref={attachmentInputField}
+                type="file"
+                multiple
+                hidden
+                onChange={(event) =>
+                  functionCalledByFileUploadButtonOnClick(event)
+                }
+              ></input>
+              <span
+                className="attachment-input"
+                role="button"
+                onClick={() => attachmentInputField.current.click()}
+              >
+                Select Files
+              </span>
             </div>
           </div>
-        )}
+        </div>
       </div>
       <p className="element-text-in-lower-part-OfCard attachment-button-paragraph-OfCard">
         Attachment

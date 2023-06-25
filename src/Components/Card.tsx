@@ -5,7 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import ThreeDotMenu from "./ThreeDotMenu";
 import ThemeButton from "./ThemeButton";
 import AttachmentButton from "./AttachmentButton";
-import { addNewNoteContext } from "./App";
+import { addNewNoteContext, fileUploadContext } from "./App";
 
 // Assets
 import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
@@ -22,6 +22,7 @@ interface CardElements {
 export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   // Hooks
   const [addNew] = useContext<any>(addNewNoteContext);
+  const [uploadedFiles, setUploadedFiles] = useContext<any>(fileUploadContext);
   const [headerValueOnChange, setHeaderValueOnChange] = useState("");
   const [bodyValueOnChange, setBodyValueOnChange] = useState("");
   const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
@@ -361,10 +362,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   )[indexOfCard];
                 threeDotItemsWraperInLowerPartOfCard.style.display = "block";
 
-                const morebuttonOfCard: any =
-                  document.getElementsByClassName("more-button-paragraph-OfCard")[
-                    indexOfCard
-                  ];
+                const morebuttonOfCard: any = document.getElementsByClassName(
+                  "more-button-paragraph-OfCard"
+                )[indexOfCard];
                 morebuttonOfCard.style.display = "none";
               }}
               onMouseEnter={() => {
@@ -375,10 +375,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 containerOfCard.style.cssText = "overflow: visible";
                 containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                const morebuttonOfCard: any =
-                  document.getElementsByClassName("more-button-paragraph-OfCard")[
-                    indexOfCard
-                  ];
+                const morebuttonOfCard: any = document.getElementsByClassName(
+                  "more-button-paragraph-OfCard"
+                )[indexOfCard];
                 morebuttonOfCard.style.display = "block";
               }}
               onMouseLeave={() => {
@@ -395,10 +394,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   )[indexOfCard];
                 threeDotItemsWraperInLowerPartOfCard.style.display = "none";
 
-                const morebuttonOfCard: any =
-                  document.getElementsByClassName("more-button-paragraph-OfCard")[
-                    indexOfCard
-                  ];
+                const morebuttonOfCard: any = document.getElementsByClassName(
+                  "more-button-paragraph-OfCard"
+                )[indexOfCard];
                 morebuttonOfCard.style.display = "none";
               }}
             >
@@ -444,6 +442,10 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
 
             event.preventDefault();
+
+            const files: any = event.dataTransfer.files;
+            const newUploadedFiles: any = [...uploadedFiles, files];
+            setUploadedFiles(newUploadedFiles);
           }}
         ></div>
       </div>

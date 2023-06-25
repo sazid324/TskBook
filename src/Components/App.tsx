@@ -31,7 +31,7 @@ function App() {
     const storedValue = localStorage.getItem("card-notes-in-local-storage");
     return storedValue ? JSON.parse(storedValue) : [];
   });
-  const [uploadedFiles, setUploadedFiles] = useState(null);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
