@@ -11,7 +11,6 @@ import CardList from "./CardList";
 // Component exports
 export const addNewNoteContext: any = React.createContext(null);
 export const cardArrayContext: any = React.createContext(null);
-export const fileUploadContext: any = React.createContext(null);
 
 function App() {
   // Functions
@@ -31,7 +30,6 @@ function App() {
     const storedValue = localStorage.getItem("card-notes-in-local-storage");
     return storedValue ? JSON.parse(storedValue) : [];
   });
-  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -78,6 +76,7 @@ function App() {
         id: Date.now() + Math.floor(Math.random() * 78),
         headerValue: "",
         bodyValue: "",
+        files: null,
         color: "#FFFFFF",
       },
     ];
@@ -104,41 +103,39 @@ function App() {
     <>
       <addNewNoteContext.Provider value={[addNew, setAddNew]}>
         <cardArrayContext.Provider value={cardArray}>
-          <fileUploadContext.Provider value={[uploadedFiles, setUploadedFiles]}>
-            <header>
-              <Header setNewQuery={setQuery} />
-            </header>
-            <section id="main-body">
-              <div className="main-container">
-                <div className="left-part">
-                  <div className="left-part-container">
-                    <div className="left-part-upper-section">
-                      <Button
-                        functionCallingOnBtnClick={functionCalledByAddNewButton}
-                      >
-                        Add New
-                      </Button>
-                      <ListGroup />
-                    </div>
-                    <div className="left-part-lower-section">
-                      <Copyright />
-                    </div>
+          <header>
+            <Header setNewQuery={setQuery} />
+          </header>
+          <section id="main-body">
+            <div className="main-container">
+              <div className="left-part">
+                <div className="left-part-container">
+                  <div className="left-part-upper-section">
+                    <Button
+                      functionCallingOnBtnClick={functionCalledByAddNewButton}
+                    >
+                      Add New
+                    </Button>
+                    <ListGroup />
                   </div>
-                </div>
-                <div className="right-part">
-                  <div className="elements-container">
-                    <CardList
-                      cardArrayProp={cardArray.filter(
-                        (items: any) =>
-                          items.headerValue.toLowerCase().includes(query) ||
-                          items.bodyValue.toLowerCase().includes(query)
-                      )}
-                    />
+                  <div className="left-part-lower-section">
+                    <Copyright />
                   </div>
                 </div>
               </div>
-            </section>
-          </fileUploadContext.Provider>
+              <div className="right-part">
+                <div className="elements-container">
+                  <CardList
+                    cardArrayProp={cardArray.filter(
+                      (items: any) =>
+                        items.headerValue.toLowerCase().includes(query) ||
+                        items.bodyValue.toLowerCase().includes(query)
+                    )}
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
         </cardArrayContext.Provider>
       </addNewNoteContext.Provider>
     </>

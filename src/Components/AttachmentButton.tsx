@@ -2,7 +2,7 @@
 import { useContext, useRef } from "react";
 
 // Component imports
-import { fileUploadContext } from "./App";
+import { fileUploadContext } from "./Card";
 
 // Assets
 import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
@@ -26,7 +26,7 @@ export default function AttachmentButton({
     // Converting files object to an array
     let emptyArrayToStoreFiles: any = [];
     emptyArrayToStoreFiles = Object.values(files).map((element: any) => {
-      return element;
+      return { name: element.name, type: element.type };
     });
 
     // Storing files to uploadedFiles variable of useState.
