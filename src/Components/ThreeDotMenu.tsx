@@ -29,13 +29,19 @@ export default function ThreeDotMenu({
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[index];
 
+    elementOfCard.files.map((e: any) => {
+      console.log(e);
+    });
+
     const makeACopyOfCard: any = [
       ...addNew,
       {
         id: Date.now() + Math.floor(Math.random() * 78),
         headerValue: `${headingOfCard.value}`,
         bodyValue: `${bodyOfCard.value}`,
-        files: `${elementOfCard.files}`,
+        files: elementOfCard.files.map((element: any) => {
+          return element;
+        }),
         color: `${elementOfCard.color}`,
       },
     ];
