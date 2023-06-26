@@ -27,7 +27,7 @@ function App() {
     viewPortHeight: window.innerHeight,
   });
   const [addNew, setAddNew] = useState(() => {
-    const storedValue = localStorage.getItem("card-notes-in-local-storage");
+    const storedValue: any = localStorage.getItem("card-notes-in-local-storage");
     return storedValue ? JSON.parse(storedValue) : [];
   });
   const [query, setQuery] = useState("");

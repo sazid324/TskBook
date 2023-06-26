@@ -29,10 +29,6 @@ export default function ThreeDotMenu({
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[index];
 
-    elementOfCard.files.map((e: any) => {
-      console.log(e);
-    });
-
     const makeACopyOfCard: any = [
       ...addNew,
       {

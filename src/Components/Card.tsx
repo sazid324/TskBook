@@ -27,7 +27,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [addNew] = useContext<any>(addNewNoteContext);
   const [headerValueOnChange, setHeaderValueOnChange] = useState("");
   const [bodyValueOnChange, setBodyValueOnChange] = useState("");
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState(() => {
+    return elementOfCard.files ? elementOfCard.files : [];
+  });
   const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
   const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
   const [filesUploaded, setFilesUploaded] = useState(false);
