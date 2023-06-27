@@ -191,12 +191,12 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               />
             </div>
 
-            {/* {uploadedFiles.map((element: any, index: number) => {
+            {/* {elementOfCard.files.map((element: any, index: number) => {
               return (
                 <embed
                   key={index}
                   className="files-OfCard"
-                  src={element.name}
+                  src={"http://localhost:5173/diskette.png"}
                 />
               );
             })} */}
@@ -486,9 +486,13 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               let emptyArrayToStoreFiles: any = [];
               emptyArrayToStoreFiles = Object.values(files).map(
                 (element: any) => {
-                  return { name: element.name, type: element.type };
+                  return element.type.includes("image/" || "video/")
+                    ? { name: element.name, type: element.type }
+                    : null;
                 }
-              );
+              ).filter((element: any) => {
+                return element != null;
+              });
 
               // Storing files to uploadedFiles variable of useState.
               const newUploadedFiles: any = [

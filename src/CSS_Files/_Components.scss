@@ -405,7 +405,7 @@
             @include cardButtonItemsWraper(0.625rem);
 
             .attachment-elements-in-lower-part-OfCard {
-              width: 170px;
+              width: 175px;
               height: fit-content(100%);
               @include cardButton(0.625rem);
 
@@ -420,6 +420,10 @@
                 .attachment-header {
                   font-weight: bold;
                   padding-bottom: 0.3rem;
+                }
+
+                .attachment-subheader {
+                  padding-bottom: 0.5rem;
                 }
 
                 .attachment-second-header {

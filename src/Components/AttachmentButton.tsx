@@ -58,10 +58,14 @@ export default function AttachmentButton({
           <div className="attachment-elements-in-lower-part-OfCard">
             <div className="attachment-box">
               <h4 className="attachment-header">Drop Files Here</h4>
+              <h6 className="attachment-subheader">
+                {"( Only Image or, Video Files )"}
+              </h6>
               <h4 className="attachment-second-header">or,</h4>
               <input
                 ref={attachmentInputField}
                 type="file"
+                accept="image/*, video/*"
                 multiple
                 hidden
                 onChange={(event) =>
