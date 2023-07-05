@@ -53,12 +53,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       setFilesUploaded(false);
 
       elementOfCard.files = uploadedFiles;
-
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(addNew)
-      );
     }
+
+    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
   }, [uploadedFiles]);
 
   useEffect(() => {
@@ -196,7 +193,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 <embed
                   key={index}
                   className="files-OfCard"
-                  src={"http://localhost:5173/diskette.png"}
+                  src={element.name}
                 />
               );
             })} */}
@@ -482,27 +479,29 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
               const files: any = event.dataTransfer.files;
 
-              // Converting files object to an array
-              let emptyArrayToStoreFiles: any = [];
-              emptyArrayToStoreFiles = Object.values(files).map(
-                (element: any) => {
-                  return element.type.includes("image/" || "video/")
-                    ? { name: element.name, type: element.type }
-                    : null;
-                }
-              ).filter((element: any) => {
-                return element != null;
-              });
+              const dataURLOfUploadedFiles: any = [...uploadedFiles];
 
-              // Storing files to uploadedFiles variable of useState.
-              const newUploadedFiles: any = [
-                ...uploadedFiles,
-                emptyArrayToStoreFiles,
-              ];
+              Object.values(files)
+                .map((element: any) => {
+                  if (element.type.includes("image/" || "video/")) {
+                    const reader: any = new FileReader();
 
-              setFilesUploaded(true);
+                    reader.onload = () => {
+                      dataURLOfUploadedFiles.push(reader.result);
 
-              setUploadedFiles(newUploadedFiles.flat(Infinity));
+                      setFilesUploaded(true);
+
+                      setUploadedFiles(dataURLOfUploadedFiles);
+                    };
+
+                    reader.readAsDataURL(element);
+                  } else {
+                    return null;
+                  }
+                })
+                .filter((element: any) => {
+                  return element != null;
+                });
             }}
           ></div>
         </div>

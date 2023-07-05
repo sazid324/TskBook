@@ -25,18 +25,23 @@ export default function AttachmentButton({
   const functionCalledByFileUploadButtonOnClick = (event: any) => {
     const files: any = event.target.files;
 
-    // Converting files object to an array
-    let emptyArrayToStoreFiles: any = [];
-    emptyArrayToStoreFiles = Object.values(files).map((element: any) => {
-      return { name: element.name, type: element.type };
+    const dataURLOfUploadedFiles: any = [...uploadedFiles];
+
+    Object.values(files).map((element: any) => {
+      const reader: any = new FileReader();
+
+      reader.onload = () => {
+        dataURLOfUploadedFiles.push(reader.result);
+
+        setFilesUploaded(true);
+
+        setUploadedFiles(dataURLOfUploadedFiles);
+      };
+
+      reader.readAsDataURL(element);
     });
 
-    // Storing files to uploadedFiles variable of useState.
-    const newUploadedFiles: any = [...uploadedFiles, emptyArrayToStoreFiles];
-
-    setFilesUploaded(true);
-
-    setUploadedFiles(newUploadedFiles.flat(Infinity));
+    event.target.value = "";
   };
 
   /////////////////////// Return Method ///////////////////////
