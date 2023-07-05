@@ -188,13 +188,15 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               />
             </div>
 
-            {elementOfCard.files.map((element: any, index: number) => {
-              return (
-                <div className="middle-part-OfCard">
-                  <embed key={index} className="files-OfCard" src={element} />
-                </div>
-              );
-            })}
+            <div className="middle-part-OfCard">
+              {elementOfCard.files.map((element: any, index: number) => {
+                return (
+                  <div className="files-container">
+                    <embed key={index} className="files-OfCard" src={element} />
+                  </div>
+                );
+              })}
+            </div>
 
             <textarea
               className="body-OfCard"
@@ -461,6 +463,10 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
             }}
             onDrop={(event) => {
+              const middlePartOfCard: any =
+                document.getElementsByClassName("middle-part-OfCard")[
+                  indexOfCard
+                ];
               const dragAndDropOverlayOnUpperPartOfCard: any =
                 document.getElementsByClassName(
                   "drag-and-drop-overlay-on-upper-part-OfCard"
@@ -470,6 +476,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   "drag-and-drop-second-overlay-on-upper-part-OfCard"
                 )[indexOfCard];
 
+              middlePartOfCard.style.display = "grid";
               dragAndDropOverlayOnUpperPartOfCard.style.display = "none";
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
 

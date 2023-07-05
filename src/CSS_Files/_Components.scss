@@ -259,6 +259,28 @@
     }
   }
 
+  .middle-part-OfCard {
+    position: relative;
+    width: 100%;
+    padding: 1px;
+    display: grid;
+    grid-gap: 0.3rem;
+    grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+    grid-auto-rows: fit-content(100%);
+    grid-auto-flow: dense;
+    display: none;
+
+    .files-container {
+      padding: 3px;
+      @include flexCenter(center, center);
+      box-shadow: 0 0 0.1rem 0.05rem rgb(240, 240, 240);
+
+      .files-OfCard {
+        width: 100%;
+      }
+    }
+  }
+
   .lower-part-OfCard {
     position: absolute;
     width: 100%;
