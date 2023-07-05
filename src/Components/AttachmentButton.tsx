@@ -30,7 +30,7 @@ export default function AttachmentButton({
     Object.values(files).map((element: any) => {
       const reader: any = new FileReader();
 
-      reader.onload = () => {
+      reader.onloadend = () => {
         dataURLOfUploadedFiles.push(reader.result);
 
         setFilesUploaded(true);

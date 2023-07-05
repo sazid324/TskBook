@@ -188,15 +188,13 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               />
             </div>
 
-            {/* {elementOfCard.files.map((element: any, index: number) => {
+            {elementOfCard.files.map((element: any, index: number) => {
               return (
-                <embed
-                  key={index}
-                  className="files-OfCard"
-                  src={element.name}
-                />
+                <div className="middle-part-OfCard">
+                  <embed key={index} className="files-OfCard" src={element} />
+                </div>
               );
-            })} */}
+            })}
 
             <textarea
               className="body-OfCard"
