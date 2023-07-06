@@ -194,8 +194,11 @@
   overflow: hidden;
 
   .upper-part-OfCard {
-    position: relative;
     height: 100%;
+    display: grid;
+    grid-gap: 0.6rem;
+    grid-template-rows: 28px;
+    grid-auto-flow: dense;
     background-color: transparent;
     border-radius: 5px;
     overflow: hidden;
@@ -226,13 +229,29 @@
       }
     }
 
+    .middle-part-OfCard {
+      position: relative;
+      width: 100%;
+      padding: 1px;
+      display: grid;
+      grid-gap: 0.3rem;
+      grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+      grid-auto-rows: fit-content(100%);
+      grid-auto-flow: dense;
+      display: none;
+
+      .files-container {
+        padding: 3px;
+        @include flexCenter(center, center);
+        box-shadow: 0 0 0.1rem 0.05rem rgb(240, 240, 240);
+
+        .files-OfCard {
+          width: 100%;
+        }
+      }
+    }
+
     .body-OfCard {
-      position: absolute;
-      top: 2rem;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
       width: 100%;
       font-family: Lato-Regular;
       font-size: 0.9rem;
@@ -255,28 +274,6 @@
         &:hover {
           cursor: pointer;
         }
-      }
-    }
-  }
-
-  .middle-part-OfCard {
-    position: relative;
-    width: 100%;
-    padding: 1px;
-    display: grid;
-    grid-gap: 0.3rem;
-    grid-template-columns: repeat(auto-fill, minmax(30%, auto));
-    grid-auto-rows: fit-content(100%);
-    grid-auto-flow: dense;
-    display: none;
-
-    .files-container {
-      padding: 3px;
-      @include flexCenter(center, center);
-      box-shadow: 0 0 0.1rem 0.05rem rgb(240, 240, 240);
-
-      .files-OfCard {
-        width: 100%;
       }
     }
   }

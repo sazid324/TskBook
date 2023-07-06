@@ -96,8 +96,8 @@ export default function Header({ setNewQuery }: headerElements) {
     );
 
     if (clickedOnNavMenu == true) {
-      leftPart.style.cssText = "width: 6.7%;";
-      rightPart.style.cssText = "width: 93%;";
+      leftPart.style.cssText = "width: 5.3rem;";
+      rightPart.style.cssText = "width: 93.5%;";
       btnOfButton.style.cssText = "margin-left: 0px;";
       textOfButton.style.cssText = "display: none;";
       containerOfCopyright.style.cssText = "display: none;";
@@ -107,9 +107,10 @@ export default function Header({ setNewQuery }: headerElements) {
         textInLiOfListGroup[i].style.display = "none";
       }
     }
+
     if (clickedOnNavMenu == false) {
-      leftPart.style.cssText = "width: 16.7%;";
-      rightPart.style.cssText = "width: 83%;";
+      leftPart.style.cssText = "width: 14.5rem;";
+      rightPart.style.cssText = "width: 81.5%;";
       btnOfButton.style.cssText = "margin-left: 1.7rem;";
       textOfButton.style.cssText = "display: block;";
       containerOfCopyright.style.cssText = "display: block;";

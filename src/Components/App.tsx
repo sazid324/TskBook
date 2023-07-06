@@ -103,7 +103,7 @@ function App() {
   const newReversedArray = (addNewArray: any) => {
     const newArray: any = [];
 
-    for (let i = addNew.length - 1; i >= 0; --i) {
+    for (let i = addNew.length - 1; i >= 0; i--) {
       newArray.push(addNewArray[i]);
     }
 

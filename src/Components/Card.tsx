@@ -25,8 +25,12 @@ interface CardElements {
 export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   // Hooks
   const [addNew] = useContext<any>(addNewNoteContext);
-  const [headerValueOnChange, setHeaderValueOnChange] = useState("");
-  const [bodyValueOnChange, setBodyValueOnChange] = useState("");
+  const [headerValueOnChange, setHeaderValueOnChange] = useState(() => {
+    return elementOfCard.headerValue ? elementOfCard.headerValue : "";
+  });
+  const [bodyValueOnChange, setBodyValueOnChange] = useState(() => {
+    return elementOfCard.bodyValue ? elementOfCard.bodyValue : "";
+  });
   const [uploadedFiles, setUploadedFiles] = useState(() => {
     return elementOfCard.files ? elementOfCard.files : [];
   });
@@ -36,8 +40,14 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [editAndSaveButton, setEditAndSaveButton] = useState(true);
 
   useEffect(() => {
-    setHeaderValueOnChange(elementOfCard.headerValue);
-    setBodyValueOnChange(elementOfCard.bodyValue);
+    const middlePartOfCard: any =
+      document.getElementsByClassName("middle-part-OfCard")[indexOfCard];
+
+      if (elementOfCard.files != "") {
+        middlePartOfCard.style.display = "grid";
+      } else {
+        middlePartOfCard.style.display = "none";
+      }
   }, []);
 
   useEffect(() => {
@@ -49,6 +59,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   }, [bodyValueOnChange]);
 
   useEffect(() => {
+    // Saving uploaded files to local storage.
     if (filesUploaded == true) {
       setFilesUploaded(false);
 
@@ -57,17 +68,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
     localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
   }, [uploadedFiles]);
-
-  useEffect(() => {
-    // Setting headerValue and bodyValue of card.
-    const headingOfCard: any =
-      document.getElementsByClassName("heading-OfCard")[indexOfCard];
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[indexOfCard];
-
-    elementOfCard.headerValue = headingOfCard.value;
-    elementOfCard.bodyValue = bodyOfCard.value;
-  }, [indexOfCard]);
 
   // Adding functionality of Edit and Save button in Card.
   const functionCalledByEditAndSaveButton = (index: number) => {
