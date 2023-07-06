@@ -241,9 +241,7 @@
       display: none;
 
       .files-container {
-        padding: 3px;
         @include flexCenter(center, center);
-        box-shadow: 0 0 0.1rem 0.05rem rgb(240, 240, 240);
 
         .files-OfCard {
           width: 100%;
