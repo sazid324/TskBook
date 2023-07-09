@@ -5,7 +5,7 @@ import { useEffect, useState, useContext, createContext } from "react";
 import ThreeDotMenu from "./ThreeDotMenu";
 import ThemeButton from "./ThemeButton";
 import AttachmentButton from "./AttachmentButton";
-import { addNewNoteContext } from "./App";
+import { addNewNoteContext, editAndSaveButtonContext } from "./App";
 
 // Component exports
 export const fileUploadContext: any = createContext(null);
@@ -25,6 +25,9 @@ interface CardElements {
 export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   // Hooks
   const [addNew] = useContext<any>(addNewNoteContext);
+  const [editAndSaveButton, setEditAndSaveButton] = useContext<any>(
+    editAndSaveButtonContext
+  );
   const [headerValueOnChange, setHeaderValueOnChange] = useState(() => {
     return elementOfCard.headerValue ? elementOfCard.headerValue : "";
   });
@@ -37,17 +40,16 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
   const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
   const [filesUploaded, setFilesUploaded] = useState(false);
-  const [editAndSaveButton, setEditAndSaveButton] = useState(true);
 
   useEffect(() => {
     const middlePartOfCard: any =
       document.getElementsByClassName("middle-part-OfCard")[indexOfCard];
 
-      if (elementOfCard.files != "") {
-        middlePartOfCard.style.display = "grid";
-      } else {
-        middlePartOfCard.style.display = "none";
-      }
+    if (elementOfCard.files != "") {
+      middlePartOfCard.style.display = "grid";
+    } else {
+      middlePartOfCard.style.display = "none";
+    }
   }, []);
 
   useEffect(() => {
@@ -70,17 +72,17 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   }, [uploadedFiles]);
 
   // Adding functionality of Edit and Save button in Card.
-  const functionCalledByEditAndSaveButton = (index: number) => {
+  useEffect(() => {
     const headingOfCard: any =
-      document.getElementsByClassName("heading-OfCard")[index];
+      document.getElementsByClassName("heading-OfCard")[indexOfCard];
     const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[index];
+      document.getElementsByClassName("body-OfCard")[indexOfCard];
     const editAndSaveButtonOfCard: any = document.getElementsByClassName(
       "edit-and-save-button-OfCard"
-    )[index];
+    )[indexOfCard];
     const editElementTextInLowerPartOfCard: any =
       document.getElementsByClassName("edit-element-text-in-lower-part-OfCard")[
-        index
+        indexOfCard
       ];
 
     if (editAndSaveButton == false) {
@@ -111,9 +113,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       editAndSaveButtonOfCard.src = `${saveImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Save";
     }
-
-    setEditAndSaveButton(!editAndSaveButton);
-  };
+  }, [editAndSaveButton]);
 
   // Getting value onChange of the inputs of Card component.
   const functionCalledByHeaderOnChange = (event: any) => {
@@ -138,7 +138,11 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     <>
       <fileUploadContext.Provider value={[uploadedFiles, setUploadedFiles]}>
         <div
-          className="container-OfCard"
+          className={
+            editAndSaveButton == false
+              ? "container-OfCard"
+              : "container-OfCard-inEditMode"
+          }
           onMouseEnter={() => {
             const overlayOnLowerPartOfCard: any =
               document.getElementsByClassName("overlay-on-lower-part-OfCard")[
@@ -191,8 +195,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             <div className="middle-part-OfCard">
               {elementOfCard.files.map((element: any, index: number) => {
                 return (
-                  <div className="files-container">
-                    <embed key={index} className="files-OfCard" src={element} />
+                  <div key={index} className="files-container">
+                    <embed className="files-OfCard" src={element} />
                   </div>
                 );
               })}
@@ -214,18 +218,20 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               <button
                 className="element-in-lower-part-OfCard"
                 onMouseEnter={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: visible";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
                 }}
                 onMouseLeave={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
                 }}
@@ -251,10 +257,11 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   themeButtonParagraphOfCard.style.display = "none";
                 }}
                 onMouseEnter={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: visible";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
@@ -265,10 +272,11 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   themeButtonParagraphOfCard.style.display = "block";
                 }}
                 onMouseLeave={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
@@ -294,18 +302,20 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               <button
                 className="element-in-lower-part-OfCard"
                 onMouseEnter={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: visible";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
                 }}
                 onMouseLeave={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
                 }}
@@ -326,18 +336,20 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                     "block";
                 }}
                 onMouseEnter={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: visible";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
                 }}
                 onMouseLeave={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
@@ -357,21 +369,23 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               <button
                 className="element-in-lower-part-OfCard"
                 onClick={() => {
-                  functionCalledByEditAndSaveButton(indexOfCard);
+                  setEditAndSaveButton(!editAndSaveButton);
                 }}
                 onMouseEnter={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: visible";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
                 }}
                 onMouseLeave={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
                 }}
@@ -402,10 +416,11 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   morebuttonOfCard.style.display = "none";
                 }}
                 onMouseEnter={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: visible";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
@@ -415,10 +430,11 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   morebuttonOfCard.style.display = "block";
                 }}
                 onMouseLeave={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
+                  const containerOfCard: any = document.getElementsByClassName(
+                    editAndSaveButton == false
+                      ? "container-OfCard"
+                      : "container-OfCard-inEditMode"
+                  )[indexOfCard];
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 

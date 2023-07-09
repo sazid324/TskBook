@@ -11,6 +11,7 @@ import CardList from "./CardList";
 // Component exports
 export const addNewNoteContext: any = React.createContext(null);
 export const cardArrayContext: any = React.createContext(null);
+export const editAndSaveButtonContext: any = React.createContext(null);
 
 function App() {
   // Functions
@@ -32,6 +33,7 @@ function App() {
     );
     return storedValue ? JSON.parse(storedValue) : [];
   });
+  const [editAndSaveButton, setEditAndSaveButton] = useState(false);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -49,10 +51,18 @@ function App() {
       )[i];
 
       const containerOfCardDistanceFromRight: any = document
-        .getElementsByClassName("container-OfCard")
+        .getElementsByClassName(
+          editAndSaveButton == false
+            ? "container-OfCard"
+            : "container-OfCard-inEditMode"
+        )
         [i].getBoundingClientRect().right;
       const containerOfCardDistanceFromBottom: any = document
-        .getElementsByClassName("container-OfCard")
+        .getElementsByClassName(
+          editAndSaveButton == false
+            ? "container-OfCard"
+            : "container-OfCard-inEditMode"
+        )
         [i].getBoundingClientRect().bottom;
 
       if (viewPort.viewPortWidth < containerOfCardDistanceFromRight + 95) {
@@ -118,39 +128,43 @@ function App() {
     <>
       <addNewNoteContext.Provider value={[addNew, setAddNew]}>
         <cardArrayContext.Provider value={cardArray}>
-          <header>
-            <Header setNewQuery={setQuery} />
-          </header>
-          <section id="main-body">
-            <div className="main-container">
-              <div className="left-part">
-                <div className="left-part-container">
-                  <div className="left-part-upper-section">
-                    <Button
-                      functionCallingOnBtnClick={functionCalledByAddNewButton}
-                    >
-                      Add New
-                    </Button>
-                    <ListGroup />
+          <editAndSaveButtonContext.Provider
+            value={[editAndSaveButton, setEditAndSaveButton]}
+          >
+            <header>
+              <Header setNewQuery={setQuery} />
+            </header>
+            <section id="main-body">
+              <div className="main-container">
+                <div className="left-part">
+                  <div className="left-part-container">
+                    <div className="left-part-upper-section">
+                      <Button
+                        functionCallingOnBtnClick={functionCalledByAddNewButton}
+                      >
+                        Add New
+                      </Button>
+                      <ListGroup />
+                    </div>
+                    <div className="left-part-lower-section">
+                      <Copyright />
+                    </div>
                   </div>
-                  <div className="left-part-lower-section">
-                    <Copyright />
+                </div>
+                <div className="right-part">
+                  <div className="elements-container">
+                    <CardList
+                      cardArrayProp={cardArray.filter(
+                        (items: any) =>
+                          items.headerValue.toLowerCase().includes(query) ||
+                          items.bodyValue.toLowerCase().includes(query)
+                      )}
+                    />
                   </div>
                 </div>
               </div>
-              <div className="right-part">
-                <div className="elements-container">
-                  <CardList
-                    cardArrayProp={cardArray.filter(
-                      (items: any) =>
-                        items.headerValue.toLowerCase().includes(query) ||
-                        items.bodyValue.toLowerCase().includes(query)
-                    )}
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
+            </section>
+          </editAndSaveButtonContext.Provider>
         </cardArrayContext.Provider>
       </addNewNoteContext.Provider>
     </>
