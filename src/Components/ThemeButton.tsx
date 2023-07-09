@@ -2,7 +2,7 @@
 import { useEffect, useContext } from "react";
 
 // Component imports
-import { addNewNoteContext, editAndSaveButtonContext } from "./App";
+import { addNewNoteContext } from "./App";
 
 // Assets
 import cardBackgroundImage from "../assets/Images/Icons_and_logos/cardBackground.svg";
@@ -37,11 +37,8 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
   const functionCalledByColorButtonOnClick = (color: any) => {
     elementOfCard.color = `${color}`;
 
-    const containerOfCard: any = document.getElementsByClassName(
-      editAndSaveButton == false
-        ? "container-OfCard"
-        : "container-OfCard-inEditMode"
-    )[indexOfCard];
+    const containerOfCard: any =
+      document.getElementsByClassName("container-OfCard")[indexOfCard];
     const lowerPartOfCard: any =
       document.getElementsByClassName("lower-part-OfCard")[indexOfCard];
 
@@ -53,16 +50,10 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
 
   // Hooks
   const [addNew] = useContext<any>(addNewNoteContext);
-    const [editAndSaveButton] = useContext<any>(
-      editAndSaveButtonContext
-    );
 
   useEffect(() => {
-    const containerOfCard: any = document.getElementsByClassName(
-      editAndSaveButton == false
-        ? "container-OfCard"
-        : "container-OfCard-inEditMode"
-    )[indexOfCard];
+    const containerOfCard: any =
+      document.getElementsByClassName("container-OfCard")[indexOfCard];
     const lowerPartOfCard: any =
       document.getElementsByClassName("lower-part-OfCard")[indexOfCard];
 

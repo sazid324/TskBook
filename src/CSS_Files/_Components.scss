@@ -183,40 +183,6 @@
 
 /*===STARTING OF Card component PART===*/
 
-.container-OfCard-inEditMode {
-  position: fixed;
-  width: 75dvw;
-  height: 75dvh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: none;
-  border-radius: 5px;
-  padding: 0.9rem 0.9rem 1.7rem 0.9rem;
-  box-shadow: 1px 1px 0.2rem 0.1rem rgb(214, 214, 214);
-  z-index: 6;
-
-  &:hover {
-    cursor: auto;
-
-    .lower-part-OfCard {
-      display: block;
-      @include flexCenter(space-between, inherit);
-      animation-name: lowerPartOfCardAnimationOnHover;
-      animation-duration: 0.5s;
-
-      @keyframes lowerPartOfCardAnimationOnHover {
-        0% {
-          transform: translateY(100%);
-        }
-        100% {
-          transform: none;
-        }
-      }
-    }
-  }
-}
-
 .container-OfCard {
   position: relative;
   min-height: 9.2rem;
@@ -226,6 +192,415 @@
   padding: 0.9rem 0.9rem 1.7rem 0.9rem;
   box-shadow: 1px 1px 0.2rem 0.1rem rgb(214, 214, 214);
   overflow: hidden;
+
+  .upper-part-OfCard {
+    height: 100%;
+    display: grid;
+    grid-gap: 0.6rem;
+    grid-template-rows: 28px;
+    grid-auto-flow: dense;
+    background-color: transparent;
+    border-radius: 5px;
+    overflow: hidden;
+
+    .header-text-part-OfCard {
+      width: 100%;
+
+      .heading-OfCard {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-family: Manrope-Regular;
+        font-weight: bold;
+        font-size: 1rem;
+        color: #202124;
+        display: none;
+
+        &:disabled {
+          background-color: transparent;
+          border: none;
+          outline: none;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .middle-part-OfCard {
+      position: relative;
+      width: 100%;
+      display: grid;
+      grid-gap: 0.3rem;
+      grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+      grid-auto-rows: fit-content(100%);
+      grid-auto-flow: dense;
+      display: none;
+
+      .files-container {
+        @include flexCenter(center, center);
+
+        .files-OfCard {
+          width: 100%;
+        }
+      }
+    }
+
+    .body-OfCard {
+      width: 100%;
+      font-family: Lato-Regular;
+      font-size: 0.9rem;
+      color: #202124;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      display: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &:disabled {
+        background-color: transparent;
+        border: none;
+        outline: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .lower-part-OfCard {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 10px 10px;
+    @include flexCenter(space-between, inherit);
+    border-top: 1.5px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: none;
+
+    .lower-part-container-OfCard {
+      position: relative;
+      width: 100%;
+      @include flexCenter(space-around, inherit);
+
+      .element-in-lower-part-OfCard {
+        position: relative;
+        @include flexCenter(center, center);
+        float: left;
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
+        outline: none;
+        padding: 0.5rem;
+
+        .element-text-in-lower-part-OfCard {
+          position: absolute;
+          bottom: -23px;
+          font-size: 0.75rem;
+          color: #ffffff;
+          background-color: #a8a8a8;
+          padding: 3px 7px;
+          border-radius: 5px;
+          display: none;
+        }
+
+        .overlay-on-element-in-lower-part-OfCard {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          border-radius: 50%;
+          background-color: rgb(102, 102, 102);
+          opacity: 0.25;
+          display: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .element-text-in-lower-part-OfCard {
+            display: block;
+          }
+          .overlay-on-element-in-lower-part-OfCard {
+            display: block;
+          }
+        }
+
+        &:active,
+        &:focus {
+          cursor: pointer;
+
+          .overlay-on-element-in-lower-part-OfCard {
+            display: block;
+          }
+        }
+
+        /*---STARTING OF ThemeButton component PART---*/
+
+        .theme-menu-button-container-OfCard {
+          position: relative;
+          @include flexCenter(center, center);
+
+          .theme-items-wraper-in-lower-part-OfCard {
+            @include cardButtonItemsWraper(0.625rem);
+
+            .color-items-in-theme-button-OfCard {
+              width: 165px;
+              height: fit-content(100%);
+              @include cardButton(0.625rem);
+
+              .color-in-theme-button-OfCard {
+                display: inline-block;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                margin-right: 5px;
+
+                &:last-child {
+                  margin-right: none;
+                  border: 1px solid rgb(228, 228, 228);
+                }
+
+                &:hover,
+                &:active {
+                  cursor: pointer;
+                  box-shadow: 0px 0px 0.5rem 0.15rem $mainColor;
+                }
+              }
+            }
+          }
+        }
+
+        &:active
+          > .theme-menu-button-container-OfCard
+          > .theme-items-wraper-in-lower-part-OfCard,
+        &:focus
+          > .theme-menu-button-container-OfCard
+          > .theme-items-wraper-in-lower-part-OfCard {
+          display: block;
+          animation-name: themeMenuInLowerPartOfCardAnimationOnHover;
+          animation-duration: 0.5s;
+
+          @keyframes themeMenuInLowerPartOfCardAnimationOnHover {
+            0% {
+              opacity: 1;
+              transform: none;
+            }
+            50% {
+              opacity: 1;
+              transform: translateY(18px);
+            }
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+        }
+
+        /*---ENDING OF ThemeButton component PART---*/
+
+        /*---STARTING OF AttachmentButton component PART---*/
+
+        .attachment-button-container-OfCard {
+          position: relative;
+          @include flexCenter(center, center);
+
+          .attachment-items-wraper-in-lower-part-OfCard {
+            @include cardButtonItemsWraper(0.625rem);
+
+            .attachment-elements-in-lower-part-OfCard {
+              width: 175px;
+              height: fit-content(100%);
+              @include cardButton(0.625rem);
+
+              .attachment-box {
+                border: 2px solid gray;
+                border-style: dashed;
+                padding: 1rem 0.5rem;
+                margin: 5px;
+                @include flexCenter(center, center);
+                flex-direction: column;
+
+                .attachment-header {
+                  font-weight: bold;
+                  padding-bottom: 0.3rem;
+                }
+
+                .attachment-subheader {
+                  padding-bottom: 0.5rem;
+                }
+
+                .attachment-second-header {
+                  font-weight: bold;
+                  padding-bottom: 0.6rem;
+                }
+
+                .attachment-input {
+                  border: none;
+                  border-radius: 5px;
+                  padding: 3px 5px;
+                  box-shadow: 0 0 0.1rem 0.05rem rgb(214, 214, 214);
+
+                  &:hover {
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+
+            &:hover {
+              cursor: auto;
+            }
+          }
+        }
+
+        &:active
+          > .attachment-button-container-OfCard
+          > .attachment-items-wraper-in-lower-part-OfCard,
+        &:focus
+          > .attachment-button-container-OfCard
+          > .attachment-items-wraper-in-lower-part-OfCard {
+          display: block;
+          animation-name: attachmentButtonInLowerPartOfCardAnimationOnHover;
+          animation-duration: 0.5s;
+
+          @keyframes attachmentButtonInLowerPartOfCardAnimationOnHover {
+            0% {
+              opacity: 1;
+              transform: none;
+            }
+            50% {
+              opacity: 1;
+              transform: translateY(18px);
+            }
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+        }
+
+        /*---ENDING OF AttachmentButton component PART---*/
+
+        /*---STARTING OF ThreeDotMenu component PART---*/
+
+        .three-dot-menu-button-container-OfCard {
+          position: relative;
+          @include flexCenter(center, center);
+
+          .three-dot-items-wraper-in-lower-part-OfCard {
+            @include cardButtonItemsWraper(0.625rem);
+
+            .three-dot-items-in-lower-part-OfCard {
+              width: 125px;
+              height: fit-content(100%);
+              @include cardButton(0.4rem 0rem);
+
+              .item-in-three-dot-in-lower-part-OfCard {
+                width: 100%;
+                padding: 0.4rem 1rem;
+                list-style-type: none;
+                font-size: 0.85rem;
+                @include flexCenter(left, center);
+
+                &:hover,
+                &:active {
+                  cursor: pointer;
+                  background-color: $mainColorLight;
+                }
+              }
+            }
+          }
+        }
+
+        &:active
+          > .three-dot-menu-button-container-OfCard
+          > .three-dot-items-wraper-in-lower-part-OfCard,
+        &:focus
+          > .three-dot-menu-button-container-OfCard
+          > .three-dot-items-wraper-in-lower-part-OfCard {
+          display: block;
+          animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
+          animation-duration: 0.5s;
+
+          @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
+            0% {
+              opacity: 1;
+              transform: none;
+            }
+            50% {
+              opacity: 1;
+              transform: translateY(18px);
+            }
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+        }
+
+        /*---ENDING OF ThreeDotMenu component PART---*/
+      }
+
+      .overlay-on-lower-part-OfCard {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+    }
+  }
+
+  .drag-and-drop-overlay-on-upper-part-OfCard {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: rgb(189, 189, 189);
+    opacity: 0.8;
+    display: none;
+
+    .drag-and-drop-box {
+      width: 100%;
+      height: 100%;
+      @include flexCenter(center, center);
+      border: 2px dashed #303030;
+
+      .drag-and-drop-overlay-text {
+        color: #303030;
+      }
+    }
+  }
+
+  .drag-and-drop-second-overlay-on-upper-part-OfCard {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 5px;
+    z-index: 1;
+    display: none;
+  }
 
   &:hover {
     cursor: pointer;
@@ -248,413 +623,18 @@
   }
 }
 
-.upper-part-OfCard {
-  height: 100%;
-  display: grid;
-  grid-gap: 0.6rem;
-  grid-template-rows: 28px;
-  grid-auto-flow: dense;
-  background-color: transparent;
-  border-radius: 5px;
-  overflow: hidden;
+.container-OfCard-inEditMode {
+  position: fixed;
+  width: 75dvw;
+  height: 75dvh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
 
-  .header-text-part-OfCard {
-    width: 100%;
-
-    .heading-OfCard {
-      width: 100%;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      font-family: Manrope-Regular;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #202124;
-      display: none;
-
-      &:disabled {
-        background-color: transparent;
-        border: none;
-        outline: none;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
+  &:hover {
+    cursor: auto;
   }
-
-  .middle-part-OfCard {
-    position: relative;
-    width: 100%;
-    display: grid;
-    grid-gap: 0.3rem;
-    grid-template-columns: repeat(auto-fill, minmax(30%, auto));
-    grid-auto-rows: fit-content(100%);
-    grid-auto-flow: dense;
-    display: none;
-
-    .files-container {
-      @include flexCenter(center, center);
-
-      .files-OfCard {
-        width: 100%;
-      }
-    }
-  }
-
-  .body-OfCard {
-    width: 100%;
-    font-family: Lato-Regular;
-    font-size: 0.9rem;
-    color: #202124;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    resize: none;
-    display: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    &:disabled {
-      background-color: transparent;
-      border: none;
-      outline: none;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.lower-part-OfCard {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  padding: 10px 10px;
-  @include flexCenter(space-between, inherit);
-  border-top: 1.5px solid rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  display: none;
-
-  .lower-part-container-OfCard {
-    position: relative;
-    width: 100%;
-    @include flexCenter(space-around, inherit);
-
-    .element-in-lower-part-OfCard {
-      position: relative;
-      @include flexCenter(center, center);
-      float: left;
-      background-color: transparent;
-      border: none;
-      border-radius: 50%;
-      outline: none;
-      padding: 0.5rem;
-
-      .element-text-in-lower-part-OfCard {
-        position: absolute;
-        bottom: -23px;
-        font-size: 0.75rem;
-        color: #ffffff;
-        background-color: #a8a8a8;
-        padding: 3px 7px;
-        border-radius: 5px;
-        display: none;
-      }
-
-      .overlay-on-element-in-lower-part-OfCard {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        border-radius: 50%;
-        background-color: rgb(102, 102, 102);
-        opacity: 0.25;
-        display: none;
-      }
-
-      &:hover {
-        cursor: pointer;
-
-        .element-text-in-lower-part-OfCard {
-          display: block;
-        }
-        .overlay-on-element-in-lower-part-OfCard {
-          display: block;
-        }
-      }
-
-      &:active,
-      &:focus {
-        cursor: pointer;
-
-        .overlay-on-element-in-lower-part-OfCard {
-          display: block;
-        }
-      }
-
-      /*---STARTING OF ThemeButton component PART---*/
-
-      .theme-menu-button-container-OfCard {
-        position: relative;
-        @include flexCenter(center, center);
-
-        .theme-items-wraper-in-lower-part-OfCard {
-          @include cardButtonItemsWraper(0.625rem);
-
-          .color-items-in-theme-button-OfCard {
-            width: 165px;
-            height: fit-content(100%);
-            @include cardButton(0.625rem);
-
-            .color-in-theme-button-OfCard {
-              display: inline-block;
-              width: 1.5rem;
-              height: 1.5rem;
-              border-radius: 50%;
-              margin-right: 5px;
-
-              &:last-child {
-                margin-right: none;
-                border: 1px solid rgb(228, 228, 228);
-              }
-
-              &:hover,
-              &:active {
-                cursor: pointer;
-                box-shadow: 0px 0px 0.5rem 0.15rem $mainColor;
-              }
-            }
-          }
-        }
-      }
-
-      &:active
-        > .theme-menu-button-container-OfCard
-        > .theme-items-wraper-in-lower-part-OfCard,
-      &:focus
-        > .theme-menu-button-container-OfCard
-        > .theme-items-wraper-in-lower-part-OfCard {
-        display: block;
-        animation-name: themeMenuInLowerPartOfCardAnimationOnHover;
-        animation-duration: 0.5s;
-
-        @keyframes themeMenuInLowerPartOfCardAnimationOnHover {
-          0% {
-            opacity: 1;
-            transform: none;
-          }
-          50% {
-            opacity: 1;
-            transform: translateY(18px);
-          }
-          100% {
-            opacity: 1;
-            transform: none;
-          }
-        }
-      }
-
-      /*---ENDING OF ThemeButton component PART---*/
-
-      /*---STARTING OF AttachmentButton component PART---*/
-
-      .attachment-button-container-OfCard {
-        position: relative;
-        @include flexCenter(center, center);
-
-        .attachment-items-wraper-in-lower-part-OfCard {
-          @include cardButtonItemsWraper(0.625rem);
-
-          .attachment-elements-in-lower-part-OfCard {
-            width: 175px;
-            height: fit-content(100%);
-            @include cardButton(0.625rem);
-
-            .attachment-box {
-              border: 2px solid gray;
-              border-style: dashed;
-              padding: 1rem 0.5rem;
-              margin: 5px;
-              @include flexCenter(center, center);
-              flex-direction: column;
-
-              .attachment-header {
-                font-weight: bold;
-                padding-bottom: 0.3rem;
-              }
-
-              .attachment-subheader {
-                padding-bottom: 0.5rem;
-              }
-
-              .attachment-second-header {
-                font-weight: bold;
-                padding-bottom: 0.6rem;
-              }
-
-              .attachment-input {
-                border: none;
-                border-radius: 5px;
-                padding: 3px 5px;
-                box-shadow: 0 0 0.1rem 0.05rem rgb(214, 214, 214);
-
-                &:hover {
-                  cursor: pointer;
-                }
-              }
-            }
-          }
-
-          &:hover {
-            cursor: auto;
-          }
-        }
-      }
-
-      &:active
-        > .attachment-button-container-OfCard
-        > .attachment-items-wraper-in-lower-part-OfCard,
-      &:focus
-        > .attachment-button-container-OfCard
-        > .attachment-items-wraper-in-lower-part-OfCard {
-        display: block;
-        animation-name: attachmentButtonInLowerPartOfCardAnimationOnHover;
-        animation-duration: 0.5s;
-
-        @keyframes attachmentButtonInLowerPartOfCardAnimationOnHover {
-          0% {
-            opacity: 1;
-            transform: none;
-          }
-          50% {
-            opacity: 1;
-            transform: translateY(18px);
-          }
-          100% {
-            opacity: 1;
-            transform: none;
-          }
-        }
-      }
-
-      /*---ENDING OF AttachmentButton component PART---*/
-
-      /*---STARTING OF ThreeDotMenu component PART---*/
-
-      .three-dot-menu-button-container-OfCard {
-        position: relative;
-        @include flexCenter(center, center);
-
-        .three-dot-items-wraper-in-lower-part-OfCard {
-          @include cardButtonItemsWraper(0.625rem);
-
-          .three-dot-items-in-lower-part-OfCard {
-            width: 125px;
-            height: fit-content(100%);
-            @include cardButton(0.4rem 0rem);
-
-            .item-in-three-dot-in-lower-part-OfCard {
-              width: 100%;
-              padding: 0.4rem 1rem;
-              list-style-type: none;
-              font-size: 0.85rem;
-              @include flexCenter(left, center);
-
-              &:hover,
-              &:active {
-                cursor: pointer;
-                background-color: $mainColorLight;
-              }
-            }
-          }
-        }
-      }
-
-      &:active
-        > .three-dot-menu-button-container-OfCard
-        > .three-dot-items-wraper-in-lower-part-OfCard,
-      &:focus
-        > .three-dot-menu-button-container-OfCard
-        > .three-dot-items-wraper-in-lower-part-OfCard {
-        display: block;
-        animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
-        animation-duration: 0.5s;
-
-        @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
-          0% {
-            opacity: 1;
-            transform: none;
-          }
-          50% {
-            opacity: 1;
-            transform: translateY(18px);
-          }
-          100% {
-            opacity: 1;
-            transform: none;
-          }
-        }
-      }
-
-      /*---ENDING OF ThreeDotMenu component PART---*/
-    }
-
-    .overlay-on-lower-part-OfCard {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-    }
-  }
-}
-
-.drag-and-drop-overlay-on-upper-part-OfCard {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  padding: 1rem;
-  border-radius: 5px;
-  background-color: rgb(189, 189, 189);
-  opacity: 0.8;
-  display: none;
-
-  .drag-and-drop-box {
-    width: 100%;
-    height: 100%;
-    @include flexCenter(center, center);
-    border: 2px dashed #303030;
-
-    .drag-and-drop-overlay-text {
-      color: #303030;
-    }
-  }
-}
-
-.drag-and-drop-second-overlay-on-upper-part-OfCard {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  border-radius: 5px;
-  z-index: 1;
-  display: none;
 }
 
 /*===ENDING OF Card component PART===*/

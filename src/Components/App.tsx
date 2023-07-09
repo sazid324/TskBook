@@ -11,7 +11,6 @@ import CardList from "./CardList";
 // Component exports
 export const addNewNoteContext: any = React.createContext(null);
 export const cardArrayContext: any = React.createContext(null);
-export const editAndSaveButtonContext: any = React.createContext(null);
 
 function App() {
   // Functions
@@ -33,7 +32,6 @@ function App() {
     );
     return storedValue ? JSON.parse(storedValue) : [];
   });
-  const [editAndSaveButton, setEditAndSaveButton] = useState(false);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -51,18 +49,10 @@ function App() {
       )[i];
 
       const containerOfCardDistanceFromRight: any = document
-        .getElementsByClassName(
-          editAndSaveButton == false
-            ? "container-OfCard"
-            : "container-OfCard-inEditMode"
-        )
+        .getElementsByClassName("container-OfCard")
         [i].getBoundingClientRect().right;
       const containerOfCardDistanceFromBottom: any = document
-        .getElementsByClassName(
-          editAndSaveButton == false
-            ? "container-OfCard"
-            : "container-OfCard-inEditMode"
-        )
+        .getElementsByClassName("container-OfCard")
         [i].getBoundingClientRect().bottom;
 
       if (viewPort.viewPortWidth < containerOfCardDistanceFromRight + 95) {
@@ -128,9 +118,6 @@ function App() {
     <>
       <addNewNoteContext.Provider value={[addNew, setAddNew]}>
         <cardArrayContext.Provider value={cardArray}>
-          <editAndSaveButtonContext.Provider
-            value={[editAndSaveButton, setEditAndSaveButton]}
-          >
             <header>
               <Header setNewQuery={setQuery} />
             </header>
@@ -164,7 +151,6 @@ function App() {
                 </div>
               </div>
             </section>
-          </editAndSaveButtonContext.Provider>
         </cardArrayContext.Provider>
       </addNewNoteContext.Provider>
     </>
