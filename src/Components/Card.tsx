@@ -41,7 +41,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
   useEffect(() => {
     const middlePartOfCard: any =
-      document.getElementsByClassName("middle-part-OfCard")[indexOfCard];
+      document.getElementsByClassName("file-OfCard")[indexOfCard];
 
     if (elementOfCard.files != "") {
       middlePartOfCard.style.display = "grid";
@@ -128,6 +128,11 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     if (bodyToggolOnChange == true) {
       setBodyToggolOnChange(!bodyToggolOnChange);
     }
+
+    const bodyOfCard: any =
+      document.getElementsByClassName("body-OfCard")[indexOfCard];
+
+    bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
   };
 
   /////////////////////// Return Method ///////////////////////
@@ -139,7 +144,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
           className={
             editAndSaveButton == false
               ? "container-OfCard"
-              : "container-OfCard container-OfCard-inEditMode"
+              : "container-OfCard pop-up-inEditMode"
           }
           onMouseEnter={() => {
             const overlayOnLowerPartOfCard: any =
@@ -190,7 +195,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               />
             </div>
 
-            <div className="middle-part-OfCard">
+            <div className="file-OfCard">
               {elementOfCard.files.map((element: any, index: number) => {
                 return (
                   <div key={index} className="files-container">
@@ -466,9 +471,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             }}
             onDrop={(event) => {
               const middlePartOfCard: any =
-                document.getElementsByClassName("middle-part-OfCard")[
-                  indexOfCard
-                ];
+                document.getElementsByClassName("file-OfCard")[indexOfCard];
               const dragAndDropOverlayOnUpperPartOfCard: any =
                 document.getElementsByClassName(
                   "drag-and-drop-overlay-on-upper-part-OfCard"

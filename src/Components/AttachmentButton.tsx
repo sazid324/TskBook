@@ -24,7 +24,7 @@ export default function AttachmentButton({
   // Adding functionality of Select File button.
   const functionCalledByFileUploadButtonOnClick = (event: any) => {
     const middlePartOfCard: any =
-      document.getElementsByClassName("middle-part-OfCard")[indexOfCard];
+      document.getElementsByClassName("file-OfCard")[indexOfCard];
 
     middlePartOfCard.style.display = "grid";
 

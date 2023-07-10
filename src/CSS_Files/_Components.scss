@@ -229,7 +229,7 @@
       }
     }
 
-    .middle-part-OfCard {
+    .file-OfCard {
       position: relative;
       width: 100%;
       display: grid;
@@ -620,20 +620,6 @@
         }
       }
     }
-  }
-}
-
-.container-OfCard-inEditMode {
-  position: fixed;
-  width: 75dvw;
-  height: 75dvh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 6;
-
-  &:hover {
-    cursor: auto;
   }
 }
 
