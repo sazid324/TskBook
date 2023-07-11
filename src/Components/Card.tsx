@@ -40,14 +40,18 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
 
   useEffect(() => {
-    const middlePartOfCard: any =
+    const fileOfCard: any =
       document.getElementsByClassName("file-OfCard")[indexOfCard];
+    const bodyOfCard: any =
+      document.getElementsByClassName("body-OfCard")[indexOfCard];
 
     if (elementOfCard.files != "") {
-      middlePartOfCard.style.display = "grid";
+      fileOfCard.style.display = "grid";
     } else {
-      middlePartOfCard.style.display = "none";
+      fileOfCard.style.display = "none";
     }
+
+    bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
   }, []);
 
   useEffect(() => {
@@ -71,6 +75,12 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
   // Adding functionality of Edit and Save button in Card.
   useEffect(() => {
+    const containerOfCard: any =
+      document.getElementsByClassName("container-OfCard")[indexOfCard];
+    const upperPartOfCard: any =
+      document.getElementsByClassName("upper-part-OfCard")[indexOfCard];
+    const LowerPartOfCard: any =
+      document.getElementsByClassName("lower-part-OfCard")[indexOfCard];
     const headingOfCard: any =
       document.getElementsByClassName("heading-OfCard")[indexOfCard];
     const bodyOfCard: any =
@@ -94,6 +104,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
         bodyOfCard.style.display = "none";
       }
 
+      upperPartOfCard.style.height = "100%";
+
       editAndSaveButtonOfCard.src = `${editImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Edit";
 
@@ -110,6 +122,11 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       bodyOfCard.style.display = "block";
       editAndSaveButtonOfCard.src = `${saveImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Save";
+
+      upperPartOfCard.style.cssText = `height: ${
+        containerOfCard.clientHeight - LowerPartOfCard.clientHeight - 15
+      }px`;
+      bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
     }
   }, [editAndSaveButton]);
 
@@ -470,7 +487,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
             }}
             onDrop={(event) => {
-              const middlePartOfCard: any =
+              const fileOfCard: any =
                 document.getElementsByClassName("file-OfCard")[indexOfCard];
               const dragAndDropOverlayOnUpperPartOfCard: any =
                 document.getElementsByClassName(
@@ -481,7 +498,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   "drag-and-drop-second-overlay-on-upper-part-OfCard"
                 )[indexOfCard];
 
-              middlePartOfCard.style.display = "grid";
+              fileOfCard.style.display = "grid";
               dragAndDropOverlayOnUpperPartOfCard.style.display = "none";
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
 
