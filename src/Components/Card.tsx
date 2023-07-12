@@ -92,6 +92,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       document.getElementsByClassName("edit-element-text-in-lower-part-OfCard")[
         indexOfCard
       ];
+    const popUpOverlay: any =
+      document.getElementsByClassName("pop-up-overlay")[indexOfCard];
 
     if (editAndSaveButton == false) {
       headingOfCard.disabled = true;
@@ -105,6 +107,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       }
 
       upperPartOfCard.style.height = "100%";
+      popUpOverlay.style.display = "none";
 
       editAndSaveButtonOfCard.src = `${editImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Edit";
@@ -120,6 +123,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       bodyOfCard.disabled = false;
       headingOfCard.style.display = "block";
       bodyOfCard.style.display = "block";
+      popUpOverlay.style.display = "block";
       editAndSaveButtonOfCard.src = `${saveImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Save";
 
@@ -532,6 +536,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             }}
           ></div>
         </div>
+        <div className="pop-up-overlay"></div>
       </fileUploadContext.Provider>
     </>
   );
