@@ -42,16 +42,12 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   useEffect(() => {
     const fileOfCard: any =
       document.getElementsByClassName("file-OfCard")[indexOfCard];
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[indexOfCard];
 
     if (elementOfCard.files != "") {
       fileOfCard.style.display = "grid";
     } else {
       fileOfCard.style.display = "none";
     }
-
-    bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
   }, []);
 
   useEffect(() => {
@@ -112,6 +108,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       editAndSaveButtonOfCard.src = `${editImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Edit";
 
+      headingOfCard.scrollIntoView();
+
       localStorage.setItem(
         "card-notes-in-local-storage",
         JSON.stringify(addNew)
@@ -128,7 +126,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       editElementTextInLowerPartOfCard.innerHTML = "Save";
 
       upperPartOfCard.style.cssText = `height: ${
-        containerOfCard.clientHeight - LowerPartOfCard.clientHeight - 15
+        containerOfCard.clientHeight - LowerPartOfCard.clientHeight
       }px`;
       bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
     }

@@ -5,7 +5,7 @@
 .pop-up-inEditMode {
   position: fixed;
   width: 50dvw;
-  height: 75dvh;
+  height: 60dvh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -13,7 +13,7 @@
   z-index: 7;
 
   .upper-part-OfCard {
-    overflow: auto;
+    overflow-y: scroll;
 
     &::-webkit-scrollbar {
       display: none;
@@ -24,10 +24,10 @@
     display: block;
     border-top: none;
 
-    .lower-part-container-OfCard{
+    .lower-part-container-OfCard {
       @include flexCenter(left, center);
 
-      .element-in-lower-part-OfCard{
+      .element-in-lower-part-OfCard {
         margin-right: 15px;
       }
     }
