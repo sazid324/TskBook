@@ -100,6 +100,14 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       }
       if (bodyOfCard.value == "") {
         bodyOfCard.style.display = "none";
+      } else {
+        if (elementOfCard.files == "") {
+          bodyOfCard.style.cssText =
+            "display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;";
+        } else {
+          bodyOfCard.style.cssText =
+            "display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;";
+        }
       }
 
       upperPartOfCard.style.height = "100%";
@@ -126,7 +134,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       editElementTextInLowerPartOfCard.innerHTML = "Save";
 
       upperPartOfCard.style.cssText = `height: ${
-        containerOfCard.clientHeight - LowerPartOfCard.clientHeight
+        containerOfCard.clientHeight - LowerPartOfCard.clientHeight - 15
       }px`;
       bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
     }
@@ -233,6 +241,21 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   : bodyValueOnChange || ""
               }
               onChange={(event: any) => functionCalledByBodyOnChange(event)}
+              onKeyUp={() => {
+                const upperPartOfCard: any =
+                  document.getElementsByClassName("upper-part-OfCard")[
+                    indexOfCard
+                  ];
+                const bodyOfCard: any =
+                  document.getElementsByClassName("body-OfCard")[indexOfCard];
+
+                if (
+                  bodyOfCard.selectionStart == bodyOfCard.value.length &&
+                  bodyOfCard.selectionEnd == bodyOfCard.value.length
+                ) {
+                  upperPartOfCard.scrollTo(0, upperPartOfCard.scrollHeight);
+                }
+              }}
             ></textarea>
           </div>
           <div className="lower-part-OfCard">

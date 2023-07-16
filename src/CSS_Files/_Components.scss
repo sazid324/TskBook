@@ -196,7 +196,7 @@
     height: 100%;
     display: grid;
     grid-gap: 0.75rem;
-    grid-template-rows: 28px fit-content(100%) auto;
+    grid-template-rows: 28px;
     grid-auto-flow: dense;
     background-color: transparent;
     border-radius: 5px 5px 0px 0px;
@@ -214,7 +214,6 @@
         font-weight: bold;
         font-size: 1rem;
         color: #202124;
-        display: none;
         overflow: hidden;
         text-overflow: ellipsis;
 
@@ -238,7 +237,6 @@
       grid-template-columns: repeat(auto-fill, minmax(30%, auto));
       grid-auto-rows: fit-content(100%);
       grid-auto-flow: dense;
-      display: none;
 
       .files-container {
         @include flexCenter(center, center);
@@ -258,8 +256,6 @@
       border: none;
       outline: none;
       resize: none;
-      display: none;
-      overflow: hidden;
 
       &::-webkit-scrollbar {
         display: none;
