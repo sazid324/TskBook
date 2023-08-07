@@ -81,6 +81,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       document.getElementsByClassName("heading-OfCard")[indexOfCard];
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[indexOfCard];
+    const subBodyOfCard: any =
+      document.getElementsByClassName("sub-body-OfCard")[indexOfCard];
     const editAndSaveButtonOfCard: any = document.getElementsByClassName(
       "edit-and-save-button-OfCard"
     )[indexOfCard];
@@ -94,25 +96,41 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     if (editAndSaveButton == false) {
       headingOfCard.disabled = true;
       bodyOfCard.disabled = true;
+      bodyOfCard.style.display = "none";
 
       if (headingOfCard.value == "") {
         headingOfCard.style.display = "none";
       }
       if (bodyOfCard.value == "") {
-        bodyOfCard.style.display = "none";
+        subBodyOfCard.style.display = "none";
       } else {
+        subBodyOfCard.style.display = "block";
+        subBodyOfCard.style.height = `${subBodyOfCard.scrollHeight}px`;
+
         if (elementOfCard.files == "") {
           const totalContainableCharacters: number = Math.floor(
-            (bodyOfCard.clientWidth / 7.1) * 5
+            (subBodyOfCard.clientWidth / 6.8) * 6
           );
 
           if (bodyOfCard.value.length >= totalContainableCharacters) {
+            subBodyOfCard.value = `${bodyOfCard.value.slice(
+              0,
+              totalContainableCharacters - 4
+            )}...`;
+          } else {
+            subBodyOfCard.value = bodyOfCard.value;
           }
         } else {
           const totalContainableCharacters: number = Math.floor(
-            (bodyOfCard.clientWidth / 7.1) * 2
+            (subBodyOfCard.clientWidth / 6.8) * 3
           );
           if (bodyOfCard.value.length >= totalContainableCharacters) {
+            subBodyOfCard.value = `${bodyOfCard.value.slice(
+              0,
+              totalContainableCharacters - 4
+            )}...`;
+          } else {
+            subBodyOfCard.value = bodyOfCard.value;
           }
         }
       }
@@ -136,6 +154,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       bodyOfCard.disabled = false;
       headingOfCard.style.display = "block";
       bodyOfCard.style.display = "block";
+      subBodyOfCard.style.display = "none";
       popUpOverlay.style.display = "block";
       editAndSaveButtonOfCard.src = `${saveImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Save";
@@ -264,6 +283,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 }
               }}
             ></textarea>
+            <textarea className="sub-body-OfCard"></textarea>
           </div>
           <div className="lower-part-OfCard">
             <div className="lower-part-container-OfCard">

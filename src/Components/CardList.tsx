@@ -17,6 +17,18 @@ export default function CardList({ cardArrayProp }: CardListElements) {
   // Variables
   let localNotesLoaded: boolean = false;
 
+  // Functions
+  window.onload = () => {
+    cardArrayProp.forEach((element: any) => {
+      const bodyOfCard: any =
+        document.getElementsByClassName("body-OfCard")[
+          cardArrayProp.indexOf(element)
+        ];
+
+      bodyOfCard.style.display = "none";
+    });
+  };
+
   // Hooks
   const [addNew, setAddNew] = useContext<any>(addNewNoteContext);
 
