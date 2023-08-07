@@ -196,7 +196,7 @@
     height: 100%;
     display: grid;
     grid-gap: 0.75rem;
-    grid-template-rows: 28px;
+    grid-template-rows: 28px fit-content(100%);
     grid-auto-flow: dense;
     background-color: transparent;
     border-radius: 5px 5px 0px 0px;
@@ -250,12 +250,13 @@
     .body-OfCard {
       width: 100%;
       font-family: Lato-Regular;
-      font-size: 0.9rem;
+      font-size: 14.5px;
       color: #202124;
       background-color: transparent;
       border: none;
       outline: none;
       resize: none;
+      overflow: hidden;
 
       &::-webkit-scrollbar {
         display: none;

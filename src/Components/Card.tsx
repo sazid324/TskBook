@@ -102,11 +102,18 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
         bodyOfCard.style.display = "none";
       } else {
         if (elementOfCard.files == "") {
-          bodyOfCard.style.cssText =
-            "display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;";
+          const totalContainableCharacters: number = Math.floor(
+            (bodyOfCard.clientWidth / 7.1) * 5
+          );
+
+          if (bodyOfCard.value.length >= totalContainableCharacters) {
+          }
         } else {
-          bodyOfCard.style.cssText =
-            "display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;";
+          const totalContainableCharacters: number = Math.floor(
+            (bodyOfCard.clientWidth / 7.1) * 2
+          );
+          if (bodyOfCard.value.length >= totalContainableCharacters) {
+          }
         }
       }
 
