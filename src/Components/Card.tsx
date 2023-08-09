@@ -38,6 +38,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
+  const [previousValueLenghtOfBodyOfCard, setPreviousValueLenghtOfBodyOfCard] =
+    useState(0);
 
   useEffect(() => {
     const fileOfCard: any =
@@ -109,7 +111,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
         if (elementOfCard.files == "") {
           const totalContainableCharacters: number = Math.floor(
-            (subBodyOfCard.clientWidth / 6.8) * 6
+            (subBodyOfCard.clientWidth / 6.8) * 5
           );
 
           if (bodyOfCard.value.length >= totalContainableCharacters) {
@@ -122,7 +124,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
           }
         } else {
           const totalContainableCharacters: number = Math.floor(
-            (subBodyOfCard.clientWidth / 6.8) * 3
+            (subBodyOfCard.clientWidth / 6.8) * 2
           );
           if (bodyOfCard.value.length >= totalContainableCharacters) {
             subBodyOfCard.value = `${bodyOfCard.value.slice(
@@ -185,7 +187,13 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[indexOfCard];
 
+    if (bodyOfCard.value.length <= previousValueLenghtOfBodyOfCard) {
+      bodyOfCard.style.height = "100%";
+    }
+
     bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
+
+    setPreviousValueLenghtOfBodyOfCard(bodyValueOnChange.length);
   };
 
   /////////////////////// Return Method ///////////////////////
