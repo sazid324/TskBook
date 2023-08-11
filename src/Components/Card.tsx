@@ -38,8 +38,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
-  const [previousValueLenghtOfBodyOfCard, setPreviousValueLenghtOfBodyOfCard] =
-    useState(0);
 
   useEffect(() => {
     const fileOfCard: any =
@@ -77,14 +75,14 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       document.getElementsByClassName("container-OfCard")[indexOfCard];
     const upperPartOfCard: any =
       document.getElementsByClassName("upper-part-OfCard")[indexOfCard];
+    const shadowPartOfCard: any =
+      document.getElementsByClassName("shadow-part-OfCard")[indexOfCard];
     const LowerPartOfCard: any =
       document.getElementsByClassName("lower-part-OfCard")[indexOfCard];
     const headingOfCard: any =
       document.getElementsByClassName("heading-OfCard")[indexOfCard];
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[indexOfCard];
-    const subBodyOfCard: any =
-      document.getElementsByClassName("sub-body-OfCard")[indexOfCard];
     const editAndSaveButtonOfCard: any = document.getElementsByClassName(
       "edit-and-save-button-OfCard"
     )[indexOfCard];
@@ -98,43 +96,14 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     if (editAndSaveButton == false) {
       headingOfCard.disabled = true;
       bodyOfCard.disabled = true;
-      bodyOfCard.style.display = "none";
+      shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 95%);`;
 
       if (headingOfCard.value == "") {
         headingOfCard.style.display = "none";
       }
+
       if (bodyOfCard.value == "") {
-        subBodyOfCard.style.display = "none";
-      } else {
-        subBodyOfCard.style.display = "block";
-        subBodyOfCard.style.height = `${subBodyOfCard.scrollHeight}px`;
-
-        if (elementOfCard.files == "") {
-          const totalContainableCharacters: number = Math.floor(
-            (subBodyOfCard.clientWidth / 6.8) * 5
-          );
-
-          if (bodyOfCard.value.length >= totalContainableCharacters) {
-            subBodyOfCard.value = `${bodyOfCard.value.slice(
-              0,
-              totalContainableCharacters - 4
-            )}...`;
-          } else {
-            subBodyOfCard.value = bodyOfCard.value;
-          }
-        } else {
-          const totalContainableCharacters: number = Math.floor(
-            (subBodyOfCard.clientWidth / 6.8) * 2
-          );
-          if (bodyOfCard.value.length >= totalContainableCharacters) {
-            subBodyOfCard.value = `${bodyOfCard.value.slice(
-              0,
-              totalContainableCharacters - 4
-            )}...`;
-          } else {
-            subBodyOfCard.value = bodyOfCard.value;
-          }
-        }
+        bodyOfCard.style.display = "none";
       }
 
       upperPartOfCard.style.height = "100%";
@@ -149,6 +118,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
         "card-notes-in-local-storage",
         JSON.stringify(addNew)
       );
+
+      bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
     }
 
     if (editAndSaveButton == true) {
@@ -156,7 +127,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       bodyOfCard.disabled = false;
       headingOfCard.style.display = "block";
       bodyOfCard.style.display = "block";
-      subBodyOfCard.style.display = "none";
+      shadowPartOfCard.style.display = "none";
       popUpOverlay.style.display = "block";
       editAndSaveButtonOfCard.src = `${saveImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Save";
@@ -187,13 +158,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[indexOfCard];
 
-    if (bodyOfCard.value.length <= previousValueLenghtOfBodyOfCard) {
-      bodyOfCard.style.height = "100%";
-    }
-
     bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
-
-    setPreviousValueLenghtOfBodyOfCard(bodyValueOnChange.length);
   };
 
   /////////////////////// Return Method ///////////////////////
@@ -291,8 +256,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 }
               }}
             ></textarea>
-            <textarea className="sub-body-OfCard"></textarea>
           </div>
+          <div className="shadow-part-OfCard"></div>
           <div className="lower-part-OfCard">
             <div className="lower-part-container-OfCard">
               <button

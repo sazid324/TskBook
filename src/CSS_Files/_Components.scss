@@ -188,7 +188,7 @@
   height: 11.2rem;
   border: none;
   border-radius: 5px;
-  padding: 0.9rem 0.9rem 1.7rem 0.9rem;
+  padding: 0.9rem 0.9rem 1.5rem 0.9rem;
   box-shadow: 0 0 0.2rem 0.1rem rgb(214, 214, 214);
   overflow: hidden;
 
@@ -247,8 +247,7 @@
       }
     }
 
-    .body-OfCard,
-    .sub-body-OfCard {
+    .body-OfCard {
       width: 100%;
       font-family: Lato-Regular;
       font-size: 0.9rem;
@@ -273,6 +272,15 @@
         }
       }
     }
+  }
+
+  .shadow-part-OfCard {
+    position: absolute;
+    width: 100%;
+    height: 3rem;
+    left: 0;
+    right: 0;
+    bottom: 1.5rem;
   }
 
   .lower-part-OfCard {

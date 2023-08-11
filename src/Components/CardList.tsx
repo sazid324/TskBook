@@ -17,24 +17,6 @@ export default function CardList({ cardArrayProp }: CardListElements) {
   // Variables
   let localNotesLoaded: boolean = false;
 
-  // Functions
-  window.onload = () => {
-    cardArrayProp.forEach((element: any) => {
-      const upperPartOfCard: any =
-        document.getElementsByClassName("upper-part-OfCard")[
-          cardArrayProp.indexOf(element)
-        ];
-      const bodyOfCard: any =
-        document.getElementsByClassName("body-OfCard")[
-          cardArrayProp.indexOf(element)
-        ];
-
-      upperPartOfCard.style.cssText =
-        "grid-template-rows: 23px fit-content(100%);";
-      bodyOfCard.style.display = "none";
-    });
-  };
-
   // Hooks
   const [addNew, setAddNew] = useContext<any>(addNewNoteContext);
 

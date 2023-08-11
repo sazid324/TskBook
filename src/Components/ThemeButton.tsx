@@ -39,10 +39,13 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
 
     const containerOfCard: any =
       document.getElementsByClassName("container-OfCard")[indexOfCard];
+    const shadowPartOfCard: any =
+      document.getElementsByClassName("shadow-part-OfCard")[indexOfCard];
     const lowerPartOfCard: any =
       document.getElementsByClassName("lower-part-OfCard")[indexOfCard];
 
     containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+    shadowPartOfCard.style.cssText = `background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 95%);`;
     lowerPartOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
     localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
