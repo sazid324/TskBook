@@ -5,7 +5,7 @@ import { useEffect, useState, useContext, createContext } from "react";
 import ThreeDotMenu from "./ThreeDotMenu";
 import ThemeButton from "./ThemeButton";
 import AttachmentButton from "./AttachmentButton";
-import { addNewNoteContext } from "./App";
+import { addNewNoteContext } from "../Pages/Note";
 
 // Component exports
 export const fileUploadContext: any = createContext(null);
@@ -96,7 +96,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     if (editAndSaveButton == false) {
       headingOfCard.disabled = true;
       bodyOfCard.disabled = true;
-      shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 95%);`;
+      shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 90%);`;
 
       if (headingOfCard.value == "") {
         headingOfCard.style.display = "none";

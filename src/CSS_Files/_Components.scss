@@ -141,24 +141,34 @@
     @include flexCenter(left, center);
     flex-direction: row;
 
+    &.active {
+      background-color: $activeButtonColorLight;
+    }
+
     &:hover,
     &:active {
       cursor: pointer;
-      background-color: $mainColorLight;
+      background-color: $mainColor;
     }
 
-    .image-in-li-OfListGroup {
-      @include flexCenter(center, center);
-      float: left;
+    .link-in-li-OfListGroup {
+      text-decoration: none;
+      color: inherit;
+      display: inherit;
+      
+      .image-in-li-OfListGroup {
+        @include flexCenter(center, center);
+        float: left;
 
-      .li-logo-image-OfListGroup {
-        height: 1.2rem;
+        .li-logo-image-OfListGroup {
+          height: 1.2rem;
+        }
       }
-    }
 
-    .text-in-li-OfListGroup {
-      padding-left: 17px;
-      display: block;
+      .text-in-li-OfListGroup {
+        padding-left: 17px;
+        display: block;
+      }
     }
   }
 }
@@ -280,7 +290,7 @@
     height: 3rem;
     left: 0;
     right: 0;
-    bottom: 1.5rem;
+    bottom: 1.4rem;
   }
 
   .lower-part-OfCard {

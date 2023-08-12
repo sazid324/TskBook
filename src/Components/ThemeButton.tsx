@@ -2,7 +2,7 @@
 import { useEffect, useContext } from "react";
 
 // Component imports
-import { addNewNoteContext } from "./App";
+import { addNewNoteContext } from "../Pages/Note";
 
 // Assets
 import cardBackgroundImage from "../assets/Images/Icons_and_logos/cardBackground.svg";
