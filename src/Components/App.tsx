@@ -7,7 +7,12 @@ import Header from "../Components/Header";
 import ListGroup from "../Components/ListGroup";
 import Copyright from "../Components/Copyright";
 import Button from "../Components/Button";
-import Note from "../Pages/Note";
+import Note from "../Pages/Notes";
+import ToDo from "../Pages/ToDo";
+import Reminders from "../Pages/Reminders";
+import Labels from "../Pages/Labels";
+import Archive from "../Pages/Archive";
+import Trash from "../Pages/Trash";
 
 function App() {
   // Hooks
@@ -45,11 +50,16 @@ function App() {
             <div className="elements-container">
               <Routes>
                 <Route
-                  path="/note"
+                  path="/notes"
                   element={
                     <Note addNew={addNew} setAddNew={setAddNew} query={query} />
                   }
                 />
+                <Route path="/todo" element={<ToDo />} />
+                <Route path="/reminders" element={<Reminders />} />
+                <Route path="/labels" element={<Labels />} />
+                <Route path="/archive" element={<Archive />} />
+                <Route path="/trash" element={<Trash />} />
               </Routes>
             </div>
           </div>

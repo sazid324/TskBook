@@ -2,7 +2,7 @@
 import { useContext } from "react";
 
 // Component imports
-import { addNewNoteContext, cardArrayContext } from "../Pages/Note";
+import { addNewNoteContext, cardArrayContext } from "../Pages/Notes";
 
 // Assets
 import threeDotImage from "../assets/Images/Icons_and_logos/threeDot.svg";

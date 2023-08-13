@@ -15,7 +15,7 @@ interface NoteElements {
   query: any;
 }
 
-function Note({ addNew, setAddNew, query }: NoteElements) {
+export default function Notes({ addNew, setAddNew, query }: NoteElements) {
   // Functions
   window.onresize = () => {
     setViewPort({
@@ -110,5 +110,3 @@ function Note({ addNew, setAddNew, query }: NoteElements) {
     </>
   );
 }
-
-export default Note;

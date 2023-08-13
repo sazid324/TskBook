@@ -5,7 +5,7 @@ import { useEffect, useState, useContext, createContext } from "react";
 import ThreeDotMenu from "./ThreeDotMenu";
 import ThemeButton from "./ThemeButton";
 import AttachmentButton from "./AttachmentButton";
-import { addNewNoteContext } from "../Pages/Note";
+import { addNewNoteContext } from "../Pages/Notes";
 
 // Component exports
 export const fileUploadContext: any = createContext(null);

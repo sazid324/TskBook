@@ -7,7 +7,11 @@ interface ButtonElements {
   children: string;
 }
 
-export default function Button({ addNew, setAddNew, children }: ButtonElements) {
+export default function Button({
+  addNew,
+  setAddNew,
+  children,
+}: ButtonElements) {
   // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {
     const addNewContainerOfCard: any = [
