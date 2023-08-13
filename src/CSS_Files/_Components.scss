@@ -134,28 +134,28 @@
 /*===STARTING OF ListGroup component PART===*/
 
 .ul-OfListGroup {
-  .li-OfListGroup {
-    list-style-type: none;
-    padding: 1rem 1.7rem 1rem 1.7rem;
-    border-radius: 5px;
-    @include flexCenter(left, center);
-    flex-direction: row;
+  .link-in-li-OfListGroup {
+    text-decoration: none;
+    color: inherit;
+    display: inherit;
 
-    &.active {
-      background-color: $activeButtonColorLight;
-    }
+    .li-OfListGroup {
+      list-style-type: none;
+      padding: 1rem 1.7rem 1rem 1.7rem;
+      border-radius: 5px;
+      @include flexCenter(left, center);
+      flex-direction: row;
 
-    &:hover,
-    &:active {
-      cursor: pointer;
-      background-color: $mainColor;
-    }
+      &.active {
+        background-color: $activeButtonColorLight;
+      }
 
-    .link-in-li-OfListGroup {
-      text-decoration: none;
-      color: inherit;
-      display: inherit;
-      
+      &:hover,
+      &:active {
+        cursor: pointer;
+        background-color: $mainColor;
+      }
+
       .image-in-li-OfListGroup {
         @include flexCenter(center, center);
         float: left;
