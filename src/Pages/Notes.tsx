@@ -1,12 +1,12 @@
 // Library imports
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 
 // Component imports
 import CardList from "../Components/CardList";
 
 // Component exports
-export const addNewNoteContext: any = React.createContext(null);
-export const cardArrayContext: any = React.createContext(null);
+export const addNewNoteContext: any = createContext(null);
+export const cardArrayContext: any = createContext(null);
 
 // Interfaces
 interface NoteElements {

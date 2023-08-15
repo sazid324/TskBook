@@ -1,5 +1,5 @@
 // Library imports
-import { useState } from "react";
+import { useState, createContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Component imports
@@ -14,6 +14,9 @@ import Labels from "../Pages/Labels";
 import Archive from "../Pages/Archive";
 import Trash from "../Pages/Trash";
 
+// Component exports
+export const currentPageContext: any = createContext(null);
+
 function App() {
   // Hooks
   const [addNew, setAddNew] = useState(() => {
@@ -23,6 +26,7 @@ function App() {
     return storedValue ? JSON.parse(storedValue) : [];
   });
   const [query, setQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState("/notes");
 
   /////////////////////// Return Method ///////////////////////
 
@@ -36,10 +40,14 @@ function App() {
           <div className="left-part">
             <div className="left-part-container">
               <div className="left-part-upper-section">
-                <Button addNew={addNew} setAddNew={setAddNew}>
-                  Add New
-                </Button>
-                <ListGroup />
+                <currentPageContext.Provider
+                  value={[currentPage, setCurrentPage]}
+                >
+                  <Button addNew={addNew} setAddNew={setAddNew}>
+                    Add New
+                  </Button>
+                  <ListGroup />
+                </currentPageContext.Provider>
               </div>
               <div className="left-part-lower-section">
                 <Copyright />

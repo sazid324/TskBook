@@ -1,5 +1,9 @@
 // Library imports
+import { useContext } from "react";
 import { Link, useResolvedPath, useMatch } from "react-router-dom";
+
+// Component imports
+import { currentPageContext } from "./App";
 
 // Assets
 import noteImage from "../assets/Images/Icons_and_logos/note.svg";
@@ -69,7 +73,7 @@ export default function ListGroup() {
 
 // Custom Interface
 
-interface ListItemElements {
+interface ListItemCustomElements {
   imageSource: any;
   imageAlt: string;
   sourceLink: any;
@@ -77,15 +81,18 @@ interface ListItemElements {
 }
 
 // Custom funcions
-
 function ListItem({
   imageSource,
   imageAlt,
   sourceLink,
   children,
-}: ListItemElements) {
-  // Variables
+}: ListItemCustomElements) {
+  // Custom Variables
   const resolvedPath: any = useResolvedPath(sourceLink);
+
+  // Hooks
+  // @ts-ignore
+  const [currentPage, setCurrentPage] = useContext<any>(currentPageContext);
 
   /////////////////////// Return Method ///////////////////////
 
@@ -98,6 +105,9 @@ function ListItem({
               ? "li-OfListGroup active"
               : "li-OfListGroup"
           }
+          onClick={() => {
+            setCurrentPage(resolvedPath.pathname);
+          }}
         >
           <span className="image-in-li-OfListGroup">
             <img
