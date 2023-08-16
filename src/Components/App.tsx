@@ -1,6 +1,6 @@
 // Library imports
 import { useState, createContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 // Component imports
 import Header from "../Components/Header";
@@ -57,8 +57,9 @@ function App() {
           <div className="right-part">
             <div className="elements-container">
               <Routes>
+                <Route path="/" element={<Navigate to="/notes" />} />
                 <Route
-                  path="/"
+                  path="/notes"
                   element={
                     <Note addNew={addNew} setAddNew={setAddNew} query={query} />
                   }

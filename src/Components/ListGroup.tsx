@@ -22,7 +22,7 @@ export default function ListGroup() {
         <ListItem
           imageSource={noteImage}
           imageAlt={"note_logo"}
-          sourceLink={"/"}
+          sourceLink={"/notes"}
         >
           Notes
         </ListItem>
