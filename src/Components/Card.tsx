@@ -2,6 +2,7 @@
 import { useEffect, useState, useContext, createContext } from "react";
 
 // Component imports
+import ReminderButton from "./ReminderButton";
 import ThreeDotMenu from "./ThreeDotMenu";
 import ThemeButton from "./ThemeButton";
 import AttachmentButton from "./AttachmentButton";
@@ -11,7 +12,6 @@ import { addNewNoteContext } from "../Pages/Notes";
 export const fileUploadContext: any = createContext(null);
 
 // Assets
-import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
 import editImage from "../assets/Images/Icons_and_logos/edit.svg";
 import saveImage from "../assets/Images/Icons_and_logos/save.svg";
@@ -262,13 +262,32 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
             <div className="lower-part-container-OfCard">
               <button
                 className="element-in-lower-part-OfCard"
+                onClick={() => {
+                  const reminderContentWraperInLowerPartOfCard: any =
+                    document.getElementsByClassName(
+                      "reminder-content-wraper-in-lower-part-OfCard"
+                    )[indexOfCard];
+                  reminderContentWraperInLowerPartOfCard.style.display =
+                    "block";
+
+                  const reminderButtonParagraphOfCard: any =
+                    document.getElementsByClassName(
+                      "reminder-button-paragraph-OfCard"
+                    )[indexOfCard];
+                  reminderButtonParagraphOfCard.style.display = "none";
+                }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
                     document.getElementsByClassName("container-OfCard")[
                       indexOfCard
                     ];
                   containerOfCard.style.cssText = "overflow: visible";
-                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+
+                  const reminderButtonParagraphOfCard: any =
+                    document.getElementsByClassName(
+                      "reminder-button-paragraph-OfCard"
+                    )[indexOfCard];
+                  reminderButtonParagraphOfCard.style.display = "block";
                 }}
                 onMouseLeave={() => {
                   const containerOfCard: any =
@@ -276,12 +295,21 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                       indexOfCard
                     ];
                   containerOfCard.style.cssText = "overflow: hidden";
-                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+
+                  const reminderContentWraperInLowerPartOfCard: any =
+                    document.getElementsByClassName(
+                      "reminder-content-wraper-in-lower-part-OfCard"
+                    )[indexOfCard];
+                  reminderContentWraperInLowerPartOfCard.style.display = "none";
+
+                  const reminderButtonParagraphOfCard: any =
+                    document.getElementsByClassName(
+                      "reminder-button-paragraph-OfCard"
+                    )[indexOfCard];
+                  reminderButtonParagraphOfCard.style.display = "none";
                 }}
               >
-                <img src={reminderImage} alt="reminder-image" />
-                <p className="element-text-in-lower-part-OfCard">Reminder</p>
-                <span className="overlay-on-element-in-lower-part-OfCard"></span>
+                <ReminderButton indexOfCard={indexOfCard} />
               </button>
 
               <button

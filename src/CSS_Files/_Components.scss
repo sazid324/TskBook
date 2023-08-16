@@ -365,6 +365,50 @@
           }
         }
 
+        /*---STARTING OF ReminderButton component PART---*/
+
+        .reminder-button-container-OfCard {
+          @include flexCenter(center, center);
+
+          .reminder-content-wraper-in-lower-part-OfCard {
+            @include cardButtonItemsWraper(0.625rem);
+
+            .contents-in-reminder-button-OfCard {
+              width: 165px;
+              height: fit-content(100%);
+              @include cardButton(0.625rem);
+            }
+          }
+        }
+
+        &:active
+          > .reminder-button-container-OfCard
+          > .reminder-content-wraper-in-lower-part-OfCard,
+        &:focus
+          > .reminder-button-container-OfCard
+          > .reminder-content-wraper-in-lower-part-OfCard {
+          display: block;
+          animation-name: reminderBurronInLowerPartOfCardAnimationOnHover;
+          animation-duration: 0.5s;
+
+          @keyframes reminderBurronInLowerPartOfCardAnimationOnHover {
+            0% {
+              opacity: 1;
+              transform: none;
+            }
+            50% {
+              opacity: 1;
+              transform: translateY(18px);
+            }
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+        }
+
+        /*---ENDING OF ReminderButton component PART---*/
+
         /*---STARTING OF ThemeButton component PART---*/
 
         .theme-menu-button-container-OfCard {
