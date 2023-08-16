@@ -58,7 +58,7 @@ function App() {
             <div className="elements-container">
               <Routes>
                 <Route
-                  path="/notes"
+                  path="/"
                   element={
                     <Note addNew={addNew} setAddNew={setAddNew} query={query} />
                   }

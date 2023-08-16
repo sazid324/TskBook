@@ -23,7 +23,7 @@ export default function Button({
 
   // Adding functionality of Add New button.
   const functionCalledByAddNewButton = () => {
-    if (currentPage == "/notes") {
+    if (currentPage === "/") {
       const addNewContainerOfCard: any = [
         ...addNew,
         {
