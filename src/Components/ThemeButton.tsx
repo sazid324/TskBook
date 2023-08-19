@@ -6,6 +6,7 @@ import { addNewNoteContext } from "../Pages/Notes";
 
 // Assets
 import cardBackgroundImage from "../assets/Images/Icons_and_logos/cardBackground.svg";
+import arrowRight from "../assets/Images/Icons_and_logos/arrowRight.svg";
 
 // Interfaces
 interface ThreeDotMenuElements {
@@ -80,19 +81,29 @@ export default function ({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
             themeButtonParagraphOfCard.style.display = "none";
           }}
         >
-          <div className="color-items-in-theme-button-OfCard">
-            {colors.map((color: any, index: number) => {
-              return (
-                <div
-                  key={index}
-                  className="color-in-theme-button-OfCard"
-                  style={{
-                    backgroundColor: `${color}`,
-                  }}
-                  onClick={() => functionCalledByColorButtonOnClick(color)}
-                ></div>
-              );
-            })}
+          <div className="contents-in-theme-button-OfCard">
+            <h4 className="color-items-heading-OfCard">
+              Pick color
+              <img
+                className="color-items-heading-image-OfCard"
+                src={arrowRight}
+                alt="arrowRight-image"
+              />
+            </h4>
+            <div className="color-items-in-theme-button-OfCard">
+              {colors.map((color: any, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="color-in-theme-button-OfCard"
+                    style={{
+                      backgroundColor: `${color}`,
+                    }}
+                    onClick={() => functionCalledByColorButtonOnClick(color)}
+                  ></div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

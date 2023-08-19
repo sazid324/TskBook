@@ -69,6 +69,7 @@ function App() {
                 <Route path="/labels" element={<Labels />} />
                 <Route path="/archive" element={<Archive />} />
                 <Route path="/trash" element={<Trash />} />
+                <Route path="*" element={<Navigate to="/notes" />} />
               </Routes>
             </div>
           </div>

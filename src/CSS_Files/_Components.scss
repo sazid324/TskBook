@@ -374,9 +374,52 @@
             @include cardButtonItemsWraper(0.625rem);
 
             .contents-in-reminder-button-OfCard {
-              width: 165px;
-              height: fit-content(100%);
-              @include cardButton(0.625rem);
+              width: fit-content(100%);
+              @include cardButton(1rem);
+
+              .date-and-time-picker-heading-OfCard {
+                width: 100%;
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                margin-bottom: 15px;
+                color: #444444;
+
+                .date-and-time-picker-heading-image-OfCard {
+                  margin-left: 3px;
+                }
+              }
+
+              .date-picker-container-OfCard,
+              .time-picker-container-OfCard {
+                position: relative;
+                width: 100%;
+                border-bottom: 1px solid $cardBorderColor;
+                margin-bottom: 20px;
+
+                .date-picker-OfCard,
+                .time-picker-OfCard {
+                  border: none;
+                  outline: none;
+                  padding: 3px;
+                  color: #3a3a3a;
+
+                  &:active,
+                  &:focus {
+                    border: none;
+                    outline: none;
+                  }
+                }
+
+                .date-picker-image-OfCard,
+                .time-picker-image-OfCard {
+                  position: absolute;
+                  bottom: 3px;
+                  right: 2px;
+                  filter: invert(19%) sepia(9%) saturate(4%) hue-rotate(30deg)
+                    brightness(94%) contrast(85%);
+                }
+              }
             }
           }
         }
@@ -418,27 +461,43 @@
           .theme-items-wraper-in-lower-part-OfCard {
             @include cardButtonItemsWraper(0.625rem);
 
-            .color-items-in-theme-button-OfCard {
-              width: 165px;
-              height: fit-content(100%);
-              @include cardButton(0.625rem);
+            .contents-in-theme-button-OfCard {
+              width: 177px;
+              @include cardButton(1rem);
 
-              .color-in-theme-button-OfCard {
-                display: inline-block;
-                width: 1.5rem;
-                height: 1.5rem;
-                border-radius: 50%;
-                margin-right: 5px;
+              .color-items-heading-OfCard {
+                width: 100%;
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                margin-bottom: 15px;
+                color: #444444;
 
-                &:last-child {
-                  margin-right: none;
-                  border: 1px solid rgb(228, 228, 228);
+                .color-items-heading-image-OfCard {
+                  margin-left: 3px;
                 }
+              }
 
-                &:hover,
-                &:active {
-                  cursor: pointer;
-                  box-shadow: 0px 0px 0.5rem 0.15rem $mainColor;
+              .color-items-in-theme-button-OfCard {
+                width: 100%;
+
+                .color-in-theme-button-OfCard {
+                  display: inline-block;
+                  width: 1.5rem;
+                  height: 1.5rem;
+                  border-radius: 50%;
+                  margin-right: 5px;
+
+                  &:last-child {
+                    margin-right: none;
+                    border: 1px solid rgb(228, 228, 228);
+                  }
+
+                  &:hover,
+                  &:active {
+                    cursor: pointer;
+                    box-shadow: 0px 0px 0.5rem 0.15rem $mainColor;
+                  }
                 }
               }
             }
@@ -484,7 +543,6 @@
 
             .attachment-elements-in-lower-part-OfCard {
               width: 175px;
-              height: fit-content(100%);
               @include cardButton(0.625rem);
 
               .attachment-box {
