@@ -309,7 +309,10 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   reminderButtonParagraphOfCard.style.display = "none";
                 }}
               >
-                <ReminderButton indexOfCard={indexOfCard} />
+                <ReminderButton
+                  indexOfCard={indexOfCard}
+                  elementOfCard={elementOfCard}
+                />
               </button>
 
               <button

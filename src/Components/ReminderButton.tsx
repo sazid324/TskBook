@@ -12,14 +12,36 @@ import arrowRight from "../assets/Images/Icons_and_logos/arrowRight.svg";
 // Interfaces
 interface ReminderButtonElements {
   indexOfCard: number;
+  elementOfCard: any;
 }
 
 export default function ReminderButton({
   indexOfCard,
+  elementOfCard,
 }: ReminderButtonElements) {
   // Hooks
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
+
+  // Functions
+  const setReminderFunctionOnClick = () => {
+    Notification.requestPermission().then((permission: any) => {
+      if (permission === "granted") {
+        if (selectedDate && selectedTime) {
+          setTimeout(() => {
+            new Notification("TskBook", {
+              body: `${elementOfCard.headerValue}`,
+              icon: `${reminderImage}`,
+            });
+          }, 10000);
+
+          alert("Reminder has been set...");
+        } else {
+          alert("Please pick both Date and Time....");
+        }
+      }
+    });
+  };
 
   /////////////////////// Return Method ///////////////////////
 
@@ -77,9 +99,12 @@ export default function ReminderButton({
                 alt="watch-image"
               />
             </div>
-            <button className="date-and-time-picker-button-OfCard">
+            <span
+              className="date-and-time-picker-button-OfCard"
+              onClick={() => setReminderFunctionOnClick()}
+            >
               Set Reminder
-            </button>
+            </span>
           </div>
         </div>
       </div>
