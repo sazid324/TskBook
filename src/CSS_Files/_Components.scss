@@ -420,6 +420,22 @@
                     brightness(94%) contrast(85%);
                 }
               }
+
+              .date-and-time-picker-button-OfCard{
+                width: 100%;
+                padding: 4px;
+                font-weight: bold;
+                background-color: $mainColorLight;
+                color: #3a3a3a;
+                border: none;
+                border-radius: 5px;
+                margin-bottom: 3px;
+
+                &:hover {
+                  cursor: pointer;
+                  background-color: $mainColor;
+                }
+              }
             }
           }
         }

@@ -66,7 +66,7 @@ export default function ReminderButton({
                 inputClass="time-picker-OfCard"
                 placeholder="Pick time"
                 value={selectedTime}
-                onChange={(date: any) => setSelectedTime(date)}
+                onChange={(time: any) => setSelectedTime(time)}
                 disableDayPicker
                 format="hh:mm A"
                 plugins={[<TimePicker />]}
@@ -77,6 +77,9 @@ export default function ReminderButton({
                 alt="watch-image"
               />
             </div>
+            <button className="date-and-time-picker-button-OfCard">
+              Set Reminder
+            </button>
           </div>
         </div>
       </div>
