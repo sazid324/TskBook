@@ -421,7 +421,7 @@
                 }
               }
 
-              .date-and-time-picker-button-OfCard{
+              .date-and-time-picker-button-OfCard {
                 width: 100%;
                 padding: 4px;
                 font-weight: bold;
@@ -431,7 +431,8 @@
                 border-radius: 5px;
                 margin-bottom: 3px;
 
-                &:hover {
+                &:hover,
+                &:focus {
                   cursor: pointer;
                   background-color: $mainColor;
                 }
