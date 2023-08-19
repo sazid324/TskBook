@@ -28,12 +28,14 @@ export default function ReminderButton({
     Notification.requestPermission().then((permission: any) => {
       if (permission === "granted") {
         if (selectedDate && selectedTime) {
+          const reminderTime: any = new Date(`${selectedDate} ${selectedTime}`);
+
           setTimeout(() => {
             new Notification("TskBook", {
               body: `${elementOfCard.headerValue}`,
               icon: `${reminderImage}`,
             });
-          }, 10000);
+          }, reminderTime.getTime() - Date.now());
 
           alert("Reminder has been set...");
         } else {
@@ -90,7 +92,7 @@ export default function ReminderButton({
                 value={selectedTime}
                 onChange={(time: any) => setSelectedTime(time)}
                 disableDayPicker
-                format="hh:mm A"
+                format="hh:mm:ss A"
                 plugins={[<TimePicker />]}
               ></DatePicker>
               <img
