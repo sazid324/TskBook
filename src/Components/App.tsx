@@ -2,17 +2,18 @@
 import { useState, createContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-// Component imports
-import Header from "../Components/Header";
-import ListGroup from "../Components/ListGroup";
-import Copyright from "../Components/Copyright";
-import Button from "../Components/Button";
+// Pages imports
 import Note from "../Pages/Notes";
 import ToDo from "../Pages/ToDo";
 import Reminders from "../Pages/Reminders";
-import Labels from "../Pages/Labels";
 import Archive from "../Pages/Archive";
 import Trash from "../Pages/Trash";
+
+// Component imports
+import Header from "./Header";
+import ListGroup from "./ListGroup";
+import Copyright from "./Copyright";
+import Button from "./Button";
 
 // Component exports
 export const currentPageContext: any = createContext(null);
@@ -66,7 +67,6 @@ function App() {
                 />
                 <Route path="/todo" element={<ToDo />} />
                 <Route path="/reminders" element={<Reminders />} />
-                <Route path="/labels" element={<Labels />} />
                 <Route path="/archive" element={<Archive />} />
                 <Route path="/trash" element={<Trash />} />
                 <Route path="*" element={<Navigate to="/notes" />} />

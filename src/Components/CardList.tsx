@@ -3,6 +3,7 @@ import { useEffect, useContext } from "react";
 
 // Component imports
 import Card from "./Card";
+import PageWatermark from "./pageWatermark";
 import { addNewNoteContext } from "../Pages/Notes";
 
 // Assets
@@ -96,16 +97,11 @@ export default function CardList({ cardArrayProp }: CardListElements) {
           );
         })
       ) : (
-        <span className="watermark-on-no-items">
-          <img
-            className="watermark-img-on-no-items"
-            src={noteImage}
-            alt="note_logo"
-          />
-          <p className="watermark-text-on-no-items">
-            Notes you add appear here
-          </p>
-        </span>
+        <PageWatermark
+          imageSource={noteImage}
+          imageAlt={"note_logo"}
+          children={"Notes you add appear here"}
+        />
       )}
     </div>
   );

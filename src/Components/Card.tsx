@@ -1,5 +1,6 @@
 // Library imports
 import { useEffect, useState, useContext, createContext } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 
 // Component imports
 import ReminderButton from "./ReminderButton";
@@ -118,8 +119,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
         "card-notes-in-local-storage",
         JSON.stringify(addNew)
       );
-
-      bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
     }
 
     if (editAndSaveButton == true) {
@@ -135,7 +134,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       upperPartOfCard.style.cssText = `height: ${
         containerOfCard.clientHeight - LowerPartOfCard.clientHeight - 15
       }px`;
-      bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
     }
   }, [editAndSaveButton]);
 
@@ -154,11 +152,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     if (bodyToggolOnChange == true) {
       setBodyToggolOnChange(!bodyToggolOnChange);
     }
-
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[indexOfCard];
-
-    bodyOfCard.style.height = `${bodyOfCard.scrollHeight}px`;
   };
 
   /////////////////////// Return Method ///////////////////////
@@ -231,7 +224,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               })}
             </div>
 
-            <textarea
+            <TextareaAutosize
               className="body-OfCard"
               placeholder="Take a note...."
               value={
@@ -255,7 +248,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   upperPartOfCard.scrollTo(0, upperPartOfCard.scrollHeight);
                 }
               }}
-            ></textarea>
+            ></TextareaAutosize>
           </div>
           <div className="shadow-part-OfCard"></div>
           <div className="lower-part-OfCard">

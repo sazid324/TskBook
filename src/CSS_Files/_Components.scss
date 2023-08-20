@@ -776,3 +776,32 @@
 }
 
 /*===ENDING OF Card component PART===*/
+
+/*===STARTING OF PageWatermark component PART===*/
+
+.watermark-on-no-items {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .watermark-img-on-no-items {
+    width: 5dvw;
+    padding-bottom: 0.8rem;
+    filter: invert(81%) sepia(17%) saturate(0%) hue-rotate(195deg)
+      brightness(98%) contrast(111%);
+  }
+
+  .watermark-text-on-no-items {
+    color: $elementColorOnNoNote;
+    font-family: Lato-Regular;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}
+
+/*===ENDING OF PageWatermark component PART===*/

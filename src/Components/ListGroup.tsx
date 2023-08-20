@@ -7,7 +7,7 @@ import { currentPageContext } from "./App";
 
 // Assets
 import noteImage from "../assets/Images/Icons_and_logos/note.svg";
-import todo from "../assets/Images/Icons_and_logos/to-do.svg";
+import todoImage from "../assets/Images/Icons_and_logos/to-do.svg";
 import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
 import labelImage from "../assets/Images/Icons_and_logos/label.svg";
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
@@ -28,7 +28,7 @@ export default function ListGroup() {
         </ListItem>
 
         <ListItem
-          imageSource={todo}
+          imageSource={todoImage}
           imageAlt={"to-do_logo"}
           sourceLink={"/todo"}
         >
