@@ -690,6 +690,52 @@
         }
 
         /*---ENDING OF ThreeDotMenu component PART---*/
+
+        /*---STARTING OF EditorButton component PART---*/
+
+        .editor-button-container-OfCard {
+          position: relative;
+          @include flexCenter(center, center);
+
+          .editor-content-wraper-in-lower-part-OfCard {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 1.5rem;
+            right: 0;
+            width: fit-content(100%);
+
+            .contents-in-editor-button-OfCard {
+              @include flexCenter(center, inherit);
+              float: left;
+              overflow-x: auto;
+
+              .image-container-of-contents-in-editor-button-OfCard {
+                @include flexCenter(center, center);
+                margin-left: 7px;
+              }
+            }
+          }
+        }
+
+        &:active > .editor-button-container-OfCard > [alt="caret-image"],
+        &:focus > .editor-button-container-OfCard > [alt="caret-image"] {
+          display: block;
+          animation-name: editorBurronInLowerPartOfCardAnimationOnHover;
+          animation-duration: 0.5s;
+
+          @keyframes editorBurronInLowerPartOfCardAnimationOnHover {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(180deg);
+            }
+          }
+          transform: rotate(180deg);
+        }
+
+        /*---ENDING OF EditorButton component PART---*/
       }
 
       .overlay-on-lower-part-OfCard {

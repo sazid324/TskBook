@@ -7,6 +7,7 @@ import ReminderButton from "./ReminderButton";
 import ThreeDotMenu from "./ThreeDotMenu";
 import ThemeButton from "./ThemeButton";
 import AttachmentButton from "./AttachmentButton";
+import EditorButton from "./EditorButton";
 import { addNewNoteContext } from "../Pages/Notes";
 
 // Component exports
@@ -275,6 +276,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                       indexOfCard
                     ];
                   containerOfCard.style.cssText = "overflow: visible";
+                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
                   const reminderButtonParagraphOfCard: any =
                     document.getElementsByClassName(
@@ -288,6 +290,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                       indexOfCard
                     ];
                   containerOfCard.style.cssText = "overflow: hidden";
+                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
                   const reminderContentWraperInLowerPartOfCard: any =
                     document.getElementsByClassName(
@@ -512,6 +515,56 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   indexOfCard={indexOfCard}
                 />
               </button>
+
+              {editAndSaveButton === true ? (
+                <button
+                  className="element-in-lower-part-OfCard"
+                  onClick={() => {
+                    const editorContentWraperInLowerPartOfCard: any =
+                      document.getElementsByClassName(
+                        "editor-content-wraper-in-lower-part-OfCard"
+                      )[indexOfCard];
+                    editorContentWraperInLowerPartOfCard.style.display =
+                      "block";
+
+                    const editorButtonParagraphOfCard: any =
+                      document.getElementsByClassName(
+                        "editor-button-paragraph-OfCard"
+                      )[indexOfCard];
+                    editorButtonParagraphOfCard.style.display = "none";
+                  }}
+                  onMouseEnter={() => {
+                    const containerOfCard: any =
+                      document.getElementsByClassName("container-OfCard")[
+                        indexOfCard
+                      ];
+                    containerOfCard.style.cssText = "overflow: visible";
+                    containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+
+                    const editorButtonParagraphOfCard: any =
+                      document.getElementsByClassName(
+                        "editor-button-paragraph-OfCard"
+                      )[indexOfCard];
+                    editorButtonParagraphOfCard.style.display = "block";
+                  }}
+                  onMouseLeave={() => {
+                    const containerOfCard: any =
+                      document.getElementsByClassName("container-OfCard")[
+                        indexOfCard
+                      ];
+                    containerOfCard.style.cssText = "overflow: hidden";
+                    containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+
+                    const editorButtonParagraphOfCard: any =
+                      document.getElementsByClassName(
+                        "editor-button-paragraph-OfCard"
+                      )[indexOfCard];
+                    editorButtonParagraphOfCard.style.display = "none";
+                  }}
+                >
+                  <EditorButton indexOfCard={indexOfCard} />
+                </button>
+              ) : null}
               <span className="overlay-on-lower-part-OfCard"></span>
             </div>
           </div>
