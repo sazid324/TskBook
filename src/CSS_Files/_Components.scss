@@ -694,33 +694,15 @@
         /*---STARTING OF EditorButton component PART---*/
 
         .editor-button-container-OfCard {
-          position: relative;
           @include flexCenter(center, center);
-
-          .editor-content-wraper-in-lower-part-OfCard {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 1.5rem;
-            right: 0;
-            width: fit-content(100%);
-
-            .contents-in-editor-button-OfCard {
-              @include flexCenter(center, inherit);
-              float: left;
-              overflow-x: auto;
-
-              .image-container-of-contents-in-editor-button-OfCard {
-                @include flexCenter(center, center);
-                margin-left: 7px;
-              }
-            }
-          }
         }
 
-        &:active > .editor-button-container-OfCard > [alt="caret-image"],
-        &:focus > .editor-button-container-OfCard > [alt="caret-image"] {
-          display: block;
+        &:active
+          > .editor-button-container-OfCard
+          > .editor-button-in-lower-part-OfCard,
+        &:focus
+          > .editor-button-container-OfCard
+          > .editor-button-in-lower-part-OfCard {
           animation-name: editorBurronInLowerPartOfCardAnimationOnHover;
           animation-duration: 0.5s;
 
@@ -732,10 +714,40 @@
               transform: rotate(180deg);
             }
           }
+
           transform: rotate(180deg);
         }
 
         /*---ENDING OF EditorButton component PART---*/
+      }
+
+      .editor-content-wraper-in-lower-part-OfCard {
+        .contents-in-editor-button-OfCard {
+          @include flexCenter(center, inherit);
+
+          .sub-container-of-contents-in-editor-button-OfCard {
+            @include flexCenter(center, center);
+            border-right: 1px solid rgb(0, 0, 0);
+            padding: 0px 10px;
+
+            &:last-child {
+              border-right: none;
+            }
+
+            .image-container-of-contents-in-editor-button-OfCard {
+              @include flexCenter(center, center);
+              margin: 0px 7px;
+            }
+          }
+
+          & > :first-child {
+            padding-left: 0px;
+
+            .image-container-of-contents-in-editor-button-OfCard {
+              margin: 0px 5px;
+            }
+          }
+        }
       }
 
       .overlay-on-lower-part-OfCard {

@@ -25,13 +25,13 @@ export default function Header({ setNewQuery }: headerElements) {
 
   useEffect(() => {
     // Adding Clicked outside functionality.
-    const clickedOutSide = (event: any) => {
+    const clickedOutSideTheSearchButton = (event: any) => {
       if (!searchBox.current.contains(event.target)) {
         setClickedOnSearch(false);
       }
     };
 
-    document.addEventListener("mousedown", clickedOutSide);
+    document.addEventListener("mousedown", clickedOutSideTheSearchButton);
   });
 
   useEffect(() => {

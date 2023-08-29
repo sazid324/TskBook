@@ -1,5 +1,5 @@
 // Library imports
-import { useEffect, useState, useContext, createContext } from "react";
+import { useEffect, useState, useRef, useContext, createContext } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 // Component imports
@@ -17,6 +17,21 @@ export const fileUploadContext: any = createContext(null);
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
 import editImage from "../assets/Images/Icons_and_logos/edit.svg";
 import saveImage from "../assets/Images/Icons_and_logos/save.svg";
+import boldImage from "../assets/Images/Icons_and_logos/bold.svg";
+import italicImage from "../assets/Images/Icons_and_logos/italic.svg";
+import underlineImage from "../assets/Images/Icons_and_logos/underline.svg";
+import strikeThroughImage from "../assets/Images/Icons_and_logos/strikethrough.svg";
+import h1Image from "../assets/Images/Icons_and_logos/h1.svg";
+import h2Image from "../assets/Images/Icons_and_logos/h2.svg";
+import h3Image from "../assets/Images/Icons_and_logos/h3.svg";
+import ulListImage from "../assets/Images/Icons_and_logos/ulList.svg";
+import olListImage from "../assets/Images/Icons_and_logos/olList.svg";
+import quoteImage from "../assets/Images/Icons_and_logos/quote.svg";
+import linkImage from "../assets/Images/Icons_and_logos/link.svg";
+import checkBoxImage from "../assets/Images/Icons_and_logos/checkBox.svg";
+import verticalLineImage from "../assets/Images/Icons_and_logos/verticalLine.svg";
+import undoImage from "../assets/Images/Icons_and_logos/undo.svg";
+import redoImage from "../assets/Images/Icons_and_logos/redo.svg";
 
 // Interfaces
 interface CardElements {
@@ -40,6 +55,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
+  const [editorButton, setEditorButton] = useState(false);
+
+  let editorButtonRef: any = useRef();
 
   useEffect(() => {
     const fileOfCard: any =
@@ -310,7 +328,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   elementOfCard={elementOfCard}
                 />
               </button>
-
               <button
                 className="element-in-lower-part-OfCard"
                 onClick={() => {
@@ -366,7 +383,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   indexOfCard={indexOfCard}
                 />
               </button>
-
               <button
                 className="element-in-lower-part-OfCard"
                 onMouseEnter={() => {
@@ -390,7 +406,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 <p className="element-text-in-lower-part-OfCard">Archive</p>
                 <span className="overlay-on-element-in-lower-part-OfCard"></span>
               </button>
-
               <button
                 className="element-in-lower-part-OfCard"
                 onClick={() => {
@@ -429,7 +444,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   setFilesUploaded={setFilesUploaded}
                 />
               </button>
-
               <button
                 className="element-in-lower-part-OfCard"
                 onClick={() => {
@@ -462,7 +476,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 </p>
                 <span className="overlay-on-element-in-lower-part-OfCard"></span>
               </button>
-
               <button
                 className="element-in-lower-part-OfCard"
                 onClick={() => {
@@ -515,17 +528,12 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   indexOfCard={indexOfCard}
                 />
               </button>
-
               {editAndSaveButton === true ? (
                 <button
                   className="element-in-lower-part-OfCard"
+                  ref={editorButtonRef}
                   onClick={() => {
-                    const editorContentWraperInLowerPartOfCard: any =
-                      document.getElementsByClassName(
-                        "editor-content-wraper-in-lower-part-OfCard"
-                      )[indexOfCard];
-                    editorContentWraperInLowerPartOfCard.style.display =
-                      "block";
+                    setEditorButton(!editorButton);
 
                     const editorButtonParagraphOfCard: any =
                       document.getElementsByClassName(
@@ -562,9 +570,90 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                     editorButtonParagraphOfCard.style.display = "none";
                   }}
                 >
-                  <EditorButton indexOfCard={indexOfCard} />
+                  <EditorButton
+                    indexOfCard={indexOfCard}
+                    editorButton={editorButton}
+                    setEditorButton={setEditorButton}
+                    editorButtonRef={editorButtonRef}
+                  />
                 </button>
               ) : null}
+              {/* Container Related to EditorButton. */}
+
+              {editorButton == true ? (
+                <div
+                  className="editor-content-wraper-in-lower-part-OfCard"
+                  onMouseEnter={() => {
+                    const editorbuttonParagraphOfCard: any =
+                      document.getElementsByClassName(
+                        "editor-button-paragraph-OfCard"
+                      )[indexOfCard];
+                    editorbuttonParagraphOfCard.style.display = "none";
+                  }}
+                >
+                  <div className="contents-in-editor-button-OfCard">
+                    <div className="sub-container-of-contents-in-editor-button-OfCard">
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={boldImage} alt="bold-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={italicImage} alt="italic-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={underlineImage} alt="underline-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img
+                          src={strikeThroughImage}
+                          alt="strikeThrough-image"
+                        />
+                      </span>
+                    </div>
+                    <div className="sub-container-of-contents-in-editor-button-OfCard">
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={h1Image} alt="h1-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={h2Image} alt="h2-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={h3Image} alt="h3-image" />
+                      </span>
+                    </div>
+                    <div className="sub-container-of-contents-in-editor-button-OfCard">
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={ulListImage} alt="ulList-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={olListImage} alt="olList-image" />
+                      </span>
+                    </div>
+                    <div className="sub-container-of-contents-in-editor-button-OfCard">
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={quoteImage} alt="quote-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={linkImage} alt="link-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={checkBoxImage} alt="checkBox-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={verticalLineImage} alt="verticalLine-image" />
+                      </span>
+                    </div>
+                    <div className="sub-container-of-contents-in-editor-button-OfCard">
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={undoImage} alt="undo-image" />
+                      </span>
+                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                        <img src={redoImage} alt="redo-image" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+
               <span className="overlay-on-lower-part-OfCard"></span>
             </div>
           </div>
