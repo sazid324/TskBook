@@ -1,5 +1,5 @@
 // Library imports
-import { useEffect, useState, useRef, useContext, createContext } from "react";
+import { useEffect, useState, useContext, createContext } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 // Component imports
@@ -56,8 +56,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
   const [editorButton, setEditorButton] = useState(false);
-
-  let editorButtonRef: any = useRef();
 
   useEffect(() => {
     const fileOfCard: any =
@@ -131,6 +129,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
       editAndSaveButtonOfCard.src = `${editImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Edit";
+      setEditorButton(false);
 
       headingOfCard.scrollIntoView();
 
@@ -531,7 +530,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               {editAndSaveButton === true ? (
                 <button
                   className="element-in-lower-part-OfCard"
-                  ref={editorButtonRef}
                   onClick={() => {
                     setEditorButton(!editorButton);
 
@@ -573,8 +571,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   <EditorButton
                     indexOfCard={indexOfCard}
                     editorButton={editorButton}
-                    setEditorButton={setEditorButton}
-                    editorButtonRef={editorButtonRef}
                   />
                 </button>
               ) : null}

@@ -697,33 +697,18 @@
           @include flexCenter(center, center);
         }
 
-        &:active
-          > .editor-button-container-OfCard
-          > .editor-button-in-lower-part-OfCard,
-        &:focus
-          > .editor-button-container-OfCard
-          > .editor-button-in-lower-part-OfCard {
-          animation-name: editorBurronInLowerPartOfCardAnimationOnHover;
-          animation-duration: 0.5s;
-
-          @keyframes editorBurronInLowerPartOfCardAnimationOnHover {
-            0% {
-              transform: rotate(0deg);
-            }
-            100% {
-              transform: rotate(180deg);
-            }
-          }
-
-          transform: rotate(180deg);
-        }
-
         /*---ENDING OF EditorButton component PART---*/
       }
 
       .editor-content-wraper-in-lower-part-OfCard {
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
         .contents-in-editor-button-OfCard {
-          @include flexCenter(center, inherit);
+          @include flexCenter(left, center);
 
           .sub-container-of-contents-in-editor-button-OfCard {
             @include flexCenter(center, center);
@@ -746,6 +731,9 @@
             .image-container-of-contents-in-editor-button-OfCard {
               margin: 0px 5px;
             }
+          }
+          & > :last-child {
+            padding-right: 0px;
           }
         }
       }
