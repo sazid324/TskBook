@@ -591,59 +591,78 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                     <div className="sub-container-of-contents-in-editor-button-OfCard">
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={boldImage} alt="bold-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={italicImage} alt="italic-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={underlineImage} alt="underline-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img
                           src={strikeThroughImage}
                           alt="strikeThrough-image"
                         />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
+                      <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
                     </div>
                     <div className="sub-container-of-contents-in-editor-button-OfCard">
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={h1Image} alt="h1-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={h2Image} alt="h2-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={h3Image} alt="h3-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
+                      <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
                     </div>
                     <div className="sub-container-of-contents-in-editor-button-OfCard">
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={ulListImage} alt="ulList-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={olListImage} alt="olList-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
+                      <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
                     </div>
                     <div className="sub-container-of-contents-in-editor-button-OfCard">
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={quoteImage} alt="quote-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={linkImage} alt="link-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={checkBoxImage} alt="checkBox-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={verticalLineImage} alt="verticalLine-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
+                      <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
                     </div>
                     <div className="sub-container-of-contents-in-editor-button-OfCard">
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={undoImage} alt="undo-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                       <span className="image-container-of-contents-in-editor-button-OfCard">
                         <img src={redoImage} alt="redo-image" />
+                        <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
                     </div>
                   </div>

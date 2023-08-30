@@ -310,6 +310,7 @@
       position: relative;
       width: 100%;
       @include flexCenter(space-around, inherit);
+      padding-right: 10px;
 
       .element-in-lower-part-OfCard {
         position: relative;
@@ -708,20 +709,46 @@
         }
 
         .contents-in-editor-button-OfCard {
+          height: 100%;
           @include flexCenter(left, center);
 
           .sub-container-of-contents-in-editor-button-OfCard {
             @include flexCenter(center, center);
-            border-right: 1px solid rgb(0, 0, 0);
-            padding: 0px 10px;
-
-            &:last-child {
-              border-right: none;
-            }
 
             .image-container-of-contents-in-editor-button-OfCard {
+              position: relative;
               @include flexCenter(center, center);
               margin: 0px 7px;
+              padding: 0.5rem;
+
+              .overlay-on-image-container-of-contents-in-editor-button-OfCard {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                border-radius: 50%;
+                background-color: rgb(102, 102, 102);
+                opacity: 0.25;
+                display: none;
+              }
+
+              &:hover {
+                cursor: pointer;
+
+                .overlay-on-image-container-of-contents-in-editor-button-OfCard {
+                  display: block;
+                }
+              }
+            }
+
+            .vertical-line-in-sub-container-of-contents-in-editor-button-OfCard {
+              width: 2px;
+              height: 1.3rem;
+              border-radius: 10px;
+              background-color: #494949;
+              margin: 0 5px;
             }
           }
 
