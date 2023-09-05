@@ -1,6 +1,5 @@
 // Library imports
 import { useEffect, useState, useContext, createContext } from "react";
-import TextareaAutosize from "react-textarea-autosize";
 
 // Component imports
 import ReminderButton from "./ReminderButton";
@@ -52,15 +51,22 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     return elementOfCard.files ? elementOfCard.files : [];
   });
   const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
-  const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
   const [editorButton, setEditorButton] = useState(false);
+  const [selectedText, setSelectedText] = useState("");
+  const [newNode, setNewNode] = useState<any>(null);
+  const [rangeOfSelectedText, setRangeOfSelectedText] = useState<any>(null);
 
   useEffect(() => {
+    const bodyOfCard: any =
+      document.getElementsByClassName("body-OfCard")[indexOfCard];
+    if (elementOfCard.bodyValue) {
+      bodyOfCard.innerHTML = bodyValueOnChange;
+    }
+
     const fileOfCard: any =
       document.getElementsByClassName("file-OfCard")[indexOfCard];
-
     if (elementOfCard.files != "") {
       fileOfCard.style.display = "grid";
     } else {
@@ -113,7 +119,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
     if (editAndSaveButton == false) {
       headingOfCard.disabled = true;
-      bodyOfCard.disabled = true;
+      bodyOfCard.contentEditable = false;
       shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 90%);`;
 
       if (headingOfCard.value == "") {
@@ -141,7 +147,7 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
     if (editAndSaveButton == true) {
       headingOfCard.disabled = false;
-      bodyOfCard.disabled = false;
+      bodyOfCard.contentEditable = true;
       headingOfCard.style.display = "block";
       bodyOfCard.style.display = "block";
       shadowPartOfCard.style.display = "none";
@@ -155,6 +161,13 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     }
   }, [editAndSaveButton]);
 
+  useEffect(() => {
+    const node = document.createElement("b");
+    node.textContent = `${selectedText}`;
+
+    setNewNode(node);
+  }, [selectedText]);
+
   // Getting value onChange of the inputs of Card component.
   const functionCalledByHeaderOnChange = (event: any) => {
     setHeaderValueOnChange(event.target.value);
@@ -165,10 +178,15 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   };
 
   const functionCalledByBodyOnChange = (event: any) => {
-    setBodyValueOnChange(event.target.value);
+    setBodyValueOnChange(event.target.textContent);
+  };
 
-    if (bodyToggolOnChange == true) {
-      setBodyToggolOnChange(!bodyToggolOnChange);
+  // Function to get the position of a selected text within an element
+  const getSelectionPosition = () => {
+    const selection = document.getSelection();
+    if (selection) {
+      const range = selection.getRangeAt(0);
+      setRangeOfSelectedText(range);
     }
   };
 
@@ -242,31 +260,23 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               })}
             </div>
 
-            <TextareaAutosize
+            <div
               className="body-OfCard"
               placeholder="Take a note...."
-              value={
-                bodyToggolOnChange == true
-                  ? elementOfCard.bodyValue
-                  : bodyValueOnChange || ""
-              }
-              onChange={(event: any) => functionCalledByBodyOnChange(event)}
-              onKeyUp={() => {
-                const upperPartOfCard: any =
-                  document.getElementsByClassName("upper-part-OfCard")[
-                    indexOfCard
-                  ];
-                const bodyOfCard: any =
-                  document.getElementsByClassName("body-OfCard")[indexOfCard];
+              contentEditable={true}
+              onInput={(event: any) => functionCalledByBodyOnChange(event)}
+              onMouseUp={() => {
+                const selectedTextInBodyOfCard = window
+                  .getSelection()
+                  ?.toString();
 
-                if (
-                  bodyOfCard.selectionStart == bodyOfCard.value.length &&
-                  bodyOfCard.selectionEnd == bodyOfCard.value.length
-                ) {
-                  upperPartOfCard.scrollTo(0, upperPartOfCard.scrollHeight);
+                if (selectedTextInBodyOfCard?.length) {
+                  setSelectedText(selectedTextInBodyOfCard);
                 }
+
+                getSelectionPosition();
               }}
-            ></TextareaAutosize>
+            ></div>
           </div>
           <div className="shadow-part-OfCard"></div>
           <div className="lower-part-OfCard">
@@ -589,7 +599,20 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 >
                   <div className="contents-in-editor-button-OfCard">
                     <div className="sub-container-of-contents-in-editor-button-OfCard">
-                      <span className="image-container-of-contents-in-editor-button-OfCard">
+                      <span
+                        className="image-container-of-contents-in-editor-button-OfCard"
+                        onClick={() => {
+                          const bodyOfCard: any =
+                            document.getElementsByClassName("body-OfCard")[
+                              indexOfCard
+                            ];
+
+                          rangeOfSelectedText.deleteContents();
+                          rangeOfSelectedText.insertNode(newNode);
+
+                          setBodyValueOnChange(bodyOfCard.innerHTML);
+                        }}
+                      >
                         <img src={boldImage} alt="bold-image" />
                         <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
                       </span>
