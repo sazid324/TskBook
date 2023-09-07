@@ -147,6 +147,12 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     }
   }, [editAndSaveButton]);
 
+  useEffect(() => {
+    setNodeNameOfSelectedRange(
+      rangeOfSelectedText?.startContainer.parentNode.nodeName
+    );
+  }, [rangeOfSelectedText]);
+
   // Getting value onChange of the inputs of Card component.
   const functionCalledByHeaderOnChange = (event: any) => {
     setHeaderValueOnChange(event.target.value);
@@ -254,9 +260,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 }
 
                 getSelectionPosition();
-                setNodeNameOfSelectedRange(
-                  rangeOfSelectedText?.startContainer.parentNode.nodeName
-                );
               }}
             ></div>
           </div>

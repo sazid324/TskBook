@@ -53,10 +53,7 @@ export default function EditorButtonContent({
                 const bodyOfCard: any =
                   document.getElementsByClassName("body-OfCard")[indexOfCard];
 
-                const span: any = document.createElement("span");
-
-                rangeOfSelectedText.surroundContents(span);
-                const parent = span.parentNode;
+                console.log(nodeNameOfSelectedRange)
 
                 if (
                   nodeNameOfSelectedRange == "DIV" ||
@@ -64,13 +61,12 @@ export default function EditorButtonContent({
                 ) {
                   const bold: any = document.createElement("b");
                   rangeOfSelectedText.surroundContents(bold);
-                  bold.insertAdjacentText("afterbegin", `${selectedText}`);
-                  span.remove();
                 } else if (nodeNameOfSelectedRange == "B") {
-                  if (parent) {
-                    parent.insertAdjacentText("beforebegin", `${selectedText}`);
-                    parent.remove(span);
-                  }
+                    rangeOfSelectedText?.startContainer.parentNode.insertAdjacentText(
+                      "beforebegin",
+                      `${selectedText}`
+                    );
+                    rangeOfSelectedText?.startContainer.parentNode.remove();
                 }
 
                 setBodyValueOnChange(bodyOfCard.innerHTML);
