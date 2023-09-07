@@ -55,8 +55,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
   const [editorButton, setEditorButton] = useState(false);
   const [selectedText, setSelectedText] = useState("");
-  const [newNode, setNewNode] = useState<any>(null);
   const [rangeOfSelectedText, setRangeOfSelectedText] = useState<any>(null);
+  const [nodeNameOfSelectedRange, setNodeNameOfSelectedRange] = useState("");
 
   useEffect(() => {
     const bodyOfCard: any =
@@ -160,13 +160,6 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       }px`;
     }
   }, [editAndSaveButton]);
-
-  useEffect(() => {
-    const node = document.createElement("b");
-    node.textContent = `${selectedText}`;
-
-    setNewNode(node);
-  }, [selectedText]);
 
   // Getting value onChange of the inputs of Card component.
   const functionCalledByHeaderOnChange = (event: any) => {
@@ -275,6 +268,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 }
 
                 getSelectionPosition();
+                setNodeNameOfSelectedRange(
+                  rangeOfSelectedText?.startContainer.parentNode.nodeName
+                );
               }}
             ></div>
           </div>
@@ -607,8 +603,31 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                               indexOfCard
                             ];
 
-                          rangeOfSelectedText.deleteContents();
-                          rangeOfSelectedText.insertNode(newNode);
+                          const span: any = document.createElement("span");
+
+                          rangeOfSelectedText.surroundContents(span);
+                          const parent = span.parentNode;
+
+                          if (
+                            nodeNameOfSelectedRange == "DIV" ||
+                            nodeNameOfSelectedRange == "SPAN"
+                          ) {
+                            const bold: any = document.createElement("b");
+                            rangeOfSelectedText.surroundContents(bold);
+                            bold.insertAdjacentText(
+                              "afterbegin",
+                              `${selectedText}`
+                            );
+                            span.remove();
+                          } else if (nodeNameOfSelectedRange == "B") {
+                            if (parent) {
+                              parent.insertAdjacentText(
+                                "beforebegin",
+                                `${selectedText}`
+                              );
+                              parent.remove(span);
+                            }
+                          }
 
                           setBodyValueOnChange(bodyOfCard.innerHTML);
                         }}
