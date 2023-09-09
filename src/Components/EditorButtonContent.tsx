@@ -121,7 +121,6 @@ export default function EditorButtonContent({
     }
 
     setBodyValueOnChange(bodyOfCard.innerHTML);
-    console.log(bodyOfCard.innerHTML);
   };
 
   /////////////////////// Return Method ///////////////////////
