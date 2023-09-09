@@ -31,6 +31,99 @@ export default function EditorButtonContent({
   rangeOfSelectedText,
   nodeNameOfSelectedRange,
 }: editorButtonContentElements) {
+  // Functions
+  const functionCalledByEditorButtonContentElementOnClick = (
+    tagName: any,
+    selectedTagName: any
+  ) => {
+    const bodyOfCard: any =
+      document.getElementsByClassName("body-OfCard")[indexOfCard];
+    const arrayOfTag: any = Array.from(bodyOfCard.children);
+
+    if (nodeNameOfSelectedRange == "DIV") {
+      const createdElement = `<${tagName}>${selectedText}</${tagName}>`;
+      rangeOfSelectedText.deleteContents();
+      rangeOfSelectedText.insertNode(
+        document.createRange().createContextualFragment(createdElement)
+      );
+    } else if (nodeNameOfSelectedRange == `${selectedTagName}`) {
+      if (
+        rangeOfSelectedText?.startContainer.parentNode.innerHTML.length >
+        selectedText.length
+      ) {
+        if (
+          rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+            0,
+            selectedText.length
+          ) === selectedText
+        ) {
+          rangeOfSelectedText?.startContainer.parentNode.insertAdjacentHTML(
+            "beforebegin",
+            `${selectedText}<${tagName}>${rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+              selectedText.length
+            )}</${tagName}>`
+          );
+
+          rangeOfSelectedText?.startContainer.parentNode.remove();
+        } else if (
+          rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+            -selectedText.length
+          ) === selectedText
+        ) {
+          rangeOfSelectedText?.startContainer.parentNode.insertAdjacentHTML(
+            "afterend",
+            `<${tagName}>${rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+              0,
+              rangeOfSelectedText.startOffset
+            )}</${tagName}>${selectedText}`
+          );
+
+          rangeOfSelectedText?.startContainer.parentNode.remove();
+        } else {
+          const textBeforeSelectedText: any =
+            rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+              0,
+              rangeOfSelectedText.startOffset
+            );
+          const textAfterSelectedText: any =
+            rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+              rangeOfSelectedText.endOffset
+            );
+
+          rangeOfSelectedText?.startContainer.parentNode.insertAdjacentHTML(
+            "beforebegin",
+            `<${tagName}>${textBeforeSelectedText}</${tagName}>${selectedText}<${tagName}>${textAfterSelectedText}</${tagName}>`
+          );
+
+          rangeOfSelectedText?.startContainer.parentNode.remove();
+        }
+      } else {
+        rangeOfSelectedText?.startContainer.parentNode.insertAdjacentText(
+          "beforebegin",
+          `${selectedText}`
+        );
+        rangeOfSelectedText?.startContainer.parentNode.remove();
+      }
+    }
+
+    if (bodyOfCard.innerHTML.includes(`</${tagName}><${tagName}>`) == true) {
+      bodyOfCard.innerHTML = bodyOfCard.innerHTML.replaceAll(
+        `</${tagName}><${tagName}>`,
+        ""
+      );
+    }
+
+    if (arrayOfTag) {
+      arrayOfTag.forEach((element: any) => {
+        element.innerHTML = element.innerHTML.replaceAll(`<${tagName}>`, "");
+        element.innerHTML = element.innerHTML.replaceAll(`</${tagName}>`, "");
+      });
+    }
+
+    setBodyValueOnChange(bodyOfCard.innerHTML);
+    console.log(bodyOfCard.innerHTML);
+  };
+
   /////////////////////// Return Method ///////////////////////
 
   return (
@@ -50,55 +143,66 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const bodyOfCard: any =
-                  document.getElementsByClassName("body-OfCard")[indexOfCard];
-
-                console.log(nodeNameOfSelectedRange)
-
-                if (
-                  nodeNameOfSelectedRange == "DIV" ||
-                  nodeNameOfSelectedRange == "SPAN"
-                ) {
-                  const bold: any = document.createElement("b");
-                  rangeOfSelectedText.surroundContents(bold);
-                } else if (nodeNameOfSelectedRange == "B") {
-                    rangeOfSelectedText?.startContainer.parentNode.insertAdjacentText(
-                      "beforebegin",
-                      `${selectedText}`
-                    );
-                    rangeOfSelectedText?.startContainer.parentNode.remove();
-                }
-
-                setBodyValueOnChange(bodyOfCard.innerHTML);
+                functionCalledByEditorButtonContentElementOnClick("b", "B");
               }}
             >
               <img src={boldImage} alt="bold-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
-            <span className="image-container-of-contents-in-editor-button-OfCard">
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                functionCalledByEditorButtonContentElementOnClick("i", "I");
+              }}
+            >
               <img src={italicImage} alt="italic-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
-            <span className="image-container-of-contents-in-editor-button-OfCard">
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                functionCalledByEditorButtonContentElementOnClick("u", "U");
+              }}
+            >
               <img src={underlineImage} alt="underline-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
-            <span className="image-container-of-contents-in-editor-button-OfCard">
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                functionCalledByEditorButtonContentElementOnClick("s", "S");
+              }}
+            >
               <img src={strikeThroughImage} alt="strikeThrough-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
             <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
           </div>
           <div className="sub-container-of-contents-in-editor-button-OfCard">
-            <span className="image-container-of-contents-in-editor-button-OfCard">
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                functionCalledByEditorButtonContentElementOnClick("h1", "H1");
+              }}
+            >
               <img src={h1Image} alt="h1-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
-            <span className="image-container-of-contents-in-editor-button-OfCard">
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                functionCalledByEditorButtonContentElementOnClick("h2", "H2");
+              }}
+            >
               <img src={h2Image} alt="h2-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
-            <span className="image-container-of-contents-in-editor-button-OfCard">
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                functionCalledByEditorButtonContentElementOnClick("h3", "H3");
+              }}
+            >
               <img src={h3Image} alt="h3-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
@@ -116,7 +220,12 @@ export default function EditorButtonContent({
             <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
           </div>
           <div className="sub-container-of-contents-in-editor-button-OfCard">
-            <span className="image-container-of-contents-in-editor-button-OfCard">
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                functionCalledByEditorButtonContentElementOnClick("q", "Q");
+              }}
+            >
               <img src={quoteImage} alt="quote-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
