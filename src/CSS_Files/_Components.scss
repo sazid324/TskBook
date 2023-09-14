@@ -233,7 +233,7 @@
           outline: none;
 
           &:hover {
-            cursor: pointer;
+            cursor: auto;
           }
         }
       }
@@ -259,28 +259,42 @@
 
     .body-OfCard {
       width: 100%;
-      font-family: Lato-Regular;
-      font-size: 0.9rem;
-      color: #202124;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      resize: none;
-      overflow: hidden;
+      height: auto;
+      overflow: auto;
 
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-      &:disabled {
-        background-color: transparent;
+      .ql-container {
         border: none;
-        outline: none;
+
+        .ql-editor {
+          font-family: Lato-Regular;
+          font-size: 0.9rem;
+          color: #202124;
+          background-color: transparent;
+          padding: 0px;
+
+          &::before {
+            font-style: normal;
+            left: 0px;
+            right: 0px;
+          }
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          & > * {
+            cursor: auto;
+          }
+        }
 
         &:hover {
-          cursor: pointer;
+          cursor: auto;
         }
       }
+    }
+
+    &:hover {
+      cursor: auto;
     }
   }
 
@@ -291,6 +305,10 @@
     left: 0;
     right: 0;
     bottom: 1.4rem;
+
+    &:hover {
+      cursor: auto;
+    }
   }
 
   .lower-part-OfCard {
@@ -773,6 +791,10 @@
         right: 0;
         margin: auto;
       }
+    }
+
+    &:hover {
+      cursor: auto;
     }
   }
 

@@ -1,5 +1,6 @@
 // Library imports
-import { useEffect, useState, useContext, createContext } from "react";
+import { useEffect, useState, useRef, useContext, createContext } from "react";
+import ReactQuill from "react-quill";
 
 // Component imports
 import ReminderButton from "./ReminderButton";
@@ -9,6 +10,9 @@ import AttachmentButton from "./AttachmentButton";
 import EditorButton from "./EditorButton";
 import EditorButtonContent from "./EditorButtonContent";
 import { addNewNoteContext } from "../Pages/Notes";
+
+// CSS imports
+import "react-quill/dist/quill.snow.css";
 
 // Component exports
 export const fileUploadContext: any = createContext(null);
@@ -37,20 +41,14 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     return elementOfCard.files ? elementOfCard.files : [];
   });
   const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
+  const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
   const [editorButton, setEditorButton] = useState(false);
-  const [selectedText, setSelectedText] = useState("");
-  const [rangeOfSelectedText, setRangeOfSelectedText] = useState<any>(null);
-  const [nodeNameOfSelectedRange, setNodeNameOfSelectedRange] = useState("");
+
+  const quillRef = useRef<any>(null);
 
   useEffect(() => {
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[indexOfCard];
-    if (elementOfCard.bodyValue) {
-      bodyOfCard.innerHTML = bodyValueOnChange;
-    }
-
     const fileOfCard: any =
       document.getElementsByClassName("file-OfCard")[indexOfCard];
     if (elementOfCard.files != "") {
@@ -93,6 +91,8 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       document.getElementsByClassName("heading-OfCard")[indexOfCard];
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[indexOfCard];
+    const qlEditor: any =
+      document.getElementsByClassName("ql-editor")[indexOfCard];
     const editAndSaveButtonOfCard: any = document.getElementsByClassName(
       "edit-and-save-button-OfCard"
     )[indexOfCard];
@@ -100,23 +100,31 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
       document.getElementsByClassName("edit-element-text-in-lower-part-OfCard")[
         indexOfCard
       ];
+    const editorButtonElementInLowerPartOfCard: any =
+      document.getElementsByClassName(
+        "editor-button-element-in-lower-part-OfCard"
+      )[indexOfCard];
     const popUpOverlay: any =
       document.getElementsByClassName("pop-up-overlay")[indexOfCard];
 
     if (editAndSaveButton == false) {
       headingOfCard.disabled = true;
-      bodyOfCard.contentEditable = false;
+      qlEditor.contentEditable = false;
       shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 90%);`;
 
       if (headingOfCard.value == "") {
         headingOfCard.style.display = "none";
       }
 
-      if (bodyOfCard.value == "") {
+      if (
+        elementOfCard.bodyValue == "" ||
+        qlEditor.innerHTML == `<p><br></p>`
+      ) {
         bodyOfCard.style.display = "none";
       }
 
       upperPartOfCard.style.height = "100%";
+      editorButtonElementInLowerPartOfCard.style.display = "none";
       popUpOverlay.style.display = "none";
 
       editAndSaveButtonOfCard.src = `${editImage}`;
@@ -133,25 +141,20 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
 
     if (editAndSaveButton == true) {
       headingOfCard.disabled = false;
-      bodyOfCard.contentEditable = true;
+      qlEditor.contentEditable = true;
       headingOfCard.style.display = "block";
       bodyOfCard.style.display = "block";
       shadowPartOfCard.style.display = "none";
       popUpOverlay.style.display = "block";
       editAndSaveButtonOfCard.src = `${saveImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Save";
+      editorButtonElementInLowerPartOfCard.style.display = "block";
 
       upperPartOfCard.style.cssText = `height: ${
         containerOfCard.clientHeight - LowerPartOfCard.clientHeight - 15
       }px`;
     }
   }, [editAndSaveButton]);
-
-  useEffect(() => {
-    setNodeNameOfSelectedRange(
-      rangeOfSelectedText?.startContainer.parentNode.nodeName
-    );
-  }, [rangeOfSelectedText]);
 
   // Getting value onChange of the inputs of Card component.
   const functionCalledByHeaderOnChange = (event: any) => {
@@ -163,15 +166,10 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   };
 
   const functionCalledByBodyOnChange = (event: any) => {
-    setBodyValueOnChange(event.target.textContent);
-  };
+    setBodyValueOnChange(event);
 
-  // Function to get the position of a selected text within an element
-  const getSelectionPosition = () => {
-    const selection = document.getSelection();
-    if (selection) {
-      const range = selection.getRangeAt(0);
-      setRangeOfSelectedText(range);
+    if (bodyToggolOnChange == true) {
+      setBodyToggolOnChange(!bodyToggolOnChange);
     }
   };
 
@@ -245,23 +243,21 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
               })}
             </div>
 
-            <div
+            <ReactQuill
               className="body-OfCard"
+              ref={quillRef}
               placeholder="Take a note...."
-              contentEditable={true}
-              onInput={(event: any) => functionCalledByBodyOnChange(event)}
-              onMouseUp={() => {
-                const selectedTextInBodyOfCard = window
-                  .getSelection()
-                  ?.toString();
-
-                if (selectedTextInBodyOfCard?.length) {
-                  setSelectedText(selectedTextInBodyOfCard);
-                }
-
-                getSelectionPosition();
+              value={
+                bodyToggolOnChange == true
+                  ? elementOfCard.bodyValue
+                  : bodyValueOnChange || ""
+              }
+              onChange={(event: any) => functionCalledByBodyOnChange(event)}
+              modules={{
+                clipboard: true,
+                toolbar: false,
               }}
-            ></div>
+            ></ReactQuill>
           </div>
           <div className="shadow-part-OfCard"></div>
           <div className="lower-part-OfCard">
@@ -522,62 +518,56 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                   indexOfCard={indexOfCard}
                 />
               </button>
-              {editAndSaveButton === true ? (
-                <button
-                  className="element-in-lower-part-OfCard"
-                  onClick={() => {
-                    setEditorButton(!editorButton);
+              <button
+                className="element-in-lower-part-OfCard editor-button-element-in-lower-part-OfCard"
+                onClick={() => {
+                  setEditorButton(!editorButton);
 
-                    const editorButtonParagraphOfCard: any =
-                      document.getElementsByClassName(
-                        "editor-button-paragraph-OfCard"
-                      )[indexOfCard];
-                    editorButtonParagraphOfCard.style.display = "none";
-                  }}
-                  onMouseEnter={() => {
-                    const containerOfCard: any =
-                      document.getElementsByClassName("container-OfCard")[
-                        indexOfCard
-                      ];
-                    containerOfCard.style.cssText = "overflow: visible";
-                    containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+                  const editorButtonParagraphOfCard: any =
+                    document.getElementsByClassName(
+                      "editor-button-paragraph-OfCard"
+                    )[indexOfCard];
+                  editorButtonParagraphOfCard.style.display = "none";
+                }}
+                onMouseEnter={() => {
+                  const containerOfCard: any =
+                    document.getElementsByClassName("container-OfCard")[
+                      indexOfCard
+                    ];
+                  containerOfCard.style.cssText = "overflow: visible";
+                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                    const editorButtonParagraphOfCard: any =
-                      document.getElementsByClassName(
-                        "editor-button-paragraph-OfCard"
-                      )[indexOfCard];
-                    editorButtonParagraphOfCard.style.display = "block";
-                  }}
-                  onMouseLeave={() => {
-                    const containerOfCard: any =
-                      document.getElementsByClassName("container-OfCard")[
-                        indexOfCard
-                      ];
-                    containerOfCard.style.cssText = "overflow: hidden";
-                    containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+                  const editorButtonParagraphOfCard: any =
+                    document.getElementsByClassName(
+                      "editor-button-paragraph-OfCard"
+                    )[indexOfCard];
+                  editorButtonParagraphOfCard.style.display = "block";
+                }}
+                onMouseLeave={() => {
+                  const containerOfCard: any =
+                    document.getElementsByClassName("container-OfCard")[
+                      indexOfCard
+                    ];
+                  containerOfCard.style.cssText = "overflow: hidden";
+                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                    const editorButtonParagraphOfCard: any =
-                      document.getElementsByClassName(
-                        "editor-button-paragraph-OfCard"
-                      )[indexOfCard];
-                    editorButtonParagraphOfCard.style.display = "none";
-                  }}
-                >
-                  <EditorButton
-                    indexOfCard={indexOfCard}
-                    editorButton={editorButton}
-                  />
-                </button>
-              ) : null}
-              {/* Container Related to EditorButton. */}
+                  const editorButtonParagraphOfCard: any =
+                    document.getElementsByClassName(
+                      "editor-button-paragraph-OfCard"
+                    )[indexOfCard];
+                  editorButtonParagraphOfCard.style.display = "none";
+                }}
+              >
+                <EditorButton
+                  indexOfCard={indexOfCard}
+                  editorButton={editorButton}
+                />
+              </button>
 
               {editorButton == true ? (
                 <EditorButtonContent
                   indexOfCard={indexOfCard}
-                  setBodyValueOnChange={setBodyValueOnChange}
-                  selectedText={selectedText}
-                  rangeOfSelectedText={rangeOfSelectedText}
-                  nodeNameOfSelectedRange={nodeNameOfSelectedRange}
+                  quillRef={quillRef}
                 />
               ) : null}
 

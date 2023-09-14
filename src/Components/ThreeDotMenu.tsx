@@ -23,18 +23,14 @@ export default function ThreeDotMenu({
   let cardArray = useContext(cardArrayContext);
 
   // Adding functionality of Make a copy button in card.
-  const functionCalledByMakeACopyButton = (index: number) => {
-    const headingOfCard: any =
-      document.getElementsByClassName("heading-OfCard")[index];
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[index];
+  const functionCalledByMakeACopyButton = () => {
 
     const makeACopyOfCard: any = [
       ...addNew,
       {
         id: Date.now() + Math.floor(Math.random() * 78),
-        headerValue: `${headingOfCard.value}`,
-        bodyValue: `${bodyOfCard.value}`,
+        headerValue: `${elementOfCard.headerValue}`,
+        bodyValue: `${elementOfCard.bodyValue}`,
         files: elementOfCard.files.map((element: any) => {
           return element;
         }),
@@ -86,7 +82,7 @@ export default function ThreeDotMenu({
             </li>
             <li
               className="item-in-three-dot-in-lower-part-OfCard"
-              onClick={() => functionCalledByMakeACopyButton(indexOfCard)}
+              onClick={() => functionCalledByMakeACopyButton()}
             >
               Make a copy
             </li>
