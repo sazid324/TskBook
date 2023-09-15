@@ -564,12 +564,10 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                 />
               </button>
 
-              {editorButton == true ? (
-                <EditorButtonContent
-                  indexOfCard={indexOfCard}
-                  quillRef={quillRef}
-                />
-              ) : null}
+              <EditorButtonContent
+                indexOfCard={indexOfCard}
+                quillRef={quillRef}
+              />
 
               <span className="overlay-on-lower-part-OfCard"></span>
             </div>

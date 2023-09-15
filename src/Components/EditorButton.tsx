@@ -16,15 +16,25 @@ export default function EditorButton({
 }: editorButtonElements) {
   // Hooks
   useEffect(() => {
+    // Making CSS effect on editor button and elements of editor button
     const editorButtonInLowerPartOfCard: any = document.getElementsByClassName(
       "editor-button-in-lower-part-OfCard"
     )[indexOfCard];
+    const editorContentWraperInLowerPartOfCard: any =
+      document.getElementsByClassName(
+        "editor-content-wraper-in-lower-part-OfCard"
+      )[indexOfCard];
 
     if (editorButton == true) {
       editorButtonInLowerPartOfCard.style.cssText =
-        "transform: rotate(180deg);";
+        "transform: rotate(180deg); transition: transform 0.5s;";
+      editorContentWraperInLowerPartOfCard.style.cssText =
+        "width: 100%; transition: width 0.4s;";
     } else {
-      editorButtonInLowerPartOfCard.style.cssText = "transform: rotate(0deg);";
+      editorButtonInLowerPartOfCard.style.cssText =
+        "transform: rotate(0deg); transition: transform 0.5s;";
+      editorContentWraperInLowerPartOfCard.style.cssText =
+        "width: 0%; transition: width 0.4s;";
     }
   }, [editorButton]);
 

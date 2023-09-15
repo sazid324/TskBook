@@ -53,20 +53,26 @@ export default function Header({ setNewQuery }: headerElements) {
     )[0];
 
     if (clickedOnSearch == true) {
-      navMenuOfHeader.style.cssText = "width: 0px;";
+      navMenuOfHeader.style.cssText = "width: 0%; transition: width 0.5s;";
       navMenuButtonOfHeader.style.cssText = "display: none;";
       logoOfHeader.style.cssText = "display: none;";
       searchOfHeader.style.cssText = "width: 100%; transition: width 0.5s;";
-      searchInputOfHeader.style.cssText = "display: block;";
+      searchInputOfHeader.style.cssText =
+        "width: 100%; transition: width 0.5s; display: block;";
       searchLogoOfHeader.src = `${cross}`;
     }
     if (clickedOnSearch == false) {
-      navMenuOfHeader.style.cssText = "width: 33.33%;";
+      navMenuOfHeader.style.cssText = "width: 33.33%; transition: width 0.5s;";
       navMenuButtonOfHeader.style.cssText = "display: block;";
       logoOfHeader.style.cssText =
         "display: block; display: flex; justify-content: center;";
       searchOfHeader.style.cssText = "width: 33.33%; transition: width 0.5s;";
-      searchInputOfHeader.style.cssText = "display: none;";
+      searchInputOfHeader.style.cssText = "width: 0%; transition: width 0.5s;";
+
+      setTimeout(() => {
+        searchInputOfHeader.style.cssText = "display: none;";
+      }, 300);
+
       searchLogoOfHeader.src = `${searchImage}`;
       setNewQuery("");
       searchInputOfHeader.value = "";
