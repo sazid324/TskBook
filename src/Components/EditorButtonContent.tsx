@@ -46,6 +46,22 @@ export default function EditorButtonContent({
             ];
           editorbuttonParagraphOfCard.style.display = "none";
         }}
+        onWheel={(e: any) => {
+          const editorContentWraperInLowerPartOfCard: any =
+            document.getElementsByClassName(
+              "editor-content-wraper-in-lower-part-OfCard"
+            )[indexOfCard];
+
+          // Get scroll direction
+          const scrollDirection = Math.sign(e.deltaY);
+
+          // Adjust the scroll amount as needed
+          const scrollAmount: number = 100;
+
+          // Scroll the container horizontally
+          editorContentWraperInLowerPartOfCard.scrollLeft +=
+            scrollAmount * scrollDirection;
+        }}
       >
         <div className="contents-in-editor-button-OfCard">
           <div className="sub-container-of-contents-in-editor-button-OfCard">

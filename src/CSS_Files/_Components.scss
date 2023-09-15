@@ -720,10 +720,10 @@
       }
 
       .editor-content-wraper-in-lower-part-OfCard {
-        overflow-x: scroll;
+        overflow: hidden;
 
-        &::-webkit-scrollbar {
-          display: none;
+        &:hover {
+          cursor: pointer;
         }
 
         .contents-in-editor-button-OfCard {
