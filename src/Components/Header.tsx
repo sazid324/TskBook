@@ -53,6 +53,7 @@ export default function Header({ setNewQuery }: headerElements) {
     )[0];
 
     if (clickedOnSearch == true) {
+      // Adding transition effect on search input field
       navMenuOfHeader.style.cssText = "width: 0%; transition: width 0.5s;";
       navMenuButtonOfHeader.style.cssText = "display: none;";
       logoOfHeader.style.cssText = "display: none;";
@@ -102,11 +103,12 @@ export default function Header({ setNewQuery }: headerElements) {
     );
 
     if (clickedOnNavMenu == true) {
-      leftPart.style.cssText = "width: 5.3rem;";
-      rightPart.style.cssText = "left: 5.3rem;";
-      btnOfButton.style.cssText = "margin-left: 0px;";
-      textOfButton.style.cssText = "display: none;";
-      containerOfCopyright.style.cssText = "display: none;";
+      leftPart.style.cssText = "width: 5.3rem; transition: width 0.4s;";
+      rightPart.style.cssText = "left: 5.3rem; transition: left 0.4s;";
+      btnOfButton.style.cssText =
+        "margin-left: 0px; transition: margin-left 0.4s;";
+      textOfButton.style.display = "none";
+      containerOfCopyright.style.display = "none";
 
       for (let i = 0; i < liOfListGroup.length; i++) {
         liOfListGroup[i].style.cssText = "width: 4.45rem;";
@@ -115,16 +117,20 @@ export default function Header({ setNewQuery }: headerElements) {
     }
 
     if (clickedOnNavMenu == false) {
-      leftPart.style.cssText = "width: 14.5rem;";
-      rightPart.style.cssText = "left: 14.5rem;";
-      btnOfButton.style.cssText = "margin-left: 1.7rem;";
-      textOfButton.style.cssText = "display: block;";
-      containerOfCopyright.style.cssText = "display: block;";
+      leftPart.style.cssText = "width: 14.5rem; transition: width 0.4s;";
+      rightPart.style.cssText = "left: 14.5rem; transition: left 0.4s;";
+      btnOfButton.style.cssText =
+        "margin-left: 1.7rem; transition: margin-left 0.4s;";
 
-      for (let i = 0; i < liOfListGroup.length; i++) {
-        liOfListGroup[i].style.cssText = "width: inherit;";
-        textInLiOfListGroup[i].style.display = "block";
-      }
+      setTimeout(() => {
+        textOfButton.style.display = "block";
+        containerOfCopyright.style.display = "block";
+
+        for (let i = 0; i < liOfListGroup.length; i++) {
+          liOfListGroup[i].style.cssText = "width: inherit;";
+          textInLiOfListGroup[i].style.display = "block";
+        }
+      }, 150);
     }
   }, [clickedOnNavMenu]);
 
