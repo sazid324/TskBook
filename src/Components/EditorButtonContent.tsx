@@ -7,14 +7,12 @@ import italicImage from "../assets/Images/Icons_and_logos/italic.svg";
 import underlineImage from "../assets/Images/Icons_and_logos/underline.svg";
 import strikeThroughImage from "../assets/Images/Icons_and_logos/strikethrough.svg";
 import quoteImage from "../assets/Images/Icons_and_logos/quote.svg";
+import linkImage from "../assets/Images/Icons_and_logos/link.svg";
 import h1Image from "../assets/Images/Icons_and_logos/h1.svg";
 import h2Image from "../assets/Images/Icons_and_logos/h2.svg";
 import h3Image from "../assets/Images/Icons_and_logos/h3.svg";
 import ulListImage from "../assets/Images/Icons_and_logos/ulList.svg";
 import olListImage from "../assets/Images/Icons_and_logos/olList.svg";
-import linkImage from "../assets/Images/Icons_and_logos/link.svg";
-import checkBoxImage from "../assets/Images/Icons_and_logos/checkBox.svg";
-import horizontalLineImage from "../assets/Images/Icons_and_logos/horizontalLine.svg";
 import undoImage from "../assets/Images/Icons_and_logos/undo.svg";
 import redoImage from "../assets/Images/Icons_and_logos/redo.svg";
 
@@ -34,27 +32,6 @@ export default function EditorButtonContent({
   useEffect(() => {
     setRangeOfSelectedText(quillRef.current.getEditor().getSelection());
   }, []);
-
-  //Functions
-  const functionCalledByCheckBoxButtonOnClick = () => {
-    if (quillRef.current) {
-      const quill = quillRef.current.editor;
-      const cursorPosition = quill.getSelection();
-
-      if (cursorPosition && cursorPosition.index !== null) {
-        quill.insertEmbed(cursorPosition.index, "checkbox", true);
-      }
-    }
-  };
-
-  const functionCalledByHrButtonOnClick = () => {
-    const quill = quillRef.current.getEditor();
-
-    quill.clipboard.dangerouslyPasteHTML(
-      rangeOfSelectedText.index + rangeOfSelectedText.length,
-      "<hr />"
-    );
-  };
 
   /////////////////////// Return Method ///////////////////////
 
@@ -157,6 +134,27 @@ export default function EditorButtonContent({
               <img src={quoteImage} alt="quote-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                const format: any = quillRef.current
+                  .getEditor()
+                  .getFormat(rangeOfSelectedText);
+
+                if (format.link) {
+                  const quill = quillRef.current.editor;
+                  quill.format("link", false);
+                } else {
+                  const linkURL = window.prompt("Enter the URL:");
+
+                  const quill = quillRef.current.editor;
+                  quill.format("link", linkURL, "target", "_blank");
+                }
+              }}
+            >
+              <img src={linkImage} alt="link-image" />
+              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
+            </span>
             <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
           </div>
           <div className="sub-container-of-contents-in-editor-button-OfCard">
@@ -246,44 +244,6 @@ export default function EditorButtonContent({
               }}
             >
               <img src={olListImage} alt="olList-image" />
-              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
-            </span>
-            <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
-          </div>
-          <div className="sub-container-of-contents-in-editor-button-OfCard">
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.link) {
-                  const quill = quillRef.current.editor;
-                  quill.format("link", false);
-                } else {
-                  const linkURL = window.prompt("Enter the URL:");
-
-                  const quill = quillRef.current.editor;
-                  quill.format("link", linkURL, "target", "_blank");
-                }
-              }}
-            >
-              <img src={linkImage} alt="link-image" />
-              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
-            </span>
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => functionCalledByCheckBoxButtonOnClick()}
-            >
-              <img src={checkBoxImage} alt="checkBox-image" />
-              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
-            </span>
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => functionCalledByHrButtonOnClick()}
-            >
-              <img src={horizontalLineImage} alt="horizontalLine-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
             <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
