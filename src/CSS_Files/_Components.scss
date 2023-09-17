@@ -468,23 +468,6 @@
           > .reminder-button-container-OfCard
           > .reminder-content-wraper-in-lower-part-OfCard {
           display: block;
-          animation-name: reminderBurronInLowerPartOfCardAnimationOnHover;
-          animation-duration: 0.5s;
-
-          @keyframes reminderBurronInLowerPartOfCardAnimationOnHover {
-            0% {
-              opacity: 1;
-              transform: none;
-            }
-            50% {
-              opacity: 1;
-              transform: translateY(18px);
-            }
-            100% {
-              opacity: 1;
-              transform: none;
-            }
-          }
         }
 
         /*---ENDING OF ReminderButton component PART---*/
@@ -548,23 +531,6 @@
           > .theme-menu-button-container-OfCard
           > .theme-items-wraper-in-lower-part-OfCard {
           display: block;
-          animation-name: themeMenuInLowerPartOfCardAnimationOnHover;
-          animation-duration: 0.5s;
-
-          @keyframes themeMenuInLowerPartOfCardAnimationOnHover {
-            0% {
-              opacity: 1;
-              transform: none;
-            }
-            50% {
-              opacity: 1;
-              transform: translateY(18px);
-            }
-            100% {
-              opacity: 1;
-              transform: none;
-            }
-          }
         }
 
         /*---ENDING OF ThemeButton component PART---*/
@@ -630,23 +596,6 @@
           > .attachment-button-container-OfCard
           > .attachment-items-wraper-in-lower-part-OfCard {
           display: block;
-          animation-name: attachmentButtonInLowerPartOfCardAnimationOnHover;
-          animation-duration: 0.5s;
-
-          @keyframes attachmentButtonInLowerPartOfCardAnimationOnHover {
-            0% {
-              opacity: 1;
-              transform: none;
-            }
-            50% {
-              opacity: 1;
-              transform: translateY(18px);
-            }
-            100% {
-              opacity: 1;
-              transform: none;
-            }
-          }
         }
 
         /*---ENDING OF AttachmentButton component PART---*/
@@ -689,23 +638,6 @@
           > .three-dot-menu-button-container-OfCard
           > .three-dot-items-wraper-in-lower-part-OfCard {
           display: block;
-          animation-name: threeDotItemsInLowerPartOfCardAnimationOnHover;
-          animation-duration: 0.5s;
-
-          @keyframes threeDotItemsInLowerPartOfCardAnimationOnHover {
-            0% {
-              opacity: 1;
-              transform: none;
-            }
-            50% {
-              opacity: 1;
-              transform: translateY(18px);
-            }
-            100% {
-              opacity: 1;
-              transform: none;
-            }
-          }
         }
 
         /*---ENDING OF ThreeDotMenu component PART---*/

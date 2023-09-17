@@ -26,9 +26,14 @@ import saveImage from "../assets/Images/Icons_and_logos/save.svg";
 interface CardElements {
   elementOfCard: any;
   indexOfCard: number;
+  setDivElement: any;
 }
 
-export default function Card({ elementOfCard, indexOfCard }: CardElements) {
+export default function Card({
+  elementOfCard,
+  indexOfCard,
+  setDivElement,
+}: CardElements) {
   // Hooks
   const [addNew] = useContext<any>(addNewNoteContext);
   const [headerValueOnChange, setHeaderValueOnChange] = useState(() => {
@@ -77,8 +82,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
     localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
   }, [uploadedFiles]);
 
-  // Adding functionality of Edit and Save button in Card.
   useEffect(() => {
+    // Functionality of Edit and Save button in Card.
+    // Selecting elements
     const containerOfCard: any =
       document.getElementsByClassName("container-OfCard")[indexOfCard];
     const upperPartOfCard: any =
@@ -277,6 +283,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                       "reminder-button-paragraph-OfCard"
                     )[indexOfCard];
                   reminderButtonParagraphOfCard.style.display = "none";
+
+                  // Setting div element
+                  setDivElement(reminderContentWraperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -311,6 +320,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                       "reminder-button-paragraph-OfCard"
                     )[indexOfCard];
                   reminderButtonParagraphOfCard.style.display = "none";
+
+                  // Setting div element
+                  setDivElement(null);
                 }}
               >
                 <ReminderButton
@@ -332,6 +344,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                       "theme-button-paragraph-OfCard"
                     )[indexOfCard];
                   themeButtonParagraphOfCard.style.display = "none";
+
+                  // Setting div element
+                  setDivElement(themeItemsWraperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -366,6 +381,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                       "theme-button-paragraph-OfCard"
                     )[indexOfCard];
                   themeButtonParagraphOfCard.style.display = "none";
+
+                  // Setting div element
+                  setDivElement(null);
                 }}
               >
                 <ThemeButton
@@ -405,6 +423,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                     )[indexOfCard];
                   attachmentItemsWraperInLowerPartOfCard.style.display =
                     "block";
+
+                  // Setting div element
+                  setDivElement(attachmentItemsWraperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -427,6 +448,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                       "attachment-items-wraper-in-lower-part-OfCard"
                     )[indexOfCard];
                   attachmentItemsWraperInLowerPartOfCard.style.display = "none";
+
+                  // Setting div element
+                  setDivElement(null);
                 }}
               >
                 <AttachmentButton
@@ -479,6 +503,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                     "more-button-paragraph-OfCard"
                   )[indexOfCard];
                   morebuttonOfCard.style.display = "none";
+
+                  // Setting div element
+                  setDivElement(threeDotItemsWraperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -511,6 +538,9 @@ export default function Card({ elementOfCard, indexOfCard }: CardElements) {
                     "more-button-paragraph-OfCard"
                   )[indexOfCard];
                   morebuttonOfCard.style.display = "none";
+
+                  // Setting div element
+                  setDivElement(null);
                 }}
               >
                 <ThreeDotMenu

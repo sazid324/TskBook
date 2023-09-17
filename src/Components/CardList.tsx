@@ -12,9 +12,10 @@ import noteImage from "../assets/Images/Icons_and_logos/note.svg";
 // Interfaces
 interface CardListElements {
   cardArrayProp: any;
+  setDivElement: any;
 }
 
-export default function CardList({ cardArrayProp }: CardListElements) {
+export default function CardList({ cardArrayProp, setDivElement }: CardListElements) {
   // Variables
   let localNotesLoaded: boolean = false;
 
@@ -79,6 +80,7 @@ export default function CardList({ cardArrayProp }: CardListElements) {
               key={element.id}
               elementOfCard={element}
               indexOfCard={index}
+              setDivElement={setDivElement}
             />
           );
         })
