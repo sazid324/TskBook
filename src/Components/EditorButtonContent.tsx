@@ -27,10 +27,18 @@ export default function EditorButtonContent({
   quillRef,
 }: editorButtonContentElements) {
   // Hooks
-  const [rangeOfSelectedText, setRangeOfSelectedText] = useState<any>(null);
+  const [formatOfSelectedText, setFormatOfSelectedText] = useState<any>(null);
 
   useEffect(() => {
-    setRangeOfSelectedText(quillRef.current.getEditor().getSelection());
+    const quill = quillRef.current.getEditor();
+
+    quill.on("selection-change", (range: any) => {
+      if (range) {
+        const format: any = quillRef.current.getEditor().getFormat(range);
+
+        setFormatOfSelectedText(format);
+      }
+    });
   }, []);
 
   /////////////////////// Return Method ///////////////////////
@@ -68,11 +76,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.bold) {
+                if (formatOfSelectedText.bold) {
                   quillRef.current.getEditor().format("bold", false);
                 } else {
                   quillRef.current.getEditor().format("bold", true);
@@ -85,11 +89,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.italic) {
+                if (formatOfSelectedText.italic) {
                   quillRef.current.getEditor().format("italic", false);
                 } else {
                   quillRef.current.getEditor().format("italic", true);
@@ -102,11 +102,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.underline) {
+                if (formatOfSelectedText.underline) {
                   quillRef.current.getEditor().format("underline", false);
                 } else {
                   quillRef.current.getEditor().format("underline", true);
@@ -119,11 +115,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.strike) {
+                if (formatOfSelectedText.strike) {
                   quillRef.current.getEditor().format("strike", false);
                 } else {
                   quillRef.current.getEditor().format("strike", true);
@@ -136,11 +128,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.blockquote) {
+                if (formatOfSelectedText.blockquote) {
                   quillRef.current.getEditor().format("blockquote", false);
                 } else {
                   quillRef.current.getEditor().format("blockquote", true);
@@ -153,11 +141,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.link) {
+                if (formatOfSelectedText.link) {
                   const quill = quillRef.current.editor;
                   quill.format("link", false);
                 } else {
@@ -177,11 +161,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.header === 1) {
+                if (formatOfSelectedText.header === 1) {
                   quillRef.current.editor.format("header", false);
                 } else {
                   quillRef.current.editor.format("header", 1);
@@ -194,11 +174,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.header === 2) {
+                if (formatOfSelectedText.header === 2) {
                   quillRef.current.editor.format("header", false);
                 } else {
                   quillRef.current.editor.format("header", 2);
@@ -211,11 +187,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.header === 3) {
+                if (formatOfSelectedText.header === 3) {
                   quillRef.current.editor.format("header", false);
                 } else {
                   quillRef.current.editor.format("header", 3);
@@ -231,11 +203,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.list == "bullet") {
+                if (formatOfSelectedText.list == "bullet") {
                   quillRef.current.editor.format("list", false);
                 } else {
                   quillRef.current.editor.format("list", "bullet");
@@ -248,11 +216,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                const format: any = quillRef.current
-                  .getEditor()
-                  .getFormat(rangeOfSelectedText);
-
-                if (format.list == "ordered") {
+                if (formatOfSelectedText.list == "ordered") {
                   quillRef.current.editor.format("list", false);
                 } else {
                   quillRef.current.editor.format("list", "ordered");
