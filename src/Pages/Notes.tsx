@@ -49,26 +49,45 @@ export default function Notes({ addNew, setAddNew, query }: NoteElements) {
       // Calculate the Height from the top part of the window to the bottom part of the element
       var distanceFromTop: number = divTopOffset + divHeight;
 
+      // Making div element visible
+      divElement.style.cssText = "display: block; opacity: 0;";
+
       // Setting position of button containers
       if (viewPort.viewPortWidth < distanceFromLeft) {
         if (viewPort.viewPortHeight < distanceFromTop) {
-          divElement.style.cssText = `transform: translate(-${
-            divWidth / 2
-          }px, -${divHeight / 2}px);`;
+          setTimeout(() => {
+            divElement.style.cssText = `transform: translate(-${
+              divWidth / 2 + 3
+            }px, -${
+              divHeight / 2 + 3
+            }px); display: block; opacity: 1; transition: opacity 0.5s;`;
+          }, 5);
         } else {
-          divElement.style.cssText = `transform: translate(-${
-            divWidth / 2
-          }px, ${divHeight / 2}px);`;
+          setTimeout(() => {
+            divElement.style.cssText = `transform: translate(-${
+              divWidth / 2 + 3
+            }px, ${
+              divHeight / 2 + 3
+            }px); display: block; opacity: 1; transition: opacity 0.5s;`;
+          }, 5);
         }
       } else {
         if (viewPort.viewPortHeight < distanceFromTop) {
-          divElement.style.cssText = `transform: translate(${
-            divWidth / 2
-          }px, -${divHeight / 2}px);`;
+          setTimeout(() => {
+            divElement.style.cssText = `transform: translate(${
+              divWidth / 2 + 3
+            }px, -${
+              divHeight / 2 + 3
+            }px); display: block; opacity: 1; transition: opacity 0.5s;`;
+          }, 5);
         } else {
-          divElement.style.cssText = `transform: translate(${divWidth / 2}px, ${
-            divHeight / 2
-          }px);`;
+          setTimeout(() => {
+            divElement.style.cssText = `transform: translate(${
+              divWidth / 2 + 3
+            }px, ${
+              divHeight / 2 + 3
+            }px); display: block; opacity: 1; transition: opacity 0.5s;`;
+          }, 5);
         }
       }
     }

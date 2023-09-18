@@ -461,15 +461,6 @@
           }
         }
 
-        &:active
-          > .reminder-button-container-OfCard
-          > .reminder-content-wraper-in-lower-part-OfCard,
-        &:focus
-          > .reminder-button-container-OfCard
-          > .reminder-content-wraper-in-lower-part-OfCard {
-          display: block;
-        }
-
         /*---ENDING OF ReminderButton component PART---*/
 
         /*---STARTING OF ThemeButton component PART---*/
@@ -522,15 +513,6 @@
               }
             }
           }
-        }
-
-        &:active
-          > .theme-menu-button-container-OfCard
-          > .theme-items-wraper-in-lower-part-OfCard,
-        &:focus
-          > .theme-menu-button-container-OfCard
-          > .theme-items-wraper-in-lower-part-OfCard {
-          display: block;
         }
 
         /*---ENDING OF ThemeButton component PART---*/
@@ -589,15 +571,6 @@
           }
         }
 
-        &:active
-          > .attachment-button-container-OfCard
-          > .attachment-items-wraper-in-lower-part-OfCard,
-        &:focus
-          > .attachment-button-container-OfCard
-          > .attachment-items-wraper-in-lower-part-OfCard {
-          display: block;
-        }
-
         /*---ENDING OF AttachmentButton component PART---*/
 
         /*---STARTING OF ThreeDotMenu component PART---*/
@@ -629,15 +602,6 @@
               }
             }
           }
-        }
-
-        &:active
-          > .three-dot-menu-button-container-OfCard
-          > .three-dot-items-wraper-in-lower-part-OfCard,
-        &:focus
-          > .three-dot-menu-button-container-OfCard
-          > .three-dot-items-wraper-in-lower-part-OfCard {
-          display: block;
         }
 
         /*---ENDING OF ThreeDotMenu component PART---*/
