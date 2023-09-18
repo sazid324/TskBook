@@ -23,10 +23,10 @@ export default function AttachmentButton({
 
   // Adding functionality of Select File button.
   const functionCalledByFileUploadButtonOnClick = (event: any) => {
-    const fileOfCard: any =
-      document.getElementsByClassName("file-OfCard")[indexOfCard];
+    const filesOfCard: any =
+      document.getElementsByClassName("files-OfCard")[indexOfCard];
 
-    fileOfCard.style.display = "grid";
+    filesOfCard.style.display = "grid";
 
     const files: any = event.target.files;
 

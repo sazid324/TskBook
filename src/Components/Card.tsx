@@ -54,12 +54,12 @@ export default function Card({
   const quillRef = useRef<any>(null);
 
   useEffect(() => {
-    const fileOfCard: any =
-      document.getElementsByClassName("file-OfCard")[indexOfCard];
+    const filesOfCard: any =
+      document.getElementsByClassName("files-OfCard")[indexOfCard];
     if (elementOfCard.files != "") {
-      fileOfCard.style.display = "grid";
+      filesOfCard.style.display = "grid";
     } else {
-      fileOfCard.style.display = "none";
+      filesOfCard.style.display = "none";
     }
   }, []);
 
@@ -239,11 +239,11 @@ export default function Card({
               />
             </div>
 
-            <div className="file-OfCard">
+            <div className="files-OfCard">
               {elementOfCard.files.map((element: any, index: number) => {
                 return (
-                  <div key={index} className="files-container">
-                    <embed className="files-OfCard" src={element} />
+                  <div key={index} className="file-container">
+                    <embed className="file-OfCard" src={element} />
                   </div>
                 );
               })}
@@ -623,8 +623,8 @@ export default function Card({
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
             }}
             onDrop={(event) => {
-              const fileOfCard: any =
-                document.getElementsByClassName("file-OfCard")[indexOfCard];
+              const filesOfCard: any =
+                document.getElementsByClassName("files-OfCard")[indexOfCard];
               const dragAndDropOverlayOnUpperPartOfCard: any =
                 document.getElementsByClassName(
                   "drag-and-drop-overlay-on-upper-part-OfCard"
@@ -634,7 +634,7 @@ export default function Card({
                   "drag-and-drop-second-overlay-on-upper-part-OfCard"
                 )[indexOfCard];
 
-              fileOfCard.style.display = "grid";
+              filesOfCard.style.display = "grid";
               dragAndDropOverlayOnUpperPartOfCard.style.display = "none";
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
 

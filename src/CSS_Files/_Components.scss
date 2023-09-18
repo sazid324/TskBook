@@ -239,7 +239,7 @@
       }
     }
 
-    .file-OfCard {
+    .files-OfCard {
       position: relative;
       width: 100%;
       display: grid;
@@ -248,10 +248,10 @@
       grid-auto-rows: fit-content(100%);
       grid-auto-flow: dense;
 
-      .files-container {
+      .file-container {
         @include flexCenter(center, center);
 
-        .files-OfCard {
+        .file-OfCard {
           width: 100%;
         }
       }
