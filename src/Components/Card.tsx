@@ -9,6 +9,7 @@ import ThemeButton from "./ThemeButton";
 import AttachmentButton from "./AttachmentButton";
 import EditorButton from "./EditorButton";
 import EditorButtonContent from "./EditorButtonContent";
+import ImagePopUp from "./ImagePopUp";
 import { addNewNoteContext } from "../Pages/Notes";
 
 // CSS imports
@@ -50,6 +51,7 @@ export default function Card({
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
   const [editorButton, setEditorButton] = useState(false);
+  const [timeOutReference, setTimeOutReference] = useState(0);
 
   const quillRef = useRef<any>(null);
 
@@ -114,6 +116,7 @@ export default function Card({
       document.getElementsByClassName("pop-up-overlay")[indexOfCard];
 
     if (editAndSaveButton == false) {
+      // Applying style on selected elements
       headingOfCard.disabled = true;
       qlEditor.contentEditable = false;
       shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 90%);`;
@@ -139,6 +142,7 @@ export default function Card({
 
       headingOfCard.scrollIntoView();
 
+      // Saving elements in local storage
       localStorage.setItem(
         "card-notes-in-local-storage",
         JSON.stringify(addNew)
@@ -146,6 +150,7 @@ export default function Card({
     }
 
     if (editAndSaveButton == true) {
+      // Applying style on selected elements
       headingOfCard.disabled = false;
       qlEditor.contentEditable = true;
       headingOfCard.style.display = "block";
@@ -241,8 +246,62 @@ export default function Card({
 
             <div className="files-OfCard">
               {elementOfCard.files.map((element: any, index: number) => {
+                console.log(element);
                 return (
-                  <div key={index} className="file-container">
+                  <div
+                    key={index}
+                    className="file-container"
+                    onClick={() => {
+                      // Selecting elements
+                      const imagePopUpMainContainer: any =
+                        document.getElementsByClassName(
+                          "image-pop-up-main-container"
+                        )[indexOfCard];
+                      const backImageOfImagePopUpHeader: any =
+                        document.getElementsByClassName(
+                          "back-image-of-image-pop-up-header"
+                        )[indexOfCard];
+                      const deleteImageOfImagePopUpHeader: any =
+                        document.getElementsByClassName(
+                          "delete-image-of-image-pop-up-header"
+                        )[indexOfCard];
+                      const previousImageOfImagePopUpHeader: any =
+                        document.getElementsByClassName(
+                          "previous-image-of-image-pop-up-header"
+                        )[indexOfCard];
+                      const nextImageOfImagePopUpHeader: any =
+                        document.getElementsByClassName(
+                          "next-image-of-image-pop-up-header"
+                        )[indexOfCard];
+
+                      // Applying style on selected elements
+                      if (editAndSaveButton == true) {
+                        imagePopUpMainContainer.style.display = "block";
+
+                        const timeOut: number = setTimeout(() => {
+                          backImageOfImagePopUpHeader.style.cssText =
+                            "opacity: 0; transition: opacity 0.5s;";
+                          deleteImageOfImagePopUpHeader.style.cssText =
+                            "opacity: 0; transition: opacity 0.5s;";
+                          previousImageOfImagePopUpHeader.style.cssText =
+                            "opacity: 0; transition: opacity 0.5s;";
+                          nextImageOfImagePopUpHeader.style.cssText =
+                            "opacity: 0; transition: opacity 0.5s;";
+
+                          setTimeout(() => {
+                            backImageOfImagePopUpHeader.style.display = "none";
+                            deleteImageOfImagePopUpHeader.style.display =
+                              "none";
+                            previousImageOfImagePopUpHeader.style.display =
+                              "none";
+                            nextImageOfImagePopUpHeader.style.display = "none";
+                          }, 500);
+                        }, 10000);
+
+                        setTimeOutReference(timeOut);
+                      }
+                    }}
+                  >
                     <embed className="file-OfCard" src={element} />
                   </div>
                 );
@@ -669,6 +728,12 @@ export default function Card({
           ></div>
         </div>
         <div className="pop-up-overlay"></div>
+        <ImagePopUp
+          indexOfCard={indexOfCard}
+          editAndSaveButton={editAndSaveButton}
+          timeOutReference={timeOutReference}
+          setTimeOutReference={setTimeOutReference}
+        />
       </fileUploadContext.Provider>
     </>
   );

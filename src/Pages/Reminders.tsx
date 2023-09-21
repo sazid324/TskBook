@@ -1,5 +1,5 @@
 // Component imports
-import PageWatermark from "../Components/pageWatermark";
+import PageWatermark from "../Components/PageWatermark";
 
 // Assets
 import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";

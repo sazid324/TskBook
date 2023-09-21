@@ -3,7 +3,7 @@ import { useEffect, useContext } from "react";
 
 // Component imports
 import Card from "./Card";
-import PageWatermark from "./pageWatermark";
+import PageWatermark from "./PageWatermark";
 import { addNewNoteContext } from "../Pages/Notes";
 
 // Assets
@@ -15,7 +15,10 @@ interface CardListElements {
   setDivElement: any;
 }
 
-export default function CardList({ cardArrayProp, setDivElement }: CardListElements) {
+export default function CardList({
+  cardArrayProp,
+  setDivElement,
+}: CardListElements) {
   // Variables
   let localNotesLoaded: boolean = false;
 

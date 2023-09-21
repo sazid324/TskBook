@@ -772,6 +772,160 @@
 
 /*===ENDING OF Card component PART===*/
 
+/*===STARTING OF ImagePopUp component PART===*/
+
+.image-pop-up-main-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 0.8;
+  z-index: 8;
+  display: none;
+
+  .image-pop-up-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .image-pop-up-header {
+      width: 100%;
+      padding: 10px 20px;
+
+      .left-part-of-image-pop-up-header {
+        width: 50%;
+        float: left;
+        display: flex;
+        justify-content: left;
+
+        & > span {
+          width: 2.25rem;
+          height: 2.25rem;
+
+          & > .back-image-of-image-pop-up-header {
+            width: 100%;
+            filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(343deg)
+              brightness(104%) contrast(101%);
+            border-radius: 50%;
+
+            &:hover {
+              cursor: pointer;
+              filter: none;
+              background-color: white;
+            }
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .right-part-of-image-pop-up-header {
+        width: 50%;
+        float: right;
+        display: flex;
+        justify-content: right;
+
+        & > span {
+          width: 2.25rem;
+          height: 2.25rem;
+
+          & > .delete-image-of-image-pop-up-header {
+            width: 100%;
+            filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(343deg)
+              brightness(104%) contrast(101%);
+            padding: 7px;
+            border-radius: 50%;
+
+            &:hover {
+              cursor: pointer;
+              filter: none;
+              background-color: white;
+            }
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .image-pop-up-body {
+      width: 100%;
+      height: 100%;
+      display: flex;
+
+      .right-part-of-image-pop-up-body {
+        width: 150px;
+        height: 100%;
+        margin-right: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        & > .previous-image-of-image-pop-up-header {
+          width: 3rem;
+          filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(343deg)
+            brightness(104%) contrast(101%);
+          padding: 7px;
+          border-radius: 50%;
+
+          &:hover {
+            cursor: pointer;
+            filter: none;
+            background-color: white;
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .middle-part-of-image-pop-up-body {
+        width: fit-content(100%);
+        height: auto;
+      }
+
+      .left-part-of-image-pop-up-body {
+        width: 150px;
+        height: 100%;
+        margin-left: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        & > .next-image-of-image-pop-up-header {
+          width: 3rem;
+          filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(343deg)
+            brightness(104%) contrast(101%);
+          padding: 7px;
+          border-radius: 50%;
+
+          &:hover {
+            cursor: pointer;
+            filter: none;
+            background-color: white;
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*===ENDING OF ImagePopUp component PART===*/
+
 /*===STARTING OF PageWatermark component PART===*/
 
 .watermark-on-no-items {
