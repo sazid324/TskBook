@@ -246,7 +246,6 @@ export default function Card({
 
             <div className="files-OfCard">
               {elementOfCard.files.map((element: any, index: number) => {
-                console.log(element);
                 return (
                   <div
                     key={index}

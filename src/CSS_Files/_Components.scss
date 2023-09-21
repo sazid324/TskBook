@@ -285,6 +285,17 @@
           & > * {
             cursor: auto;
           }
+
+          & > ul[data-checked="true"],
+          & > ul[data-checked="false"] {
+            & > li {
+              &::before {
+                color: #202124;
+                margin-right: 0;
+                text-align: inherit;
+              }
+            }
+          }
         }
 
         &:hover {

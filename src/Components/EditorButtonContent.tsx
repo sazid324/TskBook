@@ -7,12 +7,13 @@ import italicImage from "../assets/Images/Icons_and_logos/italic.svg";
 import underlineImage from "../assets/Images/Icons_and_logos/underline.svg";
 import strikeThroughImage from "../assets/Images/Icons_and_logos/strikethrough.svg";
 import quoteImage from "../assets/Images/Icons_and_logos/quote.svg";
-import linkImage from "../assets/Images/Icons_and_logos/link.svg";
 import h1Image from "../assets/Images/Icons_and_logos/h1.svg";
 import h2Image from "../assets/Images/Icons_and_logos/h2.svg";
 import h3Image from "../assets/Images/Icons_and_logos/h3.svg";
 import ulListImage from "../assets/Images/Icons_and_logos/ulList.svg";
 import olListImage from "../assets/Images/Icons_and_logos/olList.svg";
+import linkImage from "../assets/Images/Icons_and_logos/link.svg";
+import checkBoxImage from "../assets/Images/Icons_and_logos/checkBox.svg";
 import undoImage from "../assets/Images/Icons_and_logos/undo.svg";
 import redoImage from "../assets/Images/Icons_and_logos/redo.svg";
 
@@ -138,23 +139,6 @@ export default function EditorButtonContent({
               <img src={quoteImage} alt="quote-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => {
-                if (formatOfSelectedText.link) {
-                  const quill = quillRef.current.editor;
-                  quill.format("link", false);
-                } else {
-                  const linkURL = window.prompt("Enter the URL:");
-
-                  const quill = quillRef.current.editor;
-                  quill.format("link", linkURL, "target", "_blank");
-                }
-              }}
-            >
-              <img src={linkImage} alt="link-image" />
-              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
-            </span>
             <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
           </div>
           <div className="sub-container-of-contents-in-editor-button-OfCard">
@@ -224,6 +208,39 @@ export default function EditorButtonContent({
               }}
             >
               <img src={olListImage} alt="olList-image" />
+              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
+            </span>
+            <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
+          </div>
+          <div className="sub-container-of-contents-in-editor-button-OfCard">
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                if (formatOfSelectedText.link) {
+                  const quill = quillRef.current.editor;
+                  quill.format("link", false);
+                } else {
+                  const linkURL = window.prompt("Enter the URL:");
+
+                  const quill = quillRef.current.editor;
+                  quill.format("link", linkURL, "target", "_blank");
+                }
+              }}
+            >
+              <img src={linkImage} alt="link-image" />
+              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
+            </span>
+            <span
+              className="image-container-of-contents-in-editor-button-OfCard"
+              onClick={() => {
+                if (formatOfSelectedText.list == "checked") {
+                  quillRef.current.editor.format("list", false);
+                } else {
+                  quillRef.current.editor.format("list", "checked");
+                }
+              }}
+            >
+              <img src={checkBoxImage} alt="check-box-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
             <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
