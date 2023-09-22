@@ -52,6 +52,7 @@ export default function Card({
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
   const [editorButton, setEditorButton] = useState(false);
   const [timeOutReference, setTimeOutReference] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
 
   const quillRef = useRef<any>(null);
 
@@ -104,6 +105,10 @@ export default function Card({
     const editAndSaveButtonOfCard: any = document.getElementsByClassName(
       "edit-and-save-button-OfCard"
     )[indexOfCard];
+    const overlayOnSaveModeInUpperPartOfCard: any =
+      document.getElementsByClassName(
+        "overlay-on-save-mode-in-upper-part-OfCard"
+      )[indexOfCard];
     const editElementTextInLowerPartOfCard: any =
       document.getElementsByClassName("edit-element-text-in-lower-part-OfCard")[
         indexOfCard
@@ -117,8 +122,7 @@ export default function Card({
 
     if (editAndSaveButton == false) {
       // Applying style on selected elements
-      headingOfCard.disabled = true;
-      qlEditor.contentEditable = false;
+      overlayOnSaveModeInUpperPartOfCard.style.display = "block";
       shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 90%);`;
 
       if (headingOfCard.value == "") {
@@ -151,10 +155,9 @@ export default function Card({
 
     if (editAndSaveButton == true) {
       // Applying style on selected elements
-      headingOfCard.disabled = false;
-      qlEditor.contentEditable = true;
       headingOfCard.style.display = "block";
       bodyOfCard.style.display = "block";
+      overlayOnSaveModeInUpperPartOfCard.style.display = "none";
       shadowPartOfCard.style.display = "none";
       popUpOverlay.style.display = "block";
       editAndSaveButtonOfCard.src = `${saveImage}`;
@@ -251,7 +254,14 @@ export default function Card({
                     key={index}
                     className="file-container"
                     onClick={() => {
+                      // Setting values
+                      setImageIndex(index);
+
                       // Selecting elements
+                      const containerOfCard: any =
+                        document.getElementsByClassName("container-OfCard")[
+                          indexOfCard
+                        ];
                       const imagePopUpMainContainer: any =
                         document.getElementsByClassName(
                           "image-pop-up-main-container"
@@ -275,6 +285,7 @@ export default function Card({
 
                       // Applying style on selected elements
                       if (editAndSaveButton == true) {
+                        containerOfCard.style.display = "none";
                         imagePopUpMainContainer.style.display = "block";
 
                         const timeOut: number = setTimeout(() => {
@@ -322,6 +333,7 @@ export default function Card({
                 toolbar: false,
               }}
             ></ReactQuill>
+            <div className="overlay-on-save-mode-in-upper-part-OfCard"></div>
           </div>
           <div className="shadow-part-OfCard"></div>
           <div className="lower-part-OfCard">
@@ -728,10 +740,14 @@ export default function Card({
         </div>
         <div className="pop-up-overlay"></div>
         <ImagePopUp
+          elementOfCard={elementOfCard}
           indexOfCard={indexOfCard}
           editAndSaveButton={editAndSaveButton}
           timeOutReference={timeOutReference}
           setTimeOutReference={setTimeOutReference}
+          imageElement={elementOfCard.files}
+          imageIndex={imageIndex}
+          setImageIndex={setImageIndex}
         />
       </fileUploadContext.Provider>
     </>

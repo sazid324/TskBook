@@ -6,17 +6,25 @@ import previousArrowImage from "../assets/Images/Icons_and_logos/previousArrow.s
 
 // Interfaces
 interface ImagePopUpElements {
+  elementOfCard: any;
   indexOfCard: number;
   editAndSaveButton: boolean;
   timeOutReference: number;
   setTimeOutReference: any;
+  imageElement: any;
+  imageIndex: number;
+  setImageIndex: any;
 }
 
 export default function ImagePopUp({
+  elementOfCard,
   indexOfCard,
   editAndSaveButton,
   timeOutReference,
   setTimeOutReference,
+  imageElement,
+  imageIndex,
+  setImageIndex,
 }: ImagePopUpElements) {
   // Functions
   const functionCalledByButtonsOfImagePopUpHeaderOnMouseEnter = () => {
@@ -115,6 +123,10 @@ export default function ImagePopUp({
               <span
                 onClick={() => {
                   // Selecting elements
+                  const containerOfCard: any =
+                    document.getElementsByClassName("container-OfCard")[
+                      indexOfCard
+                    ];
                   const imagePopUpMainContainer: any =
                     document.getElementsByClassName(
                       "image-pop-up-main-container"
@@ -122,7 +134,8 @@ export default function ImagePopUp({
 
                   // Applying style on selected elements
                   if (editAndSaveButton == true) {
-                    imagePopUpMainContainer.style.cssText = "display: none;";
+                    containerOfCard.style.display = "block";
+                    imagePopUpMainContainer.style.display = "none";
                   }
                 }}
                 onMouseEnter={() => {
@@ -141,6 +154,12 @@ export default function ImagePopUp({
             </div>
             <div className="right-part-of-image-pop-up-header">
               <span
+                onClick={() => {
+                  // Deleting image
+                  const deleteCurrentImage: any = [...imageElement];
+                  deleteCurrentImage.splice(imageIndex, 1);
+                  elementOfCard.files = deleteCurrentImage;
+                }}
                 onMouseEnter={() => {
                   functionCalledByButtonsOfImagePopUpHeaderOnMouseEnter();
                 }}
@@ -159,6 +178,28 @@ export default function ImagePopUp({
           <div className="image-pop-up-body">
             <div
               className="right-part-of-image-pop-up-body"
+              onClick={() => {
+                // Selecting elements
+                const fileElementInImagePopUpBody: any =
+                  document.getElementsByClassName(
+                    "file-element-in-image-pop-up-body"
+                  )[indexOfCard];
+
+                // Changing data of file-element-in-image-pop-up-body
+                if (imageIndex > 0) {
+                  fileElementInImagePopUpBody.src = `${
+                    imageElement[imageIndex--]
+                  }`;
+
+                  setImageIndex(imageIndex--);
+                } else {
+                  fileElementInImagePopUpBody.src = `${
+                    imageElement[imageElement.length - 1]
+                  }`;
+
+                  setImageIndex(imageElement.length - 1);
+                }
+              }}
               onMouseEnter={() => {
                 functionCalledByButtonsOfImagePopUpHeaderOnMouseEnter();
               }}
@@ -173,10 +214,33 @@ export default function ImagePopUp({
               />
             </div>
             <div className="middle-part-of-image-pop-up-body">
-              {/* <embed className="file-OfCard" src={} /> */}
+              <embed
+                className="file-element-in-image-pop-up-body"
+                src={imageElement[imageIndex]}
+              />
             </div>
             <div
               className="left-part-of-image-pop-up-body"
+              onClick={() => {
+                // Selecting elements
+                const fileElementInImagePopUpBody: any =
+                  document.getElementsByClassName(
+                    "file-element-in-image-pop-up-body"
+                  )[indexOfCard];
+
+                // Changing data of file-element-in-image-pop-up-body
+                if (imageIndex < imageElement.length - 1) {
+                  fileElementInImagePopUpBody.src = `${
+                    imageElement[imageIndex++]
+                  }`;
+
+                  setImageIndex(imageIndex++);
+                } else {
+                  fileElementInImagePopUpBody.src = `${imageElement[0]}`;
+
+                  setImageIndex(0);
+                }
+              }}
               onMouseEnter={() => {
                 functionCalledByButtonsOfImagePopUpHeaderOnMouseEnter();
               }}

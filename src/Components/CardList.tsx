@@ -46,8 +46,6 @@ export default function CardList({
       const headingOfCard: any =
         document.getElementsByClassName("heading-OfCard")[i];
 
-      headingOfCard.disabled = true;
-
       if (headingOfCard.value == "") {
         headingOfCard.style.display = "none";
       } else {
@@ -61,8 +59,6 @@ export default function CardList({
     for (let i = 0; i < cardArrayProp.length; i++) {
       const headingOfCard: any =
         document.getElementsByClassName("heading-OfCard")[i];
-
-      headingOfCard.disabled = true;
 
       if (headingOfCard.value == "") {
         headingOfCard.style.display = "none";
