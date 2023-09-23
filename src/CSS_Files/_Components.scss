@@ -226,6 +226,7 @@
         color: #202124;
         overflow: hidden;
         text-overflow: ellipsis;
+        overflow-x: auto;
       }
     }
 
@@ -243,13 +244,16 @@
 
         .file-OfCard {
           width: 100%;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
 
     .body-OfCard {
       width: 100%;
-      height: auto;
       overflow: auto;
 
       .ql-container {
@@ -261,15 +265,12 @@
           color: #202124;
           background-color: transparent;
           padding: 0px;
+          overflow: hidden;
 
           &::before {
             font-style: normal;
             left: 0px;
             right: 0px;
-          }
-
-          &::-webkit-scrollbar {
-            display: none;
           }
 
           & > ul[data-checked="true"],

@@ -168,6 +168,8 @@ export default function Card({
       upperPartOfCard.style.cssText = `height: ${
         containerOfCard.clientHeight - LowerPartOfCard.clientHeight - 15
       }px`;
+
+      bodyOfCard.style.height = `${qlEditor.scrollHeight}px`;
     }
   }, [editAndSaveButton]);
 
@@ -186,6 +188,15 @@ export default function Card({
     if (bodyToggolOnChange == true) {
       setBodyToggolOnChange(!bodyToggolOnChange);
     }
+
+    // Selecting elements
+    const bodyOfCard: any =
+      document.getElementsByClassName("body-OfCard")[indexOfCard];
+    const qlEditor: any =
+      document.getElementsByClassName("ql-editor")[indexOfCard];
+
+    // Dynamically increasing height of bodyOfCard
+    bodyOfCard.style.height = `${qlEditor.scrollHeight}px`;
   };
 
   /////////////////////// Return Method ///////////////////////
@@ -245,6 +256,21 @@ export default function Card({
                     : headerValueOnChange || ""
                 }
                 onChange={(event: any) => functionCalledByHeaderOnChange(event)}
+                onWheel={(e: any) => {
+                  const headingOfCard: any =
+                    document.getElementsByClassName("heading-OfCard")[
+                      indexOfCard
+                    ];
+
+                  // Get scroll direction
+                  const scrollDirection = Math.sign(e.deltaY);
+
+                  // Adjust the scroll amount as needed
+                  const scrollAmount: number = 100;
+
+                  // Scroll the container horizontally
+                  headingOfCard.scrollLeft += scrollAmount * scrollDirection;
+                }}
               />
             </div>
 
