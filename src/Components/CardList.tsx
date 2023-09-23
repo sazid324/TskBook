@@ -38,6 +38,11 @@ export default function CardList({
     }
   }, []);
 
+  useEffect(() => {
+    // Saving data on local storage when new card is added.
+    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
+  }, [addNew]);
+
   /////////////////////// Return Method ///////////////////////
 
   return (
