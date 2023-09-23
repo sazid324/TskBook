@@ -6,8 +6,10 @@ import previousArrowImage from "../assets/Images/Icons_and_logos/previousArrow.s
 
 // Interfaces
 interface ImagePopUpElements {
+  addNew: any;
   elementOfCard: any;
   indexOfCard: number;
+  setUploadedFiles: any;
   editAndSaveButton: boolean;
   timeOutReference: number;
   setTimeOutReference: any;
@@ -17,8 +19,10 @@ interface ImagePopUpElements {
 }
 
 export default function ImagePopUp({
+  addNew,
   elementOfCard,
   indexOfCard,
+  setUploadedFiles,
   editAndSaveButton,
   timeOutReference,
   setTimeOutReference,
@@ -155,10 +159,37 @@ export default function ImagePopUp({
             <div className="right-part-of-image-pop-up-header">
               <span
                 onClick={() => {
+                  // Selecting elements
+                  const fileElementInImagePopUpBody: any =
+                    document.getElementsByClassName(
+                      "file-element-in-image-pop-up-body"
+                    )[indexOfCard];
+
+                  // Changing data of file-element-in-image-pop-up-body
+                  if (imageIndex == imageElement.length - 1) {
+                    fileElementInImagePopUpBody.src = `${
+                      imageElement[imageElement.length - 2]
+                    }`;
+                  }
+
                   // Deleting image
                   const deleteCurrentImage: any = [...imageElement];
                   deleteCurrentImage.splice(imageIndex, 1);
                   elementOfCard.files = deleteCurrentImage;
+
+                  // Setting uploaded files
+                  setUploadedFiles(elementOfCard.files);
+
+                  // Setting new image index
+                  if (imageIndex == imageElement.length - 1) {
+                    setImageIndex(imageElement.length - 2);
+                  }
+
+                  // Saving data to local storage
+                  localStorage.setItem(
+                    "card-notes-in-local-storage",
+                    JSON.stringify(addNew)
+                  );
                 }}
                 onMouseEnter={() => {
                   functionCalledByButtonsOfImagePopUpHeaderOnMouseEnter();

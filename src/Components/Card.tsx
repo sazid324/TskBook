@@ -82,6 +82,7 @@ export default function Card({
       elementOfCard.files = uploadedFiles;
     }
 
+    // Saving data to local storage
     localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
   }, [uploadedFiles]);
 
@@ -693,6 +694,7 @@ export default function Card({
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
             }}
             onDrop={(event) => {
+              // Selecting elements
               const filesOfCard: any =
                 document.getElementsByClassName("files-OfCard")[indexOfCard];
               const dragAndDropOverlayOnUpperPartOfCard: any =
@@ -704,6 +706,7 @@ export default function Card({
                   "drag-and-drop-second-overlay-on-upper-part-OfCard"
                 )[indexOfCard];
 
+              // Applying style to selected elements
               filesOfCard.style.display = "grid";
               dragAndDropOverlayOnUpperPartOfCard.style.display = "none";
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
@@ -740,8 +743,10 @@ export default function Card({
         </div>
         <div className="pop-up-overlay"></div>
         <ImagePopUp
+          addNew={addNew}
           elementOfCard={elementOfCard}
           indexOfCard={indexOfCard}
+          setUploadedFiles={setUploadedFiles}
           editAndSaveButton={editAndSaveButton}
           timeOutReference={timeOutReference}
           setTimeOutReference={setTimeOutReference}

@@ -46,11 +46,7 @@ export default function CardList({
       const headingOfCard: any =
         document.getElementsByClassName("heading-OfCard")[i];
 
-      if (headingOfCard.value == "") {
-        headingOfCard.style.display = "none";
-      } else {
-        headingOfCard.style.display = "block";
-      }
+      headingOfCard.style.display = "block";
     }
   }, [addNew]);
 
@@ -60,11 +56,7 @@ export default function CardList({
       const headingOfCard: any =
         document.getElementsByClassName("heading-OfCard")[i];
 
-      if (headingOfCard.value == "") {
-        headingOfCard.style.display = "none";
-      } else {
-        headingOfCard.style.display = "block";
-      }
+      headingOfCard.style.display = "block";
     }
   }, [cardArrayProp]);
 
