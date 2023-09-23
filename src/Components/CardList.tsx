@@ -38,28 +38,6 @@ export default function CardList({
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
-
-    // Making card header visible
-    for (let i = 0; i < addNew.length; i++) {
-      const headingOfCard: any =
-        document.getElementsByClassName("heading-OfCard")[i];
-
-      headingOfCard.style.display = "block";
-    }
-  }, [addNew]);
-
-  useEffect(() => {
-    // Making card header visible
-    for (let i = 0; i < cardArrayProp.length; i++) {
-      const headingOfCard: any =
-        document.getElementsByClassName("heading-OfCard")[i];
-
-      headingOfCard.style.display = "block";
-    }
-  }, [cardArrayProp]);
-
   /////////////////////// Return Method ///////////////////////
 
   return (
