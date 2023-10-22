@@ -2,9 +2,9 @@
 import { useState, useEffect, useRef } from "react";
 
 // Assets
-import searchImage from "../assets/Images/Icons_and_logos/search.svg";
-import cross from "../assets/Images/Icons_and_logos/cross.svg";
-import listImage from "../assets/Images/Icons_and_logos/list.svg";
+import searchImage from "../../public/assets/Images/Icons_and_logos/search.svg";
+import cross from "../../public/assets/Images/Icons_and_logos/cross.svg";
+import listImage from "../../public/assets/Images/Icons_and_logos/list.svg";
 
 // Interfaces
 interface headerElements {
@@ -53,20 +53,27 @@ export default function Header({ setNewQuery }: headerElements) {
     )[0];
 
     if (clickedOnSearch == true) {
-      navMenuOfHeader.style.cssText = "width: 0px;";
+      // Adding transition effect on search input field
+      navMenuOfHeader.style.cssText = "width: 0%; transition: width 0.5s;";
       navMenuButtonOfHeader.style.cssText = "display: none;";
       logoOfHeader.style.cssText = "display: none;";
       searchOfHeader.style.cssText = "width: 100%; transition: width 0.5s;";
-      searchInputOfHeader.style.cssText = "display: block;";
+      searchInputOfHeader.style.cssText =
+        "width: 100%; transition: width 0.5s; display: block;";
       searchLogoOfHeader.src = `${cross}`;
     }
     if (clickedOnSearch == false) {
-      navMenuOfHeader.style.cssText = "width: 33.33%;";
+      navMenuOfHeader.style.cssText = "width: 33.33%; transition: width 0.5s;";
       navMenuButtonOfHeader.style.cssText = "display: block;";
       logoOfHeader.style.cssText =
         "display: block; display: flex; justify-content: center;";
       searchOfHeader.style.cssText = "width: 33.33%; transition: width 0.5s;";
-      searchInputOfHeader.style.cssText = "display: none;";
+      searchInputOfHeader.style.cssText = "width: 0%; transition: width 0.5s;";
+
+      setTimeout(() => {
+        searchInputOfHeader.style.cssText = "display: none;";
+      }, 300);
+
       searchLogoOfHeader.src = `${searchImage}`;
       setNewQuery("");
       searchInputOfHeader.value = "";
@@ -96,11 +103,12 @@ export default function Header({ setNewQuery }: headerElements) {
     );
 
     if (clickedOnNavMenu == true) {
-      leftPart.style.cssText = "width: 5.3rem;";
-      rightPart.style.cssText = "left: 5.3rem;";
-      btnOfButton.style.cssText = "margin-left: 0px;";
-      textOfButton.style.cssText = "display: none;";
-      containerOfCopyright.style.cssText = "display: none;";
+      leftPart.style.cssText = "width: 5.3rem; transition: width 0.4s;";
+      rightPart.style.cssText = "left: 5.3rem; transition: left 0.4s;";
+      btnOfButton.style.cssText =
+        "margin-left: 0px; transition: margin-left 0.4s;";
+      textOfButton.style.display = "none";
+      containerOfCopyright.style.display = "none";
 
       for (let i = 0; i < liOfListGroup.length; i++) {
         liOfListGroup[i].style.cssText = "width: 4.45rem;";
@@ -109,16 +117,20 @@ export default function Header({ setNewQuery }: headerElements) {
     }
 
     if (clickedOnNavMenu == false) {
-      leftPart.style.cssText = "width: 14.5rem;";
-      rightPart.style.cssText = "left: 14.5rem;";
-      btnOfButton.style.cssText = "margin-left: 1.7rem;";
-      textOfButton.style.cssText = "display: block;";
-      containerOfCopyright.style.cssText = "display: block;";
+      leftPart.style.cssText = "width: 14.5rem; transition: width 0.4s;";
+      rightPart.style.cssText = "left: 14.5rem; transition: left 0.4s;";
+      btnOfButton.style.cssText =
+        "margin-left: 1.7rem; transition: margin-left 0.4s;";
 
-      for (let i = 0; i < liOfListGroup.length; i++) {
-        liOfListGroup[i].style.cssText = "width: inherit;";
-        textInLiOfListGroup[i].style.display = "block";
-      }
+      setTimeout(() => {
+        textOfButton.style.display = "block";
+        containerOfCopyright.style.display = "block";
+
+        for (let i = 0; i < liOfListGroup.length; i++) {
+          liOfListGroup[i].style.cssText = "width: inherit;";
+          textInLiOfListGroup[i].style.display = "block";
+        }
+      }, 150);
     }
   }, [clickedOnNavMenu]);
 

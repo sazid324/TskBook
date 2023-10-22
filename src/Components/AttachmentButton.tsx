@@ -5,7 +5,7 @@ import { useContext, useRef } from "react";
 import { fileUploadContext } from "./Card";
 
 // Assets
-import attachmentImage from "../assets/Images/Icons_and_logos/attachment.svg";
+import attachmentImage from "../../public/assets/Images/Icons_and_logos/attachment.svg";
 
 // Interfaces
 interface attachmentButtonElements {
@@ -23,10 +23,12 @@ export default function AttachmentButton({
 
   // Adding functionality of Select File button.
   const functionCalledByFileUploadButtonOnClick = (event: any) => {
-    const fileOfCard: any =
-      document.getElementsByClassName("file-OfCard")[indexOfCard];
+    // Selecting elements
+    const filesOfCard: any =
+      document.getElementsByClassName("files-OfCard")[indexOfCard];
 
-    fileOfCard.style.display = "grid";
+    // Applying style on selected elements
+    filesOfCard.style.display = "grid";
 
     const files: any = event.target.files;
 

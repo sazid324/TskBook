@@ -5,8 +5,8 @@ import { useEffect, useContext } from "react";
 import { addNewNoteContext } from "../Pages/Notes";
 
 // Assets
-import cardBackgroundImage from "../assets/Images/Icons_and_logos/cardBackground.svg";
-import arrowRight from "../assets/Images/Icons_and_logos/arrowRight.svg";
+import cardBackgroundImage from "../../public/assets/Images/Icons_and_logos/cardBackground.svg";
+import arrowRight from "../../public/assets/Images/Icons_and_logos/arrowRight.svg";
 
 // Interfaces
 interface ThreeDotMenuElements {

@@ -6,12 +6,12 @@ import { Link, useResolvedPath, useMatch } from "react-router-dom";
 import { currentPageContext } from "./App";
 
 // Assets
-import noteImage from "../assets/Images/Icons_and_logos/note.svg";
-import todoImage from "../assets/Images/Icons_and_logos/to-do.svg";
-import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
-import labelImage from "../assets/Images/Icons_and_logos/label.svg";
-import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
-import trashImage from "../assets/Images/Icons_and_logos/trash.svg";
+import noteImage from "../../public/assets/Images/Icons_and_logos/note.svg";
+import todoImage from "../../public/assets/Images/Icons_and_logos/to-do.svg";
+import reminderImage from "../../public/assets/Images/Icons_and_logos/reminder.svg";
+import labelImage from "../../public/assets/Images/Icons_and_logos/label.svg";
+import archiveImage from "../../public/assets/Images/Icons_and_logos/archive.svg";
+import trashImage from "../../public/assets/Images/Icons_and_logos/trash.svg";
 
 export default function ListGroup() {
   /////////////////////// Return Method ///////////////////////
@@ -43,16 +43,16 @@ export default function ListGroup() {
           Reminders
         </ListItem>
 
-        <div className="linkInLiOfListGroup">
-          <li className="liOfListGroup">
-            <span className="imageInLiOfListGroup">
+        <div className="link-in-li-OfListGroup">
+          <li className="li-OfListGroup">
+            <span className="image-in-li-OfListGroup">
               <img
-                className="liLogoImageOfListGroup"
+                className="li-logo-image-OfListGroup"
                 src={labelImage}
                 alt="label_logo"
               />
             </span>
-            <p className="textInLiOfListGroup">Labels</p>
+            <p className="text-in-li-OfListGroup">Labels</p>
           </li>
         </div>
 

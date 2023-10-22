@@ -1,8 +1,8 @@
 // Component imports
-import PageWatermark from "../Components/pageWatermark";
+import PageWatermark from "../Components/PageWatermark";
 
 // Assets
-import trashImage from "../assets/Images/Icons_and_logos/trash.svg";
+import trashImage from "../../public/assets/Images/Icons_and_logos/trash.svg";
 
 export default function Trash() {
   /////////////////////// Return Method ///////////////////////

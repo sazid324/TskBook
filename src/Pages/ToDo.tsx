@@ -1,8 +1,8 @@
 // Component imports
-import PageWatermark from "../Components/pageWatermark";
+import PageWatermark from "../Components/PageWatermark";
 
 // Assets
-import todoImage from "../assets/Images/Icons_and_logos/to-do.svg";
+import todoImage from "../../public/assets/Images/Icons_and_logos/to-do.svg";
 
 export default function todo() {
   /////////////////////// Return Method ///////////////////////

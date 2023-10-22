@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { currentPageContext } from "./App";
 
 // Assets
-import addImage from "../assets/Images/Icons_and_logos/add.svg";
+import addImage from "../../public/assets/Images/Icons_and_logos/add.svg";
 
 interface ButtonElements {
   addNew: any;

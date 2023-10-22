@@ -1,8 +1,8 @@
 // Component imports
-import PageWatermark from "../Components/pageWatermark";
+import PageWatermark from "../Components/PageWatermark";
 
 // Assets
-import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";
+import archiveImage from "../../public/assets/Images/Icons_and_logos/archive.svg";
 
 export default function Archive() {
   /////////////////////// Return Method ///////////////////////

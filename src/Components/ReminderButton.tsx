@@ -4,10 +4,10 @@ import DatePicker from "react-multi-date-picker";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
 
 // Assets
-import reminderImage from "../assets/Images/Icons_and_logos/reminder.svg";
-import calendarImage from "../assets/Images/Icons_and_logos/calendar.svg";
-import watchImage from "../assets/Images/Icons_and_logos/watch.svg";
-import arrowRight from "../assets/Images/Icons_and_logos/arrowRight.svg";
+import reminderImage from "../../public/assets/Images/Icons_and_logos/reminder.svg";
+import calendarImage from "../../public/assets/Images/Icons_and_logos/calendar.svg";
+import watchImage from "../../public/assets/Images/Icons_and_logos/watch.svg";
+import arrowRight from "../../public/assets/Images/Icons_and_logos/arrowRight.svg";
 
 // Interfaces
 interface ReminderButtonElements {
@@ -72,6 +72,7 @@ export default function ReminderButton({
             </h4>
             <div className="date-picker-container-OfCard">
               <DatePicker
+                z
                 inputClass="date-picker-OfCard"
                 placeholder="Pick date"
                 value={selectedDate}
@@ -87,6 +88,7 @@ export default function ReminderButton({
             </div>
             <div className="time-picker-container-OfCard">
               <DatePicker
+                z
                 inputClass="time-picker-OfCard"
                 placeholder="Pick time"
                 value={selectedTime}
