@@ -72,7 +72,6 @@ export default function ReminderButton({
             </h4>
             <div className="date-picker-container-OfCard">
               <DatePicker
-                z
                 inputClass="date-picker-OfCard"
                 placeholder="Pick date"
                 value={selectedDate}
@@ -88,7 +87,6 @@ export default function ReminderButton({
             </div>
             <div className="time-picker-container-OfCard">
               <DatePicker
-                z
                 inputClass="time-picker-OfCard"
                 placeholder="Pick time"
                 value={selectedTime}

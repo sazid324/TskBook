@@ -25,7 +25,6 @@ export default function Notes({ addNew, setAddNew, query }: NoteElements) {
   };
 
   // Hooks
-  const [divElement, setDivElement] = useState<any>(null);
   const [viewPort, setViewPort] = useState({
     viewPortWidth: window.innerWidth,
     viewPortHeight: window.innerHeight,
@@ -33,65 +32,52 @@ export default function Notes({ addNew, setAddNew, query }: NoteElements) {
 
   useEffect(() => {
     // Effects on viewport change.
-    if (divElement) {
-      // Get the position of the div relative to the window's left edge
-      const divLeftOffset: number = divElement.getBoundingClientRect().left;
-      // Get the position of the div relative to the window's top edge
-      const divTopOffset: number = divElement.getBoundingClientRect().top;
+    for (let i = 0; i < cardArray.length; i++) {
+      const themeMenuButtonOfCard: any = document.getElementsByClassName(
+        "theme-items-wraper-in-lower-part-OfCard"
+      )[i];
+      const attachmentItemsWraperInLowerPartOfCard: any =
+        document.getElementsByClassName(
+          "attachment-items-wraper-in-lower-part-OfCard"
+        )[i];
+      const threeDotMenuOfCard: any = document.getElementsByClassName(
+        "three-dot-items-wraper-in-lower-part-OfCard"
+      )[i];
 
-      // Get the width of the div
-      const divWidth: number = divElement.offsetWidth;
-      // Get the height of the div
-      const divHeight: number = divElement.offsetHeight;
+      const containerOfCardDistanceFromRight: any = document
+        .getElementsByClassName("container-OfCard")
+        [i].getBoundingClientRect().right;
+      const containerOfCardDistanceFromBottom: any = document
+        .getElementsByClassName("container-OfCard")
+        [i].getBoundingClientRect().bottom;
 
-      // Calculate the width from the left part of the window to the right part of the element
-      var distanceFromLeft: number = divLeftOffset + divWidth;
-      // Calculate the Height from the top part of the window to the bottom part of the element
-      var distanceFromTop: number = divTopOffset + divHeight;
-
-      // Making div element visible
-      divElement.style.cssText = "display: block; opacity: 0;";
-
-      // Setting position of button containers
-      if (viewPort.viewPortWidth < distanceFromLeft) {
-        if (viewPort.viewPortHeight < distanceFromTop) {
-          setTimeout(() => {
-            divElement.style.cssText = `transform: translate(-${
-              divWidth / 2 + 3
-            }px, -${
-              divHeight / 2 + 3
-            }px); display: block; opacity: 1; transition: opacity 0.5s;`;
-          }, 5);
+      if (viewPort.viewPortWidth < containerOfCardDistanceFromRight + 95) {
+        if (viewPort.viewPortHeight < containerOfCardDistanceFromBottom + 95) {
+          themeMenuButtonOfCard.style.cssText = "left: 11px; top: -117px";
+          attachmentItemsWraperInLowerPartOfCard.style.cssText =
+            "left: -192px; top: -165px";
+          threeDotMenuOfCard.style.cssText = "left: -142px; top: -113px";
         } else {
-          setTimeout(() => {
-            divElement.style.cssText = `transform: translate(-${
-              divWidth / 2 + 3
-            }px, ${
-              divHeight / 2 + 3
-            }px); display: block; opacity: 1; transition: opacity 0.5s;`;
-          }, 5);
+          themeMenuButtonOfCard.style.cssText = "left: 11px; top: 11px";
+          attachmentItemsWraperInLowerPartOfCard.style.cssText =
+            "left: -192px; top: 11px";
+          threeDotMenuOfCard.style.cssText = "left: -142px; top: 11px";
         }
       } else {
-        if (viewPort.viewPortHeight < distanceFromTop) {
-          setTimeout(() => {
-            divElement.style.cssText = `transform: translate(${
-              divWidth / 2 + 3
-            }px, -${
-              divHeight / 2 + 3
-            }px); display: block; opacity: 1; transition: opacity 0.5s;`;
-          }, 5);
+        if (viewPort.viewPortHeight < containerOfCardDistanceFromBottom + 95) {
+          themeMenuButtonOfCard.style.cssText = "left: 11px; top: -117px";
+          attachmentItemsWraperInLowerPartOfCard.style.cssText =
+            "left: 11px; top: -165px";
+          threeDotMenuOfCard.style.cssText = "left: 11px; top: -113px";
         } else {
-          setTimeout(() => {
-            divElement.style.cssText = `transform: translate(${
-              divWidth / 2 + 3
-            }px, ${
-              divHeight / 2 + 3
-            }px); display: block; opacity: 1; transition: opacity 0.5s;`;
-          }, 5);
+          themeMenuButtonOfCard.style.cssText = "left: 11px; top: 11px";
+          attachmentItemsWraperInLowerPartOfCard.style.cssText =
+            "left: 11px; top: 11px";
+          threeDotMenuOfCard.style.cssText = "left: 11px; top: 11px";
         }
       }
     }
-  }, [divElement != null]);
+  }, [viewPort]);
 
   // Reverse array
   const newReversedArray = (addNewArray: any) => {
@@ -118,7 +104,6 @@ export default function Notes({ addNew, setAddNew, query }: NoteElements) {
                 items.headerValue.toLowerCase().includes(query) ||
                 items.bodyValue.toLowerCase().includes(query)
             )}
-            setDivElement={setDivElement}
           />
         </cardArrayContext.Provider>
       </addNewNoteContext.Provider>

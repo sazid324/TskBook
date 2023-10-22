@@ -3,7 +3,7 @@ import { useEffect, useContext } from "react";
 
 // Component imports
 import Card from "./Card";
-import PageWatermark from "./PageWatermark";
+import PageWatermark from "./pageWatermark";
 import { addNewNoteContext } from "../Pages/Notes";
 
 // Assets
@@ -12,13 +12,9 @@ import noteImage from "../assets/Images/Icons_and_logos/note.svg";
 // Interfaces
 interface CardListElements {
   cardArrayProp: any;
-  setDivElement: any;
 }
 
-export default function CardList({
-  cardArrayProp,
-  setDivElement,
-}: CardListElements) {
+export default function CardList({ cardArrayProp }: CardListElements) {
   // Variables
   let localNotesLoaded: boolean = false;
 
@@ -39,9 +35,52 @@ export default function CardList({
   }, []);
 
   useEffect(() => {
-    // Saving data on local storage when new card is added.
     localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
+
+    // Making card header and body visible
+    for (let i = 0; i < addNew.length; i++) {
+      const headingOfCard: any =
+        document.getElementsByClassName("heading-OfCard")[i];
+      const bodyOfCard: any = document.getElementsByClassName("body-OfCard")[i];
+
+      headingOfCard.disabled = true;
+      bodyOfCard.disabled = true;
+
+      if (headingOfCard.value == "") {
+        headingOfCard.style.display = "none";
+      } else {
+        headingOfCard.style.display = "block";
+      }
+      if (bodyOfCard.value == "") {
+        bodyOfCard.style.display = "none";
+      } else {
+        bodyOfCard.style.display = "block";
+      }
+    }
   }, [addNew]);
+
+  useEffect(() => {
+    // Making card header and body visible
+    for (let i = 0; i < cardArrayProp.length; i++) {
+      const headingOfCard: any =
+        document.getElementsByClassName("heading-OfCard")[i];
+      const bodyOfCard: any = document.getElementsByClassName("body-OfCard")[i];
+
+      headingOfCard.disabled = true;
+      bodyOfCard.disabled = true;
+
+      if (headingOfCard.value == "") {
+        headingOfCard.style.display = "none";
+      } else {
+        headingOfCard.style.display = "block";
+      }
+      if (bodyOfCard.value == "") {
+        bodyOfCard.style.display = "none";
+      } else {
+        bodyOfCard.style.display = "block";
+      }
+    }
+  }, [cardArrayProp]);
 
   /////////////////////// Return Method ///////////////////////
 
@@ -54,7 +93,6 @@ export default function CardList({
               key={element.id}
               elementOfCard={element}
               indexOfCard={index}
-              setDivElement={setDivElement}
             />
           );
         })

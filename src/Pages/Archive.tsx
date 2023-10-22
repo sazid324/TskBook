@@ -1,5 +1,5 @@
 // Component imports
-import PageWatermark from "../Components/PageWatermark";
+import PageWatermark from "../Components/pageWatermark";
 
 // Assets
 import archiveImage from "../assets/Images/Icons_and_logos/archive.svg";

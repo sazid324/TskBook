@@ -1,46 +1,127 @@
-// Library imports
-import { useState, useEffect } from "react";
-
 // Assets
 import boldImage from "../assets/Images/Icons_and_logos/bold.svg";
 import italicImage from "../assets/Images/Icons_and_logos/italic.svg";
 import underlineImage from "../assets/Images/Icons_and_logos/underline.svg";
 import strikeThroughImage from "../assets/Images/Icons_and_logos/strikethrough.svg";
-import quoteImage from "../assets/Images/Icons_and_logos/quote.svg";
 import h1Image from "../assets/Images/Icons_and_logos/h1.svg";
 import h2Image from "../assets/Images/Icons_and_logos/h2.svg";
 import h3Image from "../assets/Images/Icons_and_logos/h3.svg";
 import ulListImage from "../assets/Images/Icons_and_logos/ulList.svg";
 import olListImage from "../assets/Images/Icons_and_logos/olList.svg";
+import quoteImage from "../assets/Images/Icons_and_logos/quote.svg";
 import linkImage from "../assets/Images/Icons_and_logos/link.svg";
 import checkBoxImage from "../assets/Images/Icons_and_logos/checkBox.svg";
+import verticalLineImage from "../assets/Images/Icons_and_logos/verticalLine.svg";
 import undoImage from "../assets/Images/Icons_and_logos/undo.svg";
 import redoImage from "../assets/Images/Icons_and_logos/redo.svg";
 
 // Interfaces
 interface editorButtonContentElements {
   indexOfCard: number;
-  quillRef: any;
+  setBodyValueOnChange: any;
+  selectedText: any;
+  rangeOfSelectedText: any;
+  nodeNameOfSelectedRange: any;
 }
 
 export default function EditorButtonContent({
   indexOfCard,
-  quillRef,
+  setBodyValueOnChange,
+  selectedText,
+  rangeOfSelectedText,
+  nodeNameOfSelectedRange,
 }: editorButtonContentElements) {
-  // Hooks
-  const [formatOfSelectedText, setFormatOfSelectedText] = useState<any>(null);
+  // Functions
+  const functionCalledByEditorButtonContentElementOnClick = (
+    tagName: any,
+    selectedTagName: any
+  ) => {
+    const bodyOfCard: any =
+      document.getElementsByClassName("body-OfCard")[indexOfCard];
+    const arrayOfTag: any = Array.from(bodyOfCard.children);
 
-  useEffect(() => {
-    const quill = quillRef.current.getEditor();
+    if (nodeNameOfSelectedRange == "DIV") {
+      const createdElement = `<${tagName}>${selectedText}</${tagName}>`;
+      rangeOfSelectedText.deleteContents();
+      rangeOfSelectedText.insertNode(
+        document.createRange().createContextualFragment(createdElement)
+      );
+    } else if (nodeNameOfSelectedRange == `${selectedTagName}`) {
+      if (
+        rangeOfSelectedText?.startContainer.parentNode.innerHTML.length >
+        selectedText.length
+      ) {
+        if (
+          rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+            0,
+            selectedText.length
+          ) === selectedText
+        ) {
+          rangeOfSelectedText?.startContainer.parentNode.insertAdjacentHTML(
+            "beforebegin",
+            `${selectedText}<${tagName}>${rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+              selectedText.length
+            )}</${tagName}>`
+          );
 
-    quill.on("selection-change", (range: any) => {
-      if (range) {
-        const format: any = quillRef.current.getEditor().getFormat(range);
+          rangeOfSelectedText?.startContainer.parentNode.remove();
+        } else if (
+          rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+            -selectedText.length
+          ) === selectedText
+        ) {
+          rangeOfSelectedText?.startContainer.parentNode.insertAdjacentHTML(
+            "afterend",
+            `<${tagName}>${rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+              0,
+              rangeOfSelectedText.startOffset
+            )}</${tagName}>${selectedText}`
+          );
 
-        setFormatOfSelectedText(format);
+          rangeOfSelectedText?.startContainer.parentNode.remove();
+        } else {
+          const textBeforeSelectedText: any =
+            rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+              0,
+              rangeOfSelectedText.startOffset
+            );
+          const textAfterSelectedText: any =
+            rangeOfSelectedText?.startContainer.parentNode.innerHTML.slice(
+              rangeOfSelectedText.endOffset
+            );
+
+          rangeOfSelectedText?.startContainer.parentNode.insertAdjacentHTML(
+            "beforebegin",
+            `<${tagName}>${textBeforeSelectedText}</${tagName}>${selectedText}<${tagName}>${textAfterSelectedText}</${tagName}>`
+          );
+
+          rangeOfSelectedText?.startContainer.parentNode.remove();
+        }
+      } else {
+        rangeOfSelectedText?.startContainer.parentNode.insertAdjacentText(
+          "beforebegin",
+          `${selectedText}`
+        );
+        rangeOfSelectedText?.startContainer.parentNode.remove();
       }
-    });
-  }, []);
+    }
+
+    if (bodyOfCard.innerHTML.includes(`</${tagName}><${tagName}>`) == true) {
+      bodyOfCard.innerHTML = bodyOfCard.innerHTML.replaceAll(
+        `</${tagName}><${tagName}>`,
+        ""
+      );
+    }
+
+    if (arrayOfTag) {
+      arrayOfTag.forEach((element: any) => {
+        element.innerHTML = element.innerHTML.replaceAll(`<${tagName}>`, "");
+        element.innerHTML = element.innerHTML.replaceAll(`</${tagName}>`, "");
+      });
+    }
+
+    setBodyValueOnChange(bodyOfCard.innerHTML);
+  };
 
   /////////////////////// Return Method ///////////////////////
 
@@ -55,33 +136,13 @@ export default function EditorButtonContent({
             ];
           editorbuttonParagraphOfCard.style.display = "none";
         }}
-        onWheel={(e: any) => {
-          const editorContentWraperInLowerPartOfCard: any =
-            document.getElementsByClassName(
-              "editor-content-wraper-in-lower-part-OfCard"
-            )[indexOfCard];
-
-          // Get scroll direction
-          const scrollDirection = Math.sign(e.deltaY);
-
-          // Adjust the scroll amount as needed
-          const scrollAmount: number = 100;
-
-          // Scroll the container horizontally
-          editorContentWraperInLowerPartOfCard.scrollLeft +=
-            scrollAmount * scrollDirection;
-        }}
       >
         <div className="contents-in-editor-button-OfCard">
           <div className="sub-container-of-contents-in-editor-button-OfCard">
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                if (formatOfSelectedText.bold) {
-                  quillRef.current.getEditor().format("bold", false);
-                } else {
-                  quillRef.current.getEditor().format("bold", true);
-                }
+                functionCalledByEditorButtonContentElementOnClick("b", "B");
               }}
             >
               <img src={boldImage} alt="bold-image" />
@@ -90,11 +151,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                if (formatOfSelectedText.italic) {
-                  quillRef.current.getEditor().format("italic", false);
-                } else {
-                  quillRef.current.getEditor().format("italic", true);
-                }
+                functionCalledByEditorButtonContentElementOnClick("i", "I");
               }}
             >
               <img src={italicImage} alt="italic-image" />
@@ -103,11 +160,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                if (formatOfSelectedText.underline) {
-                  quillRef.current.getEditor().format("underline", false);
-                } else {
-                  quillRef.current.getEditor().format("underline", true);
-                }
+                functionCalledByEditorButtonContentElementOnClick("u", "U");
               }}
             >
               <img src={underlineImage} alt="underline-image" />
@@ -116,27 +169,10 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                if (formatOfSelectedText.strike) {
-                  quillRef.current.getEditor().format("strike", false);
-                } else {
-                  quillRef.current.getEditor().format("strike", true);
-                }
+                functionCalledByEditorButtonContentElementOnClick("s", "S");
               }}
             >
               <img src={strikeThroughImage} alt="strikeThrough-image" />
-              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
-            </span>
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => {
-                if (formatOfSelectedText.blockquote) {
-                  quillRef.current.getEditor().format("blockquote", false);
-                } else {
-                  quillRef.current.getEditor().format("blockquote", true);
-                }
-              }}
-            >
-              <img src={quoteImage} alt="quote-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
             <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
@@ -145,11 +181,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                if (formatOfSelectedText.header === 1) {
-                  quillRef.current.editor.format("header", false);
-                } else {
-                  quillRef.current.editor.format("header", 1);
-                }
+                functionCalledByEditorButtonContentElementOnClick("h1", "H1");
               }}
             >
               <img src={h1Image} alt="h1-image" />
@@ -158,11 +190,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                if (formatOfSelectedText.header === 2) {
-                  quillRef.current.editor.format("header", false);
-                } else {
-                  quillRef.current.editor.format("header", 2);
-                }
+                functionCalledByEditorButtonContentElementOnClick("h2", "H2");
               }}
             >
               <img src={h2Image} alt="h2-image" />
@@ -171,11 +199,7 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                if (formatOfSelectedText.header === 3) {
-                  quillRef.current.editor.format("header", false);
-                } else {
-                  quillRef.current.editor.format("header", 3);
-                }
+                functionCalledByEditorButtonContentElementOnClick("h3", "H3");
               }}
             >
               <img src={h3Image} alt="h3-image" />
@@ -184,29 +208,11 @@ export default function EditorButtonContent({
             <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
           </div>
           <div className="sub-container-of-contents-in-editor-button-OfCard">
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => {
-                if (formatOfSelectedText.list == "bullet") {
-                  quillRef.current.editor.format("list", false);
-                } else {
-                  quillRef.current.editor.format("list", "bullet");
-                }
-              }}
-            >
+            <span className="image-container-of-contents-in-editor-button-OfCard">
               <img src={ulListImage} alt="ulList-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => {
-                if (formatOfSelectedText.list == "ordered") {
-                  quillRef.current.editor.format("list", false);
-                } else {
-                  quillRef.current.editor.format("list", "ordered");
-                }
-              }}
-            >
+            <span className="image-container-of-contents-in-editor-button-OfCard">
               <img src={olListImage} alt="olList-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
@@ -216,55 +222,32 @@ export default function EditorButtonContent({
             <span
               className="image-container-of-contents-in-editor-button-OfCard"
               onClick={() => {
-                if (formatOfSelectedText.link) {
-                  const quill = quillRef.current.editor;
-                  quill.format("link", false);
-                } else {
-                  const linkURL = window.prompt("Enter the URL:");
-
-                  const quill = quillRef.current.editor;
-                  quill.format("link", linkURL, "target", "_blank");
-                }
+                functionCalledByEditorButtonContentElementOnClick("q", "Q");
               }}
             >
+              <img src={quoteImage} alt="quote-image" />
+              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
+            </span>
+            <span className="image-container-of-contents-in-editor-button-OfCard">
               <img src={linkImage} alt="link-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => {
-                if (formatOfSelectedText.list == "checked") {
-                  quillRef.current.editor.format("list", false);
-                } else {
-                  quillRef.current.editor.format("list", "checked");
-                }
-              }}
-            >
-              <img src={checkBoxImage} alt="check-box-image" />
+            <span className="image-container-of-contents-in-editor-button-OfCard">
+              <img src={checkBoxImage} alt="checkBox-image" />
+              <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
+            </span>
+            <span className="image-container-of-contents-in-editor-button-OfCard">
+              <img src={verticalLineImage} alt="verticalLine-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
             <span className="vertical-line-in-sub-container-of-contents-in-editor-button-OfCard"></span>
           </div>
           <div className="sub-container-of-contents-in-editor-button-OfCard">
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => {
-                if (quillRef.current) {
-                  quillRef.current.editor.history.undo();
-                }
-              }}
-            >
+            <span className="image-container-of-contents-in-editor-button-OfCard">
               <img src={undoImage} alt="undo-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>
-            <span
-              className="image-container-of-contents-in-editor-button-OfCard"
-              onClick={() => {
-                if (quillRef.current) {
-                  quillRef.current.editor.history.redo();
-                }
-              }}
-            >
+            <span className="image-container-of-contents-in-editor-button-OfCard">
               <img src={redoImage} alt="redo-image" />
               <span className="overlay-on-image-container-of-contents-in-editor-button-OfCard"></span>
             </span>

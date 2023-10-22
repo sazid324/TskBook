@@ -5,7 +5,7 @@ interface PageWatermarkElements {
   children: string;
 }
 
-export default function PageWatermark({
+export default function pageWatermark({
   imageSource,
   imageAlt,
   children,

@@ -1,6 +1,5 @@
 // Library imports
-import { useEffect, useState, useRef, useContext, createContext } from "react";
-import ReactQuill from "react-quill";
+import { useEffect, useState, useContext, createContext } from "react";
 
 // Component imports
 import ReminderButton from "./ReminderButton";
@@ -9,11 +8,7 @@ import ThemeButton from "./ThemeButton";
 import AttachmentButton from "./AttachmentButton";
 import EditorButton from "./EditorButton";
 import EditorButtonContent from "./EditorButtonContent";
-import ImagePopUp from "./ImagePopUp";
 import { addNewNoteContext } from "../Pages/Notes";
-
-// CSS imports
-import "react-quill/dist/quill.snow.css";
 
 // Component exports
 export const fileUploadContext: any = createContext(null);
@@ -27,14 +22,9 @@ import saveImage from "../assets/Images/Icons_and_logos/save.svg";
 interface CardElements {
   elementOfCard: any;
   indexOfCard: number;
-  setDivElement: any;
 }
 
-export default function Card({
-  elementOfCard,
-  indexOfCard,
-  setDivElement,
-}: CardElements) {
+export default function Card({ elementOfCard, indexOfCard }: CardElements) {
   // Hooks
   const [addNew] = useContext<any>(addNewNoteContext);
   const [headerValueOnChange, setHeaderValueOnChange] = useState(() => {
@@ -47,22 +37,26 @@ export default function Card({
     return elementOfCard.files ? elementOfCard.files : [];
   });
   const [headerToggolOnChange, setHeaderToggolOnChange] = useState(true);
-  const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
   const [editorButton, setEditorButton] = useState(false);
-  const [timeOutReference, setTimeOutReference] = useState(0);
-  const [imageIndex, setImageIndex] = useState(0);
-
-  const quillRef = useRef<any>(null);
+  const [selectedText, setSelectedText] = useState("");
+  const [rangeOfSelectedText, setRangeOfSelectedText] = useState<any>(null);
+  const [nodeNameOfSelectedRange, setNodeNameOfSelectedRange] = useState("");
 
   useEffect(() => {
-    const filesOfCard: any =
-      document.getElementsByClassName("files-OfCard")[indexOfCard];
+    const bodyOfCard: any =
+      document.getElementsByClassName("body-OfCard")[indexOfCard];
+    if (elementOfCard.bodyValue) {
+      bodyOfCard.innerHTML = bodyValueOnChange;
+    }
+
+    const fileOfCard: any =
+      document.getElementsByClassName("file-OfCard")[indexOfCard];
     if (elementOfCard.files != "") {
-      filesOfCard.style.display = "grid";
+      fileOfCard.style.display = "grid";
     } else {
-      filesOfCard.style.display = "none";
+      fileOfCard.style.display = "none";
     }
   }, []);
 
@@ -82,13 +76,11 @@ export default function Card({
       elementOfCard.files = uploadedFiles;
     }
 
-    // Saving data to local storage
     localStorage.setItem("card-notes-in-local-storage", JSON.stringify(addNew));
   }, [uploadedFiles]);
 
+  // Adding functionality of Edit and Save button in Card.
   useEffect(() => {
-    // Functionality of Edit and Save button in Card.
-    // Selecting elements
     const containerOfCard: any =
       document.getElementsByClassName("container-OfCard")[indexOfCard];
     const upperPartOfCard: any =
@@ -101,44 +93,30 @@ export default function Card({
       document.getElementsByClassName("heading-OfCard")[indexOfCard];
     const bodyOfCard: any =
       document.getElementsByClassName("body-OfCard")[indexOfCard];
-    const qlEditor: any =
-      document.getElementsByClassName("ql-editor")[indexOfCard];
     const editAndSaveButtonOfCard: any = document.getElementsByClassName(
       "edit-and-save-button-OfCard"
     )[indexOfCard];
-    const overlayOnSaveModeInUpperPartOfCard: any =
-      document.getElementsByClassName(
-        "overlay-on-save-mode-in-upper-part-OfCard"
-      )[indexOfCard];
     const editElementTextInLowerPartOfCard: any =
       document.getElementsByClassName("edit-element-text-in-lower-part-OfCard")[
         indexOfCard
       ];
-    const editorButtonElementInLowerPartOfCard: any =
-      document.getElementsByClassName(
-        "editor-button-element-in-lower-part-OfCard"
-      )[indexOfCard];
     const popUpOverlay: any =
       document.getElementsByClassName("pop-up-overlay")[indexOfCard];
 
     if (editAndSaveButton == false) {
-      // Applying style on selected elements
-      overlayOnSaveModeInUpperPartOfCard.style.display = "block";
+      headingOfCard.disabled = true;
+      bodyOfCard.contentEditable = false;
       shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 90%);`;
 
       if (headingOfCard.value == "") {
         headingOfCard.style.display = "none";
       }
 
-      if (
-        elementOfCard.bodyValue == "" ||
-        qlEditor.innerHTML == `<p><br></p>`
-      ) {
+      if (bodyOfCard.value == "") {
         bodyOfCard.style.display = "none";
       }
 
       upperPartOfCard.style.height = "100%";
-      editorButtonElementInLowerPartOfCard.style.display = "none";
       popUpOverlay.style.display = "none";
 
       editAndSaveButtonOfCard.src = `${editImage}`;
@@ -147,7 +125,6 @@ export default function Card({
 
       headingOfCard.scrollIntoView();
 
-      // Saving elements in local storage
       localStorage.setItem(
         "card-notes-in-local-storage",
         JSON.stringify(addNew)
@@ -155,23 +132,26 @@ export default function Card({
     }
 
     if (editAndSaveButton == true) {
-      // Applying style on selected elements
+      headingOfCard.disabled = false;
+      bodyOfCard.contentEditable = true;
       headingOfCard.style.display = "block";
       bodyOfCard.style.display = "block";
-      overlayOnSaveModeInUpperPartOfCard.style.display = "none";
       shadowPartOfCard.style.display = "none";
       popUpOverlay.style.display = "block";
       editAndSaveButtonOfCard.src = `${saveImage}`;
       editElementTextInLowerPartOfCard.innerHTML = "Save";
-      editorButtonElementInLowerPartOfCard.style.display = "block";
 
       upperPartOfCard.style.cssText = `height: ${
         containerOfCard.clientHeight - LowerPartOfCard.clientHeight - 15
       }px`;
-
-      bodyOfCard.style.height = `${qlEditor.scrollHeight}px`;
     }
   }, [editAndSaveButton]);
+
+  useEffect(() => {
+    setNodeNameOfSelectedRange(
+      rangeOfSelectedText?.startContainer.parentNode.nodeName
+    );
+  }, [rangeOfSelectedText]);
 
   // Getting value onChange of the inputs of Card component.
   const functionCalledByHeaderOnChange = (event: any) => {
@@ -183,20 +163,16 @@ export default function Card({
   };
 
   const functionCalledByBodyOnChange = (event: any) => {
-    setBodyValueOnChange(event);
+    setBodyValueOnChange(event.target.textContent);
+  };
 
-    if (bodyToggolOnChange == true) {
-      setBodyToggolOnChange(!bodyToggolOnChange);
+  // Function to get the position of a selected text within an element
+  const getSelectionPosition = () => {
+    const selection = document.getSelection();
+    if (selection) {
+      const range = selection.getRangeAt(0);
+      setRangeOfSelectedText(range);
     }
-
-    // Selecting elements
-    const bodyOfCard: any =
-      document.getElementsByClassName("body-OfCard")[indexOfCard];
-    const qlEditor: any =
-      document.getElementsByClassName("ql-editor")[indexOfCard];
-
-    // Dynamically increasing height of bodyOfCard
-    bodyOfCard.style.height = `${qlEditor.scrollHeight}px`;
   };
 
   /////////////////////// Return Method ///////////////////////
@@ -256,111 +232,36 @@ export default function Card({
                     : headerValueOnChange || ""
                 }
                 onChange={(event: any) => functionCalledByHeaderOnChange(event)}
-                onWheel={(e: any) => {
-                  const headingOfCard: any =
-                    document.getElementsByClassName("heading-OfCard")[
-                      indexOfCard
-                    ];
-
-                  // Get scroll direction
-                  const scrollDirection = Math.sign(e.deltaY);
-
-                  // Adjust the scroll amount as needed
-                  const scrollAmount: number = 100;
-
-                  // Scroll the container horizontally
-                  headingOfCard.scrollLeft += scrollAmount * scrollDirection;
-                }}
               />
             </div>
 
-            <div className="files-OfCard">
+            <div className="file-OfCard">
               {elementOfCard.files.map((element: any, index: number) => {
                 return (
-                  <div
-                    key={index}
-                    className="file-container"
-                    onClick={() => {
-                      // Setting values
-                      setImageIndex(index);
-
-                      // Selecting elements
-                      const containerOfCard: any =
-                        document.getElementsByClassName("container-OfCard")[
-                          indexOfCard
-                        ];
-                      const imagePopUpMainContainer: any =
-                        document.getElementsByClassName(
-                          "image-pop-up-main-container"
-                        )[indexOfCard];
-                      const backImageOfImagePopUpHeader: any =
-                        document.getElementsByClassName(
-                          "back-image-of-image-pop-up-header"
-                        )[indexOfCard];
-                      const deleteImageOfImagePopUpHeader: any =
-                        document.getElementsByClassName(
-                          "delete-image-of-image-pop-up-header"
-                        )[indexOfCard];
-                      const previousImageOfImagePopUpHeader: any =
-                        document.getElementsByClassName(
-                          "previous-image-of-image-pop-up-header"
-                        )[indexOfCard];
-                      const nextImageOfImagePopUpHeader: any =
-                        document.getElementsByClassName(
-                          "next-image-of-image-pop-up-header"
-                        )[indexOfCard];
-
-                      // Applying style on selected elements
-                      if (editAndSaveButton == true) {
-                        containerOfCard.style.display = "none";
-                        imagePopUpMainContainer.style.display = "block";
-
-                        const timeOut: number = setTimeout(() => {
-                          backImageOfImagePopUpHeader.style.cssText =
-                            "opacity: 0; transition: opacity 0.5s;";
-                          deleteImageOfImagePopUpHeader.style.cssText =
-                            "opacity: 0; transition: opacity 0.5s;";
-                          previousImageOfImagePopUpHeader.style.cssText =
-                            "opacity: 0; transition: opacity 0.5s;";
-                          nextImageOfImagePopUpHeader.style.cssText =
-                            "opacity: 0; transition: opacity 0.5s;";
-
-                          setTimeout(() => {
-                            backImageOfImagePopUpHeader.style.display = "none";
-                            deleteImageOfImagePopUpHeader.style.display =
-                              "none";
-                            previousImageOfImagePopUpHeader.style.display =
-                              "none";
-                            nextImageOfImagePopUpHeader.style.display = "none";
-                          }, 500);
-                        }, 10000);
-
-                        setTimeOutReference(timeOut);
-                      }
-                    }}
-                  >
-                    <embed className="file-OfCard" src={element} />
+                  <div key={index} className="files-container">
+                    <embed className="files-OfCard" src={element} />
                   </div>
                 );
               })}
             </div>
 
-            <ReactQuill
+            <div
               className="body-OfCard"
-              ref={quillRef}
               placeholder="Take a note...."
-              value={
-                bodyToggolOnChange == true
-                  ? elementOfCard.bodyValue
-                  : bodyValueOnChange || ""
-              }
-              onChange={(event: any) => functionCalledByBodyOnChange(event)}
-              modules={{
-                clipboard: true,
-                toolbar: false,
+              contentEditable={true}
+              onInput={(event: any) => functionCalledByBodyOnChange(event)}
+              onMouseUp={() => {
+                const selectedTextInBodyOfCard = window
+                  .getSelection()
+                  ?.toString();
+
+                if (selectedTextInBodyOfCard?.length) {
+                  setSelectedText(selectedTextInBodyOfCard);
+                }
+
+                getSelectionPosition();
               }}
-            ></ReactQuill>
-            <div className="overlay-on-save-mode-in-upper-part-OfCard"></div>
+            ></div>
           </div>
           <div className="shadow-part-OfCard"></div>
           <div className="lower-part-OfCard">
@@ -380,9 +281,6 @@ export default function Card({
                       "reminder-button-paragraph-OfCard"
                     )[indexOfCard];
                   reminderButtonParagraphOfCard.style.display = "none";
-
-                  // Setting div element
-                  setDivElement(reminderContentWraperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -417,9 +315,6 @@ export default function Card({
                       "reminder-button-paragraph-OfCard"
                     )[indexOfCard];
                   reminderButtonParagraphOfCard.style.display = "none";
-
-                  // Setting div element
-                  setDivElement(null);
                 }}
               >
                 <ReminderButton
@@ -441,9 +336,6 @@ export default function Card({
                       "theme-button-paragraph-OfCard"
                     )[indexOfCard];
                   themeButtonParagraphOfCard.style.display = "none";
-
-                  // Setting div element
-                  setDivElement(themeItemsWraperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -478,9 +370,6 @@ export default function Card({
                       "theme-button-paragraph-OfCard"
                     )[indexOfCard];
                   themeButtonParagraphOfCard.style.display = "none";
-
-                  // Setting div element
-                  setDivElement(null);
                 }}
               >
                 <ThemeButton
@@ -520,9 +409,6 @@ export default function Card({
                     )[indexOfCard];
                   attachmentItemsWraperInLowerPartOfCard.style.display =
                     "block";
-
-                  // Setting div element
-                  setDivElement(attachmentItemsWraperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -545,9 +431,6 @@ export default function Card({
                       "attachment-items-wraper-in-lower-part-OfCard"
                     )[indexOfCard];
                   attachmentItemsWraperInLowerPartOfCard.style.display = "none";
-
-                  // Setting div element
-                  setDivElement(null);
                 }}
               >
                 <AttachmentButton
@@ -600,9 +483,6 @@ export default function Card({
                     "more-button-paragraph-OfCard"
                   )[indexOfCard];
                   morebuttonOfCard.style.display = "none";
-
-                  // Setting div element
-                  setDivElement(threeDotItemsWraperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -635,9 +515,6 @@ export default function Card({
                     "more-button-paragraph-OfCard"
                   )[indexOfCard];
                   morebuttonOfCard.style.display = "none";
-
-                  // Setting div element
-                  setDivElement(null);
                 }}
               >
                 <ThreeDotMenu
@@ -645,56 +522,64 @@ export default function Card({
                   indexOfCard={indexOfCard}
                 />
               </button>
-              <button
-                className="element-in-lower-part-OfCard editor-button-element-in-lower-part-OfCard"
-                onClick={() => {
-                  setEditorButton(!editorButton);
+              {editAndSaveButton === true ? (
+                <button
+                  className="element-in-lower-part-OfCard"
+                  onClick={() => {
+                    setEditorButton(!editorButton);
 
-                  const editorButtonParagraphOfCard: any =
-                    document.getElementsByClassName(
-                      "editor-button-paragraph-OfCard"
-                    )[indexOfCard];
-                  editorButtonParagraphOfCard.style.display = "none";
-                }}
-                onMouseEnter={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
-                  containerOfCard.style.cssText = "overflow: visible";
-                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+                    const editorButtonParagraphOfCard: any =
+                      document.getElementsByClassName(
+                        "editor-button-paragraph-OfCard"
+                      )[indexOfCard];
+                    editorButtonParagraphOfCard.style.display = "none";
+                  }}
+                  onMouseEnter={() => {
+                    const containerOfCard: any =
+                      document.getElementsByClassName("container-OfCard")[
+                        indexOfCard
+                      ];
+                    containerOfCard.style.cssText = "overflow: visible";
+                    containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const editorButtonParagraphOfCard: any =
-                    document.getElementsByClassName(
-                      "editor-button-paragraph-OfCard"
-                    )[indexOfCard];
-                  editorButtonParagraphOfCard.style.display = "block";
-                }}
-                onMouseLeave={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("container-OfCard")[
-                      indexOfCard
-                    ];
-                  containerOfCard.style.cssText = "overflow: hidden";
-                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
+                    const editorButtonParagraphOfCard: any =
+                      document.getElementsByClassName(
+                        "editor-button-paragraph-OfCard"
+                      )[indexOfCard];
+                    editorButtonParagraphOfCard.style.display = "block";
+                  }}
+                  onMouseLeave={() => {
+                    const containerOfCard: any =
+                      document.getElementsByClassName("container-OfCard")[
+                        indexOfCard
+                      ];
+                    containerOfCard.style.cssText = "overflow: hidden";
+                    containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const editorButtonParagraphOfCard: any =
-                    document.getElementsByClassName(
-                      "editor-button-paragraph-OfCard"
-                    )[indexOfCard];
-                  editorButtonParagraphOfCard.style.display = "none";
-                }}
-              >
-                <EditorButton
+                    const editorButtonParagraphOfCard: any =
+                      document.getElementsByClassName(
+                        "editor-button-paragraph-OfCard"
+                      )[indexOfCard];
+                    editorButtonParagraphOfCard.style.display = "none";
+                  }}
+                >
+                  <EditorButton
+                    indexOfCard={indexOfCard}
+                    editorButton={editorButton}
+                  />
+                </button>
+              ) : null}
+              {/* Container Related to EditorButton. */}
+
+              {editorButton == true ? (
+                <EditorButtonContent
                   indexOfCard={indexOfCard}
-                  editorButton={editorButton}
+                  setBodyValueOnChange={setBodyValueOnChange}
+                  selectedText={selectedText}
+                  rangeOfSelectedText={rangeOfSelectedText}
+                  nodeNameOfSelectedRange={nodeNameOfSelectedRange}
                 />
-              </button>
-
-              <EditorButtonContent
-                indexOfCard={indexOfCard}
-                quillRef={quillRef}
-              />
+              ) : null}
 
               <span className="overlay-on-lower-part-OfCard"></span>
             </div>
@@ -720,9 +605,8 @@ export default function Card({
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
             }}
             onDrop={(event) => {
-              // Selecting elements
-              const filesOfCard: any =
-                document.getElementsByClassName("files-OfCard")[indexOfCard];
+              const fileOfCard: any =
+                document.getElementsByClassName("file-OfCard")[indexOfCard];
               const dragAndDropOverlayOnUpperPartOfCard: any =
                 document.getElementsByClassName(
                   "drag-and-drop-overlay-on-upper-part-OfCard"
@@ -732,8 +616,7 @@ export default function Card({
                   "drag-and-drop-second-overlay-on-upper-part-OfCard"
                 )[indexOfCard];
 
-              // Applying style to selected elements
-              filesOfCard.style.display = "grid";
+              fileOfCard.style.display = "grid";
               dragAndDropOverlayOnUpperPartOfCard.style.display = "none";
               dragAndDropSecondOverlayOnUpperPartOfCard.style.display = "none";
 
@@ -768,18 +651,6 @@ export default function Card({
           ></div>
         </div>
         <div className="pop-up-overlay"></div>
-        <ImagePopUp
-          addNew={addNew}
-          elementOfCard={elementOfCard}
-          indexOfCard={indexOfCard}
-          setUploadedFiles={setUploadedFiles}
-          editAndSaveButton={editAndSaveButton}
-          timeOutReference={timeOutReference}
-          setTimeOutReference={setTimeOutReference}
-          imageElement={elementOfCard.files}
-          imageIndex={imageIndex}
-          setImageIndex={setImageIndex}
-        />
       </fileUploadContext.Provider>
     </>
   );
