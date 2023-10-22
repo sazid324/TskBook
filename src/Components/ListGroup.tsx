@@ -43,13 +43,18 @@ export default function ListGroup() {
           Reminders
         </ListItem>
 
-        <ListItem
-          imageSource={labelImage}
-          imageAlt={"label_logo"}
-          sourceLink={"/labels"}
-        >
-          Labels
-        </ListItem>
+        <div className="linkInLiOfListGroup">
+          <li className="liOfListGroup">
+            <span className="imageInLiOfListGroup">
+              <img
+                className="liLogoImageOfListGroup"
+                src={labelImage}
+                alt="label_logo"
+              />
+            </span>
+            <p className="textInLiOfListGroup">Labels</p>
+          </li>
+        </div>
 
         <ListItem
           imageSource={archiveImage}
