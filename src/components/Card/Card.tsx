@@ -138,7 +138,7 @@ export default function Card({
       shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 90%);`;
 
       if (headingOfCard.value === "") {
-        headerTextPartOfCard.style.display = "none";
+        headingOfCard.style.display = "none";
       }
 
       if (bodyOfCard.value === "" || qlEditor.innerHTML === `<p><br></p>`) {
@@ -153,7 +153,7 @@ export default function Card({
       editElementTextInLowerPartOfCard.innerHTML = "Edit";
       setEditorButton(false);
 
-      headingOfCard.scrollIntoView();
+      headerTextPartOfCard.scrollIntoView();
 
       // Dispatching slice
       cardDispatch(
