@@ -1,0 +1,588 @@
+/*=== STYLES IMPORTS ===*/
+@use "../../styles/Mixin" as *;
+@use "../../styles/Variables" as *;
+@use "../../styles/Fonts" as *;
+
+/*=== CSS PART ===*/
+.containerOfCard {
+  position: relative;
+  height: 11.2rem;
+  border: none;
+  border-radius: 5px;
+  padding: 0.9rem 0.9rem 1.5rem 0.9rem;
+  box-shadow: 0 0 0.2rem 0.1rem rgb(214, 214, 214);
+  overflow: hidden;
+
+  .upperPartOfCard {
+    height: 100%;
+    display: grid;
+    grid-row-gap: 0.75rem;
+    grid-template-rows: 1.3rem fit-content(100%) fit-content(100%);
+    grid-template-columns: repeat(1, 1fr);
+    background-color: transparent;
+    overflow: hidden;
+
+    .headerTextPartOfCard {
+      width: 100%;
+
+      .headingOfCard {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-weight: bold;
+        font-size: 1rem;
+        color: #202124;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        overflow-x: auto;
+      }
+    }
+
+    .filesOfCard {
+      position: relative;
+      width: 100%;
+      display: grid;
+      grid-gap: 0.3rem;
+      grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+      grid-auto-rows: fit-content(100%);
+      grid-auto-flow: dense;
+
+      .fileContainer {
+        @include flexCenter(center, center);
+
+        .fileOfCard {
+          width: 100%;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .bodyOfCard {
+      width: 100%;
+      overflow: auto;
+    }
+
+    .overlayOnSaveModeInUpperPartOfCard {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .shadowPartOfCard {
+    position: absolute;
+    width: 100%;
+    height: 3rem;
+    left: 0;
+    right: 0;
+    bottom: 1.4rem;
+  }
+
+  .lowerPartOfCard {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 10px 10px;
+    @include flexCenter(space-between, inherit);
+    border-top: 1.5px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: none;
+
+    .lowerPartContainerOfCard {
+      position: relative;
+      width: 100%;
+      @include flexCenter(space-around, inherit);
+      padding-right: 10px;
+
+      .elementInLowerPartOfCard {
+        position: relative;
+        @include flexCenter(center, center);
+        float: left;
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
+        outline: none;
+        padding: 0.5rem;
+
+        .elementTextInLowerPartOfCard {
+          position: absolute;
+          bottom: -23px;
+          font-size: 0.75rem;
+          color: #ffffff;
+          background-color: #a8a8a8;
+          padding: 3px 7px;
+          border-radius: 5px;
+          display: none;
+        }
+
+        .overlayOnElementInLowerPartOfCard {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          border-radius: 50%;
+          background-color: rgb(102, 102, 102);
+          opacity: 0.25;
+          display: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .elementTextInLowerPartOfCard {
+            display: block;
+          }
+          .overlayOnElementInLowerPartOfCard {
+            display: block;
+          }
+        }
+
+        &:active,
+        &:focus {
+          cursor: pointer;
+
+          .overlayOnElementInLowerPartOfCard {
+            display: block;
+          }
+        }
+
+        /*---STARTING OF ReminderButton component PART---*/
+        .reminderButtonContainerOfCard {
+          @include flexCenter(center, center);
+
+          .reminderContentWraperInLowerPartOfCard {
+            @include cardButtonItemsWraper(0.625rem);
+
+            .contentsInReminderButtonOfCard {
+              width: fit-content(100%);
+              @include cardButton(1rem);
+
+              .dateAndTimePickerHeadingOfCard {
+                width: 100%;
+                @include flexCenter(left, center);
+                margin-bottom: 15px;
+                color: #444444;
+
+                .dateAndTimePickerHeadingParagraphOfCard {
+                  margin-bottom: 3px;
+                }
+
+                .dateAndTimePickerHeadingImageOfCard {
+                  margin-left: 5px;
+                }
+              }
+
+              .datePickerContainerOfCard,
+              .timePickerContainerOfCard {
+                position: relative;
+                width: 100%;
+                border-bottom: 1px solid $cardBorderColor;
+                margin-bottom: 20px;
+
+                .datePickerOfCard,
+                .timePickerOfCard {
+                  border: none;
+                  outline: none;
+                  padding: 3px;
+                  color: #3a3a3a;
+
+                  &:active,
+                  &:focus {
+                    border: none;
+                    outline: none;
+                  }
+                }
+
+                .datePickerImageOfCard,
+                .timePickerImageOfCard {
+                  position: absolute;
+                  bottom: 3px;
+                  right: 2px;
+                  filter: invert(19%) sepia(9%) saturate(4%) hue-rotate(30deg)
+                    brightness(94%) contrast(85%);
+                }
+              }
+
+              .dateAndTimePickerButtonOfCard {
+                display: block;
+                width: 100%;
+                padding: 4px;
+                font-weight: bold;
+                background-color: $mainColorLight;
+                color: #3a3a3a;
+                border: none;
+                border-radius: 5px;
+                margin-bottom: 3px;
+
+                &:hover,
+                &:focus {
+                  cursor: pointer;
+                  background-color: $mainColor;
+                }
+              }
+            }
+          }
+        }
+        /*---ENDING OF ReminderButton component PART---*/
+
+        /*---STARTING OF ThemeButton component PART---*/
+        .themeMenuButtonContainerOfCard {
+          position: relative;
+          @include flexCenter(center, center);
+
+          .themeItemsWraperInLowerPartOfCard {
+            @include cardButtonItemsWraper(0.625rem);
+
+            .contentsInThemeButtonOfCard {
+              width: 177px;
+              @include cardButton(1rem);
+
+              .colorItemsHeadingOfCard {
+                width: 100%;
+                @include flexCenter(left, center);
+                margin-bottom: 15px;
+                color: #444444;
+
+                .colorItemsHeadingParagraphOfCard{
+                  margin-bottom: 1px;
+                }
+
+                .colorItemsHeadingImageOfCard {
+                  margin-left: 5px;
+                }
+              }
+
+              .colorItemsInThemeButtonOfCard {
+                width: 100%;
+
+                .colorInThemeButtonOfCard {
+                  display: inline-block;
+                  width: 1.5rem;
+                  height: 1.5rem;
+                  border-radius: 50%;
+                  margin-right: 5px;
+
+                  &:last-child {
+                    margin-right: none;
+                    border: 1px solid rgb(228, 228, 228);
+                  }
+
+                  &:hover,
+                  &:active {
+                    cursor: pointer;
+                    box-shadow: 0px 0px 0.5rem 0.15rem $mainColor;
+                  }
+                }
+              }
+            }
+          }
+        }
+        /*---ENDING OF ThemeButton component PART---*/
+
+        /*---STARTING OF AttachmentButton component PART---*/
+        .attachmentButtonContainerOfCard {
+          position: relative;
+          @include flexCenter(center, center);
+
+          .attachmentItemsWraperInLowerPartOfCard {
+            @include cardButtonItemsWraper(0.625rem);
+
+            .attachmentElementsInLowerPartOfCard {
+              width: 175px;
+              @include cardButton(0.625rem);
+
+              .attachmentBox {
+                border: 2px solid gray;
+                border-style: dashed;
+                padding: 1rem 0.5rem;
+                margin: 5px;
+                @include flexCenter(center, center);
+                flex-direction: column;
+
+                .attachmentHeader {
+                  font-weight: bold;
+                  padding-bottom: 0.3rem;
+                }
+
+                .attachmentSubheader {
+                  padding-bottom: 0.5rem;
+                }
+
+                .attachmentSecondHeader {
+                  font-weight: bold;
+                  padding-bottom: 0.6rem;
+                }
+
+                .attachmentInput {
+                  border: none;
+                  border-radius: 5px;
+                  padding: 3px 5px;
+                  box-shadow: 0 0 0.1rem 0.05rem rgb(214, 214, 214);
+
+                  &:hover {
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+        /*---ENDING OF AttachmentButton component PART---*/
+
+        /*---STARTING OF ThreeDotMenu component PART---*/
+        .threeDotMenuButtonContainerOfCard {
+          position: relative;
+          @include flexCenter(center, center);
+
+          .threeDotItemsWraperInLowerPartOfCard {
+            @include cardButtonItemsWraper(0.625rem);
+
+            .threeDotItemsInLowerPartOfCard {
+              width: 125px;
+              height: fit-content(100%);
+              @include cardButton(0.4rem 0rem);
+
+              .itemInThreeDotInLowerPartOfCard {
+                width: 100%;
+                padding: 0.4rem 1rem;
+                list-style-type: none;
+                font-size: 0.85rem;
+                @include flexCenter(left, center);
+
+                &:hover,
+                &:active {
+                  cursor: pointer;
+                  background-color: $mainColorLight;
+                }
+              }
+            }
+          }
+        }
+        /*---ENDING OF ThreeDotMenu component PART---*/
+
+        /*---STARTING OF EditorButton component PART---*/
+        .editorButtonContainerOfCard {
+          @include flexCenter(center, center);
+        }
+        /*---ENDING OF EditorButton component PART---*/
+      }
+
+      .editorContentWraperInLowerPartOfCard {
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+          height: 2.5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #9b9b9b;
+
+          &:hover {
+            background-color: #646464;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .contentsInEditorButtonOfCard {
+          height: 100%;
+          @include flexCenter(left, center);
+
+          .subContainerOfContentsInEditorButtonOfCard {
+            @include flexCenter(center, center);
+
+            .imageContainerOfContentsInEditorButtonOfCard {
+              position: relative;
+              @include flexCenter(center, center);
+              margin: 0px 7px;
+              padding: 0.5rem;
+
+              .overlayOnImageContainerOfContentsInEditorButtonOfCard {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                border-radius: 50%;
+                background-color: rgb(102, 102, 102);
+                opacity: 0.25;
+                display: none;
+              }
+
+              &:hover {
+                cursor: pointer;
+
+                .overlayOnImageContainerOfContentsInEditorButtonOfCard {
+                  display: block;
+                }
+              }
+            }
+
+            .verticalLineInSubContainerOfContentsInEditorButtonOfCard {
+              width: 2px;
+              height: 1.3rem;
+              border-radius: 10px;
+              background-color: #494949;
+              margin: 0 5px;
+            }
+          }
+
+          & > :first-child {
+            padding-left: 0px;
+
+            .imageContainerOfContentsInEditorButtonOfCard {
+              margin: 0px 5px;
+            }
+          }
+          & > :last-child {
+            padding-right: 0px;
+          }
+        }
+      }
+
+      .overlayOnLowerPartOfCard {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+    }
+
+    &:hover {
+      cursor: auto;
+    }
+  }
+
+  .dragAndDropOverlayOnUpperPartOfCard {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: rgb(189, 189, 189);
+    opacity: 0.8;
+    display: none;
+
+    .dragAndDropBox {
+      width: 100%;
+      height: 100%;
+      @include flexCenter(center, center);
+      border: 2px dashed #303030;
+
+      .drag-and-drop-overlay-text {
+        color: #303030;
+      }
+    }
+  }
+
+  .dragAndDropSecondOverlayOnUpperPartOfCard {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 5px;
+    z-index: 1;
+    display: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .lowerPartOfCard {
+      display: block;
+      @include flexCenter(space-between, inherit);
+      animation-name: lowerPartOfCardAnimationOnHover;
+      animation-duration: 0.5s;
+
+      @keyframes lowerPartOfCardAnimationOnHover {
+        from {
+          transform: translateY(100%);
+        }
+        to {
+          transform: none;
+        }
+      }
+    }
+  }
+}
+
+.popUpOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000000;
+  opacity: 0.5;
+  display: none;
+  z-index: 6;
+}
+
+/*=== STYLES IN POPUP MODE ===*/
+.popUpInEditModeContainerOfCard {
+  position: fixed;
+  width: 50dvw;
+  height: 60dvh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0.2rem 0.1rem rgb(163, 163, 163);
+  z-index: 7;
+
+  .popUpInEditModeUpperPartOfCard {
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .popUpInEditModeLowerPartOfCard {
+    display: block;
+    border-top: none;
+
+    .popUpInEditModeLowerPartContainerOfCard {
+      @include flexCenter(left, center);
+
+      .popUpInEditModeElementInLowerPartOfCard {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  &:hover {
+    cursor: auto;
+
+    .popUpInEditModeLowerPartOfCard {
+      animation: none;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+/*=== STYLES IMPORTS ===*/
+@use "../../styles/Mixin" as *;
+@use "../../styles/Variables" as *;
+@use "../../styles/Fonts" as *;
+
+/*=== CSS PART ===*/
+.containerOfHeader {
+  @include flexCenter(center, inherit);
+
+  .navOfHeader {
+    width: 98%;
+    height: 3.9rem;
+    @include flexCenter(space-between, center);
+
+    .navMenuOfHeader {
+      width: 33.33%;
+      padding-left: 1rem;
+
+      .navMenuButtonOfHeader {
+        width: 2.8rem;
+        height: 2.8rem;
+        border: none;
+        border-radius: 50%;
+        background-color: transparent;
+        @include flexCenter(center, center);
+
+        &:hover,
+        &:active {
+          cursor: pointer;
+          background-color: $mainColorLight;
+        }
+
+        .listMenuImageOfHeader {
+          width: 2.65rem;
+          height: 2.65rem;
+          padding: 8px;
+        }
+      }
+    }
+
+    .logoOfHeader {
+      width: 33.33%;
+      @include flexCenter(center, inherit);
+    }
+
+    .searchOfHeader {
+      width: 33.33%;
+      padding-right: 1rem;
+      @include flexCenter(right, inherit);
+
+      .searchInputOfHeader {
+        position: relative;
+        width: 100%;
+        height: 2.8rem;
+        border: none;
+        outline: none;
+        border-radius: 5px 50px 50px 5px;
+        box-shadow: 0 0 1rem 0.2rem rgb(214, 214, 214);
+        padding: 0.5rem 2.9rem 0.5rem 1.3rem;
+        color: rgb(109, 109, 109);
+        font-weight: bold;
+        font-size: 0.9rem;
+
+        &::placeholder {
+          color: rgb(194, 194, 194);
+          font-weight: 400;
+        }
+      }
+
+      .searchButtonOfHeader {
+        position: absolute;
+        width: 2.8rem;
+        height: 2.8rem;
+        border: none;
+        background-color: transparent;
+        border-radius: 50%;
+        @include flexCenter(center, center);
+        z-index: 5;
+
+        &:hover,
+        &:active {
+          cursor: pointer;
+          background-color: $mainColorLight;
+        }
+
+        .searchLogoOfHeader {
+          width: 2.3rem;
+          height: 2.3rem;
+          padding: 8px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+/*=== STYLES IMPORTS ===*/
+@use "../../styles/Mixin" as *;
+@use "../../styles/Variables" as *;
+
+/*=== CSS PART ===*/
+.watermarkOnNoItems {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include flexCenter(center, center);
+  flex-direction: column;
+
+  .watermarkImgOnNoItems {
+    width: 5dvw;
+    height: auto;
+    padding-bottom: 0.8rem;
+    filter: invert(81%) sepia(17%) saturate(0%) hue-rotate(195deg)
+      brightness(98%) contrast(111%);
+  }
+
+  .watermarkTextOnNoItems {
+    color: $elementColorOnNoNote;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}

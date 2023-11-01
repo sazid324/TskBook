@@ -1,0 +1,47 @@
+/*=== STYLES IMPORTS ===*/
+@use "../../styles/Mixin" as *;
+@use "../../styles/Variables" as *;
+@use "../../styles/Fonts" as *;
+
+/*=== CSS PART ===*/
+.ulOfListGroup {
+  .linkInLiOfListGroup {
+    text-decoration: none;
+    color: inherit;
+    display: inherit;
+
+    .liOfListGroup {
+      list-style-type: none;
+      padding: 1rem 1.7rem 1rem 1.7rem;
+      border-radius: 5px;
+      @include flexCenter(left, center);
+      flex-direction: row;
+
+      &.active {
+        background-color: $activeButtonColorLight;
+      }
+
+      &:hover,
+      &:active {
+        cursor: pointer;
+        background-color: $mainColor;
+      }
+
+      .imageInLiOfListGroup {
+        @include flexCenter(center, center);
+        float: left;
+
+        .liLogoImageOfListGroup {
+          height: 1.2rem;
+          width: auto;
+        }
+      }
+
+      .textInLiOfListGroup {
+        height: 1.2rem;
+        padding-left: 17px;
+        display: block;
+      }
+    }
+  }
+}

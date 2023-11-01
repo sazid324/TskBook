@@ -24,7 +24,9 @@ vite.config.ts
 
 # Folders
 
+.vscode
 logs
 node_modules
 dist
 dist-ssr
+.next

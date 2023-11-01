@@ -1,0 +1,154 @@
+/*=== STYLES IMPORTS ===*/
+@use "../../styles/Mixin" as *;
+
+/*=== CSS PART ===*/
+.imagePopUpMainContainer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 8;
+  display: none;
+
+  .imagePopUpContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .imagePopUpHeader {
+      width: 100%;
+      padding: 10px 20px;
+
+      .leftPartOfImagePopUpHeader {
+        width: 50%;
+        float: left;
+        @include flexCenter(left, inherit);
+
+        .backImageContainerOfImagePopUpHeader {
+          width: 2.25rem;
+          height: 2.25rem;
+
+          .backImageOfImagePopUpHeader {
+            width: 100%;
+            height: 100%;
+            filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(343deg)
+              brightness(104%) contrast(101%);
+            border-radius: 50%;
+
+            &:hover {
+              cursor: pointer;
+              filter: none;
+              background-color: white;
+            }
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .rightPartOfImagePopUpHeader {
+        width: 50%;
+        float: right;
+        @include flexCenter(right, inherit);
+
+        .deleteImageContainerOfImagePopUpHeader {
+          width: 2.25rem;
+          height: 2.25rem;
+
+          .deleteImageOfImagePopUpHeader {
+            width: 100%;
+            height: 100%;
+            filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(343deg)
+              brightness(104%) contrast(101%);
+            padding: 7px;
+            border-radius: 50%;
+
+            &:hover {
+              cursor: pointer;
+              filter: none;
+              background-color: white;
+            }
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .imagePopUpBody {
+      width: 100%;
+      height: 100%;
+      display: flex;
+
+      .rightPartOfImagePopUpBody {
+        width: 150px;
+        height: 100%;
+        margin-right: auto;
+        @include flexCenter(center, center);
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .previousImageOfImagePopUpHeader {
+          width: 3rem;
+          height: 3rem;
+          filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(343deg)
+            brightness(104%) contrast(101%);
+          padding: 7px;
+          border-radius: 50%;
+
+          &:hover {
+            cursor: pointer;
+            filter: none;
+            background-color: white;
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .middlePartOfImagePopUpBody {
+        @include flexCenter(center, center);
+
+        .fileElementInImagePopUpBody {
+          max-width: 50dvw;
+          max-height: 60dvw;
+        }
+      }
+
+      .leftPartOfImagePopUpBody {
+        width: 150px;
+        height: 100%;
+        margin-left: auto;
+        @include flexCenter(center, center);
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .nextImageOfImagePopUpHeader {
+          width: 3rem;
+          height: 3rem;
+          filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(343deg)
+            brightness(104%) contrast(101%);
+          padding: 7px;
+          border-radius: 50%;
+
+          &:hover {
+            cursor: pointer;
+            filter: none;
+            background-color: white;
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+}
