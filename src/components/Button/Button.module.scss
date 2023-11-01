@@ -1,0 +1,33 @@
+/*=== STYLES IMPORTS ===*/
+@use "../../styles/Mixin" as *;
+@use "../../styles/Variables" as *;
+@use "../../styles/Fonts" as *;
+
+/*=== CSS PART ===*/
+.btnOfButton {
+  background-color: $mainColorLight;
+  border: 1px solid $mainColorLight;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  margin-left: 1.7rem;
+  padding: 0.5rem 1.5rem;
+  @include flexCenter(center, center);
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    background-color: $mainColor;
+  }
+
+  .addImageOfButton {
+    height: 1.2rem;
+    width: auto;
+    float: left;
+  }
+
+  .textOfButton {
+    font-weight: bold;
+    width: 100%;
+    padding-left: 9px;
+  }
+}

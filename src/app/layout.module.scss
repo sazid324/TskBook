@@ -1,0 +1,69 @@
+/*=== STYLES IMPORTS ===*/
+@use "../styles/Mixin" as *;
+@use "../styles/Variables" as *;
+
+/*=== CSS PART ===*/
+#header {
+  width: 100dvw;
+  display: block;
+  position: fixed;
+  border-bottom: 1px solid #e2e2e2;
+  background-color: #ffffff;
+  z-index: 4;
+}
+
+#mainBody {
+  width: 100dvw;
+  height: 100dvh;
+  padding-top: 3.9rem;
+  background-color: $backgroundColor;
+  @include flexCenter(left, inherit);
+
+  .mainContainer {
+    position: relative;
+    width: 99%;
+
+    .leftPart {
+      position: fixed;
+      width: 15.2rem;
+      height: 100dvh - 10.3dvh;
+      float: left;
+      padding: 1.5rem 0px 0px 14px;
+      background-color: #ffffff;
+      box-shadow: 1px 0px 5px $cardBorderColor;
+      z-index: 1;
+
+      .leftPartContainer {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .leftPartLowerSection {
+          position: absolute;
+          height: auto;
+          right: 0;
+          left: 0;
+          bottom: 1rem;
+          margin: auto;
+        }
+      }
+    }
+
+    .rightPart {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 15.2rem;
+      right: 0;
+      height: 100%;
+      margin: auto;
+      float: right;
+      @include flexCenter(center, center);
+
+      .elementsContainer {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
