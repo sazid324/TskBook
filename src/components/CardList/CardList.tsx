@@ -27,7 +27,7 @@ export default function CardList({
           cardArrayProp.map((element: any, index: number) => {
             return (
               <Card
-                key={element.id}
+                key={element._id}
                 elementOfCard={element}
                 indexOfCard={index}
                 setDivElement={setDivElement}

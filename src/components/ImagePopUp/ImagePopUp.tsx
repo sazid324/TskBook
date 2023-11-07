@@ -206,7 +206,7 @@ export default function ImagePopUp({
                   // Dispatching slice
                   cardDispatch(
                     saveCard({
-                      id: elementOfCard.id,
+                      _id: elementOfCard._id,
                       headerValue: elementOfCard.headerValue,
                       bodyValue: elementOfCard.bodyValue,
                       files: deleteCurrentImage,

@@ -63,7 +63,7 @@ export default function ThemeButton({ elementOfCard, indexOfCard }: ThreeDotMenu
     // Dispatching slice
     cardDispatch(
       saveCard({
-        id: elementOfCard.id,
+        _id: elementOfCard._id,
         headerValue: elementOfCard.headerValue,
         bodyValue: elementOfCard.bodyValue,
         files: elementOfCard.files,

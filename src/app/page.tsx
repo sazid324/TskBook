@@ -2,12 +2,13 @@
 
 // Library imports
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // Component imports
 import CardList from "../components/CardList/CardList";
 
-// Component exports
+// Redux imports
+import { apiData } from "@/redux/slices/cardSlice";
 
 export default function Notes() {
   // Hooks
@@ -18,6 +19,13 @@ export default function Notes() {
       viewPortHeight: window.innerHeight,
     };
   });
+
+  const cardDispatch = useDispatch();
+
+  useEffect(() => {
+    // Adding API data to initialstate of redux
+    cardDispatch(apiData());
+  }, []);
 
   useEffect(() => {
     // Effects on viewport change.
@@ -120,14 +128,14 @@ export default function Notes() {
 
   return (
     <>
-        <CardList
-          cardArrayProp={reversedCardArray.filter(
-            (items: any) =>
-              items.headerValue.toLowerCase().includes(query) ||
-              items.bodyValue.toLowerCase().includes(query)
-          )}
-          setDivElement={setDivElement}
-        />
+      <CardList
+        cardArrayProp={reversedCardArray.filter(
+          (items: any) =>
+            items.headerValue.toLowerCase().includes(query) ||
+            items.bodyValue.toLowerCase().includes(query)
+        )}
+        setDivElement={setDivElement}
+      />
     </>
   );
 }

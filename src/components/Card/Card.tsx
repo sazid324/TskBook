@@ -66,6 +66,7 @@ export default function Card({
   const cardDispatch = useDispatch();
 
   useEffect(() => {
+    // Changing file display type
     const filesOfCard: any =
       document.getElementsByClassName("filesOfCard")[indexOfCard];
     if (elementOfCard.files.length !== 0) {
@@ -83,7 +84,7 @@ export default function Card({
       // Dispatching slice
       cardDispatch(
         saveCard({
-          id: elementOfCard.id,
+          _id: elementOfCard._id,
           headerValue: elementOfCard.headerValue,
           bodyValue: elementOfCard.bodyValue,
           files: uploadedFiles,
@@ -158,7 +159,7 @@ export default function Card({
       // Dispatching slice
       cardDispatch(
         saveCard({
-          id: elementOfCard.id,
+          _id: elementOfCard._id,
           headerValue: headerValueOnChange,
           bodyValue: bodyValueOnChange,
           files: uploadedFiles,

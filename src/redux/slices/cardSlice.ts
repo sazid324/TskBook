@@ -1,36 +1,56 @@
 // Library imports
-import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Interfaces
-interface Card {
-  id: number;
+interface CardInterface {
+  _id: number;
   headerValue: string;
   bodyValue: string;
   files: string[];
   color: string;
 }
 
-// Initial state
-const initialState: any = () => {
-  const storedValue: any = localStorage.getItem("card-notes-in-local-storage");
-  return storedValue ? JSON.parse(storedValue) : [];
-};
+interface StateInterface {
+  cardData: any;
+  loading: boolean;
+  error: any;
+}
+
+// API data
+export const apiData: any = createAsyncThunk(
+  "notes",
+  async (_, { rejectWithValue }) => {
+    try {
+      const storedValue: any = await axios.get(
+        "http://127.0.0.1:8000/note/read/"
+      );
+      return storedValue.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 // Redux slice
-const cardSlice = createSlice({
+const cardSlice: any = createSlice({
   name: "CardSlice",
-  initialState: initialState,
+  initialState: {
+    cardData: [],
+    loading: false,
+    error: null,
+  } as StateInterface,
   reducers: {
     addCard: (state) => {
-      const newCard = [
-        ...state,
+      const newCard: any = [
+        ...state.cardData,
         {
-          id: Date.now() + Math.floor(Math.random() * 78),
+          _id: Date.now() + Math.floor(Math.random() * 78),
           headerValue: "",
           bodyValue: "",
           files: [],
           color: "#FFFFFF",
-        } as Card,
+        } as CardInterface,
       ];
 
       // Saving data to local storage
@@ -43,7 +63,7 @@ const cardSlice = createSlice({
     },
 
     deleteCard: (state, action) => {
-      const cards: any = [...state];
+      const cards: any = [...state.cardData];
       cards.splice(action.payload, 1);
 
       // Saving data to local storage
@@ -57,14 +77,14 @@ const cardSlice = createSlice({
 
     saveCard: (state, action) => {
       const newSavedCard = {
-        id: action.payload.id,
+        _id: action.payload._id,
         headerValue: action.payload.headerValue,
         bodyValue: action.payload.bodyValue,
         files: action.payload.files,
         color: action.payload.color,
-      } as Card;
+      } as CardInterface;
 
-      const cards: any = [...state];
+      const cards: any = [...state.cardData];
       cards.splice(action.payload.index, 1, newSavedCard);
 
       // Saving elements in local storage
@@ -77,15 +97,15 @@ const cardSlice = createSlice({
     },
 
     copyCard: (state, action) => {
-      const newCopiedCard = [
-        ...state,
+      const newCopiedCard: any = [
+        ...state.cardData,
         {
-          id: Date.now() + Math.floor(Math.random() * 78),
+          _id: Date.now() + Math.floor(Math.random() * 78),
           headerValue: action.payload.headerValue,
           bodyValue: action.payload.bodyValue,
           files: action.payload.files,
           color: action.payload.color,
-        } as Card,
+        } as CardInterface,
       ];
 
       // Saving data to local storage
@@ -96,6 +116,23 @@ const cardSlice = createSlice({
 
       return newCopiedCard;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(apiData.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+
+    builder.addCase(apiData.fulfilled, (state, action) => {
+      state.loading = false;
+      state.cardData = action.payload;
+      state.error = null;
+    });
+
+    builder.addCase(apiData.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
   },
 });
 
