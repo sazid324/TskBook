@@ -24,9 +24,9 @@ import ImagePopUp from "../ImagePopUp/ImagePopUp";
 export const fileUploadContext: any = createContext(null);
 
 // Assets
-import archiveImage from "../../../public/assets/Images/Icons_and_logos/archive.svg";
-import editImage from "../../../public/assets/Images/Icons_and_logos/edit.svg";
-import saveImage from "../../../public/assets/Images/Icons_and_logos/save.svg";
+import archiveImage from "../../../public/assets/Images/Icons/archive.svg";
+import editImage from "../../../public/assets/Images/Icons/edit.svg";
+import saveImage from "../../../public/assets/Images/Icons/save.svg";
 
 // Interfaces
 interface CardElements {

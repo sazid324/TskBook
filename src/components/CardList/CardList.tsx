@@ -6,7 +6,7 @@ import Card from "../Card/Card";
 import PageWatermark from "../PageWatermark/PageWatermark";
 
 // Assets
-import noteImage from "../../../public/assets/Images/Icons_and_logos/note.svg";
+import noteImage from "../../../public/assets/Images/Icons/note.svg";
 
 // Interfaces
 interface CardListElements {

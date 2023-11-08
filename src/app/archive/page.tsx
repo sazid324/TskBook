@@ -5,7 +5,7 @@ import style from "@/app/archive/archive.module.scss";
 import PageWatermark from "@/components/PageWatermark/PageWatermark";
 
 // Assets
-import archiveImage from "../../../public/assets/Images/Icons_and_logos/archive.svg";
+import archiveImage from "../../../public/assets/Images/Icons/archive.svg";
 
 export default function Archive() {
   /////////////////////// Return Method ///////////////////////

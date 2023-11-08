@@ -59,7 +59,7 @@ const cardSlice: any = createSlice({
         JSON.stringify(newCard)
       );
 
-      return newCard;
+      state.cardData = newCard;
     },
 
     deleteCard: (state, action) => {
@@ -72,7 +72,7 @@ const cardSlice: any = createSlice({
         JSON.stringify(cards)
       );
 
-      return cards;
+      state.cardData = cards;
     },
 
     saveCard: (state, action) => {
@@ -93,7 +93,7 @@ const cardSlice: any = createSlice({
         JSON.stringify(cards)
       );
 
-      return cards;
+      state.cardData = cards
     },
 
     copyCard: (state, action) => {
@@ -114,7 +114,7 @@ const cardSlice: any = createSlice({
         JSON.stringify(newCopiedCard)
       );
 
-      return newCopiedCard;
+      state.cardData = newCopiedCard;
     },
   },
   extraReducers: (builder) => {
@@ -128,6 +128,7 @@ const cardSlice: any = createSlice({
       state.cardData = action.payload;
       state.error = null;
     });
+
 
     builder.addCase(apiData.rejected, (state, action) => {
       state.loading = false;

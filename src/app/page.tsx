@@ -97,7 +97,7 @@ export default function Notes() {
   });
 
   const addNewCard: any = useSelector((state: any) => {
-    return state.CardSlice;
+    return state.CardSlice.cardData;
   });
 
   // Functions

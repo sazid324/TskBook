@@ -5,7 +5,7 @@ import style from "@/app/todo/todo.module.scss";
 import PageWatermark from "@/components/PageWatermark/PageWatermark";
 
 // Assets
-import todoImage from "../../../public/assets/Images/Icons_and_logos/to-do.svg";
+import todoImage from "../../../public/assets/Images/Icons/to-do.svg";
 
 export default function ToDo() {
   /////////////////////// Return Method ///////////////////////

@@ -12,9 +12,10 @@ import style from "@/components/Header/Header.module.scss";
 import { searchQuery } from "@/redux/slices/searchSlice";
 
 // Assets
-import searchImage from "../../../public/assets/Images/Icons_and_logos/search.svg";
-import cross from "../../../public/assets/Images/Icons_and_logos/cross.svg";
-import listImage from "../../../public/assets/Images/Icons_and_logos/list.svg";
+import TskBookLightLogo from "../../../public/assets/Images/Brandings/TskBook_Light_Theme_logo.png";
+import searchImage from "../../../public/assets/Images/Icons/search.svg";
+import cross from "../../../public/assets/Images/Icons/cross.svg";
+import listImage from "../../../public/assets/Images/Icons/list.svg";
 
 export default function Header() {
   // Hooks
@@ -160,7 +161,13 @@ export default function Header() {
             </button>
           </div>
           <div className={`${style.logoOfHeader} logoOfHeader`}>
-            <h3>TskBook</h3>
+            <Image
+              className={`${style.brandLogoOfHeader} brandLogoOfHeader`}
+              src={TskBookLightLogo}
+              alt="TskBook-Light_logo"
+              priority={true}
+              quality={100}
+            ></Image>
           </div>
           <div
             className={`${style.searchOfHeader} searchOfHeader`}

@@ -6,7 +6,7 @@ import Image from "next/image";
 import style from "@/components/Card/Card.module.scss";
 
 // Assets
-import caretImage from "../../../../public/assets/Images/Icons_and_logos/caret.svg";
+import caretImage from "../../../../public/assets/Images/Icons/caret.svg";
 
 // Interfaces
 interface editorButtonElements {

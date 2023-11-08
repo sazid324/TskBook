@@ -10,8 +10,8 @@ import style from "@/components/Card/Card.module.scss";
 import { saveCard } from "@/redux/slices/cardSlice";
 
 // Assets
-import cardBackgroundImage from "../../../../public/assets/Images/Icons_and_logos/cardBackground.svg";
-import arrowRight from "../../../../public/assets/Images/Icons_and_logos/arrowRight.svg";
+import cardBackgroundImage from "../../../../public/assets/Images/Icons/cardBackground.svg";
+import arrowRight from "../../../../public/assets/Images/Icons/arrowRight.svg";
 
 // Interfaces
 interface ThreeDotMenuElements {
@@ -19,7 +19,10 @@ interface ThreeDotMenuElements {
   indexOfCard: number;
 }
 
-export default function ThemeButton({ elementOfCard, indexOfCard }: ThreeDotMenuElements) {
+export default function ThemeButton({
+  elementOfCard,
+  indexOfCard,
+}: ThreeDotMenuElements) {
   // Variables
   const colors: any = [
     "#F77C80",
@@ -108,7 +111,11 @@ export default function ThemeButton({ elementOfCard, indexOfCard }: ThreeDotMenu
             <h4
               className={`${style.colorItemsHeadingOfCard} colorItemsHeadingOfCard`}
             >
-              <p className={`${style.colorItemsHeadingParagraphOfCard} colorItemsHeadingParagraphOfCard`}>Pick color</p>
+              <p
+                className={`${style.colorItemsHeadingParagraphOfCard} colorItemsHeadingParagraphOfCard`}
+              >
+                Pick color
+              </p>
               <Image
                 className={`${style.colorItemsHeadingImageOfCard} colorItemsHeadingImageOfCard`}
                 src={arrowRight}

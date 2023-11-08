@@ -5,7 +5,7 @@ import style from "@/app/trash/trash.module.scss";
 import PageWatermark from "@/components/PageWatermark/PageWatermark";
 
 // Assets
-import trashImage from "../../../public/assets/Images/Icons_and_logos/trash.svg";
+import trashImage from "../../../public/assets/Images/Icons/trash.svg";
 
 export default function Trash() {
   /////////////////////// Return Method ///////////////////////

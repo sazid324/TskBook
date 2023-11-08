@@ -9,10 +9,10 @@ import style from "@/components/ImagePopUp/ImagePopUp.module.scss";
 import { saveCard } from "@/redux/slices/cardSlice";
 
 // Assets
-import backImage from "../../../public/assets/Images/Icons_and_logos/back.svg";
-import deleteImage from "../../../public/assets/Images/Icons_and_logos/delete.svg";
-import nextArrowImage from "../../../public/assets/Images/Icons_and_logos/nextArrow.svg";
-import previousArrowImage from "../../../public/assets/Images/Icons_and_logos/previousArrow.svg";
+import backImage from "../../../public/assets/Images/Icons/back.svg";
+import deleteImage from "../../../public/assets/Images/Icons/delete.svg";
+import nextArrowImage from "../../../public/assets/Images/Icons/nextArrow.svg";
+import previousArrowImage from "../../../public/assets/Images/Icons/previousArrow.svg";
 
 // Interfaces
 interface ImagePopUpElements {

@@ -5,7 +5,7 @@ import style from "@/app/reminders/reminders.module.scss";
 import PageWatermark from "@/components/PageWatermark/PageWatermark";
 
 // Assets
-import reminderImage from "../../../public/assets/Images/Icons_and_logos/reminder.svg";
+import reminderImage from "../../../public/assets/Images/Icons/reminder.svg";
 
 export default function Reminders() {
   /////////////////////// Return Method ///////////////////////

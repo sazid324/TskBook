@@ -9,12 +9,12 @@ import Link from "next/link";
 import style from "@/components/ListGroup/ListGroup.module.scss";
 
 // Assets
-import noteImage from "../../../public/assets/Images/Icons_and_logos/note.svg";
-import todoImage from "../../../public/assets/Images/Icons_and_logos/to-do.svg";
-import reminderImage from "../../../public/assets/Images/Icons_and_logos/reminder.svg";
-import labelImage from "../../../public/assets/Images/Icons_and_logos/label.svg";
-import archiveImage from "../../../public/assets/Images/Icons_and_logos/archive.svg";
-import trashImage from "../../../public/assets/Images/Icons_and_logos/trash.svg";
+import noteImage from "../../../public/assets/Images/Icons/note.svg";
+import todoImage from "../../../public/assets/Images/Icons/to-do.svg";
+import reminderImage from "../../../public/assets/Images/Icons/reminder.svg";
+import labelImage from "../../../public/assets/Images/Icons/label.svg";
+import archiveImage from "../../../public/assets/Images/Icons/archive.svg";
+import trashImage from "../../../public/assets/Images/Icons/trash.svg";
 
 export default function ListGroup() {
   /////////////////////// Return Method ///////////////////////
