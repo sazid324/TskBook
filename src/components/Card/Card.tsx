@@ -61,7 +61,7 @@ export default function Card({
   const quillRef = useRef<any>(null);
 
   const addNewCard: any = useSelector((state: any) => {
-    return state.CardSlice;
+    return state.CardSlice.cardData;
   });
   const cardDispatch = useDispatch();
 

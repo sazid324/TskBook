@@ -23,7 +23,7 @@ export default function ThreeDotMenu({
 }: ThreeDotMenuElements) {
   // Hooks
   const addNewCard: any = useSelector((state: any) => {
-    return state.CardSlice;
+    return state.CardSlice.cardData;
   });
   const cardDispatch = useDispatch();
 
