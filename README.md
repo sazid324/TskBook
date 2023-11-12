@@ -71,12 +71,7 @@ TskBook is developed and maintained by [Sazid Ahsan Toushik](https://github.com/
 
 Thank you for choosing TskBook to enhance your productivity!
 
-<pre>
-
-
-</pre>
-
-![TskBook Logo](../tskbook/public/assets/Images/Brandings/TskBook_Light_Theme_logo.svg)
+![TskBook logo](../tskbook/public/assets/Images/Brandings/TskBook_Light_Theme_logo.svg)
 
 ---
 
