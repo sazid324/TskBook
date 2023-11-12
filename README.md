@@ -76,7 +76,7 @@ Thank you for choosing TskBook to enhance your productivity!
 
 </pre>
 
-![TskBook logo](../tskbook/public/assets/Images/Brandings/TskBook_Light_Theme_logo.svg)
+![TskBook logo](public/assets/Images/Brandings/TskBook_Light_Theme_logo.svg)
 
 ---
 
