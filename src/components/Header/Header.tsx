@@ -12,7 +12,7 @@ import style from "@/components/Header/Header.module.scss";
 import { searchQuery } from "@/redux/slices/searchSlice";
 
 // Assets
-import TskBookLightLogo from "../../../public/assets/Images/Brandings/TskBook_Light_Theme_logo.png";
+import TskBookLightLogo from "../../../public/assets/Images/Brandings/TskBook_Light_Theme_logo.svg";
 import searchImage from "../../../public/assets/Images/Icons/search.svg";
 import cross from "../../../public/assets/Images/Icons/cross.svg";
 import listImage from "../../../public/assets/Images/Icons/list.svg";

@@ -1,0 +1,91 @@
+/*=== STYLES IMPORTS ===*/
+@use "../../styles/Mixin" as *;
+@use "../../styles/Variables" as *;
+@use "../../styles/Fonts" as *;
+
+/*=== CSS PART ===*/
+/*=== STYLES IMPORTS ===*/
+@use "../../styles/Mixin" as *;
+@use "../../styles/Variables" as *;
+@use "../../styles/Fonts" as *;
+
+/*=== CSS PART ===*/
+.signInPageContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  @include flexCenter(center, center);
+  flex-direction: column;
+  z-index: 999;
+
+  .signInFormContainer {
+    @include flexCenter(center, center);
+    flex-direction: column;
+    padding: 3.2rem 2rem;
+    border-radius: 5%;
+    box-shadow: 0px 0px 0.5rem 2px rgb(214, 214, 214);
+
+    .headingOfSignInForm {
+      margin-bottom: 12px;
+    }
+
+    .subHadingOfSignInForm {
+      margin-bottom: 30px;
+      color: #7c7c7c;
+    }
+
+    .SignInForm {
+      @include flexCenter(center, center);
+      flex-direction: column;
+
+      .signInFormInputField {
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 1px solid rgb(43, 43, 43);
+        outline: none;
+        padding: 5px 7px;
+      }
+
+      .signInFormSubmitButton {
+        margin: 12px 0 30px 0;
+        padding: 6px 20px;
+        border: none;
+        background-color: $mainColorLight;
+        border-radius: 5px;
+        box-shadow: 0px 0px 0.5rem 2px rgb(214, 214, 214);
+
+        &:hover {
+          cursor: pointer;
+          background-color: $mainColor;
+        }
+      }
+    }
+
+    .signUpLinkInSignInForm {
+      text-decoration: none;
+      color: #7c7c7c;
+    }
+
+    .forgotPassLinkInSignInForm {
+      text-decoration: none;
+      color: #7c7c7c;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.signInError {
+  padding: 7px 15px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  background-color: rgb(255, 191, 191);
+  font-size: 1rem;
+}
+
+.signInSuccess {
+  padding: 7px 15px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  background-color: rgb(191, 255, 191);
+  font-size: 1rem;
+}
