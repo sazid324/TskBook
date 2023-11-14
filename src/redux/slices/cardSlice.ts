@@ -42,35 +42,41 @@ const cardSlice: any = createSlice({
   } as StateInterface,
   reducers: {
     addCard: (state) => {
-      const newCard: any = [
-        ...state.cardData,
-        {
-          _id: Date.now() + Math.floor(Math.random() * 78),
-          headerValue: "",
-          bodyValue: "",
-          files: [],
-          color: "#FFFFFF",
-        } as CardInterface,
-      ];
+      const newCardData: CardInterface = {
+        _id: Date.now() + Math.floor(Math.random() * 78),
+        headerValue: "",
+        bodyValue: "",
+        files: [],
+        color: "#FFFFFF",
+      };
 
-      // Saving data to local storage
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(newCard)
-      );
+      const newCard: any = [...state.cardData, newCardData];
+
+      // Saving data to database
+      axios
+        .post("http://127.0.0.1:8000/note/add/", newCardData, {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        })
+        .catch((error) => {
+          state.error = error.response.error;
+        });
 
       state.cardData = newCard;
     },
 
     deleteCard: (state, action) => {
+      const deletedCardId: string = state.cardData[action.payload]._id;
       const cards: any = [...state.cardData];
       cards.splice(action.payload, 1);
 
-      // Saving data to local storage
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(cards)
-      );
+      // Deleting data from database
+      axios
+        .delete(`http://127.0.0.1:8000/note/delete/?_id=${deletedCardId}`)
+        .catch((error) => {
+          state.error = error.response.error;
+        });
 
       state.cardData = cards;
     },
@@ -87,32 +93,36 @@ const cardSlice: any = createSlice({
       const cards: any = [...state.cardData];
       cards.splice(action.payload.index, 1, newSavedCard);
 
-      // Saving elements in local storage
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(cards)
-      );
+      // Updating data of database
+      axios
+        .put("http://127.0.0.1:8000/note/update/", newSavedCard)
+        .catch((error) => {
+          state.error = error.response.error;
+        });
 
-      state.cardData = cards
+      state.cardData = cards;
     },
 
     copyCard: (state, action) => {
-      const newCopiedCard: any = [
-        ...state.cardData,
-        {
-          _id: Date.now() + Math.floor(Math.random() * 78),
-          headerValue: action.payload.headerValue,
-          bodyValue: action.payload.bodyValue,
-          files: action.payload.files,
-          color: action.payload.color,
-        } as CardInterface,
-      ];
+      const dataOfNewCopiedCard: CardInterface = {
+        _id: Date.now() + Math.floor(Math.random() * 78),
+        headerValue: action.payload.headerValue,
+        bodyValue: action.payload.bodyValue,
+        files: action.payload.files,
+        color: action.payload.color,
+      };
+      const newCopiedCard: any = [...state.cardData, dataOfNewCopiedCard];
 
-      // Saving data to local storage
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(newCopiedCard)
-      );
+      // Copying data of database
+      axios
+        .post("http://127.0.0.1:8000/note/copy/", dataOfNewCopiedCard, {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        })
+        .catch((error) => {
+          state.error = error.response.error;
+        });
 
       state.cardData = newCopiedCard;
     },
@@ -128,7 +138,6 @@ const cardSlice: any = createSlice({
       state.cardData = action.payload;
       state.error = null;
     });
-
 
     builder.addCase(apiData.rejected, (state, action) => {
       state.loading = false;

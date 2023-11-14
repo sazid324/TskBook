@@ -171,7 +171,7 @@ export default function Card({
 
     if (editAndSaveButton === true) {
       // Applying style on selected elements
-      headerTextPartOfCard.style.display = "block";
+      headingOfCard.style.display = "block";
       bodyOfCard.style.display = "block";
       overlayOnSaveModeInUpperPartOfCard.style.display = "none";
       shadowPartOfCard.style.display = "none";

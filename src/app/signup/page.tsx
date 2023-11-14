@@ -23,11 +23,7 @@ export default function signin() {
               Sign in here.
             </Link>
           </p>
-          <form
-            className={`${style.signUpForm} signUpForm`}
-            method="post"
-            action="/auth/signup/"
-          >
+          <form className={`${style.signUpForm} signUpForm`} method="post">
             <input
               className={`${style.signUpFormInputField} signUpFormInputField`}
               type="text"

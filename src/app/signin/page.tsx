@@ -19,11 +19,7 @@ export default function signin() {
           >
             Sign in to continue.
           </p>
-          <form
-            className={`${style.SignInForm} SignInForm`}
-            method="post"
-            action="/auth/Signin/"
-          >
+          <form className={`${style.SignInForm} SignInForm`} method="post">
             <input
               className={`${style.signInFormInputField} signInFormInputField`}
               type="text"
