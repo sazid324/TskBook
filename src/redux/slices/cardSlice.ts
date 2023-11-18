@@ -1,5 +1,5 @@
 // Library imports
-import axios from "axios";
+import NoteInstance from "@/instance/NoteInstance";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Interfaces
@@ -14,7 +14,7 @@ interface CardInterface {
 interface StateInterface {
   cardData: any;
   loading: boolean;
-  error: any;
+  message: any;
 }
 
 // API data
@@ -22,9 +22,7 @@ export const apiData: any = createAsyncThunk(
   "notes",
   async (_, { rejectWithValue }) => {
     try {
-      const storedValue: any = await axios.get(
-        "http://127.0.0.1:8000/note/read/"
-      );
+      const storedValue: any = await NoteInstance.get("/read/");
       return storedValue.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -38,7 +36,7 @@ const cardSlice: any = createSlice({
   initialState: {
     cardData: [],
     loading: false,
-    error: null,
+    message: null,
   } as StateInterface,
   reducers: {
     addCard: (state) => {
@@ -53,15 +51,7 @@ const cardSlice: any = createSlice({
       const newCard: any = [...state.cardData, newCardData];
 
       // Saving data to database
-      axios
-        .post("http://127.0.0.1:8000/note/add/", newCardData, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        })
-        .catch((error) => {
-          state.error = error.response.error;
-        });
+      NoteInstance.post("/add/", newCardData);
 
       state.cardData = newCard;
     },
@@ -72,11 +62,7 @@ const cardSlice: any = createSlice({
       cards.splice(action.payload, 1);
 
       // Deleting data from database
-      axios
-        .delete(`http://127.0.0.1:8000/note/delete/?_id=${deletedCardId}`)
-        .catch((error) => {
-          state.error = error.response.error;
-        });
+      NoteInstance.delete(`/delete/?_id=${deletedCardId}`);
 
       state.cardData = cards;
     },
@@ -94,11 +80,7 @@ const cardSlice: any = createSlice({
       cards.splice(action.payload.index, 1, newSavedCard);
 
       // Updating data of database
-      axios
-        .put("http://127.0.0.1:8000/note/update/", newSavedCard)
-        .catch((error) => {
-          state.error = error.response.error;
-        });
+      NoteInstance.put("/update/", newSavedCard);
 
       state.cardData = cards;
     },
@@ -114,15 +96,7 @@ const cardSlice: any = createSlice({
       const newCopiedCard: any = [...state.cardData, dataOfNewCopiedCard];
 
       // Copying data of database
-      axios
-        .post("http://127.0.0.1:8000/note/copy/", dataOfNewCopiedCard, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        })
-        .catch((error) => {
-          state.error = error.response.error;
-        });
+      NoteInstance.post("/copy/", dataOfNewCopiedCard);
 
       state.cardData = newCopiedCard;
     },
@@ -130,18 +104,18 @@ const cardSlice: any = createSlice({
   extraReducers: (builder) => {
     builder.addCase(apiData.pending, (state) => {
       state.loading = true;
-      state.error = null;
+      state.message = null;
     });
 
     builder.addCase(apiData.fulfilled, (state, action) => {
       state.loading = false;
       state.cardData = action.payload;
-      state.error = null;
+      state.message = null;
     });
 
     builder.addCase(apiData.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error.message;
+      state.message = action.error.message;
     });
   },
 });
