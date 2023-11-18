@@ -14,6 +14,7 @@ import { searchQuery } from "@/redux/slices/searchSlice";
 // Assets
 import TskBookLightLogo from "../../../public/assets/Images/Brandings/TskBook_Light_Theme_logo.svg";
 import searchImage from "../../../public/assets/Images/Icons/search.svg";
+import profileImage from "../../../public/assets/Images/Icons/profile.svg";
 import cross from "../../../public/assets/Images/Icons/cross.svg";
 import listImage from "../../../public/assets/Images/Icons/list.svg";
 
@@ -53,6 +54,9 @@ export default function Header() {
       document.getElementsByClassName("logoOfHeader")[0];
     const searchOfHeader: any =
       document.getElementsByClassName("searchOfHeader")[0];
+    const searchElementsContainer: any = document.getElementsByClassName(
+      "searchElementsContainer"
+    )[0];
     const searchInputOfHeader: any = document.getElementsByClassName(
       "searchInputOfHeader"
     )[0];
@@ -65,6 +69,8 @@ export default function Header() {
       navMenuButtonOfHeader.style.cssText = "display: none;";
       logoOfHeader.style.cssText = "display: none;";
       searchOfHeader.style.cssText = "width: 100%; transition: width 0.5s;";
+      searchElementsContainer.style.cssText =
+        "width: 100%; transition: width 0.5s;";
       searchInputOfHeader.style.cssText =
         "width: 100%; transition: width 0.5s; display: block;";
       searchLogoOfHeader.src = cross.src;
@@ -75,11 +81,13 @@ export default function Header() {
       logoOfHeader.style.cssText =
         "display: block; display: flex; justify-content: center;";
       searchOfHeader.style.cssText = "width: 33.33%; transition: width 0.5s;";
+      searchElementsContainer.style.cssText =
+        "width: 2.8rem; transition: width 0.5s;";
       searchInputOfHeader.style.cssText = "width: 0%; transition: width 0.5s;";
 
       setTimeout(() => {
         searchInputOfHeader.style.cssText = "display: none;";
-      }, 300);
+      }, 200);
 
       searchLogoOfHeader.src = searchImage.src;
       searchDispatch(searchQuery(""));
@@ -173,25 +181,51 @@ export default function Header() {
             className={`${style.searchOfHeader} searchOfHeader`}
             ref={searchBox}
           >
-            <input
-              className={`${style.searchInputOfHeader} searchInputOfHeader`}
-              type="text"
-              placeholder="Search here...."
-              onChange={(event: any) => {
-                searchDispatch(searchQuery(event.target.value.toLowerCase()));
-              }}
-            />
+            <div
+              className={`${style.searchElementsContainer} searchElementsContainer`}
+            >
+              <input
+                className={`${style.searchInputOfHeader} searchInputOfHeader`}
+                type="text"
+                placeholder="Search here...."
+                onChange={(event: any) => {
+                  searchDispatch(searchQuery(event.target.value.toLowerCase()));
+                }}
+              />
+              <button
+                className={`${style.searchButtonOfHeader} searchButtonOfHeader`}
+                onClick={() => {
+                  setClickedOnSearch(!clickedOnSearch);
+                }}
+              >
+                <Image
+                  className={`${style.searchLogoOfHeader} searchLogoOfHeader`}
+                  src={searchImage}
+                  alt="search-logo"
+                />
+              </button>
+            </div>
             <button
-              className={`${style.searchButtonOfHeader} searchButtonOfHeader`}
-              onClick={() => {
-                setClickedOnSearch(!clickedOnSearch);
-              }}
+              className={`${style.profileButtonOfHeader} profileButtonOfHeader`}
             >
               <Image
-                className={`${style.searchLogoOfHeader} searchLogoOfHeader`}
-                src={searchImage}
+                className={`${style.profileLogoOfHeader} profileLogoOfHeader`}
+                src={profileImage}
                 alt="search-logo"
               />
+              <div
+                className={`${style.profileButtonItemsWrapperOfHeader} profileButtonItemsWrapperOfHeader`}
+              >
+                <ul
+                  className={`${style.profileButtonItemsOfHeader} profileButtonItemsOfHeader`}
+                >
+                  <li
+                    className={`${style.itemInProfileButtonItemsOfHeader} itemInProfileButtonItemsOfHeader`}
+                  >
+                    Sign out
+                  </li>
+                </ul>
+              </div>
             </button>
           </div>
         </nav>

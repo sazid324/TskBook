@@ -51,7 +51,7 @@ export default function EditorButtonContent({
   return (
     <>
       <div
-        className={`${style.editorContentWraperInLowerPartOfCard} editorContentWraperInLowerPartOfCard`}
+        className={`${style.editorContentWrapperInLowerPartOfCard} editorContentWrapperInLowerPartOfCard`}
         onMouseEnter={() => {
           const editorButtonParagraphOfCard: any =
             document.getElementsByClassName("editorButtonParagraphOfCard")[
@@ -60,9 +60,9 @@ export default function EditorButtonContent({
           editorButtonParagraphOfCard.style.display = "none";
         }}
         onWheel={(e: any) => {
-          const editorContentWraperInLowerPartOfCard: any =
+          const editorContentWrapperInLowerPartOfCard: any =
             document.getElementsByClassName(
-              "editorContentWraperInLowerPartOfCard"
+              "editorContentWrapperInLowerPartOfCard"
             )[indexOfCard];
 
           // Get scroll direction
@@ -72,7 +72,7 @@ export default function EditorButtonContent({
           const scrollAmount: number = 100;
 
           // Scroll the container horizontally
-          editorContentWraperInLowerPartOfCard.scrollLeft +=
+          editorContentWrapperInLowerPartOfCard.scrollLeft +=
             scrollAmount * scrollDirection;
         }}
       >

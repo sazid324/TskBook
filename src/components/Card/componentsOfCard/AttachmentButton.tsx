@@ -65,7 +65,7 @@ export default function AttachmentButton({
       >
         <Image src={attachmentImage} alt="attachment-image" />
         <div
-          className={`${style.attachmentItemsWraperInLowerPartOfCard} attachmentItemsWraperInLowerPartOfCard`}
+          className={`${style.attachmentItemsWrapperInLowerPartOfCard} attachmentItemsWrapperInLowerPartOfCard`}
           onMouseEnter={() => {
             const themeButtonParagraphOfCard: any =
               document.getElementsByClassName(

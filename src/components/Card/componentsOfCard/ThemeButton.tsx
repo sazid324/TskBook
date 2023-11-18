@@ -96,7 +96,7 @@ export default function ThemeButton({
       >
         <Image src={cardBackgroundImage} alt="cardBackground-image" />
         <div
-          className={`${style.themeItemsWraperInLowerPartOfCard} themeItemsWraperInLowerPartOfCard`}
+          className={`${style.themeItemsWrapperInLowerPartOfCard} themeItemsWrapperInLowerPartOfCard`}
           onMouseEnter={() => {
             const themeButtonParagraphOfCard: any =
               document.getElementsByClassName("themeButtonParagraphOfCard")[

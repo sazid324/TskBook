@@ -58,7 +58,7 @@ export default function ReminderButton({
       >
         <Image src={reminderImage} alt="reminder-image" />
         <div
-          className={`${style.reminderContentWraperInLowerPartOfCard} reminderContentWraperInLowerPartOfCard`}
+          className={`${style.reminderContentWrapperInLowerPartOfCard} reminderContentWrapperInLowerPartOfCard`}
           onMouseEnter={() => {
             const reminderbuttonParagraphOfCard: any =
               document.getElementsByClassName("reminderButtonParagraphOfCard")[

@@ -36,7 +36,7 @@ export default function ThreeDotMenu({
       >
         <Image src={threeDotImage} alt="threeDot-image" />
         <div
-          className={`${style.threeDotItemsWraperInLowerPartOfCard} threeDotItemsWraperInLowerPartOfCard`}
+          className={`${style.threeDotItemsWrapperInLowerPartOfCard} threeDotItemsWrapperInLowerPartOfCard`}
           onMouseEnter={() => {
             const morebuttonParagraphOfCard: any =
               document.getElementsByClassName("moreButtonParagraphOfCard")[

@@ -42,7 +42,7 @@
       width: 33.33%;
       @include flexCenter(center, center);
 
-      .brandLogoOfHeader{
+      .brandLogoOfHeader {
         width: 23%;
         height: auto;
       }
@@ -51,29 +51,64 @@
     .searchOfHeader {
       width: 33.33%;
       padding-right: 1rem;
-      @include flexCenter(right, inherit);
+      @include flexCenter(right, center);
 
-      .searchInputOfHeader {
+      .searchElementsContainer {
         position: relative;
-        width: 100%;
+        width: 2.8rem;
         height: 2.8rem;
-        border: none;
-        outline: none;
-        border-radius: 5px 50px 50px 5px;
-        box-shadow: 0 0 1rem 0.2rem rgb(214, 214, 214);
-        padding: 0.5rem 2.9rem 0.5rem 1.3rem;
-        color: rgb(109, 109, 109);
-        font-weight: bold;
-        font-size: 0.9rem;
 
-        &::placeholder {
-          color: rgb(194, 194, 194);
-          font-weight: 400;
+        .searchInputOfHeader {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          width: 2.8rem;
+          height: 2.8rem;
+          border: none;
+          outline: none;
+          border-radius: 5px 50px 50px 5px;
+          box-shadow: 0 0 1rem 0.2rem rgb(214, 214, 214);
+          padding: 0.5rem 2.9rem 0.5rem 1.3rem;
+          color: rgb(109, 109, 109);
+          font-weight: bold;
+          font-size: 0.9rem;
+
+          &::placeholder {
+            color: rgb(194, 194, 194);
+            font-weight: 400;
+          }
+        }
+
+        .searchButtonOfHeader {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          width: 2.8rem;
+          height: 2.8rem;
+          border: none;
+          background-color: transparent;
+          border-radius: 50%;
+          @include flexCenter(center, center);
+          z-index: 5;
+
+          &:hover,
+          &:active {
+            cursor: pointer;
+            background-color: $mainColorLight;
+          }
+        }
+
+        .searchLogoOfHeader {
+          width: 2.3rem;
+          height: 2.3rem;
+          padding: 8px;
         }
       }
 
-      .searchButtonOfHeader {
-        position: absolute;
+      .profileButtonOfHeader {
+        position: relative;
         width: 2.8rem;
         height: 2.8rem;
         border: none;
@@ -88,10 +123,53 @@
           background-color: $mainColorLight;
         }
 
-        .searchLogoOfHeader {
+        .profileLogoOfHeader {
           width: 2.3rem;
           height: 2.3rem;
           padding: 8px;
+        }
+
+        .profileButtonItemsWrapperOfHeader {
+          position: absolute;
+          top: 43px;
+          right: 0;
+          @include flexCenter(center, center);
+          padding: 8px 5px;
+          display: none;
+
+          .profileButtonItemsOfHeader {
+            width: 185px;
+            height: 85px;
+            padding: 23px 18px;
+            @include flexCenter(center, top);
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 1px 1px 0.6rem 0.1rem $cardBorderColor;
+
+            .itemInProfileButtonItemsOfHeader {
+              width: 100px;
+              height: 35px;
+              padding: 0.4rem 1rem;
+              border-radius: 5px;
+              box-shadow: 1px 1px 0.6rem 0.01rem $cardBorderColor;
+              list-style-type: none;
+              font-size: 0.85rem;
+              font-weight: bold;
+              @include flexCenter(center, center);
+
+              &:hover,
+              &:active {
+                cursor: pointer;
+                background-color: $mainColor;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          &>.profileButtonItemsWrapperOfHeader {
+            display: block;
+          }
         }
       }
     }

@@ -24,20 +24,20 @@ export default function EditorButton({
     const editorButtonInLowerPartOfCard: any = document.getElementsByClassName(
       "editorButtonInLowerPartOfCard"
     )[indexOfCard];
-    const editorContentWraperInLowerPartOfCard: any =
-      document.getElementsByClassName("editorContentWraperInLowerPartOfCard")[
+    const editorContentWrapperInLowerPartOfCard: any =
+      document.getElementsByClassName("editorContentWrapperInLowerPartOfCard")[
         indexOfCard
       ];
 
     if (editorButton === true) {
       editorButtonInLowerPartOfCard.style.cssText =
         "transform: rotate(180deg); transition: transform 0.5s;";
-      editorContentWraperInLowerPartOfCard.style.cssText =
+      editorContentWrapperInLowerPartOfCard.style.cssText =
         "width: 100%; transition: width 0.4s;";
     } else {
       editorButtonInLowerPartOfCard.style.cssText =
         "transform: rotate(0deg); transition: transform 0.5s;";
-      editorContentWraperInLowerPartOfCard.style.cssText =
+      editorContentWrapperInLowerPartOfCard.style.cssText =
         "width: 0%; transition: width 0.4s;";
     }
   }, [editorButton]);

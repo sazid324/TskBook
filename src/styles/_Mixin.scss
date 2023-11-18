@@ -8,8 +8,8 @@
   align-items: $alignItems;
 }
 
-// Items wraper of button  in lower part OfCard
-@mixin cardButtonItemsWraper($padding) {
+// Items Wrapper of button  in lower part OfCard
+@mixin cardButtonItemsWrapper($padding) {
   position: absolute;
   display: none;
   padding: $padding;

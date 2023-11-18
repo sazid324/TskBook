@@ -412,11 +412,11 @@ export default function Card({
                     : `${style.elementInLowerPartOfCard} ${style.popUpInEditModeElementInLowerPartOfCard} elementInLowerPartOfCard`
                 }
                 onClick={() => {
-                  const reminderContentWraperInLowerPartOfCard: any =
+                  const reminderContentWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "reminderContentWraperInLowerPartOfCard"
+                      "reminderContentWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  reminderContentWraperInLowerPartOfCard.style.display =
+                  reminderContentWrapperInLowerPartOfCard.style.display =
                     "block";
 
                   const reminderButtonParagraphOfCard: any =
@@ -426,7 +426,7 @@ export default function Card({
                   reminderButtonParagraphOfCard.style.display = "none";
 
                   // Setting div element
-                  setDivElement(reminderContentWraperInLowerPartOfCard);
+                  setDivElement(reminderContentWrapperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -450,11 +450,12 @@ export default function Card({
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const reminderContentWraperInLowerPartOfCard: any =
+                  const reminderContentWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "reminderContentWraperInLowerPartOfCard"
+                      "reminderContentWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  reminderContentWraperInLowerPartOfCard.style.display = "none";
+                  reminderContentWrapperInLowerPartOfCard.style.display =
+                    "none";
 
                   const reminderButtonParagraphOfCard: any =
                     document.getElementsByClassName(
@@ -478,11 +479,11 @@ export default function Card({
                     : `${style.elementInLowerPartOfCard} ${style.popUpInEditModeElementInLowerPartOfCard} elementInLowerPartOfCard`
                 }
                 onClick={() => {
-                  const themeItemsWraperInLowerPartOfCard: any =
+                  const themeItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "themeItemsWraperInLowerPartOfCard"
+                      "themeItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  themeItemsWraperInLowerPartOfCard.style.display = "block";
+                  themeItemsWrapperInLowerPartOfCard.style.display = "block";
 
                   const themeButtonParagraphOfCard: any =
                     document.getElementsByClassName(
@@ -491,7 +492,7 @@ export default function Card({
                   themeButtonParagraphOfCard.style.display = "none";
 
                   // Setting div element
-                  setDivElement(themeItemsWraperInLowerPartOfCard);
+                  setDivElement(themeItemsWrapperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -515,11 +516,11 @@ export default function Card({
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const themeItemsWraperInLowerPartOfCard: any =
+                  const themeItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "themeItemsWraperInLowerPartOfCard"
+                      "themeItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  themeItemsWraperInLowerPartOfCard.style.display = "none";
+                  themeItemsWrapperInLowerPartOfCard.style.display = "none";
 
                   const themeButtonParagraphOfCard: any =
                     document.getElementsByClassName(
@@ -576,15 +577,15 @@ export default function Card({
                     : `${style.elementInLowerPartOfCard} ${style.popUpInEditModeElementInLowerPartOfCard} elementInLowerPartOfCard`
                 }
                 onClick={() => {
-                  const attachmentItemsWraperInLowerPartOfCard: any =
+                  const attachmentItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "attachmentItemsWraperInLowerPartOfCard"
+                      "attachmentItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  attachmentItemsWraperInLowerPartOfCard.style.display =
+                  attachmentItemsWrapperInLowerPartOfCard.style.display =
                     "block";
 
                   // Setting div element
-                  setDivElement(attachmentItemsWraperInLowerPartOfCard);
+                  setDivElement(attachmentItemsWrapperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -602,11 +603,12 @@ export default function Card({
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const attachmentItemsWraperInLowerPartOfCard: any =
+                  const attachmentItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "attachmentItemsWraperInLowerPartOfCard"
+                      "attachmentItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  attachmentItemsWraperInLowerPartOfCard.style.display = "none";
+                  attachmentItemsWrapperInLowerPartOfCard.style.display =
+                    "none";
 
                   // Setting div element
                   setDivElement(null);
@@ -664,11 +666,11 @@ export default function Card({
                     : `${style.elementInLowerPartOfCard} ${style.popUpInEditModeElementInLowerPartOfCard} elementInLowerPartOfCard`
                 }
                 onClick={() => {
-                  const threeDotItemsWraperInLowerPartOfCard: any =
+                  const threeDotItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "threeDotItemsWraperInLowerPartOfCard"
+                      "threeDotItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  threeDotItemsWraperInLowerPartOfCard.style.display = "block";
+                  threeDotItemsWrapperInLowerPartOfCard.style.display = "block";
 
                   const morebuttonOfCard: any = document.getElementsByClassName(
                     "moreButtonParagraphOfCard"
@@ -676,7 +678,7 @@ export default function Card({
                   morebuttonOfCard.style.display = "none";
 
                   // Setting div element
-                  setDivElement(threeDotItemsWraperInLowerPartOfCard);
+                  setDivElement(threeDotItemsWrapperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -699,11 +701,11 @@ export default function Card({
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const threeDotItemsWraperInLowerPartOfCard: any =
+                  const threeDotItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "threeDotItemsWraperInLowerPartOfCard"
+                      "threeDotItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  threeDotItemsWraperInLowerPartOfCard.style.display = "none";
+                  threeDotItemsWrapperInLowerPartOfCard.style.display = "none";
 
                   const morebuttonOfCard: any = document.getElementsByClassName(
                     "moreButtonParagraphOfCard"
