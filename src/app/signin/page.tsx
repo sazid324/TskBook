@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 // CSS imports
-import style from "@/app/layout.module.scss";
+import style from "@/app/signin/signin.module.scss";
 
 export default function signin() {
   /////////////////////// Return Method ///////////////////////
@@ -12,12 +12,12 @@ export default function signin() {
       <div className={`${style.signInPageContainer} signInPageContainer`}>
         <div className={`${style.signInFormContainer} signInFormContainer`}>
           <h1 className={`${style.headingOfSignInForm} headingOfSignInForm`}>
-            Signin
+            Sign In
           </h1>
           <p
             className={`${style.subHeadingOfSignInForm} subHeadingOfSignInForm`}
           >
-            Sign in to continue.
+            Sign In to continue.
           </p>
           <form className={`${style.SignInForm} SignInForm`} method="post">
             <input
@@ -38,7 +38,7 @@ export default function signin() {
               className={`${style.signInFormSubmitButton} signInFormSubmitButton`}
               type="submit"
             >
-              Signin
+              Sign In
             </button>
           </form>
           <Link
@@ -51,7 +51,7 @@ export default function signin() {
             className={`${style.signUpLinkInSignInForm} signUpLinkInSignInForm`}
             href="/signup"
           >
-            Signup!
+            Sign Up!
           </Link>
         </div>
       </div>
