@@ -1,6 +1,8 @@
 // Library imports
-import NoteInstance from "@/instance/NoteInstance";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+// Instance imports
+import { NoteInstance } from "@/instance/DataInstance";
 
 // Interfaces
 interface CardInterface {

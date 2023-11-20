@@ -4,7 +4,7 @@ import Link from "next/link";
 // CSS imports
 import style from "@/app/signin/signin.module.scss";
 
-export default function signin() {
+export default function Signin() {
   /////////////////////// Return Method ///////////////////////
 
   return (
