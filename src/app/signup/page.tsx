@@ -35,6 +35,13 @@ export default function Signup() {
           password: password1.value.trim(),
         });
 
+        cardDispatch(
+          setMessage({
+            message:
+              "Congratulations, your account has been created successfully.",
+          })
+        );
+
         return userData;
       } catch (error: any) {
         const errorMessage: any = error.response.data;
