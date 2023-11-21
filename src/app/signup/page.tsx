@@ -18,18 +18,18 @@ export default function Signup() {
   const cardDispatch = useDispatch();
 
   // Functions
-  const createUser = async (event: any) => {
+  const signUpUser = async (event: any) => {
     event.preventDefault();
 
     // References
-    const username: any = document.getElementById("username");
-    const email: any = document.getElementById("email");
-    const password1: any = document.getElementById("password1");
-    const password2: any = document.getElementById("password2");
+    const username: any = document.getElementById("signUpUsername");
+    const email: any = document.getElementById("signUpEmail");
+    const password1: any = document.getElementById("signUpPassword1");
+    const password2: any = document.getElementById("signUpPassword2");
 
     if (password1.value === password2.value) {
       try {
-        const userData = await UserInstance.post("/signup/", {
+        const userSingUpData = await UserInstance.post("/signup/", {
           username: username.value.trim(),
           email: email.value.trim(),
           password: password1.value.trim(),
@@ -42,7 +42,7 @@ export default function Signup() {
           })
         );
 
-        return userData;
+        return userSingUpData;
       } catch (error: any) {
         const errorMessage: any = error.response.data;
         if (error.response.data.hasOwnProperty("email") === true) {
@@ -79,7 +79,7 @@ export default function Signup() {
           <form className={`${style.signUpForm} signUpForm`} method="post">
             <input
               className={`${style.signUpFormInputField} signUpFormInputField`}
-              id="username"
+              id="signUpUsername"
               type="text"
               name="username"
               placeholder="Enter your username"
@@ -87,7 +87,7 @@ export default function Signup() {
             />
             <input
               className={`${style.signUpFormInputField} signUpFormInputField`}
-              id="email"
+              id="signUpEmail"
               type="email"
               name="email"
               placeholder="Enter your e-mail"
@@ -95,7 +95,7 @@ export default function Signup() {
             />
             <input
               className={`${style.signUpFormInputField} signUpFormInputField`}
-              id="password1"
+              id="signUpPassword1"
               type="password"
               name="password1"
               placeholder="Enter your password"
@@ -103,7 +103,7 @@ export default function Signup() {
             />
             <input
               className={`${style.signUpFormInputField} signUpFormInputField`}
-              id="password2"
+              id="signUpPassword2"
               type="password"
               name="password2"
               placeholder="Confirm your password"
@@ -113,7 +113,7 @@ export default function Signup() {
               className={`${style.signUpFormSubmitButton} signUpFormSubmitButton`}
               type="submit"
               onClick={(event: any) => {
-                createUser(event);
+                signUpUser(event);
               }}
             >
               Sign Up
