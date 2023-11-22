@@ -4,10 +4,16 @@ import style from "@/app/todo/todo.module.scss";
 // Component imports
 import PageWatermark from "@/components/PageWatermark/PageWatermark";
 
+// Custom Hook imports
+import useJWTRecover from "@/customHook/useJWTRecover";
+
 // Assets
 import todoImage from "../../../public/assets/Images/Icons/to-do.svg";
 
 export default function ToDo() {
+  // Custom Hooks
+  useJWTRecover();
+
   /////////////////////// Return Method ///////////////////////
 
   return (

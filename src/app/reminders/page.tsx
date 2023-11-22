@@ -4,10 +4,16 @@ import style from "@/app/reminders/reminders.module.scss";
 // Component imports
 import PageWatermark from "@/components/PageWatermark/PageWatermark";
 
+// Custom Hook imports
+import useJWTRecover from "@/customHook/useJWTRecover";
+
 // Assets
 import reminderImage from "../../../public/assets/Images/Icons/reminder.svg";
 
 export default function Reminders() {
+  // Custom Hooks
+  useJWTRecover();
+
   /////////////////////// Return Method ///////////////////////
 
   return (

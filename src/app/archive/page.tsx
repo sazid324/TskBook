@@ -4,10 +4,16 @@ import style from "@/app/archive/archive.module.scss";
 // Component imports
 import PageWatermark from "@/components/PageWatermark/PageWatermark";
 
+// Custom Hook imports
+import useJWTRecover from "@/customHook/useJWTRecover";
+
 // Assets
 import archiveImage from "../../../public/assets/Images/Icons/archive.svg";
 
 export default function Archive() {
+  // Custom Hooks
+  useJWTRecover();
+
   /////////////////////// Return Method ///////////////////////
 
   return (

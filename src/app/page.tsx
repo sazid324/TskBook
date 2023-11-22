@@ -7,10 +7,16 @@ import { useSelector, useDispatch } from "react-redux";
 // Component imports
 import CardList from "../components/CardList/CardList";
 
+// Custom Hook imports
+import useJWTRecover from "@/customHook/useJWTRecover";
+
 // Redux imports
 import { apiData } from "@/redux/slices/cardSlice";
 
 export default function Notes() {
+  // Custom Hooks
+  useJWTRecover();
+
   // Hooks
   const [divElement, setDivElement] = useState<any>(null);
   const [viewPort, setViewPort] = useState(() => {

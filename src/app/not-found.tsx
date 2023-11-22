@@ -8,7 +8,13 @@ import Link from "next/link";
 // CSS imports
 import style from "@/app/notFound.module.scss";
 
+// Custom Hook imports
+import useJWTRecover from "@/customHook/useJWTRecover";
+
 export default function NotFound() {
+  // Custom Hooks
+  useJWTRecover();
+
   // Hooks
   const router = useRouter();
 
