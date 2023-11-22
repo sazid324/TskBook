@@ -51,6 +51,9 @@ export default function Signup() {
               "Congratulations, your account has been created successfully.",
           })
         );
+
+        // Redirecting page
+        window.location.href = "/signin";
       } catch (error: any) {
         const errorMessage: any = error.response.data;
         if (error.response.data.hasOwnProperty("email") === true) {

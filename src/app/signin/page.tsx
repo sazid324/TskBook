@@ -42,6 +42,9 @@ export default function Signin() {
             },
           })
         );
+
+        // Redirecting page
+        window.location.href = "/";
       } else {
         cardDispatch(setMessage({ message: userSingInData.data.message }));
       }
