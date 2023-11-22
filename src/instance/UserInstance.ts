@@ -1,5 +1,9 @@
 // Imports
 import axios from "axios";
+import Cookies from "universal-cookie";
+
+  // Variables
+  const cookies = new Cookies();
 
 // Instance
 const UserInstance = axios.create({
@@ -7,7 +11,7 @@ const UserInstance = axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: "Bearer your_access_token",
+    Authorization: `Bearer ${cookies.get("usersAccessToken")}`,
   },
 });
 

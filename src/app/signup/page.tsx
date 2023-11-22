@@ -3,6 +3,7 @@
 // Library imports
 import Link from "next/link";
 import { useDispatch } from "react-redux";
+import Cookies from "universal-cookie";
 
 // Instance imports
 import { UserInstance } from "@/instance/UserInstance";
@@ -15,7 +16,10 @@ import { setMessage } from "@/redux/slices/userAPISlice";
 
 export default function Signup() {
   // Hooks
-  const cardDispatch = useDispatch();
+  const userAPIDispatch = useDispatch();
+
+  // Variables
+  const cookies = new Cookies();
 
   // Functions
   const signUpUser = async (event: any) => {
@@ -35,7 +39,22 @@ export default function Signup() {
           password: password1.value.trim(),
         });
 
-        cardDispatch(
+        // Saving data to session storage.
+        sessionStorage.setItem(
+          "usersJWTToken",
+          JSON.stringify(userSingUpData.data.Token)
+        );
+
+        // Saving data to cookies.
+        cookies.set("usersRefreshToken", userSingUpData.data.Token.refresh, {
+          expires: new Date(Date.now() + 25892000000),
+        });
+        cookies.set("usersAccessToken", userSingUpData.data.Token.access, {
+          expires: new Date(Date.now() + 25892000000),
+        });
+
+        // Dispatching slice
+        userAPIDispatch(
           setMessage({
             message:
               "Congratulations, your account has been created successfully.",
@@ -46,15 +65,15 @@ export default function Signup() {
       } catch (error: any) {
         const errorMessage: any = error.response.data;
         if (error.response.data.hasOwnProperty("email") === true) {
-          cardDispatch(
+          userAPIDispatch(
             setMessage({ message: "Email address already exists." })
           );
         } else if (errorMessage.hasOwnProperty("username") === true) {
-          cardDispatch(setMessage({ message: "Username already exists." }));
+          userAPIDispatch(setMessage({ message: "Username already exists." }));
         }
       }
     } else {
-      cardDispatch(setMessage({ message: "Passwords don't match." }));
+      userAPIDispatch(setMessage({ message: "Passwords don't match." }));
     }
   };
 

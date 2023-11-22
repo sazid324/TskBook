@@ -3,6 +3,7 @@
 // Library imports
 import Link from "next/link";
 import { useDispatch } from "react-redux";
+import Cookies from "universal-cookie";
 
 // Instance imports
 import { UserInstance } from "@/instance/UserInstance";
@@ -16,6 +17,9 @@ import { setMessage } from "@/redux/slices/userAPISlice";
 export default function Signin() {
   // Hooks
   const cardDispatch = useDispatch();
+
+  // Variables
+  const cookies = new Cookies();
 
   // Functions
   const signInUser = async (event: any) => {
@@ -39,8 +43,12 @@ export default function Signin() {
         );
 
         // Saving data to cookies.
-        document.cookie = `usersRefreshToken=${userSingInData.data.Token.refresh}`;
-        document.cookie = `usersAccessToken=${userSingInData.data.Token.access}`;
+        cookies.set("usersRefreshToken", userSingInData.data.Token.refresh, {
+          expires: new Date(Date.now() + 25892000000),
+        });
+        cookies.set("usersAccessToken", userSingInData.data.Token.access, {
+          expires: new Date(Date.now() + 25892000000),
+        });
       } else {
         cardDispatch(setMessage({ message: userSingInData.data.message }));
       }
