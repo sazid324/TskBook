@@ -3,7 +3,6 @@
 // Library imports
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import Cookies from "universal-cookie";
 
 // Instance imports
 import { UserInstance } from "@/instance/UserInstance";
@@ -12,14 +11,11 @@ import { UserInstance } from "@/instance/UserInstance";
 import style from "@/app/signup/signup.module.scss";
 
 // Redux imports
-import { setMessage } from "@/redux/slices/userAPISlice";
+import { setJWTToken, setMessage } from "@/redux/slices/userAPISlice";
 
 export default function Signup() {
   // Hooks
   const userAPIDispatch = useDispatch();
-
-  // Variables
-  const cookies = new Cookies();
 
   // Functions
   const signUpUser = async (event: any) => {
@@ -39,29 +35,22 @@ export default function Signup() {
           password: password1.value.trim(),
         });
 
-        // Saving data to session storage.
-        sessionStorage.setItem(
-          "usersJWTToken",
-          JSON.stringify(userSingUpData.data.Token)
+        // Dispatching slice
+        userAPIDispatch(
+          setJWTToken({
+            token: {
+              refresh: userSingUpData.data.Token.refresh,
+              access: userSingUpData.data.Token.access,
+            },
+          })
         );
 
-        // Saving data to cookies.
-        cookies.set("usersRefreshToken", userSingUpData.data.Token.refresh, {
-          expires: new Date(Date.now() + 25892000000),
-        });
-        cookies.set("usersAccessToken", userSingUpData.data.Token.access, {
-          expires: new Date(Date.now() + 25892000000),
-        });
-
-        // Dispatching slice
         userAPIDispatch(
           setMessage({
             message:
               "Congratulations, your account has been created successfully.",
           })
         );
-
-        return userSingUpData;
       } catch (error: any) {
         const errorMessage: any = error.response.data;
         if (error.response.data.hasOwnProperty("email") === true) {

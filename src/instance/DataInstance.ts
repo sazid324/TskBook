@@ -1,4 +1,4 @@
-// Imports
+// Library imports
 import axios from "axios";
 import Cookies from "universal-cookie";
 

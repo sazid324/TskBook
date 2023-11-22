@@ -3,7 +3,6 @@
 // Library imports
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import Cookies from "universal-cookie";
 
 // Instance imports
 import { UserInstance } from "@/instance/UserInstance";
@@ -12,14 +11,12 @@ import { UserInstance } from "@/instance/UserInstance";
 import style from "@/app/signin/signin.module.scss";
 
 // Redux imports
-import { setMessage } from "@/redux/slices/userAPISlice";
+import { setJWTToken, setMessage } from "@/redux/slices/userAPISlice";
 
 export default function Signin() {
   // Hooks
   const cardDispatch = useDispatch();
-
-  // Variables
-  const cookies = new Cookies();
+  const userAPIDispatch = useDispatch();
 
   // Functions
   const signInUser = async (event: any) => {
@@ -36,24 +33,18 @@ export default function Signin() {
       });
 
       if (userSingInData.data.hasOwnProperty("Token") === true) {
-        // Saving data to session storage.
-        sessionStorage.setItem(
-          "usersJWTToken",
-          JSON.stringify(userSingInData.data.Token)
+        // Dispatching slice
+        userAPIDispatch(
+          setJWTToken({
+            token: {
+              refresh: userSingInData.data.Token.refresh,
+              access: userSingInData.data.Token.access,
+            },
+          })
         );
-
-        // Saving data to cookies.
-        cookies.set("usersRefreshToken", userSingInData.data.Token.refresh, {
-          expires: new Date(Date.now() + 25892000000),
-        });
-        cookies.set("usersAccessToken", userSingInData.data.Token.access, {
-          expires: new Date(Date.now() + 25892000000),
-        });
       } else {
         cardDispatch(setMessage({ message: userSingInData.data.message }));
       }
-
-      return userSingInData;
     } catch (error: any) {
       cardDispatch(setMessage({ message: error.message }));
     }
