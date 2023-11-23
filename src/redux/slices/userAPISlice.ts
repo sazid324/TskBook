@@ -61,12 +61,14 @@ const userAPISlice: any = createSlice({
       );
 
       // Saving data to cookies.
-      cookies.set("usersRefreshToken", state.token.refresh, {
-        expires: new Date(Date.now() + 25892000000),
-      });
-      cookies.set("usersAccessToken", state.token.access, {
-        expires: new Date(Date.now() + 25892000000),
-      });
+      if (window.location.pathname !== "/signup") {
+        cookies.set("usersRefreshToken", state.token.refresh, {
+          expires: new Date(Date.now() + 25892000000),
+        });
+        cookies.set("usersAccessToken", state.token.access, {
+          expires: new Date(Date.now() + 25892000000),
+        });
+      }
     },
 
     setMessage: (state, action) => {

@@ -87,6 +87,3 @@ export default function useJWTRecover() {
     }
   }, []);
 }
-
-// isTokenExpired(usersJWTToken.refresh) === false;
-// isTokenExpired(usersRefreshToken) === false;
