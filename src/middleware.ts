@@ -3,8 +3,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export default function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname !== "/signin") {
-    return NextResponse.redirect(new URL("/signin", request.url));
+  // // Cookies
+  const cookie: any = request.cookies.toString();
+
+  // Conditions
+  if (request.nextUrl.pathname === "/signin" && cookie !== "") {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 }
 
@@ -16,5 +20,7 @@ export const config = {
     "/reminders/:path*",
     "/archive/:path*",
     "/trash/:path*",
+    "/signin/:path*",
+    "/signup/:path*",
   ],
 };
