@@ -42,6 +42,12 @@ export default function Signin() {
           })
         );
 
+        userAPIDispatch(
+          setMessage({
+            message: "Congratulations, you are successfully signed in.",
+          })
+        );
+
         // Redirecting page
         window.location.href = "/";
       } else {
