@@ -49,7 +49,15 @@ export default function Signin() {
         cardDispatch(setMessage({ message: userSingInData.data.message }));
       }
     } catch (error: any) {
-      cardDispatch(setMessage({ message: error.message }));
+      if (error.response.data.hasOwnProperty("code") === true) {
+        userAPIDispatch(
+          setMessage({
+            message: "Authorization token is invalid or expired.",
+          })
+        );
+      } else {
+        cardDispatch(setMessage({ message: error.message }));
+      }
     }
   };
 

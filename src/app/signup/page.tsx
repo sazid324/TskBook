@@ -62,6 +62,12 @@ export default function Signup() {
           );
         } else if (errorMessage.hasOwnProperty("username") === true) {
           userAPIDispatch(setMessage({ message: "Username already exists." }));
+        } else if (errorMessage.hasOwnProperty("code") === true) {
+          userAPIDispatch(
+            setMessage({
+              message: "Authorization token is invalid or expired.",
+            })
+          );
         }
       }
     } else {
