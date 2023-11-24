@@ -15,7 +15,6 @@ import { setJWTToken, setMessage } from "@/redux/slices/userAPISlice";
 
 export default function Signin() {
   // Hooks
-  const cardDispatch = useDispatch();
   const userAPIDispatch = useDispatch();
 
   // Functions
@@ -46,7 +45,7 @@ export default function Signin() {
         // Redirecting page
         window.location.href = "/";
       } else {
-        cardDispatch(setMessage({ message: userSingInData.data.message }));
+        userAPIDispatch(setMessage({ message: userSingInData.data.message }));
       }
     } catch (error: any) {
       if (error.response.data.hasOwnProperty("code") === true) {
@@ -56,7 +55,7 @@ export default function Signin() {
           })
         );
       } else {
-        cardDispatch(setMessage({ message: error.message }));
+        userAPIDispatch(setMessage({ message: error.message }));
       }
     }
   };
