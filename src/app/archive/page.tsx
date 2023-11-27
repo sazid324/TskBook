@@ -1,3 +1,5 @@
+"use client";
+
 // CSS imports
 import style from "@/app/archive/archive.module.scss";
 

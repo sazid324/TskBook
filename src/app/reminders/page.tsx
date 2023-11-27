@@ -1,3 +1,5 @@
+"use client";
+
 // CSS imports
 import style from "@/app/reminders/reminders.module.scss";
 

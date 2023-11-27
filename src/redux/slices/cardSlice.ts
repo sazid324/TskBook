@@ -82,7 +82,11 @@ const cardSlice: any = createSlice({
       cards.splice(action.payload.index, 1, newSavedCard);
 
       // Updating data of database
-      NoteInstance.put("/update/", newSavedCard);
+      NoteInstance.put("/update/", newSavedCard, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       state.cardData = cards;
     },
