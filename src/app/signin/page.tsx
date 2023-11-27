@@ -11,7 +11,11 @@ import { UserInstance } from "@/instance/UserInstance";
 import style from "@/app/signin/signin.module.scss";
 
 // Redux imports
-import { setJWTToken, setMessage } from "@/redux/slices/userAPISlice";
+import {
+  setJWTToken,
+  setUserData,
+  setMessage,
+} from "@/redux/slices/userAPISlice";
 
 export default function Signin() {
   // Hooks
@@ -39,6 +43,16 @@ export default function Signin() {
               refresh: userSingInData.data.Token.refresh,
               access: userSingInData.data.Token.access,
             },
+          })
+        );
+
+        userAPIDispatch(
+          setUserData({
+            userID: userSingInData.data.Data.user_id,
+            email: userSingInData.data.Data.email,
+            username: userSingInData.data.Data.username,
+            isUser: userSingInData.data.Data.is_user,
+            isSuperuser: userSingInData.data.Data.is_superuser,
           })
         );
 

@@ -1,5 +1,6 @@
 // Library imports
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import secureLocalStorage from "react-secure-storage";
 
 // Instance imports
 import { NoteInstance } from "@/instance/DataInstance";
@@ -7,6 +8,7 @@ import { NoteInstance } from "@/instance/DataInstance";
 // Interfaces
 interface CardInterface {
   _id: number;
+  userId: string;
   headerValue: string;
   bodyValue: string;
   files: string[];
@@ -42,8 +44,15 @@ const cardSlice: any = createSlice({
   } as StateInterface,
   reducers: {
     addCard: (state) => {
+      // Getting decrypted data from local storage
+      const decryptedUserData: any = secureLocalStorage.getItem("UserData");
+
+      const decryptedUserDataObject = JSON.parse(decryptedUserData);
+
+      // Creating new card object
       const newCardData: CardInterface = {
         _id: Date.now() + Math.floor(Math.random() * 78),
+        userId: decryptedUserDataObject.user_id,
         headerValue: "",
         bodyValue: "",
         files: [],
@@ -70,8 +79,15 @@ const cardSlice: any = createSlice({
     },
 
     saveCard: (state, action) => {
+      // Getting decrypted data from local storage
+      const decryptedUserData: any = secureLocalStorage.getItem("UserData");
+
+      const decryptedUserDataObject = JSON.parse(decryptedUserData);
+
+      // Creating new card object
       const newSavedCard = {
         _id: action.payload._id,
+        userId: decryptedUserDataObject.user_id,
         headerValue: action.payload.headerValue,
         bodyValue: action.payload.bodyValue,
         files: action.payload.files,
@@ -92,8 +108,15 @@ const cardSlice: any = createSlice({
     },
 
     copyCard: (state, action) => {
+      // Getting decrypted data from local storage
+      const decryptedUserData: any = secureLocalStorage.getItem("UserData");
+
+      const decryptedUserDataObject = JSON.parse(decryptedUserData);
+
+      // Creating new card object
       const dataOfNewCopiedCard: CardInterface = {
         _id: Date.now() + Math.floor(Math.random() * 78),
+        userId: decryptedUserDataObject.user_id,
         headerValue: action.payload.headerValue,
         bodyValue: action.payload.bodyValue,
         files: action.payload.files,

@@ -1,6 +1,7 @@
 // Library imports
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "universal-cookie";
+import secureLocalStorage from "react-secure-storage";
 
 // Variables
 const cookies = new Cookies();
@@ -13,6 +14,13 @@ interface TokenStateInterface {
 
 interface StateInterface {
   message: any;
+  userData: {
+    user_id: any;
+    email: string;
+    username: string;
+    is_user: boolean;
+    is_superuser: boolean;
+  };
   token: TokenStateInterface;
 }
 
@@ -38,6 +46,13 @@ const InitialState = {
               : ""
           }`
     }`,
+  },
+  userData: {
+    user_id: "",
+    email: "",
+    username: "",
+    is_user: false,
+    is_superuser: false,
   },
   message: null,
 } as StateInterface;
@@ -71,6 +86,22 @@ const userAPISlice: any = createSlice({
       }
     },
 
+    setUserData: (state, action) => {
+      state.userData.is_user = action.payload.isUser;
+
+      // Creating user data object
+      const userDataObject = {
+        user_id: action.payload.userID,
+        email: action.payload.email,
+        username: action.payload.username,
+        is_user: action.payload.isUser,
+        is_superuser: action.payload.isSuperuser,
+      };
+
+      // Saving encrypted data to local storage
+      secureLocalStorage.setItem("UserData", JSON.stringify(userDataObject));
+    },
+
     setMessage: (state, action) => {
       state.message = action.payload.message;
     },
@@ -79,4 +110,4 @@ const userAPISlice: any = createSlice({
 
 // Exports
 export default userAPISlice.reducer;
-export const { setJWTToken, setMessage } = userAPISlice.actions;
+export const { setJWTToken, setUserData, setMessage } = userAPISlice.actions;
