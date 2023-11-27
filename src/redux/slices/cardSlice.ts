@@ -25,8 +25,17 @@ interface StateInterface {
 export const apiData: any = createAsyncThunk(
   "notes",
   async (_, { rejectWithValue }) => {
+    // Getting decrypted data from local storage
+    const decryptedUserData: any = secureLocalStorage.getItem("UserData");
+
+    const decryptedUserDataObject = JSON.parse(decryptedUserData);
+
     try {
-      const storedValue: any = await NoteInstance.get("/read/");
+      const storedValue: any = await NoteInstance.get("/read/", {
+        params: {
+          userId: decryptedUserDataObject.user_id,
+        },
+      });
       return storedValue.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
