@@ -37,6 +37,14 @@
         position: relative;
         width: 100%;
         height: 100%;
+
+        .leftPartLowerSection {
+          position: absolute;
+          right: 0;
+          left: 0;
+          bottom: 1rem;
+          margin: auto;
+        }
       }
     }
 

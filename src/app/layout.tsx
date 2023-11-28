@@ -12,6 +12,7 @@ import ReduxProvider from "@/redux/provider";
 import Header from "../components/Header/Header";
 import ListGroup from "../components/ListGroup/ListGroup";
 import Button from "../components/Button/Button";
+import Profile from "@/components/Profile/Profile";
 
 // Metadata
 export const metadata: Metadata = {
@@ -47,6 +48,11 @@ export default function RootLayout({
                     <section className="leftPartUpperSection">
                       <Button>Add New</Button>
                       <ListGroup />
+                    </section>
+                    <section
+                      className={`${style.leftPartLowerSection} leftPartLowerSection`}
+                    >
+                      <Profile />
                     </section>
                   </div>
                 </aside>

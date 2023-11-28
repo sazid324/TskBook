@@ -14,7 +14,6 @@ import { searchQuery } from "@/redux/slices/searchSlice";
 // Assets
 import TskBookLightLogo from "../../../public/assets/Images/Brandings/TskBook_Light_Theme_logo.svg";
 import searchImage from "../../../public/assets/Images/Icons/search.svg";
-import profileImage from "../../../public/assets/Images/Icons/profile.svg";
 import cross from "../../../public/assets/Images/Icons/cross.svg";
 import listImage from "../../../public/assets/Images/Icons/list.svg";
 
@@ -54,9 +53,6 @@ export default function Header() {
       document.getElementsByClassName("logoOfHeader")[0];
     const searchOfHeader: any =
       document.getElementsByClassName("searchOfHeader")[0];
-    const searchElementsContainer: any = document.getElementsByClassName(
-      "searchElementsContainer"
-    )[0];
     const searchInputOfHeader: any = document.getElementsByClassName(
       "searchInputOfHeader"
     )[0];
@@ -69,8 +65,6 @@ export default function Header() {
       navMenuButtonOfHeader.style.cssText = "display: none;";
       logoOfHeader.style.cssText = "display: none;";
       searchOfHeader.style.cssText = "width: 100%; transition: width 0.5s;";
-      searchElementsContainer.style.cssText =
-        "width: 100%; transition: width 0.5s;";
       searchInputOfHeader.style.cssText =
         "width: 100%; transition: width 0.5s; display: block;";
       searchLogoOfHeader.src = cross.src;
@@ -81,13 +75,11 @@ export default function Header() {
       logoOfHeader.style.cssText =
         "display: block; display: flex; justify-content: center;";
       searchOfHeader.style.cssText = "width: 33.33%; transition: width 0.5s;";
-      searchElementsContainer.style.cssText =
-        "width: 2.8rem; transition: width 0.5s;";
       searchInputOfHeader.style.cssText = "width: 0%; transition: width 0.5s;";
 
       setTimeout(() => {
         searchInputOfHeader.style.cssText = "display: none;";
-      }, 200);
+      }, 300);
 
       searchLogoOfHeader.src = searchImage.src;
       searchDispatch(searchQuery(""));
@@ -112,6 +104,9 @@ export default function Header() {
     const textInLiOfListGroup: any = document.getElementsByClassName(
       "textInLiOfListGroup"
     );
+    const profileButton: any =
+      document.getElementsByClassName("profileButton")[0];
+    const usersName: any = document.getElementsByClassName("usersName")[0];
 
     if (clickedOnNavMenu === true) {
       leftPart.style.cssText = "width: 6rem; transition: width 0.4s;";
@@ -119,10 +114,12 @@ export default function Header() {
       btnOfButton.style.cssText =
         "margin-left: 0px; transition: margin-left 0.4s;";
       textOfButton.style.display = "none";
+      profileButton.style.cssText = "width: inherit;";
 
       for (let i = 0; i < liOfListGroup.length; i++) {
         liOfListGroup[i].style.cssText = "width: 4.45rem;";
         textInLiOfListGroup[i].style.display = "none";
+        usersName.style.display = "none";
       }
     }
 
@@ -134,6 +131,8 @@ export default function Header() {
 
       setTimeout(() => {
         textOfButton.style.display = "block";
+        profileButton.style.cssText = "width: 100%;";
+        usersName.style.display = "block";
 
         for (let i = 0; i < liOfListGroup.length; i++) {
           liOfListGroup[i].style.cssText = "width: inherit;";
@@ -176,51 +175,25 @@ export default function Header() {
             className={`${style.searchOfHeader} searchOfHeader`}
             ref={searchBox}
           >
-            <div
-              className={`${style.searchElementsContainer} searchElementsContainer`}
-            >
-              <input
-                className={`${style.searchInputOfHeader} searchInputOfHeader`}
-                type="text"
-                placeholder="Search here...."
-                onChange={(event: any) => {
-                  searchDispatch(searchQuery(event.target.value.toLowerCase()));
-                }}
-              />
-              <button
-                className={`${style.searchButtonOfHeader} searchButtonOfHeader`}
-                onClick={() => {
-                  setClickedOnSearch(!clickedOnSearch);
-                }}
-              >
-                <Image
-                  className={`${style.searchLogoOfHeader} searchLogoOfHeader`}
-                  src={searchImage}
-                  alt="search-logo"
-                />
-              </button>
-            </div>
+            <input
+              className={`${style.searchInputOfHeader} searchInputOfHeader`}
+              type="text"
+              placeholder="Search here...."
+              onChange={(event: any) => {
+                searchDispatch(searchQuery(event.target.value.toLowerCase()));
+              }}
+            />
             <button
-              className={`${style.profileButtonOfHeader} profileButtonOfHeader`}
+              className={`${style.searchButtonOfHeader} searchButtonOfHeader`}
+              onClick={() => {
+                setClickedOnSearch(!clickedOnSearch);
+              }}
             >
               <Image
-                className={`${style.profileLogoOfHeader} profileLogoOfHeader`}
-                src={profileImage}
+                className={`${style.searchLogoOfHeader} searchLogoOfHeader`}
+                src={searchImage}
                 alt="search-logo"
               />
-              <div
-                className={`${style.profileButtonItemsWrapperOfHeader} profileButtonItemsWrapperOfHeader`}
-              >
-                <ul
-                  className={`${style.profileButtonItemsOfHeader} profileButtonItemsOfHeader`}
-                >
-                  <li
-                    className={`${style.itemInProfileButtonItemsOfHeader} itemInProfileButtonItemsOfHeader`}
-                  >
-                    Sign out
-                  </li>
-                </ul>
-              </div>
             </button>
           </div>
         </nav>
