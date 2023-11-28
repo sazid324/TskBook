@@ -4,7 +4,7 @@
 import style from "@/app/reminders/reminders.module.scss";
 
 // Component imports
-import PageWatermark from "@/components/PageWatermark/PageWatermark";
+import NoContent from "@/components/NoContent/NoContent";
 
 // Custom Hook imports
 import useJWTRecover from "@/customHook/useJWTRecover";
@@ -26,9 +26,9 @@ export default function Reminders() {
         {0 ? (
           <p>Dummy</p>
         ) : (
-          <PageWatermark imageSource={reminderImage} imageAlt={"reminder_logo"}>
+          <NoContent imageSource={reminderImage} imageAlt={"reminder_logo"}>
             {"Elements with upcoming reminders appear here"}
-          </PageWatermark>
+          </NoContent>
         )}
       </div>
     </>

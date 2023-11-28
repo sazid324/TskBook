@@ -4,7 +4,7 @@
 import style from "@/app/archive/archive.module.scss";
 
 // Component imports
-import PageWatermark from "@/components/PageWatermark/PageWatermark";
+import NoContent from "@/components/NoContent/NoContent";
 
 // Custom Hook imports
 import useJWTRecover from "@/customHook/useJWTRecover";
@@ -24,9 +24,9 @@ export default function Archive() {
         {0 ? (
           <p>Dummy</p>
         ) : (
-          <PageWatermark imageSource={archiveImage} imageAlt={"archive_logo"}>
+          <NoContent imageSource={archiveImage} imageAlt={"archive_logo"}>
             {"Your archived elements appear here"}
-          </PageWatermark>
+          </NoContent>
         )}
       </div>
     </>

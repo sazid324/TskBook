@@ -4,13 +4,13 @@
 import style from "@/app/trash/trash.module.scss";
 
 // Component imports
-import PageWatermark from "@/components/PageWatermark/PageWatermark";
-
-// Custom Hook imports
-import useJWTRecover from "@/customHook/useJWTRecover";
+import NoContent from "@/components/NoContent/NoContent";
 
 // Assets
 import trashImage from "../../../public/assets/Images/Icons/trash.svg";
+
+// Custom Hook imports
+import useJWTRecover from "@/customHook/useJWTRecover";
 
 export default function Trash() {
   // Custom Hooks
@@ -26,9 +26,9 @@ export default function Trash() {
         {0 ? (
           <p>Dummy</p>
         ) : (
-          <PageWatermark imageSource={trashImage} imageAlt={"trash_logo"}>
+          <NoContent imageSource={trashImage} imageAlt={"trash_logo"}>
             {"No elements in Trash"}
-          </PageWatermark>
+          </NoContent>
         )}
       </div>
     </>

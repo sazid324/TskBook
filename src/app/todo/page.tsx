@@ -4,13 +4,13 @@
 import style from "@/app/todo/todo.module.scss";
 
 // Component imports
-import PageWatermark from "@/components/PageWatermark/PageWatermark";
-
-// Custom Hook imports
-import useJWTRecover from "@/customHook/useJWTRecover";
+import NoContent from "@/components/NoContent/NoContent";
 
 // Assets
 import todoImage from "../../../public/assets/Images/Icons/to-do.svg";
+
+// Custom Hook imports
+import useJWTRecover from "@/customHook/useJWTRecover";
 
 export default function ToDo() {
   // Custom Hooks
@@ -26,9 +26,9 @@ export default function ToDo() {
         {0 ? (
           <p>Dummy</p>
         ) : (
-          <PageWatermark imageSource={todoImage} imageAlt={"to-do_logo"}>
+          <NoContent imageSource={todoImage} imageAlt={"to-do_logo"}>
             {"To-do elements will appear here"}
-          </PageWatermark>
+          </NoContent>
         )}
       </div>
     </>

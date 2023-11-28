@@ -3,7 +3,7 @@ import style from "@/components/CardList/CardList.module.scss";
 
 // Component imports
 import Card from "../Card/Card";
-import PageWatermark from "../PageWatermark/PageWatermark";
+import NoContent from "@/components/NoContent/NoContent";
 
 // Assets
 import noteImage from "../../../public/assets/Images/Icons/note.svg";
@@ -35,9 +35,9 @@ export default function CardList({
             );
           })
         ) : (
-          <PageWatermark imageSource={noteImage} imageAlt={"note_logo"}>
+          <NoContent imageSource={noteImage} imageAlt={"note_logo"}>
             {"Notes you add appear here"}
-          </PageWatermark>
+          </NoContent>
         )}
       </div>
     </>

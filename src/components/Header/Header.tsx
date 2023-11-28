@@ -108,9 +108,6 @@ export default function Header() {
     const btnOfButton: any = document.getElementsByClassName("btnOfButton")[0];
     const textOfButton: any =
       document.getElementsByClassName("textOfButton")[0];
-    const containerOfCopyright: any = document.getElementsByClassName(
-      "containerOfCopyright"
-    )[0];
     const liOfListGroup: any = document.getElementsByClassName("liOfListGroup");
     const textInLiOfListGroup: any = document.getElementsByClassName(
       "textInLiOfListGroup"
@@ -122,7 +119,6 @@ export default function Header() {
       btnOfButton.style.cssText =
         "margin-left: 0px; transition: margin-left 0.4s;";
       textOfButton.style.display = "none";
-      containerOfCopyright.style.display = "none";
 
       for (let i = 0; i < liOfListGroup.length; i++) {
         liOfListGroup[i].style.cssText = "width: 4.45rem;";
@@ -138,7 +134,6 @@ export default function Header() {
 
       setTimeout(() => {
         textOfButton.style.display = "block";
-        containerOfCopyright.style.display = "block";
 
         for (let i = 0; i < liOfListGroup.length; i++) {
           liOfListGroup[i].style.cssText = "width: inherit;";
