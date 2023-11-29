@@ -25,7 +25,7 @@ export default function Profile() {
   const clickedOnSingOutButton = () => {
     // Removed items from local storage
     secureLocalStorage.removeItem("UserData");
-    secureLocalStorage.removeItem("nav-menu-state-in-local-storage");
+    localStorage.removeItem("nav-menu-state-in-local-storage");
 
     // Removed items from session storage
     sessionStorage.removeItem("usersJWTToken");
