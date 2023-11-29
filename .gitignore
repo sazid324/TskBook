@@ -12,6 +12,7 @@ lerna-debug.log*
 !.vscode/extensions.json
 .idea
 .DS_Store
+*.pem
 *.suo
 *.ntvs*
 *.njsproj
@@ -20,6 +21,11 @@ lerna-debug.log*
 *.local
 vite.config.ts
 .eslintrc.cjs
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+.pnp.js
+/.pnp
 
 
 # Folders
@@ -30,3 +36,7 @@ node_modules
 dist
 dist-ssr
 .next
+/build
+/.next/
+/out/
+/coverage
