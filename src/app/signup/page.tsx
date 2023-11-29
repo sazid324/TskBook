@@ -23,6 +23,8 @@ export default function Signup() {
 
     // References
     const username: any = document.getElementById("signUpUsername");
+    const firstName: any = document.getElementById("signUpFirstName");
+    const lastName: any = document.getElementById("signUpLastName");
     const email: any = document.getElementById("signUpEmail");
     const password1: any = document.getElementById("signUpPassword1");
     const password2: any = document.getElementById("signUpPassword2");
@@ -31,6 +33,8 @@ export default function Signup() {
       try {
         const userSingUpData = await UserInstance.post("/signup/", {
           username: username.value.trim(),
+          first_name: firstName.value.trim(),
+          last_name: lastName.value.trim(),
           email: email.value.trim(),
           password: password1.value.trim(),
         });
@@ -94,6 +98,22 @@ export default function Signup() {
             </Link>
           </p>
           <form className={`${style.signUpForm} signUpForm`} method="post">
+            <input
+              className={`${style.signUpFormInputField} signUpFormInputField`}
+              id="signUpFirstName"
+              type="text"
+              name="firstName"
+              placeholder="Enter your first name"
+              required
+            />
+            <input
+              className={`${style.signUpFormInputField} signUpFormInputField`}
+              id="signUpLastName"
+              type="text"
+              name="lastName"
+              placeholder="Enter your last name"
+              required
+            />
             <input
               className={`${style.signUpFormInputField} signUpFormInputField`}
               id="signUpUsername"

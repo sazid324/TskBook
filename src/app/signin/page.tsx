@@ -49,8 +49,10 @@ export default function Signin() {
         userAPIDispatch(
           setUserData({
             userID: userSingInData.data.Data.user_id,
-            email: userSingInData.data.Data.email,
             username: userSingInData.data.Data.username,
+            firstName: userSingInData.data.Data.first_name,
+            lastName: userSingInData.data.Data.last_name,
+            email: userSingInData.data.Data.email,
             isUser: userSingInData.data.Data.is_user,
             isSuperuser: userSingInData.data.Data.is_superuser,
           })

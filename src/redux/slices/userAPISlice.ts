@@ -16,8 +16,10 @@ interface StateInterface {
   message: any;
   userData: {
     user_id: any;
-    email: string;
+    first_name: string;
+    last_name: string;
     username: string;
+    email: string;
     is_user: boolean;
     is_superuser: boolean;
   };
@@ -49,8 +51,10 @@ const InitialState = {
   },
   userData: {
     user_id: "",
-    email: "",
+    first_name: "",
+    last_name: "",
     username: "",
+    email: "",
     is_user: false,
     is_superuser: false,
   },
@@ -92,8 +96,10 @@ const userAPISlice: any = createSlice({
       // Creating user data object
       const userDataObject = {
         user_id: action.payload.userID,
-        email: action.payload.email,
+        first_name: action.payload.firstName,
+        last_name: action.payload.lastName,
         username: action.payload.username,
+        email: action.payload.email,
         is_user: action.payload.isUser,
         is_superuser: action.payload.isSuperuser,
       };
