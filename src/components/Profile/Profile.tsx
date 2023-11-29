@@ -16,6 +16,7 @@ export default function Profile() {
   const ParsedUserData = JSON.parse(UserData);
   const FirstName: string = ParsedUserData ? ParsedUserData.first_name : "";
   const LastName: string = ParsedUserData ? ParsedUserData.last_name : "";
+  const UserName: string = ParsedUserData ? ParsedUserData.username : "";
 
   /////////////////////// Return Method ///////////////////////
 
@@ -35,10 +36,23 @@ export default function Profile() {
         >
           <ul className={`${style.profileButtonItems} profileButtonItems`}>
             <li
-              className={`${style.itemInProfileButtonItems} itemInProfileButtonItems`}
+              className={`${style.profileImageContainer} profileImageContainer`}
             >
-              Sign out
+              <Image
+                className={`${style.profileImage} profileImage`}
+                src={profileImage}
+                alt="profile-image"
+              />
             </li>
+            <li className={`${style.namesContainer} namesContainer`}>
+              <p className={`${style.names} names`}>
+                {`${FirstName} ${LastName}`}
+              </p>
+            </li>
+            <li className={`${style.userNameContainer} userNameContainer`}>
+              <p className={`${style.userName} userName`}>{UserName}</p>
+            </li>
+            <li className={`${style.signOutButton} signOutButton`}>Sign out</li>
           </ul>
         </div>
       </button>
