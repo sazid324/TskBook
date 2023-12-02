@@ -24,9 +24,9 @@ import ImagePopUp from "../ImagePopUp/ImagePopUp";
 export const fileUploadContext: any = createContext(null);
 
 // Assets
-import archiveImage from "../../../public/assets/Images/Icons_and_logos/archive.svg";
-import editImage from "../../../public/assets/Images/Icons_and_logos/edit.svg";
-import saveImage from "../../../public/assets/Images/Icons_and_logos/save.svg";
+import archiveImage from "../../../public/assets/Images/Icons/archive.svg";
+import editImage from "../../../public/assets/Images/Icons/edit.svg";
+import saveImage from "../../../public/assets/Images/Icons/save.svg";
 
 // Interfaces
 interface CardElements {
@@ -61,11 +61,12 @@ export default function Card({
   const quillRef = useRef<any>(null);
 
   const addNewCard: any = useSelector((state: any) => {
-    return state.CardSlice;
+    return state.CardSlice.cardData;
   });
   const cardDispatch = useDispatch();
 
   useEffect(() => {
+    // Changing file display type
     const filesOfCard: any =
       document.getElementsByClassName("filesOfCard")[indexOfCard];
     if (elementOfCard.files.length !== 0) {
@@ -83,7 +84,7 @@ export default function Card({
       // Dispatching slice
       cardDispatch(
         saveCard({
-          id: elementOfCard.id,
+          _id: elementOfCard._id,
           headerValue: elementOfCard.headerValue,
           bodyValue: elementOfCard.bodyValue,
           files: uploadedFiles,
@@ -138,7 +139,7 @@ export default function Card({
       shadowPartOfCard.style.cssText = `display: block; background: linear-gradient(to bottom, transparent, ${elementOfCard.color} 90%);`;
 
       if (headingOfCard.value === "") {
-        headerTextPartOfCard.style.display = "none";
+        headingOfCard.style.display = "none";
       }
 
       if (bodyOfCard.value === "" || qlEditor.innerHTML === `<p><br></p>`) {
@@ -153,12 +154,12 @@ export default function Card({
       editElementTextInLowerPartOfCard.innerHTML = "Edit";
       setEditorButton(false);
 
-      headingOfCard.scrollIntoView();
+      headerTextPartOfCard.scrollIntoView();
 
       // Dispatching slice
       cardDispatch(
         saveCard({
-          id: elementOfCard.id,
+          _id: elementOfCard._id,
           headerValue: headerValueOnChange,
           bodyValue: bodyValueOnChange,
           files: uploadedFiles,
@@ -170,7 +171,7 @@ export default function Card({
 
     if (editAndSaveButton === true) {
       // Applying style on selected elements
-      headerTextPartOfCard.style.display = "block";
+      headingOfCard.style.display = "block";
       bodyOfCard.style.display = "block";
       overlayOnSaveModeInUpperPartOfCard.style.display = "none";
       shadowPartOfCard.style.display = "none";
@@ -411,11 +412,11 @@ export default function Card({
                     : `${style.elementInLowerPartOfCard} ${style.popUpInEditModeElementInLowerPartOfCard} elementInLowerPartOfCard`
                 }
                 onClick={() => {
-                  const reminderContentWraperInLowerPartOfCard: any =
+                  const reminderContentWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "reminderContentWraperInLowerPartOfCard"
+                      "reminderContentWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  reminderContentWraperInLowerPartOfCard.style.display =
+                  reminderContentWrapperInLowerPartOfCard.style.display =
                     "block";
 
                   const reminderButtonParagraphOfCard: any =
@@ -425,7 +426,7 @@ export default function Card({
                   reminderButtonParagraphOfCard.style.display = "none";
 
                   // Setting div element
-                  setDivElement(reminderContentWraperInLowerPartOfCard);
+                  setDivElement(reminderContentWrapperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -449,11 +450,12 @@ export default function Card({
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const reminderContentWraperInLowerPartOfCard: any =
+                  const reminderContentWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "reminderContentWraperInLowerPartOfCard"
+                      "reminderContentWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  reminderContentWraperInLowerPartOfCard.style.display = "none";
+                  reminderContentWrapperInLowerPartOfCard.style.display =
+                    "none";
 
                   const reminderButtonParagraphOfCard: any =
                     document.getElementsByClassName(
@@ -477,11 +479,11 @@ export default function Card({
                     : `${style.elementInLowerPartOfCard} ${style.popUpInEditModeElementInLowerPartOfCard} elementInLowerPartOfCard`
                 }
                 onClick={() => {
-                  const themeItemsWraperInLowerPartOfCard: any =
+                  const themeItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "themeItemsWraperInLowerPartOfCard"
+                      "themeItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  themeItemsWraperInLowerPartOfCard.style.display = "block";
+                  themeItemsWrapperInLowerPartOfCard.style.display = "block";
 
                   const themeButtonParagraphOfCard: any =
                     document.getElementsByClassName(
@@ -490,7 +492,7 @@ export default function Card({
                   themeButtonParagraphOfCard.style.display = "none";
 
                   // Setting div element
-                  setDivElement(themeItemsWraperInLowerPartOfCard);
+                  setDivElement(themeItemsWrapperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -514,11 +516,11 @@ export default function Card({
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const themeItemsWraperInLowerPartOfCard: any =
+                  const themeItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "themeItemsWraperInLowerPartOfCard"
+                      "themeItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  themeItemsWraperInLowerPartOfCard.style.display = "none";
+                  themeItemsWrapperInLowerPartOfCard.style.display = "none";
 
                   const themeButtonParagraphOfCard: any =
                     document.getElementsByClassName(
@@ -575,15 +577,15 @@ export default function Card({
                     : `${style.elementInLowerPartOfCard} ${style.popUpInEditModeElementInLowerPartOfCard} elementInLowerPartOfCard`
                 }
                 onClick={() => {
-                  const attachmentItemsWraperInLowerPartOfCard: any =
+                  const attachmentItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "attachmentItemsWraperInLowerPartOfCard"
+                      "attachmentItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  attachmentItemsWraperInLowerPartOfCard.style.display =
+                  attachmentItemsWrapperInLowerPartOfCard.style.display =
                     "block";
 
                   // Setting div element
-                  setDivElement(attachmentItemsWraperInLowerPartOfCard);
+                  setDivElement(attachmentItemsWrapperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -601,11 +603,12 @@ export default function Card({
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const attachmentItemsWraperInLowerPartOfCard: any =
+                  const attachmentItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "attachmentItemsWraperInLowerPartOfCard"
+                      "attachmentItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  attachmentItemsWraperInLowerPartOfCard.style.display = "none";
+                  attachmentItemsWrapperInLowerPartOfCard.style.display =
+                    "none";
 
                   // Setting div element
                   setDivElement(null);
@@ -663,11 +666,11 @@ export default function Card({
                     : `${style.elementInLowerPartOfCard} ${style.popUpInEditModeElementInLowerPartOfCard} elementInLowerPartOfCard`
                 }
                 onClick={() => {
-                  const threeDotItemsWraperInLowerPartOfCard: any =
+                  const threeDotItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "threeDotItemsWraperInLowerPartOfCard"
+                      "threeDotItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  threeDotItemsWraperInLowerPartOfCard.style.display = "block";
+                  threeDotItemsWrapperInLowerPartOfCard.style.display = "block";
 
                   const morebuttonOfCard: any = document.getElementsByClassName(
                     "moreButtonParagraphOfCard"
@@ -675,7 +678,7 @@ export default function Card({
                   morebuttonOfCard.style.display = "none";
 
                   // Setting div element
-                  setDivElement(threeDotItemsWraperInLowerPartOfCard);
+                  setDivElement(threeDotItemsWrapperInLowerPartOfCard);
                 }}
                 onMouseEnter={() => {
                   const containerOfCard: any =
@@ -698,11 +701,11 @@ export default function Card({
                   containerOfCard.style.cssText = "overflow: hidden";
                   containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
 
-                  const threeDotItemsWraperInLowerPartOfCard: any =
+                  const threeDotItemsWrapperInLowerPartOfCard: any =
                     document.getElementsByClassName(
-                      "threeDotItemsWraperInLowerPartOfCard"
+                      "threeDotItemsWrapperInLowerPartOfCard"
                     )[indexOfCard];
-                  threeDotItemsWraperInLowerPartOfCard.style.display = "none";
+                  threeDotItemsWrapperInLowerPartOfCard.style.display = "none";
 
                   const morebuttonOfCard: any = document.getElementsByClassName(
                     "moreButtonParagraphOfCard"

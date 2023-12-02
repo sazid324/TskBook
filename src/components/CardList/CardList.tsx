@@ -3,10 +3,10 @@ import style from "@/components/CardList/CardList.module.scss";
 
 // Component imports
 import Card from "../Card/Card";
-import PageWatermark from "../PageWatermark/PageWatermark";
+import NoContent from "@/components/NoContent/NoContent";
 
 // Assets
-import noteImage from "../../../public/assets/Images/Icons_and_logos/note.svg";
+import noteImage from "../../../public/assets/Images/Icons/note.svg";
 
 // Interfaces
 interface CardListElements {
@@ -27,7 +27,7 @@ export default function CardList({
           cardArrayProp.map((element: any, index: number) => {
             return (
               <Card
-                key={element.id}
+                key={element._id}
                 elementOfCard={element}
                 indexOfCard={index}
                 setDivElement={setDivElement}
@@ -35,9 +35,9 @@ export default function CardList({
             );
           })
         ) : (
-          <PageWatermark imageSource={noteImage} imageAlt={"note_logo"}>
+          <NoContent imageSource={noteImage} imageAlt={"note_logo"}>
             {"Notes you add appear here"}
-          </PageWatermark>
+          </NoContent>
         )}
       </div>
     </>

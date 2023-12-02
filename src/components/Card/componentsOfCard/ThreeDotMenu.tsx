@@ -9,7 +9,7 @@ import style from "@/components/Card/Card.module.scss";
 import { copyCard, deleteCard } from "@/redux/slices/cardSlice";
 
 // Assets
-import threeDotImage from "../../../../public/assets/Images/Icons_and_logos/threeDot.svg";
+import threeDotImage from "../../../../public/assets/Images/Icons/threeDot.svg";
 
 // Interfaces
 interface ThreeDotMenuElements {
@@ -23,7 +23,7 @@ export default function ThreeDotMenu({
 }: ThreeDotMenuElements) {
   // Hooks
   const addNewCard: any = useSelector((state: any) => {
-    return state.CardSlice;
+    return state.CardSlice.cardData;
   });
   const cardDispatch = useDispatch();
 
@@ -36,7 +36,7 @@ export default function ThreeDotMenu({
       >
         <Image src={threeDotImage} alt="threeDot-image" />
         <div
-          className={`${style.threeDotItemsWraperInLowerPartOfCard} threeDotItemsWraperInLowerPartOfCard`}
+          className={`${style.threeDotItemsWrapperInLowerPartOfCard} threeDotItemsWrapperInLowerPartOfCard`}
           onMouseEnter={() => {
             const morebuttonParagraphOfCard: any =
               document.getElementsByClassName("moreButtonParagraphOfCard")[

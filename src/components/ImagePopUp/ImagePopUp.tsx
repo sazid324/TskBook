@@ -9,10 +9,10 @@ import style from "@/components/ImagePopUp/ImagePopUp.module.scss";
 import { saveCard } from "@/redux/slices/cardSlice";
 
 // Assets
-import backImage from "../../../public/assets/Images/Icons_and_logos/back.svg";
-import deleteImage from "../../../public/assets/Images/Icons_and_logos/delete.svg";
-import nextArrowImage from "../../../public/assets/Images/Icons_and_logos/nextArrow.svg";
-import previousArrowImage from "../../../public/assets/Images/Icons_and_logos/previousArrow.svg";
+import backImage from "../../../public/assets/Images/Icons/back.svg";
+import deleteImage from "../../../public/assets/Images/Icons/delete.svg";
+import nextArrowImage from "../../../public/assets/Images/Icons/nextArrow.svg";
+import previousArrowImage from "../../../public/assets/Images/Icons/previousArrow.svg";
 
 // Interfaces
 interface ImagePopUpElements {
@@ -40,7 +40,7 @@ export default function ImagePopUp({
 }: ImagePopUpElements) {
   // Hooks
   const addNewCard: any = useSelector((state: any) => {
-    return state.CardSlice;
+    return state.CardSlice.cardData;
   });
   const cardDispatch = useDispatch();
 
@@ -206,7 +206,7 @@ export default function ImagePopUp({
                   // Dispatching slice
                   cardDispatch(
                     saveCard({
-                      id: elementOfCard.id,
+                      _id: elementOfCard._id,
                       headerValue: elementOfCard.headerValue,
                       bodyValue: elementOfCard.bodyValue,
                       files: deleteCurrentImage,

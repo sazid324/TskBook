@@ -6,20 +6,20 @@ import Image from "next/image";
 import style from "@/components/Card/Card.module.scss";
 
 // Assets
-import boldImage from "../../../../public/assets/Images/Icons_and_logos/bold.svg";
-import italicImage from "../../../../public/assets/Images/Icons_and_logos/italic.svg";
-import underlineImage from "../../../../public/assets/Images/Icons_and_logos/underline.svg";
-import strikeThroughImage from "../../../../public/assets/Images/Icons_and_logos/strikethrough.svg";
-import quoteImage from "../../../../public/assets/Images/Icons_and_logos/quote.svg";
-import h1Image from "../../../../public/assets/Images/Icons_and_logos/h1.svg";
-import h2Image from "../../../../public/assets/Images/Icons_and_logos/h2.svg";
-import h3Image from "../../../../public/assets/Images/Icons_and_logos/h3.svg";
-import ulListImage from "../../../../public/assets/Images/Icons_and_logos/ulList.svg";
-import olListImage from "../../../../public/assets/Images/Icons_and_logos/olList.svg";
-import linkImage from "../../../../public/assets/Images/Icons_and_logos/link.svg";
-import checkBoxImage from "../../../../public/assets/Images/Icons_and_logos/checkBox.svg";
-import undoImage from "../../../../public/assets/Images/Icons_and_logos/undo.svg";
-import redoImage from "../../../../public/assets/Images/Icons_and_logos/redo.svg";
+import boldImage from "../../../../public/assets/Images/Icons/bold.svg";
+import italicImage from "../../../../public/assets/Images/Icons/italic.svg";
+import underlineImage from "../../../../public/assets/Images/Icons/underline.svg";
+import strikeThroughImage from "../../../../public/assets/Images/Icons/strikethrough.svg";
+import quoteImage from "../../../../public/assets/Images/Icons/quote.svg";
+import h1Image from "../../../../public/assets/Images/Icons/h1.svg";
+import h2Image from "../../../../public/assets/Images/Icons/h2.svg";
+import h3Image from "../../../../public/assets/Images/Icons/h3.svg";
+import ulListImage from "../../../../public/assets/Images/Icons/ulList.svg";
+import olListImage from "../../../../public/assets/Images/Icons/olList.svg";
+import linkImage from "../../../../public/assets/Images/Icons/link.svg";
+import checkBoxImage from "../../../../public/assets/Images/Icons/checkBox.svg";
+import undoImage from "../../../../public/assets/Images/Icons/undo.svg";
+import redoImage from "../../../../public/assets/Images/Icons/redo.svg";
 
 // Interfaces
 interface editorButtonContentElements {
@@ -51,7 +51,7 @@ export default function EditorButtonContent({
   return (
     <>
       <div
-        className={`${style.editorContentWraperInLowerPartOfCard} editorContentWraperInLowerPartOfCard`}
+        className={`${style.editorContentWrapperInLowerPartOfCard} editorContentWrapperInLowerPartOfCard`}
         onMouseEnter={() => {
           const editorButtonParagraphOfCard: any =
             document.getElementsByClassName("editorButtonParagraphOfCard")[
@@ -60,9 +60,9 @@ export default function EditorButtonContent({
           editorButtonParagraphOfCard.style.display = "none";
         }}
         onWheel={(e: any) => {
-          const editorContentWraperInLowerPartOfCard: any =
+          const editorContentWrapperInLowerPartOfCard: any =
             document.getElementsByClassName(
-              "editorContentWraperInLowerPartOfCard"
+              "editorContentWrapperInLowerPartOfCard"
             )[indexOfCard];
 
           // Get scroll direction
@@ -72,7 +72,7 @@ export default function EditorButtonContent({
           const scrollAmount: number = 100;
 
           // Scroll the container horizontally
-          editorContentWraperInLowerPartOfCard.scrollLeft +=
+          editorContentWrapperInLowerPartOfCard.scrollLeft +=
             scrollAmount * scrollDirection;
         }}
       >

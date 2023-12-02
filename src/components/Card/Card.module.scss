@@ -16,8 +16,7 @@
   .upperPartOfCard {
     height: 100%;
     display: grid;
-    grid-row-gap: 0.75rem;
-    grid-template-rows: 1.3rem fit-content(100%) fit-content(100%);
+    grid-template-rows: fit-content(100%) fit-content(100%) fit-content(100%);
     grid-template-columns: repeat(1, 1fr);
     background-color: transparent;
     overflow: hidden;
@@ -27,7 +26,7 @@
 
       .headingOfCard {
         width: 100%;
-        height: 100%;
+        margin-bottom: 0.75rem;
         background-color: transparent;
         border: none;
         outline: none;
@@ -43,6 +42,7 @@
     .filesOfCard {
       position: relative;
       width: 100%;
+      margin-bottom: 0.75rem;
       display: grid;
       grid-gap: 0.3rem;
       grid-template-columns: repeat(auto-fill, minmax(30%, auto));
@@ -148,6 +148,7 @@
           .elementTextInLowerPartOfCard {
             display: block;
           }
+
           .overlayOnElementInLowerPartOfCard {
             display: block;
           }
@@ -166,8 +167,8 @@
         .reminderButtonContainerOfCard {
           @include flexCenter(center, center);
 
-          .reminderContentWraperInLowerPartOfCard {
-            @include cardButtonItemsWraper(0.625rem);
+          .reminderContentWrapperInLowerPartOfCard {
+            @include cardButtonItemsWrapper(0.625rem);
 
             .contentsInReminderButtonOfCard {
               width: fit-content(100%);
@@ -214,8 +215,7 @@
                   position: absolute;
                   bottom: 3px;
                   right: 2px;
-                  filter: invert(19%) sepia(9%) saturate(4%) hue-rotate(30deg)
-                    brightness(94%) contrast(85%);
+                  filter: invert(19%) sepia(9%) saturate(4%) hue-rotate(30deg) brightness(94%) contrast(85%);
                 }
               }
 
@@ -239,6 +239,7 @@
             }
           }
         }
+
         /*---ENDING OF ReminderButton component PART---*/
 
         /*---STARTING OF ThemeButton component PART---*/
@@ -246,8 +247,8 @@
           position: relative;
           @include flexCenter(center, center);
 
-          .themeItemsWraperInLowerPartOfCard {
-            @include cardButtonItemsWraper(0.625rem);
+          .themeItemsWrapperInLowerPartOfCard {
+            @include cardButtonItemsWrapper(0.625rem);
 
             .contentsInThemeButtonOfCard {
               width: 177px;
@@ -259,7 +260,7 @@
                 margin-bottom: 15px;
                 color: #444444;
 
-                .colorItemsHeadingParagraphOfCard{
+                .colorItemsHeadingParagraphOfCard {
                   margin-bottom: 1px;
                 }
 
@@ -293,6 +294,7 @@
             }
           }
         }
+
         /*---ENDING OF ThemeButton component PART---*/
 
         /*---STARTING OF AttachmentButton component PART---*/
@@ -300,8 +302,8 @@
           position: relative;
           @include flexCenter(center, center);
 
-          .attachmentItemsWraperInLowerPartOfCard {
-            @include cardButtonItemsWraper(0.625rem);
+          .attachmentItemsWrapperInLowerPartOfCard {
+            @include cardButtonItemsWrapper(0.625rem);
 
             .attachmentElementsInLowerPartOfCard {
               width: 175px;
@@ -343,6 +345,7 @@
             }
           }
         }
+
         /*---ENDING OF AttachmentButton component PART---*/
 
         /*---STARTING OF ThreeDotMenu component PART---*/
@@ -350,8 +353,8 @@
           position: relative;
           @include flexCenter(center, center);
 
-          .threeDotItemsWraperInLowerPartOfCard {
-            @include cardButtonItemsWraper(0.625rem);
+          .threeDotItemsWrapperInLowerPartOfCard {
+            @include cardButtonItemsWrapper(0.625rem);
 
             .threeDotItemsInLowerPartOfCard {
               width: 125px;
@@ -374,16 +377,18 @@
             }
           }
         }
+
         /*---ENDING OF ThreeDotMenu component PART---*/
 
         /*---STARTING OF EditorButton component PART---*/
         .editorButtonContainerOfCard {
           @include flexCenter(center, center);
         }
+
         /*---ENDING OF EditorButton component PART---*/
       }
 
-      .editorContentWraperInLowerPartOfCard {
+      .editorContentWrapperInLowerPartOfCard {
         overflow-x: scroll;
 
         &::-webkit-scrollbar {
@@ -446,14 +451,15 @@
             }
           }
 
-          & > :first-child {
+          &> :first-child {
             padding-left: 0px;
 
             .imageContainerOfContentsInEditorButtonOfCard {
               margin: 0px 5px;
             }
           }
-          & > :last-child {
+
+          &> :last-child {
             padding-right: 0px;
           }
         }
@@ -524,6 +530,7 @@
         from {
           transform: translateY(100%);
         }
+
         to {
           transform: none;
         }

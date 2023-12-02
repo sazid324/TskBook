@@ -1,0 +1,104 @@
+/*=== STYLES IMPORTS ===*/
+@use "../../styles/Mixin" as *;
+@use "../../styles/Variables" as *;
+
+/*=== CSS PART ===*/
+.profileButton {
+  position: relative;
+  border: none;
+  background-color: transparent;
+  padding: 1rem 1.7rem 1rem 1.7rem;
+  border-radius: 5px;
+  @include flexCenter(left, center);
+  z-index: 5;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    background-color: $mainColor;
+  }
+
+  .profileLogo {
+    height: 1.2rem;
+    width: auto;
+  }
+
+  .usersName {
+    height: 1.2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-left: 17px;
+    display: block;
+  }
+
+  .profileButtonItemsWrapper {
+    position: absolute;
+    bottom: 96%;
+    left: 96%;
+    @include flexCenter(center, center);
+    padding: 8px 8px;
+    display: none;
+
+    &:hover {
+      cursor: auto;
+    }
+
+    .profileButtonItems {
+      width: 200px;
+      padding: 23px 18px;
+      @include flexCenter(center, center);
+      flex-direction: column;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 1px 1px 0.6rem 0.1rem $cardBorderColor;
+
+      .profileImageContainer {
+        .profileImage {
+          height: 5rem;
+          width: auto;
+          padding-bottom: 10px;
+        }
+      }
+
+      .namesContainer {
+        .names {
+          font-weight: bold;
+          font-size: 1.1rem;
+          padding-left: 0px;
+          padding-bottom: 7px;
+        }
+      }
+
+      .userNameContainer {
+        .userName {
+          font-size: 0.7rem;
+          padding-bottom: 20px;
+        }
+      }
+
+      .signOutButton {
+        width: 100%;
+        height: 35px;
+        padding: 0.4rem 1rem;
+        border-radius: 5px;
+        box-shadow: 1px 1px 0.6rem 0.01rem $cardBorderColor;
+        list-style-type: none;
+        font-size: 0.85rem;
+        font-weight: bold;
+        @include flexCenter(center, center);
+
+        &:hover,
+        &:active {
+          cursor: pointer;
+          background-color: $mainColor;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    &>.profileButtonItemsWrapper {
+      display: block;
+    }
+  }
+}

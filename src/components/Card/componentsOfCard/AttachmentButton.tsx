@@ -9,7 +9,7 @@ import style from "@/components/Card/Card.module.scss";
 import { fileUploadContext } from "../Card";
 
 // Assets
-import attachmentImage from "../../../../public/assets/Images/Icons_and_logos/attachment.svg";
+import attachmentImage from "../../../../public/assets/Images/Icons/attachment.svg";
 
 // Interfaces
 interface attachmentButtonElements {
@@ -65,7 +65,7 @@ export default function AttachmentButton({
       >
         <Image src={attachmentImage} alt="attachment-image" />
         <div
-          className={`${style.attachmentItemsWraperInLowerPartOfCard} attachmentItemsWraperInLowerPartOfCard`}
+          className={`${style.attachmentItemsWrapperInLowerPartOfCard} attachmentItemsWrapperInLowerPartOfCard`}
           onMouseEnter={() => {
             const themeButtonParagraphOfCard: any =
               document.getElementsByClassName(

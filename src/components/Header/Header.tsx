@@ -12,9 +12,10 @@ import style from "@/components/Header/Header.module.scss";
 import { searchQuery } from "@/redux/slices/searchSlice";
 
 // Assets
-import searchImage from "../../../public/assets/Images/Icons_and_logos/search.svg";
-import cross from "../../../public/assets/Images/Icons_and_logos/cross.svg";
-import listImage from "../../../public/assets/Images/Icons_and_logos/list.svg";
+import TskBookLightLogo from "../../../public/assets/Images/Brandings/TskBook_Light_Theme_logo.svg";
+import searchImage from "../../../public/assets/Images/Icons/search.svg";
+import cross from "../../../public/assets/Images/Icons/cross.svg";
+import listImage from "../../../public/assets/Images/Icons/list.svg";
 
 export default function Header() {
   // Hooks
@@ -99,13 +100,13 @@ export default function Header() {
     const btnOfButton: any = document.getElementsByClassName("btnOfButton")[0];
     const textOfButton: any =
       document.getElementsByClassName("textOfButton")[0];
-    const containerOfCopyright: any = document.getElementsByClassName(
-      "containerOfCopyright"
-    )[0];
     const liOfListGroup: any = document.getElementsByClassName("liOfListGroup");
     const textInLiOfListGroup: any = document.getElementsByClassName(
       "textInLiOfListGroup"
     );
+    const profileButton: any =
+      document.getElementsByClassName("profileButton")[0];
+    const usersName: any = document.getElementsByClassName("usersName")[0];
 
     if (clickedOnNavMenu === true) {
       leftPart.style.cssText = "width: 6rem; transition: width 0.4s;";
@@ -113,11 +114,12 @@ export default function Header() {
       btnOfButton.style.cssText =
         "margin-left: 0px; transition: margin-left 0.4s;";
       textOfButton.style.display = "none";
-      containerOfCopyright.style.display = "none";
+      profileButton.style.cssText = "width: inherit;";
 
       for (let i = 0; i < liOfListGroup.length; i++) {
         liOfListGroup[i].style.cssText = "width: 4.45rem;";
         textInLiOfListGroup[i].style.display = "none";
+        usersName.style.display = "none";
       }
     }
 
@@ -129,7 +131,8 @@ export default function Header() {
 
       setTimeout(() => {
         textOfButton.style.display = "block";
-        containerOfCopyright.style.display = "block";
+        profileButton.style.cssText = "width: 100%;";
+        usersName.style.display = "block";
 
         for (let i = 0; i < liOfListGroup.length; i++) {
           liOfListGroup[i].style.cssText = "width: inherit;";
@@ -160,7 +163,13 @@ export default function Header() {
             </button>
           </div>
           <div className={`${style.logoOfHeader} logoOfHeader`}>
-            <h3>TskBook</h3>
+            <Image
+              className={`${style.brandLogoOfHeader} brandLogoOfHeader`}
+              src={TskBookLightLogo}
+              alt="TskBook-Light_logo"
+              priority={true}
+              quality={100}
+            ></Image>
           </div>
           <div
             className={`${style.searchOfHeader} searchOfHeader`}

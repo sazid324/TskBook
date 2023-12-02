@@ -1,101 +1,160 @@
 // Library imports
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import secureLocalStorage from "react-secure-storage";
+
+// Instance imports
+import { NoteInstance } from "@/instance/DataInstance";
 
 // Interfaces
-interface Card {
-  id: number;
+interface CardInterface {
+  _id: number;
+  userId: string;
   headerValue: string;
   bodyValue: string;
   files: string[];
   color: string;
 }
 
-// Initial state
-const initialState: any = () => {
-  const storedValue: any = localStorage.getItem("card-notes-in-local-storage");
-  return storedValue ? JSON.parse(storedValue) : [];
-};
+interface StateInterface {
+  cardData: any;
+  loading: boolean;
+  message: any;
+}
+
+// API data
+export const apiData: any = createAsyncThunk(
+  "notes",
+  async (_, { rejectWithValue }) => {
+    // Getting decrypted data from local storage
+    const decryptedUserData: any = secureLocalStorage.getItem("UserData");
+
+    const decryptedUserDataObject = JSON.parse(decryptedUserData);
+
+    try {
+      const storedValue: any = await NoteInstance.get("/read/", {
+        params: {
+          userId: decryptedUserDataObject.user_id,
+        },
+      });
+      return storedValue.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 // Redux slice
-const cardSlice = createSlice({
+const cardSlice: any = createSlice({
   name: "CardSlice",
-  initialState: initialState,
+  initialState: {
+    cardData: [],
+    loading: false,
+    message: null,
+  } as StateInterface,
   reducers: {
     addCard: (state) => {
-      const newCard = [
-        ...state,
-        {
-          id: Date.now() + Math.floor(Math.random() * 78),
-          headerValue: "",
-          bodyValue: "",
-          files: [],
-          color: "#FFFFFF",
-        } as Card,
-      ];
+      // Getting decrypted data from local storage
+      const decryptedUserData: any = secureLocalStorage.getItem("UserData");
 
-      // Saving data to local storage
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(newCard)
-      );
+      const decryptedUserDataObject = JSON.parse(decryptedUserData);
 
-      return newCard;
+      // Creating new card object
+      const newCardData: CardInterface = {
+        _id: Date.now() + Math.floor(Math.random() * 78),
+        userId: decryptedUserDataObject.user_id,
+        headerValue: "",
+        bodyValue: "",
+        files: [],
+        color: "#FFFFFF",
+      };
+
+      const newCard: any = [...state.cardData, newCardData];
+
+      // Saving data to database
+      NoteInstance.post("/add/", newCardData);
+
+      state.cardData = newCard;
     },
 
     deleteCard: (state, action) => {
-      const cards: any = [...state];
+      const deletedCardId: string = state.cardData[action.payload]._id;
+      const cards: any = [...state.cardData];
       cards.splice(action.payload, 1);
 
-      // Saving data to local storage
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(cards)
-      );
+      // Deleting data from database
+      NoteInstance.delete(`/delete/?_id=${deletedCardId}`);
 
-      return cards;
+      state.cardData = cards;
     },
 
     saveCard: (state, action) => {
+      // Getting decrypted data from local storage
+      const decryptedUserData: any = secureLocalStorage.getItem("UserData");
+
+      const decryptedUserDataObject = JSON.parse(decryptedUserData);
+
+      // Creating new card object
       const newSavedCard = {
-        id: action.payload.id,
+        _id: action.payload._id,
+        userId: decryptedUserDataObject.user_id,
         headerValue: action.payload.headerValue,
         bodyValue: action.payload.bodyValue,
         files: action.payload.files,
         color: action.payload.color,
-      } as Card;
+      } as CardInterface;
 
-      const cards: any = [...state];
+      const cards: any = [...state.cardData];
       cards.splice(action.payload.index, 1, newSavedCard);
 
-      // Saving elements in local storage
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(cards)
-      );
+      // Updating data of database
+      NoteInstance.put("/update/", newSavedCard, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-      return cards;
+      state.cardData = cards;
     },
 
     copyCard: (state, action) => {
-      const newCopiedCard = [
-        ...state,
-        {
-          id: Date.now() + Math.floor(Math.random() * 78),
-          headerValue: action.payload.headerValue,
-          bodyValue: action.payload.bodyValue,
-          files: action.payload.files,
-          color: action.payload.color,
-        } as Card,
-      ];
+      // Getting decrypted data from local storage
+      const decryptedUserData: any = secureLocalStorage.getItem("UserData");
 
-      // Saving data to local storage
-      localStorage.setItem(
-        "card-notes-in-local-storage",
-        JSON.stringify(newCopiedCard)
-      );
+      const decryptedUserDataObject = JSON.parse(decryptedUserData);
 
-      return newCopiedCard;
+      // Creating new card object
+      const dataOfNewCopiedCard: CardInterface = {
+        _id: Date.now() + Math.floor(Math.random() * 78),
+        userId: decryptedUserDataObject.user_id,
+        headerValue: action.payload.headerValue,
+        bodyValue: action.payload.bodyValue,
+        files: action.payload.files,
+        color: action.payload.color,
+      };
+      const newCopiedCard: any = [...state.cardData, dataOfNewCopiedCard];
+
+      // Copying data of database
+      NoteInstance.post("/copy/", dataOfNewCopiedCard);
+
+      state.cardData = newCopiedCard;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(apiData.pending, (state) => {
+      state.loading = true;
+      state.message = null;
+    });
+
+    builder.addCase(apiData.fulfilled, (state, action) => {
+      state.loading = false;
+      state.cardData = action.payload;
+      state.message = null;
+    });
+
+    builder.addCase(apiData.rejected, (state, action) => {
+      state.loading = false;
+      state.message = action.error.message;
+    });
   },
 });
 

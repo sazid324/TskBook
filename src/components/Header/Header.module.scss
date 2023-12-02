@@ -40,13 +40,18 @@
 
     .logoOfHeader {
       width: 33.33%;
-      @include flexCenter(center, inherit);
+      @include flexCenter(center, center);
+
+      .brandLogoOfHeader {
+        width: 23%;
+        height: auto;
+      }
     }
 
     .searchOfHeader {
       width: 33.33%;
       padding-right: 1rem;
-      @include flexCenter(right, inherit);
+      @include flexCenter(right, center);
 
       .searchInputOfHeader {
         position: relative;

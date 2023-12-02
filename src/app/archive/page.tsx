@@ -1,13 +1,21 @@
+"use client";
+
 // CSS imports
 import style from "@/app/archive/archive.module.scss";
 
 // Component imports
-import PageWatermark from "@/components/PageWatermark/PageWatermark";
+import NoContent from "@/components/NoContent/NoContent";
+
+// Custom Hook imports
+import useJWTRecover from "@/customHook/useJWTRecover";
 
 // Assets
-import archiveImage from "../../../public/assets/Images/Icons_and_logos/archive.svg";
+import archiveImage from "../../../public/assets/Images/Icons/archive.svg";
 
 export default function Archive() {
+  // Custom Hooks
+  useJWTRecover();
+
   /////////////////////// Return Method ///////////////////////
 
   return (
@@ -16,9 +24,9 @@ export default function Archive() {
         {0 ? (
           <p>Dummy</p>
         ) : (
-          <PageWatermark imageSource={archiveImage} imageAlt={"archive_logo"}>
+          <NoContent imageSource={archiveImage} imageAlt={"archive_logo"}>
             {"Your archived elements appear here"}
-          </PageWatermark>
+          </NoContent>
         )}
       </div>
     </>

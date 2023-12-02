@@ -11,8 +11,8 @@ import ReduxProvider from "@/redux/provider";
 // Component imports
 import Header from "../components/Header/Header";
 import ListGroup from "../components/ListGroup/ListGroup";
-import Copyright from "../components/Copyright/Copyright";
 import Button from "../components/Button/Button";
+import Profile from "@/components/Profile/Profile";
 
 // Metadata
 export const metadata: Metadata = {
@@ -31,6 +31,9 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
+        <head>
+          <link rel="icon" href="/favicon.ico" sizes="any" />
+        </head>
         <body>
           <ReduxProvider>
             <header id={style.header}>
@@ -46,11 +49,11 @@ export default function RootLayout({
                       <Button>Add New</Button>
                       <ListGroup />
                     </section>
-                    <footer
+                    <section
                       className={`${style.leftPartLowerSection} leftPartLowerSection`}
                     >
-                      <Copyright />
-                    </footer>
+                      <Profile />
+                    </section>
                   </div>
                 </aside>
                 <section className={`${style.rightPart} rightPart`}>

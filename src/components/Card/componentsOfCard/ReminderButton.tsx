@@ -8,10 +8,10 @@ import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import style from "@/components/Card/Card.module.scss";
 
 // Assets
-import reminderImage from "../../../../public/assets/Images/Icons_and_logos/reminder.svg";
-import calendarImage from "../../../../public/assets/Images/Icons_and_logos/calendar.svg";
-import watchImage from "../../../../public/assets/Images/Icons_and_logos/watch.svg";
-import arrowRight from "../../../../public/assets/Images/Icons_and_logos/arrowRight.svg";
+import reminderImage from "../../../../public/assets/Images/Icons/reminder.svg";
+import calendarImage from "../../../../public/assets/Images/Icons/calendar.svg";
+import watchImage from "../../../../public/assets/Images/Icons/watch.svg";
+import arrowRight from "../../../../public/assets/Images/Icons/arrowRight.svg";
 
 // Interfaces
 interface ReminderButtonElements {
@@ -58,7 +58,7 @@ export default function ReminderButton({
       >
         <Image src={reminderImage} alt="reminder-image" />
         <div
-          className={`${style.reminderContentWraperInLowerPartOfCard} reminderContentWraperInLowerPartOfCard`}
+          className={`${style.reminderContentWrapperInLowerPartOfCard} reminderContentWrapperInLowerPartOfCard`}
           onMouseEnter={() => {
             const reminderbuttonParagraphOfCard: any =
               document.getElementsByClassName("reminderButtonParagraphOfCard")[
