@@ -25,6 +25,11 @@ next-env.d.ts
 .vercel
 .pnp.js
 /.pnp
+.git
+.gitignore
+README.md
+.eslintrc.json
+yarn.lock
 
 
 # Folders

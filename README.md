@@ -35,13 +35,13 @@ TskBook is a productivity tool designed to help users increase their productivit
 3. Install the required dependencies:
 
    ```bash
-   npm install
+   yarn install
    ```
 
 4. Start the development server:
 
    ```bash
-   npm run dev
+   yarn dev
    ```
 
 5. Access TskBook in your web browser at [http://localhost:3000](http://localhost:3000).
