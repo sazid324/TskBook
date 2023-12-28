@@ -4,13 +4,13 @@
 import style from "@/app/archive/archive.module.scss";
 
 // Component imports
-import NoContent from "@/components/NoContent/NoContent";
+import NoContent from "@/layouts/NoContent/NoContent";
 
 // Custom Hook imports
-import useJWTRecover from "@/customHook/useJWTRecover";
+import useJWTRecover from "@/hooks/useJWTRecover";
 
 // Assets
-import archiveImage from "../../../public/assets/Images/Icons/archive.svg";
+import archiveImage from "@/assets/Images/Icons/archive.svg";
 
 export default function Archive() {
   // Custom Hooks

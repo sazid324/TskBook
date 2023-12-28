@@ -1,12 +1,11 @@
 // Library imports
-import { useEffect, useState, useRef, createContext } from "react";
+import { useEffect, useState, createContext } from "react";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
-import ReactQuill from "react-quill";
+import TextareaAutosize from 'react-textarea-autosize';
 
 // CSS imports
 import style from "@/components/Card/Card.module.scss";
-import "react-quill/dist/quill.snow.css";
 
 // Redux imports
 import { saveCard } from "@/redux/slices/cardSlice";
@@ -16,17 +15,15 @@ import ReminderButton from "./componentsOfCard/ReminderButton";
 import ThreeDotMenu from "./componentsOfCard/ThreeDotMenu";
 import ThemeButton from "./componentsOfCard/ThemeButton";
 import AttachmentButton from "./componentsOfCard/AttachmentButton";
-import EditorButton from "./componentsOfCard/EditorButton";
-import EditorButtonContent from "./componentsOfCard/EditorButtonContent";
 import ImagePopUp from "../ImagePopUp/ImagePopUp";
 
 // Component exports
 export const fileUploadContext: any = createContext(null);
 
 // Assets
-import archiveImage from "../../../public/assets/Images/Icons/archive.svg";
-import editImage from "../../../public/assets/Images/Icons/edit.svg";
-import saveImage from "../../../public/assets/Images/Icons/save.svg";
+import archiveImage from "@/assets/Images/Icons/archive.svg";
+import editImage from "@/assets/Images/Icons/edit.svg";
+import saveImage from "@/assets/Images/Icons/save.svg";
 
 // Interfaces
 interface CardElements {
@@ -54,11 +51,8 @@ export default function Card({
   const [bodyToggolOnChange, setBodyToggolOnChange] = useState(true);
   const [filesUploaded, setFilesUploaded] = useState(false);
   const [editAndSaveButton, setEditAndSaveButton] = useState(false);
-  const [editorButton, setEditorButton] = useState(false);
   const [timeOutReference, setTimeOutReference] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
-
-  const quillRef = useRef<any>(null);
 
   const addNewCard: any = useSelector((state: any) => {
     return state.CardSlice.cardData;
@@ -98,8 +92,6 @@ export default function Card({
   useEffect(() => {
     // Functionality of Edit and Save button in Card.
     // Selecting elements
-    const containerOfCard: any =
-      document.getElementsByClassName("containerOfCard")[indexOfCard];
     const upperPartOfCard: any =
       document.getElementsByClassName("upperPartOfCard")[indexOfCard];
     const headerTextPartOfCard: any = document.getElementsByClassName(
@@ -109,12 +101,8 @@ export default function Card({
       document.getElementsByClassName("headingOfCard")[indexOfCard];
     const bodyOfCard: any =
       document.getElementsByClassName("bodyOfCard")[indexOfCard];
-    const qlEditor: any =
-      document.getElementsByClassName("ql-editor")[indexOfCard];
     const shadowPartOfCard: any =
       document.getElementsByClassName("shadowPartOfCard")[indexOfCard];
-    const LowerPartOfCard: any =
-      document.getElementsByClassName("lowerPartOfCard")[indexOfCard];
     const editAndSaveButtonOfCard: any = document.getElementsByClassName(
       "editAndSaveButtonOfCard"
     )[indexOfCard];
@@ -124,10 +112,6 @@ export default function Card({
       ];
     const editElementTextInLowerPartOfCard: any =
       document.getElementsByClassName("editElementTextInLowerPartOfCard")[
-        indexOfCard
-      ];
-    const editorButtonElementInLowerPartOfCard: any =
-      document.getElementsByClassName("editorButtonElementInLowerPartOfCard")[
         indexOfCard
       ];
     const popUpOverlay: any =
@@ -142,17 +126,15 @@ export default function Card({
         headingOfCard.style.display = "none";
       }
 
-      if (bodyOfCard.value === "" || qlEditor.innerHTML === `<p><br></p>`) {
+      if (bodyOfCard.value === "") {
         bodyOfCard.style.display = "none";
       }
 
       upperPartOfCard.style.height = "100%";
-      editorButtonElementInLowerPartOfCard.style.display = "none";
       popUpOverlay.style.display = "none";
 
       editAndSaveButtonOfCard.src = editImage.src;
       editElementTextInLowerPartOfCard.innerHTML = "Edit";
-      setEditorButton(false);
 
       headerTextPartOfCard.scrollIntoView();
 
@@ -178,13 +160,6 @@ export default function Card({
       popUpOverlay.style.display = "block";
       editAndSaveButtonOfCard.src = saveImage.src;
       editElementTextInLowerPartOfCard.innerHTML = "Save";
-      editorButtonElementInLowerPartOfCard.style.display = "block";
-
-      upperPartOfCard.style.cssText = `height: ${
-        containerOfCard.clientHeight - LowerPartOfCard.clientHeight - 15
-      }px`;
-
-      bodyOfCard.style.height = `${qlEditor.scrollHeight}px`;
     }
   }, [editAndSaveButton]);
 
@@ -203,15 +178,6 @@ export default function Card({
     if (bodyToggolOnChange === true) {
       setBodyToggolOnChange(!bodyToggolOnChange);
     }
-
-    // Selecting elements
-    const bodyOfCard: any =
-      document.getElementsByClassName("bodyOfCard")[indexOfCard];
-    const qlEditor: any =
-      document.getElementsByClassName("ql-editor")[indexOfCard];
-
-    // Dynamically increasing height of bodyOfCard
-    bodyOfCard.style.height = `${qlEditor.scrollHeight}px`;
   };
 
   /////////////////////// Return Method ///////////////////////
@@ -371,9 +337,8 @@ export default function Card({
               })}
             </div>
 
-            <ReactQuill
+            <TextareaAutosize
               className={`${style.bodyOfCard} bodyOfCard`}
-              ref={quillRef}
               placeholder="Take a note...."
               value={
                 bodyToggolOnChange === true
@@ -381,11 +346,7 @@ export default function Card({
                   : bodyValueOnChange || ""
               }
               onChange={(event: any) => functionCalledByBodyOnChange(event)}
-              modules={{
-                clipboard: true,
-                toolbar: false,
-              }}
-            ></ReactQuill>
+            ></TextareaAutosize>
             <div
               className={`${style.overlayOnSaveModeInUpperPartOfCard} overlayOnSaveModeInUpperPartOfCard`}
             ></div>
@@ -721,56 +682,6 @@ export default function Card({
                   indexOfCard={indexOfCard}
                 />
               </button>
-              <button
-                className={`${style.elementInLowerPartOfCard} elementInLowerPartOfCard editorButtonElementInLowerPartOfCard`}
-                onClick={() => {
-                  setEditorButton(!editorButton);
-
-                  const editorButtonParagraphOfCard: any =
-                    document.getElementsByClassName(
-                      "editorButtonParagraphOfCard"
-                    )[indexOfCard];
-                  editorButtonParagraphOfCard.style.display = "none";
-                }}
-                onMouseEnter={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("containerOfCard")[
-                      indexOfCard
-                    ];
-                  containerOfCard.style.cssText = "overflow: visible";
-                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-
-                  const editorButtonParagraphOfCard: any =
-                    document.getElementsByClassName(
-                      "editorButtonParagraphOfCard"
-                    )[indexOfCard];
-                  editorButtonParagraphOfCard.style.display = "block";
-                }}
-                onMouseLeave={() => {
-                  const containerOfCard: any =
-                    document.getElementsByClassName("containerOfCard")[
-                      indexOfCard
-                    ];
-                  containerOfCard.style.cssText = "overflow: hidden";
-                  containerOfCard.style.backgroundColor = `${elementOfCard.color}`;
-
-                  const editorButtonParagraphOfCard: any =
-                    document.getElementsByClassName(
-                      "editorButtonParagraphOfCard"
-                    )[indexOfCard];
-                  editorButtonParagraphOfCard.style.display = "none";
-                }}
-              >
-                <EditorButton
-                  indexOfCard={indexOfCard}
-                  editorButton={editorButton}
-                />
-              </button>
-
-              <EditorButtonContent
-                indexOfCard={indexOfCard}
-                quillRef={quillRef}
-              />
 
               <span
                 className={`${style.overlayOnLowerPartOfCard} overlayOnLowerPartOfCard`}

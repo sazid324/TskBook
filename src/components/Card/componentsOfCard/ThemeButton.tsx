@@ -10,8 +10,8 @@ import style from "@/components/Card/Card.module.scss";
 import { saveCard } from "@/redux/slices/cardSlice";
 
 // Assets
-import cardBackgroundImage from "../../../../public/assets/Images/Icons/cardBackground.svg";
-import arrowRight from "../../../../public/assets/Images/Icons/arrowRight.svg";
+import cardBackgroundImage from "@/assets/Images/Icons/cardBackground.svg";
+import arrowRight from "@/assets/Images/Icons/arrowRight.svg";
 
 // Interfaces
 interface ThreeDotMenuElements {

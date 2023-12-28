@@ -4,13 +4,13 @@
 import style from "@/app/trash/trash.module.scss";
 
 // Component imports
-import NoContent from "@/components/NoContent/NoContent";
+import NoContent from "@/layouts/NoContent/NoContent";
 
 // Assets
-import trashImage from "../../../public/assets/Images/Icons/trash.svg";
+import trashImage from "@/assets/Images/Icons/trash.svg";
 
 // Custom Hook imports
-import useJWTRecover from "@/customHook/useJWTRecover";
+import useJWTRecover from "@/hooks/useJWTRecover";
 
 export default function Trash() {
   // Custom Hooks

@@ -4,13 +4,13 @@
 import style from "@/app/todo/todo.module.scss";
 
 // Component imports
-import NoContent from "@/components/NoContent/NoContent";
+import NoContent from "@/layouts/NoContent/NoContent";
 
 // Assets
-import todoImage from "../../../public/assets/Images/Icons/to-do.svg";
+import todoImage from "@/assets/Images/Icons/to-do.svg";
 
 // Custom Hook imports
-import useJWTRecover from "@/customHook/useJWTRecover";
+import useJWTRecover from "@/hooks/useJWTRecover";
 
 export default function ToDo() {
   // Custom Hooks

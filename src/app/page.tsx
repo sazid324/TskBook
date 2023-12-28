@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Component imports
-import CardList from "../components/CardList/CardList";
+import CardList from "../layouts/CardList/CardList";
 
 // Custom Hook imports
-import useJWTRecover from "@/customHook/useJWTRecover";
+import useJWTRecover from "@/hooks/useJWTRecover";
 
 // Redux imports
 import { apiData } from "@/redux/slices/cardSlice";

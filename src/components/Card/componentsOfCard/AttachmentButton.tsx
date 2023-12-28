@@ -9,7 +9,7 @@ import style from "@/components/Card/Card.module.scss";
 import { fileUploadContext } from "../Card";
 
 // Assets
-import attachmentImage from "../../../../public/assets/Images/Icons/attachment.svg";
+import attachmentImage from "@/assets/Images/Icons/attachment.svg";
 
 // Interfaces
 interface attachmentButtonElements {

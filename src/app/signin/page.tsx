@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 
 // Instance imports
-import { UserInstance } from "@/instance/UserInstance";
+import { UserInstance } from "@/services/api/UserInstance";
 
 // CSS imports
 import style from "@/app/signin/signin.module.scss";

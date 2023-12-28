@@ -2,11 +2,11 @@
 import style from "@/components/CardList/CardList.module.scss";
 
 // Component imports
-import Card from "../Card/Card";
-import NoContent from "@/components/NoContent/NoContent";
+import Card from "../../components/Card/Card";
+import NoContent from "@/layouts/NoContent/NoContent";
 
 // Assets
-import noteImage from "../../../public/assets/Images/Icons/note.svg";
+import noteImage from "@/assets/Images/Icons/note.svg";
 
 // Interfaces
 interface CardListElements {

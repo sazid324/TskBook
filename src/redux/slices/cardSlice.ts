@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import secureLocalStorage from "react-secure-storage";
 
 // Instance imports
-import { NoteInstance } from "@/instance/DataInstance";
+import { NoteInstance } from "@/services/api/DataInstance";
 
 // Interfaces
 interface CardInterface {

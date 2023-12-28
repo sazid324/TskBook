@@ -9,8 +9,8 @@ import style from "@/app/layout.module.scss";
 import ReduxProvider from "@/redux/provider";
 
 // Component imports
-import Header from "../components/Header/Header";
-import ListGroup from "../components/ListGroup/ListGroup";
+import Header from "../layouts/Header/Header";
+import ListGroup from "../layouts/ListGroup/ListGroup";
 import Button from "../components/Button/Button";
 import Profile from "@/components/Profile/Profile";
 

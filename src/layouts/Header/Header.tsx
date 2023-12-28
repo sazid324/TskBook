@@ -6,16 +6,16 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 
 // CSS imports
-import style from "@/components/Header/Header.module.scss";
+import style from "@/layouts/Header/Header.module.scss";
 
 // Redux Imports
 import { searchQuery } from "@/redux/slices/searchSlice";
 
 // Assets
-import TskBookLightLogo from "../../../public/assets/Images/Brandings/TskBook_Light_Theme_logo.svg";
-import searchImage from "../../../public/assets/Images/Icons/search.svg";
-import cross from "../../../public/assets/Images/Icons/cross.svg";
-import listImage from "../../../public/assets/Images/Icons/list.svg";
+import TskBookLightLogo from "@/assets/Images/Brandings/TskBook_Light_Theme_logo.svg";
+import searchImage from "@/assets/Images/Icons/search.svg";
+import cross from "@/assets/Images/Icons/cross.svg";
+import listImage from "@/assets/Images/Icons/list.svg";
 
 export default function Header() {
   // Hooks

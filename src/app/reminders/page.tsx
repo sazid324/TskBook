@@ -4,13 +4,13 @@
 import style from "@/app/reminders/reminders.module.scss";
 
 // Component imports
-import NoContent from "@/components/NoContent/NoContent";
+import NoContent from "@/layouts/NoContent/NoContent";
 
 // Custom Hook imports
-import useJWTRecover from "@/customHook/useJWTRecover";
+import useJWTRecover from "@/hooks/useJWTRecover";
 
 // Assets
-import reminderImage from "../../../public/assets/Images/Icons/reminder.svg";
+import reminderImage from "@/assets/Images/Icons/reminder.svg";
 
 export default function Reminders() {
   // Custom Hooks

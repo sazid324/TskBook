@@ -9,7 +9,7 @@ import Link from "next/link";
 import style from "@/app/notFound.module.scss";
 
 // Custom Hook imports
-import useJWTRecover from "@/customHook/useJWTRecover";
+import useJWTRecover from "@/hooks/useJWTRecover";
 
 export default function NotFound() {
   // Custom Hooks

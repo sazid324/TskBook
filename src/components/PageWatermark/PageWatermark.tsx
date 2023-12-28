@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 // CSS imports
-import style from "@/components/PageWatermark/PageWatermark.module.scss";
+import style from "@/layouts/PageWatermark/PageWatermark.module.scss";
 
 // Interfaces
 interface PageWatermarkElements {

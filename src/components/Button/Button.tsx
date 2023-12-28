@@ -11,7 +11,7 @@ import style from "@/components/Button/Button.module.scss";
 import { addCard } from "@/redux/slices/cardSlice";
 
 // Assets
-import addImage from "../../../public/assets/Images/Icons/add.svg";
+import addImage from "@/assets/Images/Icons/add.svg";
 
 interface ButtonElements {
   children: string;

@@ -9,7 +9,7 @@ import Cookies from "universal-cookie";
 import style from "@/components/Profile/Profile.module.scss";
 
 // Assets
-import profileImage from "../../../public/assets/Images/Icons/profile.svg";
+import profileImage from "@/assets/Images/Icons/profile.svg";
 
 export default function Profile() {
   // Variables

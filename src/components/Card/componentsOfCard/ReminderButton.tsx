@@ -8,10 +8,10 @@ import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import style from "@/components/Card/Card.module.scss";
 
 // Assets
-import reminderImage from "../../../../public/assets/Images/Icons/reminder.svg";
-import calendarImage from "../../../../public/assets/Images/Icons/calendar.svg";
-import watchImage from "../../../../public/assets/Images/Icons/watch.svg";
-import arrowRight from "../../../../public/assets/Images/Icons/arrowRight.svg";
+import reminderImage from "@/assets/Images/Icons/reminder.svg";
+import calendarImage from "@/assets/Images/Icons/calendar.svg";
+import watchImage from "@/assets/Images/Icons/watch.svg";
+import arrowRight from "@/assets/Images/Icons/arrowRight.svg";
 
 // Interfaces
 interface ReminderButtonElements {

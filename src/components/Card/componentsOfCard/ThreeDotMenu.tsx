@@ -9,7 +9,7 @@ import style from "@/components/Card/Card.module.scss";
 import { copyCard, deleteCard } from "@/redux/slices/cardSlice";
 
 // Assets
-import threeDotImage from "../../../../public/assets/Images/Icons/threeDot.svg";
+import threeDotImage from "@/assets/Images/Icons/threeDot.svg";
 
 // Interfaces
 interface ThreeDotMenuElements {

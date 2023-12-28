@@ -39,34 +39,3 @@ a {
 li {
   list-style-type: none;
 }
-
-/*=== STYLES OF REACT-QUILL ===*/
-.ql-container {
-  border: none !important;
-
-  .ql-editor {
-    font-family: Lato-Regular !important;
-    font-size: 0.9rem !important;
-    color: #202124 !important;
-    background-color: transparent !important;
-    padding: 0px !important;
-    overflow: hidden !important;
-
-    &::before {
-      font-style: normal !important;
-      left: 0px !important;
-      right: 0px !important;
-    }
-
-    & > ul[data-checked="true"],
-    & > ul[data-checked="false"] {
-      & > li {
-        &::before {
-          color: #202124 !important ;
-          margin-right: 0 !important;
-          text-align: inherit !important;
-        }
-      }
-    }
-  }
-}
