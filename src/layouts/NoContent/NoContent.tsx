@@ -1,5 +1,5 @@
 // CSS imports
-import style from "@/components/NoContent/NoContent.module.scss";
+import style from "@/layouts/NoContent/NoContent.module.scss";
 
 // Component imports
 import PageWatermark from "@/components/PageWatermark/PageWatermark";

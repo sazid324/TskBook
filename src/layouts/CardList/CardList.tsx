@@ -1,8 +1,8 @@
 // CSS imports
-import style from "@/components/CardList/CardList.module.scss";
+import style from "@/layouts/CardList/CardList.module.scss";
 
 // Component imports
-import Card from "../../components/Card/Card";
+import Card from "@/components/Card/Card";
 import NoContent from "@/layouts/NoContent/NoContent";
 
 // Assets

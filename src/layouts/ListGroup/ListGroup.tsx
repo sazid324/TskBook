@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // CSS imports
-import style from "@/components/ListGroup/ListGroup.module.scss";
+import style from "@/layouts/ListGroup/ListGroup.module.scss";
 
 // Assets
 import noteImage from "@/assets/Images/Icons/note.svg";
