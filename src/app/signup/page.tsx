@@ -10,6 +10,9 @@ import { UserInstance } from "@/services/api/UserInstance";
 // CSS imports
 import style from "@/app/signup/signup.module.scss";
 
+// Util imports
+import apiUrls from "@/utils/apiUrls";
+
 // Redux imports
 import { setJWTToken, setMessage } from "@/redux/slices/userAPISlice";
 
@@ -31,7 +34,7 @@ export default function Signup() {
 
     if (password1.value === password2.value) {
       try {
-        const userSingUpData = await UserInstance.post("/signup/", {
+        const userSingUpData = await UserInstance.post(`${apiUrls.userSignUp}`, {
           username: username.value.trim(),
           first_name: firstName.value.trim(),
           last_name: lastName.value.trim(),

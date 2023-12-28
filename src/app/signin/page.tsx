@@ -10,6 +10,9 @@ import { UserInstance } from "@/services/api/UserInstance";
 // CSS imports
 import style from "@/app/signin/signin.module.scss";
 
+// Util imports
+import apiUrls from "@/utils/apiUrls";
+
 // Redux imports
 import {
   setJWTToken,
@@ -30,7 +33,7 @@ export default function Signin() {
     const password: any = document.getElementById("signInPassword");
 
     try {
-      const userSingInData = await UserInstance.post("/signin/", {
+      const userSingInData = await UserInstance.post(`${apiUrls.userSignIn}`, {
         email: email.value.trim(),
         password: password.value.trim(),
       });

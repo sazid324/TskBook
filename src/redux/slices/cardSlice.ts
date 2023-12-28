@@ -5,6 +5,9 @@ import secureLocalStorage from "react-secure-storage";
 // Instance imports
 import { NoteInstance } from "@/services/api/DataInstance";
 
+// Util imports
+import apiUrls from "@/utils/apiUrls";
+
 // Interfaces
 interface CardInterface {
   _id: number;
@@ -31,7 +34,7 @@ export const apiData: any = createAsyncThunk(
     const decryptedUserDataObject = JSON.parse(decryptedUserData);
 
     try {
-      const storedValue: any = await NoteInstance.get("/read/", {
+      const storedValue: any = await NoteInstance.get(`${apiUrls.readCard}`, {
         params: {
           userId: decryptedUserDataObject.user_id,
         },
@@ -71,7 +74,7 @@ const cardSlice: any = createSlice({
       const newCard: any = [...state.cardData, newCardData];
 
       // Saving data to database
-      NoteInstance.post("/add/", newCardData);
+      NoteInstance.post(`${apiUrls.addCard}`, newCardData);
 
       state.cardData = newCard;
     },
@@ -82,7 +85,7 @@ const cardSlice: any = createSlice({
       cards.splice(action.payload, 1);
 
       // Deleting data from database
-      NoteInstance.delete(`/delete/?_id=${deletedCardId}`);
+      NoteInstance.delete(`${apiUrls.deleteCard}?_id=${deletedCardId}`);
 
       state.cardData = cards;
     },
@@ -107,7 +110,7 @@ const cardSlice: any = createSlice({
       cards.splice(action.payload.index, 1, newSavedCard);
 
       // Updating data of database
-      NoteInstance.put("/update/", newSavedCard, {
+      NoteInstance.put(`${apiUrls.updateCard}`, newSavedCard, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -134,7 +137,7 @@ const cardSlice: any = createSlice({
       const newCopiedCard: any = [...state.cardData, dataOfNewCopiedCard];
 
       // Copying data of database
-      NoteInstance.post("/copy/", dataOfNewCopiedCard);
+      NoteInstance.post(`${apiUrls.copyCard}`, dataOfNewCopiedCard);
 
       state.cardData = newCopiedCard;
     },

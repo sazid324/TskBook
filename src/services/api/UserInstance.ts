@@ -1,9 +1,12 @@
 // Library imports
 import axios from "axios";
 
+// Util imports
+import apiUrls from "@/utils/apiUrls";
+
 // Instance
 const UserInstance = axios.create({
-  baseURL: "http://127.0.0.1:8000/auth/",
+  baseURL: `${apiUrls.baseUrl}/auth/`,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
