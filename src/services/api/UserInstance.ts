@@ -6,7 +6,7 @@ import apiUrls from "@/utils/apiUrls";
 
 // Instance
 const UserInstance = axios.create({
-  baseURL: `${apiUrls.baseUrl}/auth/`,
+  baseURL: `${apiUrls.baseUrl}/auth`,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
